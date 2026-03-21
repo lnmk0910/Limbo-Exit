@@ -49,11 +49,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ExitButton.cs" />
-    <Compile Include="Assets\Scripts\Rod.cs" />
-    <Compile Include="Assets\Scripts\WinManager.cs" />
-    <Compile Include="Assets\Scripts\RodClickHandler.cs" />
-    <Compile Include="Assets\Scripts\Disk.cs" />
-    <Compile Include="Assets\Scripts\DiskMover.cs" />
+    <Compile Include="Assets\Scripts\ExitGate.cs" />
+    <Compile Include="Assets\Scripts\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\GameSettings.cs" />
+    <Compile Include="Assets\Scripts\MinigameTrigger.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\MazeCell.cs" />
+    <Compile Include="Assets\Scripts\CheckpointTrigger.cs" />
+    <Compile Include="Assets\Scripts\MazeGenerator.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem.cs" />
+    <Compile Include="Assets\Scripts\NPCTrigger.cs" />
+    <Compile Include="Assets\Scripts\PlayerInventory.cs" />
+    <Compile Include="Assets\Scripts\MazeRenderer.cs" />
+    <Compile Include="Assets\Scripts\MenuManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
