@@ -1,17 +1,17 @@
 // CheckpointTrigger.cs
-// Khi Player bước vào Checkpoint: hồi phục / lưu vị trí hiện tại
-// GẮN vào: Prefab_Checkpoint
-// Prefab cần có: Collider với IsTrigger = true
+// Khi Player bước vào Checkpoint:
+// - Thưởng Mảnh Hồn
+// - Đăng ký vị trí này là Điểm An Toàn (Respawn Point)
+// GẮN vào: Prefab_Checkpoint (cần Collider IsTrigger = true)
 
 using UnityEngine;
 
 public class CheckpointTrigger : MonoBehaviour
 {
-    private bool daKichHoat = false; // Tránh kích hoạt nhiều lần
+    private bool daKichHoat = false;
 
     void Start()
     {
-        // Đảm bảo collider là trigger
         Collider col = GetComponent<Collider>();
         if (col != null) col.isTrigger = true;
     }
@@ -23,14 +23,18 @@ public class CheckpointTrigger : MonoBehaviour
 
         daKichHoat = true;
 
-        // Thưởng Mảnh Hồn nhỏ khi qua Checkpoint
+        // ⭐ Đăng ký vị trí này là điểm hồi sinh an toàn
+        if (RespawnManager.Instance != null)
+            RespawnManager.Instance.DangKyDiemAnToan(transform.position);
+
+        // Thưởng Mảnh Hồn
         PlayerData data = SaveSystem.LoadGame();
         data.soManhHon += 2;
         SaveSystem.SaveGame(data);
 
-        Debug.Log($"💚 Checkpoint! +2 Mảnh Hồn. Tổng: {data.soManhHon}");
+        Debug.Log($"💚 Checkpoint kích hoạt! +2 Mảnh Hồn. Tổng: {data.soManhHon}");
 
-        // Đổi màu để biết đã kích hoạt
+        // Đổi màu xám = đã dùng
         Renderer r = GetComponent<Renderer>();
         if (r != null) r.material.color = Color.gray;
     }

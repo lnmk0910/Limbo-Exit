@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b789470d099a0bd4b9ff98837a3b010d, type: 3}
+  m_Name: Biome_TinhThe
+  m_EditorClassIdentifier: 
+  tenBiome: "M\xEA Cung Tinh Th\u1EC3"
+  moTa: "T\u01B0\u1EDDng \u0111\xE1 c\u1ED5 x\u01B0a r\xEAu phong, b\u1EABy ch\xF4ng
+    \u1EA9n trong b\xF3ng t\u1ED1i."
+  anhDaiDien: {fileID: 0}
+  kieuTuong: 2
+  kieuSan: 2
+  soTruPerWall: 5
+  duongKinhTru: 0.6
+  prefabTuong: {fileID: 0}
+  prefabNen: {fileID: 0}
+  prefabBay: {fileID: 0}
+  mauAmbientLight: {r: 0.039215688, g: 0.039215688, b: 0.14509805, a: 1}
+  mauFog: {r: 0.05, g: 0.05, b: 0.1, a: 1}
+  batFog: 0
+  matDoFog: 0.05
+  heSoTocDo: 1
+  coNuoc: 0
+  coSuong: 0
+  tamNhinToiDa: 30
+  nhacNen: {fileID: 0}

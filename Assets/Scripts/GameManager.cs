@@ -1,5 +1,5 @@
 // GameManager.cs
-// Quản lý: Spawn Player/ExitGate, đọc seed từ save
+// Spawn Player/ExitGate và kết nối RespawnManager
 // GẮN vào: Empty GameObject "GameManager" trong GameScene
 
 using UnityEngine;
@@ -12,8 +12,9 @@ public class GameManager : MonoBehaviour
 
     [Header("=== THAM CHIẾU ===")]
     public MazeGenerator mazeGenerator;
+    public RespawnManager respawnManager;   // Kéo RespawnManager vào đây
 
-    [Header("=== KÍCH THƯỚC Ô (khớp MazeRenderer) ===")]
+    [Header("=== KÍCH THƯỚC Ô ===")]
     public float kichThuocO = 4f;
 
     [Header("=== ĐỘ CAO SPAWN ===")]
@@ -22,19 +23,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (mazeGenerator == null)
-        {
-            Debug.LogError("❌ Chưa gán MazeGenerator vào GameManager!");
-            return;
-        }
+        if (mazeGenerator == null) { Debug.LogError("❌ Thiếu MazeGenerator!"); return; }
 
         DatPlayerVaExitGate();
 
-        // Lưu seed của map này vào save (để load lại đúng bản đồ)
+        // Lưu seed
         PlayerData data = SaveSystem.LoadGame();
         data.seed = mazeGenerator.seedHienTai;
         SaveSystem.SaveGame(data);
-        Debug.Log($"💾 Đã lưu seed {data.seed} | Màn {data.mapHienTai}");
+        Debug.Log($"💾 Seed {data.seed} | Màn {data.mapHienTai}");
     }
 
     void DatPlayerVaExitGate()
@@ -45,9 +42,10 @@ public class GameManager : MonoBehaviour
         Vector3 viTriPlayer = new Vector3(start.x * kichThuocO, doCaoPlayer, start.y * kichThuocO);
         Vector3 viTriGate   = new Vector3(end.x   * kichThuocO, doCaoGate,   end.y   * kichThuocO);
 
+        GameObject playerObj = null;
         if (prefabPlayer != null)
         {
-            Instantiate(prefabPlayer, viTriPlayer, Quaternion.identity);
+            playerObj = Instantiate(prefabPlayer, viTriPlayer, Quaternion.identity);
             Debug.Log("🧍 Player spawn tại: " + viTriPlayer);
         }
 
@@ -55,6 +53,14 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(prefabExitGate, viTriGate, Quaternion.identity);
             Debug.Log("🚪 ExitGate spawn tại: " + viTriGate);
+        }
+
+        // Kết nối Player với RespawnManager
+        if (respawnManager != null && playerObj != null)
+        {
+            respawnManager.DatPlayer(playerObj.transform);
+            // Đặt viTriStart làm điểm hồi sinh mặc định (fallback)
+            respawnManager.viTriStart = playerObj.transform;
         }
     }
 }

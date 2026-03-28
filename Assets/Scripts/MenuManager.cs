@@ -1,127 +1,155 @@
 // MenuManager.cs
-// Script chính điều khiển toàn bộ Main Menu
-// GẮN vào: GameObject Canvas_MainMenu
-// Kéo thả các UI element vào đúng slot trong Inspector
+// Điều khiển Main Menu: HomePanel, SettingsPanel, BiomePanel
+// GẮN vào: Canvas_MainMenu
 
 using UnityEngine;
-using UnityEngine.SceneManagement;  // Dùng để chuyển Scene
-using TMPro;                        // Dùng TextMeshPro InputField
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
     [Header("=== PANELS ===")]
-    public GameObject homePanel;        // Kéo HomePanel vào đây
-    public GameObject settingsPanel;    // Kéo SettingsPanel vào đây
+    public GameObject homePanel;
+    public GameObject settingsPanel;
+    public GameObject biomePanel;       // Panel chọn Biome (mới)
 
-    [Header("=== INPUT FIELDS (Settings) ===")]
-    public TMP_InputField inputRong;           // Kéo InputField_Width
-    public TMP_InputField inputDai;            // Kéo InputField_Height
+    [Header("=== INPUT FIELDS ===")]
+    public TMP_InputField inputRong;
+    public TMP_InputField inputDai;
 
-    [Header("=== SLIDERS (Settings) ===")]
-    public UnityEngine.UI.Slider sliderChieuCao;   // Kéo Slider_WallHeight
-    public UnityEngine.UI.Slider sliderDoDay;      // Kéo Slider_WallThickness
+    [Header("=== SLIDERS ===")]
+    public UnityEngine.UI.Slider sliderChieuCao;
+    public UnityEngine.UI.Slider sliderDoDay;
 
-    [Header("=== TÊN SCENE GAME ===")]
-    public string tenSceneGame = "GameScene";  // Tên Scene game sẽ tạo sau
+    [Header("=== BIOME BUTTONS ===")]
+    // Mảng 4 button chọn biome (highlight button đang chọn)
+    public Button[] danhSachBtnBiome;
+    private int biomeChon = 0;
 
-    // =============================================
-    // Chạy khi Scene được load lần đầu
-    // =============================================
+    [Header("=== BIOME INFO DISPLAY ===")]
+    public TMP_Text txtTenBiome;        // Hiện tên biome đang chọn
+    public TMP_Text txtMoTaBiome;       // Hiện mô tả biome
+    public Image imgAnhBiome;           // Ảnh đại diện biome
+
+    [Header("=== SCENE ===")]
+    public string tenSceneGame = "GameScene";
+
+    // -----------------------------------------------
     void Start()
     {
-        // Hiện HomePanel, ẩn SettingsPanel
         homePanel.SetActive(true);
         settingsPanel.SetActive(false);
+        if (biomePanel != null) biomePanel.SetActive(false);
 
-        // Điền giá trị mặc định vào các Input/Slider
         inputRong.text = GameSettings.rong.ToString();
-        inputDai.text = GameSettings.dai.ToString();
+        inputDai.text  = GameSettings.dai.ToString();
         sliderChieuCao.value = GameSettings.chieuCaoTuong;
-        sliderDoDay.value = GameSettings.doDayTuong;
+        sliderDoDay.value    = GameSettings.doDayTuong;
+
+        biomeChon = GameSettings.biomeIndex;
+        CapNhatHienThiBiome();
     }
 
-    // =============================================
-    // NÚT: CHƠI TIẾP (btn_Continue)
-    // Đọc save JSON → Load vào Scene Game
-    // =============================================
+    // -----------------------------------------------
+    // HOME PANEL
+    // -----------------------------------------------
     public void OnClick_Continue()
     {
         if (SaveSystem.CoFileSave())
         {
-            // Có file save → đọc dữ liệu
             PlayerData data = SaveSystem.LoadGame();
-            Debug.Log("🎮 Tiếp tục từ Map: " + data.mapHienTai
-                      + " | Mảnh Hồn: " + data.soManhHon);
-
-            // Chuyển sang Scene Game
+            Debug.Log($"🎮 Tiếp tục Màn {data.mapHienTai} | Mảnh Hồn: {data.soManhHon}");
             SceneManager.LoadScene(tenSceneGame);
         }
         else
-        {
-            // Chưa có save → thông báo và không làm gì
-            Debug.Log("⚠️ Chưa có dữ liệu lưu! Hãy chọn 'Chơi Mới'.");
-        }
+            Debug.Log("⚠️ Chưa có save! Hãy chọn 'Chơi Mới'.");
     }
 
-    // =============================================
-    // NÚT: CHƠI MỚI (btn_NewGame)
-    // Cảnh báo → Xóa save → Load Scene Game
-    // =============================================
     public void OnClick_NewGame()
     {
-        // TODO Giai đoạn sau: thêm popup xác nhận trước khi xóa
-        // Hiện tại: xóa save cũ và bắt đầu game mới luôn
         SaveSystem.DeleteSave();
-
-        // Tạo dữ liệu mới và lưu ngay
         PlayerData dataMoi = new PlayerData();
         SaveSystem.SaveGame(dataMoi);
-
         Debug.Log("🆕 Bắt đầu game mới!");
         SceneManager.LoadScene(tenSceneGame);
     }
 
-    // =============================================
-    // NÚT: CÀI ĐẶT MAP (btn_Settings)
-    // Ẩn HomePanel → Hiện SettingsPanel
-    // =============================================
     public void OnClick_Settings()
     {
         homePanel.SetActive(false);
         settingsPanel.SetActive(true);
     }
 
-    // =============================================
-    // NÚT: THOÁT (btn_Exit)
-    // =============================================
-    public void OnClick_Exit()
+    public void OnClick_ChonBiome()
     {
-        Debug.Log("👋 Thoát game.");
-        Application.Quit();
+        homePanel.SetActive(false);
+        if (biomePanel != null) biomePanel.SetActive(true);
     }
 
-    // =============================================
-    // NÚT: QUAY LẠI (btn_Back trong SettingsPanel)
-    // Đọc giá trị từ UI → lưu vào GameSettings → về HomePanel
-    // =============================================
+    public void OnClick_Exit() => Application.Quit();
+
+    // -----------------------------------------------
+    // SETTINGS PANEL
+    // -----------------------------------------------
     public void OnClick_Back()
     {
-        // Đọc giá trị từ InputField, dùng TryParse để tránh lỗi chữ
         if (int.TryParse(inputRong.text, out int rong) && rong > 0)
             GameSettings.rong = rong;
-
         if (int.TryParse(inputDai.text, out int dai) && dai > 0)
             GameSettings.dai = dai;
 
-        // Đọc giá trị Slider
         GameSettings.chieuCaoTuong = sliderChieuCao.value;
-        GameSettings.doDayTuong = sliderDoDay.value;
+        GameSettings.doDayTuong    = sliderDoDay.value;
 
-        Debug.Log($"⚙️ Cài đặt Map: {GameSettings.rong}x{GameSettings.dai}" +
-                  $" | Tường: cao={GameSettings.chieuCaoTuong}, dày={GameSettings.doDayTuong}");
-
-        // Quay về HomePanel
         settingsPanel.SetActive(false);
         homePanel.SetActive(true);
+    }
+
+    // -----------------------------------------------
+    // BIOME PANEL
+    // -----------------------------------------------
+    // Gọi từ mỗi Button biome: OnClick_ChonBiome(0), (1), (2), (3)
+    public void OnClick_ChonBiomeIndex(int index)
+    {
+        biomeChon = index;
+        GameSettings.biomeIndex = index;
+        CapNhatHienThiBiome();
+        Debug.Log($"🌍 Đã chọn Biome Index: {index}");
+    }
+
+    public void OnClick_BiomeBack()
+    {
+        if (biomePanel != null) biomePanel.SetActive(false);
+        homePanel.SetActive(true);
+    }
+
+    // Cập nhật tên, mô tả biome theo index đang chọn
+    void CapNhatHienThiBiome()
+    {
+        string[] tenBiome = {
+            "🗿 Mê Cung Đá Cổ",
+            "📚 Thư Viện Vô Tận",
+            "🌿 Đầm Lầy Sương Mù",
+            "💎 Mê Cung Tinh Thể"
+        };
+        string[] moTa = {
+            "Tường đá rêu phong, bẫy chông ẩn trong bóng tối cổ đại.",
+            "Kệ sách cao ngất, sàn gỗ kêu cọt kẹt. Cẩn thận tạo tiếng ồn!",
+            "Sương mù dày đặc, nước ngập mắt cá chân làm bạn chậm lại.",
+            "Vách tinh thể phản chiếu ánh sáng huyền ảo, mê hoặc và nguy hiểm."
+        };
+
+        if (txtTenBiome  != null) txtTenBiome.text  = tenBiome[Mathf.Clamp(biomeChon, 0, 3)];
+        if (txtMoTaBiome != null) txtMoTaBiome.text = moTa[Mathf.Clamp(biomeChon, 0, 3)];
+
+        // Highlight button đang chọn
+        for (int i = 0; i < danhSachBtnBiome.Length; i++)
+        {
+            if (danhSachBtnBiome[i] == null) continue;
+            var colors = danhSachBtnBiome[i].colors;
+            colors.normalColor = (i == biomeChon) ? new Color(1f, 0.8f, 0f) : Color.white;
+            danhSachBtnBiome[i].colors = colors;
+        }
     }
 }

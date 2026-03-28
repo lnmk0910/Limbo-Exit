@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b789470d099a0bd4b9ff98837a3b010d, type: 3}
+  m_Name: Biome_DamLay
+  m_EditorClassIdentifier: 
+  tenBiome: "\u0110\u1EA7m L\u1EA7y S\u01B0\u01A1ng M\xF9"
+  moTa: "T\u01B0\u1EDDng \u0111\xE1 c\u1ED5 x\u01B0a r\xEAu phong, b\u1EABy ch\xF4ng
+    \u1EA9n trong b\xF3ng t\u1ED1i."
+  anhDaiDien: {fileID: 0}
+  kieuTuong: 1
+  kieuSan: 0
+  soTruPerWall: 8
+  duongKinhTru: 0.4
+  prefabTuong: {fileID: 6795127452382077095, guid: 1ab2680e5a72cdc498eadd90113722d6, type: 3}
+  prefabNen: {fileID: 1746452620016490299, guid: 476d087669dda1549b2bb6c94c434127, type: 3}
+  prefabBay: {fileID: 0}
+  mauAmbientLight: {r: 0.1, g: 0.1, b: 0.15, a: 1}
+  mauFog: {r: 0.039215688, g: 0.101960786, b: 0.039215688, a: 1}
+  batFog: 1
+  matDoFog: 0.15
+  heSoTocDo: 0.55
+  coNuoc: 0
+  coSuong: 1
+  tamNhinToiDa: 10
+  nhacNen: {fileID: 0}

@@ -1,17 +1,22 @@
 // PlayerData.cs
-// Dữ liệu người chơi – serialize ra JSON
-
 [System.Serializable]
 public class PlayerData
 {
-    public int soManhHon;    // Tiền tệ
-    public int mapHienTai;   // Màn hiện tại
-    public int seed;         // Seed map hiện tại
+    // === TIỀN TỆ ===
+    public int soManhHon;
+    public int mapHienTai;
+    public int seed;
 
-    // Kho vật phẩm
-    public int soDaPhatSang;    // Đá phát sáng
-    public int soDongHo;        // Đồng hồ thời gian
-    public int soLaBan;         // La bàn cổ
+    // === VẬT PHẨM ===
+    public int soDaPhatSang;
+    public int soDongHo;
+    public int soLaBan;
+
+    // === NÂNG CẤP VĨNH VIỄN ===
+    public int capTocDo;        // +0.5 tốc độ mỗi cấp (tối đa 5)
+    public int capLaBan;        // +1s thời gian la bàn mỗi cấp (tối đa 3)
+    public int capGiamGiaShop;  // -1 Mảnh Hồn giá shop mỗi cấp (tối đa 3)
+    public int capTamPhatHien;  // -1 tầm phát hiện quái mỗi cấp (tối đa 3)
 
     public PlayerData()
     {
@@ -21,5 +26,9 @@ public class PlayerData
         soDaPhatSang = 0;
         soDongHo    = 0;
         soLaBan     = 0;
+        capTocDo        = 0;
+        capLaBan        = 0;
+        capGiamGiaShop  = 0;
+        capTamPhatHien  = 0;
     }
 }

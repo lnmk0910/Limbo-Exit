@@ -1,15 +1,12 @@
-// NPCTrigger.cs
-// Khi Player đến gần NPC: hiện thông báo mua/bán (đơn giản qua Debug)
+// NPCTrigger.cs (cập nhật)
+// Khi Player đến gần NPC Thương Nhân: hiện cửa hàng
+// Nhấn E để mở/đóng shop
 // GẮN vào: Prefab_NPC
-// Giai đoạn sau có thể mở rộng thành UI cửa hàng đầy đủ
 
 using UnityEngine;
 
 public class NPCTrigger : MonoBehaviour
 {
-    [Header("=== CỬA HÀNG ===")]
-    public int giaMuaKyNang = 5;   // Giá mua 1 kỹ năng (Mảnh Hồn)
-
     private bool dangGanPlayer = false;
 
     void Start()
@@ -22,32 +19,31 @@ public class NPCTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         dangGanPlayer = true;
-        Debug.Log($"🧑‍💼 NPC: Chào! Nhấn E để xem hàng. Giá: {giaMuaKyNang} Mảnh Hồn");
+        Debug.Log("🧑‍💼 Thương Nhân Ký Ức: Nhấn E để mua vật phẩm...");
     }
 
     void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
         dangGanPlayer = false;
-        Debug.Log("🧑‍💼 NPC: Hẹn gặp lại!");
+
+        // Đóng shop nếu đang mở
+        if (ItemShopUI.Instance != null)
+            ItemShopUI.Instance.DongShop();
+
+        Debug.Log("🧑‍💼 Thương Nhân Ký Ức: Hẹn gặp lại...");
     }
 
     void Update()
     {
-        // Nhấn E khi đứng gần NPC để "mua"
-        if (dangGanPlayer && Input.GetKeyDown(KeyCode.E))
+        if (!dangGanPlayer) return;
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            PlayerData data = SaveSystem.LoadGame();
-            if (data.soManhHon >= giaMuaKyNang)
-            {
-                data.soManhHon -= giaMuaKyNang;
-                SaveSystem.SaveGame(data);
-                Debug.Log($"✅ Mua thành công! Còn lại: {data.soManhHon} Mảnh Hồn");
-            }
+            if (ItemShopUI.Instance != null)
+                ItemShopUI.Instance.MoShop();
             else
-            {
-                Debug.Log($"❌ Không đủ Mảnh Hồn! Cần {giaMuaKyNang}, có {data.soManhHon}");
-            }
+                Debug.LogWarning("⚠️ ItemShopUI chưa được gắn vào Scene!");
         }
     }
 }

@@ -56,4 +56,15 @@ public class PlayerInventory : MonoBehaviour
         data.soLaBan      = laBan;
         SaveSystem.SaveGame(data);
     }
+
+    // ---- Đồng bộ từ Save (gọi sau khi Shop ghi trực tiếp vào file) ----
+    public void SyncTuSave()
+    {
+        PlayerData data = SaveSystem.LoadGame();
+        daPhatSang = data.soDaPhatSang;
+        dongHo     = data.soDongHo;
+        laBan      = data.soLaBan;
+        Debug.Log($"🔄 Sync Inventory: Đá={daPhatSang} | Đồng hồ={dongHo} | La bàn={laBan}");
+    }
 }
+
