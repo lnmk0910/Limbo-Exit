@@ -121,3 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6781b715b1f5ae47a0a0e1bcae72d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miniGameScenes:
+  - Game
+  - SampleScene
+  - 

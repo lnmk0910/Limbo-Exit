@@ -1,73 +1,36 @@
-// MinigameTrigger.cs
-// Khi Player bước vào: bắt đầu Minigame đơn giản (nhấn phím đúng thứ tự)
-// GẮN vào: Prefab_Minigame
-// Giai đoạn sau có thể thay bằng Minigame phức tạp hơn
-
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MinigameTrigger : MonoBehaviour
 {
-    private bool dangChoi = false;
-    private bool daThang = false;
+    [Header("Tên các scene mini game")]
+    [Tooltip("Kéo thả tên scene vào đây (phải thêm vào Build Settings)")]
+    public string[] miniGameScenes;
 
-    // Chuỗi phím cần nhấn đúng thứ tự (Minigame đơn giản)
-    private KeyCode[] chuoiPhim = { KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D };
-    private int buocHienTai = 0;
-
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        Collider col = GetComponent<Collider>();
-        if (col != null) col.isTrigger = true;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (daThang) return;
-        if (!other.CompareTag("Player")) return;
-        dangChoi = true;
-        buocHienTai = 0;
-        Debug.Log("🎮 Minigame bắt đầu! Nhấn: W → A → S → D");
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (!other.CompareTag("Player")) return;
-        dangChoi = false;
-        Debug.Log("🎮 Bỏ qua Minigame.");
-    }
-
-    void Update()
-    {
-        if (!dangChoi || daThang) return;
-
-        // Kiểm tra phím đang nhấn có đúng thứ tự không
-        if (Input.GetKeyDown(chuoiPhim[buocHienTai]))
+        if (other.CompareTag("Player"))
         {
-            buocHienTai++;
-            Debug.Log($"✔️ Đúng! Bước {buocHienTai}/{chuoiPhim.Length}");
-
-            if (buocHienTai >= chuoiPhim.Length)
+            if (miniGameScenes == null || miniGameScenes.Length == 0)
             {
-                // THẮNG MINIGAME
-                daThang = true;
-                dangChoi = false;
-
-                PlayerData data = SaveSystem.LoadGame();
-                data.soManhHon += 5;
-                SaveSystem.SaveGame(data);
-
-                Debug.Log($"🏆 Thắng Minigame! +5 Mảnh Hồn. Tổng: {data.soManhHon}");
-
-                // Đổi màu thành xám = đã hoàn thành
-                Renderer r = GetComponent<Renderer>();
-                if (r != null) r.material.color = Color.gray;
+                Debug.LogError("Chưa có scene minigame nào được thêm vào mảng miniGameScenes!");
+                return;
             }
-        }
-        else if (Input.anyKeyDown)
-        {
-            // Sai phím → reset về đầu
-            buocHienTai = 0;
-            Debug.Log("❌ Sai! Thử lại từ đầu: W → A → S → D");
+
+            // Random index
+            int randomIndex = Random.Range(0, miniGameScenes.Length);
+            string chosenScene = miniGameScenes[randomIndex];
+
+            Debug.Log($"Đang load minigame random: <color=yellow>{chosenScene}</color>");
+
+            // Load scene (thay thế hoàn toàn scene hiện tại)
+            SceneManager.LoadScene(chosenScene);
         }
     }
+
+    // Optional: Random ngay khi object này xuất hiện (dùng để test)
+    // private void Start()
+    // {
+    //     // LoadRandomMinigame();   // Bỏ comment nếu muốn test
+    // }
 }
