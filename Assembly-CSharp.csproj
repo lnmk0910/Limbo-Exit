@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\MinigameTrigger.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ItemShopUI.cs" />
+    <Compile Include="Assets\Dohoa\4K Tiled Ground Textures p1\Scripts\AutoSpriteChanger_gp1.cs" />
     <Compile Include="Assets\Scripts\MazeCell.cs" />
     <Compile Include="Assets\Scripts\AncientCompassItem.cs" />
     <Compile Include="Assets\Scripts\LostSoulSpawner.cs" />
@@ -115,6 +116,9 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Dohoa\Columns ancient  ruins\readme.txt" />
+    <None Include="Assets\Dohoa\AlchemyLabProps\Readme.txt" />
+    <None Include="Assets\Dohoa\Hand Painted Seamless Wood Texture\Documentation\Documentation.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
