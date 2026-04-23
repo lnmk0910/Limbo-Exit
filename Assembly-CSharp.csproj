@@ -55,6 +55,7 @@
     <Compile Include="Assets\Scripts\BiomeData.cs" />
     <Compile Include="Assets\Sprits\XuLyVaChamChoXe.cs" />
     <Compile Include="Assets\Scripts\NavMeshSurface.cs" />
+    <Compile Include="Assets\Scripts\MenuTamDung.cs" />
     <Compile Include="Assets\Scripts\UpgradeScreen.cs" />
     <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
@@ -116,7 +117,6 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\Dohoa\Columns ancient  ruins\readme.txt" />
     <None Include="Assets\Dohoa\AlchemyLabProps\Readme.txt" />
     <None Include="Assets\Dohoa\Hand Painted Seamless Wood Texture\Documentation\Documentation.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

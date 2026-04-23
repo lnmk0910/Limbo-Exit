@@ -22,10 +22,8 @@ public class BiomeManager : MonoBehaviour
     // Biome đang dùng
     public BiomeData BiomeHienTai { get; private set; }
 
-    void Awake()
-    {
-        ApDungBiome(GameSettings.biomeIndex);
-    }
+    // Không dùng Awake nữa để nhường quyền chủ động cho MazeGenerator chống Race Condition.
+    // Việc này đảm bảo BiomeManager luôn được set prefab trước khi MazeRenderer khởi chiếu (Start)
 
     // -----------------------------------------------
     // ÁP DỤNG BIOME VÀO SCENE

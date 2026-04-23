@@ -18,6 +18,9 @@ public class PlayerData
     public int capGiamGiaShop;  // -1 Mảnh Hồn giá shop mỗi cấp (tối đa 3)
     public int capTamPhatHien;  // -1 tầm phát hiện quái mỗi cấp (tối đa 3)
 
+    // === CỐT TRUYỆN ===
+    public int[] biomeSequence; // Chuỗi ngẫu nhiên các Map
+
     public PlayerData()
     {
         soManhHon   = 0;
@@ -30,5 +33,8 @@ public class PlayerData
         capLaBan        = 0;
         capGiamGiaShop  = 0;
         capTamPhatHien  = 0;
+        
+        // Cốt truyện (Khởi tạo mảng rỗng, MazeGenerator tráo ngẫu nhiên sau)
+        biomeSequence   = new int[] { 0, 1, 2, 3 }; // Mặc định 4 Biome (Đá Cổ, Thư Viện, Đầm Lầy, Tinh Thể)
     }
 }

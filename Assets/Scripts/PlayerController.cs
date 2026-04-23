@@ -16,11 +16,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private float heSoBiome  = 1f;
     private float bonusTocDo = 0f;
+    private Animator anim;   // Animator trên Model Mixamo
+
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        // Tìm Animator trong các con cháu (Model Mixamo nằm bên trong Player)
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Start()
@@ -50,5 +55,13 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity.y,
             huong.z * tocDoCuThe
         );
+
+        // Đồng bộ animation: speed=0 khi đứng, speed=0.5 khi đi, speed=1 khi chạy
+        if (anim != null)
+        {
+            float tocDoThucTe = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).magnitude;
+            float animSpeed = tocDoThucTe / tocDoChay;  // 0.0 → 1.0
+            anim.SetFloat("Speed", animSpeed);
+        }
     }
 }

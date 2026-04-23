@@ -16,12 +16,12 @@ MonoBehaviour:
   moTa: "T\u01B0\u1EDDng \u0111\xE1 c\u1ED5 x\u01B0a r\xEAu phong, b\u1EABy ch\xF4ng
     \u1EA9n trong b\xF3ng t\u1ED1i."
   anhDaiDien: {fileID: 0}
-  kieuTuong: 2
-  kieuSan: 2
+  kieuTuong: 1
+  kieuSan: 1
   soTruPerWall: 5
   duongKinhTru: 0.6
-  prefabTuong: {fileID: 0}
-  prefabNen: {fileID: 0}
+  prefabTuong: {fileID: 432333454342325003, guid: e5a41bd7691f8354fb5f35d9d1cb1b6b, type: 3}
+  prefabNen: {fileID: 432333454342325003, guid: e5a41bd7691f8354fb5f35d9d1cb1b6b, type: 3}
   prefabBay: {fileID: 0}
   mauAmbientLight: {r: 0.039215688, g: 0.039215688, b: 0.14509805, a: 1}
   mauFog: {r: 0.05, g: 0.05, b: 0.1, a: 1}

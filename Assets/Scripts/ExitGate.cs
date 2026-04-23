@@ -46,25 +46,24 @@ public class ExitGate : MonoBehaviour
     void KichHoatThangMan()
     {
         daKichHoat = true;
-        Debug.Log("🚪 ExitGate kích hoạt → Tìm VictoryScreen...");
+        Debug.Log("🚪 ExitGate kích hoạt → Hiện VictoryScreen cho người chơi lựa chọn...");
 
-        // Ưu tiên dùng Instance, fallback dùng FindFirstObjectByType
-        VictoryScreen vs = VictoryScreen.Instance;
-        if (vs == null)
-            vs = FindFirstObjectByType<VictoryScreen>();
+        PlayerData data = SaveSystem.LoadGame();
 
+        // Thưởng Mảnh Hồn và đánh dấu sẵn để VictoryScreen biết
+        data.soManhHon += 10;
+        SaveSystem.SaveGame(data);
+
+        // LUÔN gọi VictoryScreen trước - người chơi tự quyết định tiếp theo
+        VictoryScreen vs = VictoryScreen.Instance ?? FindFirstObjectByType<VictoryScreen>();
         if (vs != null)
         {
-            Debug.Log("✅ Tìm thấy VictoryScreen → Hiện màn hình thắng");
             vs.HienManHinhThang();
         }
         else
         {
-            // Không tìm được VictoryScreen → reload thẳng như cũ
-            Debug.LogError("❌ VictoryScreen không tồn tại trong Scene! Reload thẳng...");
-            PlayerData data = SaveSystem.LoadGame();
+            Debug.LogError("❌ Không tìm thấy VictoryScreen! Reload thẳng...");
             data.mapHienTai++;
-            data.soManhHon += 10;
             data.seed = 0;
             SaveSystem.SaveGame(data);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);

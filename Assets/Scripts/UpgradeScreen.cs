@@ -55,6 +55,19 @@ public class UpgradeScreen : MonoBehaviour
         if (panelUpgrade != null) panelUpgrade.SetActive(false);
     }
 
+    void Update()
+    {
+        if (panelUpgrade != null && panelUpgrade.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1)) NangCapTocDo_Btn();
+            if (Input.GetKeyDown(KeyCode.Alpha2)) NangCapLaBan_Btn();
+            if (Input.GetKeyDown(KeyCode.Alpha3)) NangCapShop_Btn();
+            if (Input.GetKeyDown(KeyCode.Alpha4)) NangCapTamPH_Btn();
+            
+            if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.Escape)) OnClick_ThuNho();
+        }
+    }
+
     // -----------------------------------------------
     // MỞ màn hình nâng cấp
     // -----------------------------------------------
@@ -155,8 +168,19 @@ public class UpgradeScreen : MonoBehaviour
     public void NangCapTamPH_Btn()    => ThucHienNangCap("tamph");
 
     // -----------------------------------------------
-    // NÚT: TIẾP TỤC → Load map mới
+    // NÚT: THU NHỎ LẠI HUB HOẶC TIẾP TỤC
     // -----------------------------------------------
+    public void OnClick_ThuNho()
+    {
+        if (panelUpgrade != null) panelUpgrade.SetActive(false);
+
+        // NẾU VICTORY SCREEN HIỆN TẠI ĐANG MỞ NGẦM -> PHỤC HỒI NÓ
+        if (VictoryScreen.Instance != null && VictoryScreen.Instance.panelVictory.activeSelf == false)
+        {
+            VictoryScreen.Instance.KhoiPhucHienThiHUB();
+        }
+    }
+
     public void OnClick_TiepTuc()
     {
         if (panelUpgrade != null) panelUpgrade.SetActive(false);

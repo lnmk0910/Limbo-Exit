@@ -26,6 +26,8 @@ public class ItemShopUI : MonoBehaviour
     public int giaLaBan  = 4;
 
     private bool dangMo = false;
+    private bool dangNghiNgoiChuyenMap = false; // Phân biệt: Mua dạo trong map hay Mua khi sang map mới
+
 
     void Awake()
     {
@@ -40,8 +42,16 @@ public class ItemShopUI : MonoBehaviour
 
     void Update()
     {
-        if (dangMo && Input.GetKeyDown(KeyCode.Escape))
-            DongShop();
+        if (dangMo) 
+        {
+            // Thoát Cửa Hàng
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.B)) DongShop();
+            
+            // Phím tắt Mua nhanh
+            if (Input.GetKeyDown(KeyCode.Alpha1)) MuaDa();
+            if (Input.GetKeyDown(KeyCode.Alpha2)) MuaDongHo();
+            if (Input.GetKeyDown(KeyCode.Alpha3)) MuaLaBan();
+        }
     }
 
     // -----------------------------------------------
@@ -49,7 +59,21 @@ public class ItemShopUI : MonoBehaviour
     // -----------------------------------------------
     public void MoShop()
     {
+        dangNghiNgoiChuyenMap = false;
+        MoiShopChung();
+    }
+
+    public void MoShopThangMan()
+    {
+        dangNghiNgoiChuyenMap = true;
+        MoiShopChung();
+        Debug.Log("🎉 TẦNG ĐÃ ĐƯỢC VƯỢT! CHUẨN BỊ SANG MAP MỚI KHI ĐÓNG SHOP!");
+    }
+
+    private void MoiShopChung()
+    {
         dangMo = true;
+
         if (panelShop != null) panelShop.SetActive(true);
         CapNhatUI();
 
@@ -65,9 +89,24 @@ public class ItemShopUI : MonoBehaviour
         dangMo = false;
         if (panelShop != null) panelShop.SetActive(false);
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible   = false;
-        Time.timeScale   = 1f;
+        // NẾU ĐANG CHUYỂN MAP -> Đóng Shop tức là Sang Màn Tiếp Theo!
+        if (dangNghiNgoiChuyenMap)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            return;
+        }
+
+        // Nếu là gọi Shop giữa góc đường -> Khôi phục Hub/Game bình thường
+        if (VictoryScreen.Instance != null)
+        {
+            VictoryScreen.Instance.KhoiPhucHienThiHUB();
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible   = false;
+            Time.timeScale   = 1f;
+        }
     }
 
     // -----------------------------------------------
@@ -150,5 +189,22 @@ public class ItemShopUI : MonoBehaviour
 
         Debug.Log($"✅ Mua La Bàn! Còn {data.soManhHon} Mảnh Hồn | La bàn: {data.soLaBan}");
         CapNhatUI();
+    }
+
+    // -----------------------------------------------
+    // GỌI NÂNG CẤP TRỰC TIẾP TỪ SHOP
+    // -----------------------------------------------
+    public void GoiUpgradeScreen()
+    {
+        if (panelShop != null) panelShop.SetActive(false);
+        UpgradeScreen us = UpgradeScreen.Instance ?? FindFirstObjectByType<UpgradeScreen>();
+        if (us != null)
+        {
+            us.MoUpgrade();
+        }
+        else
+        {
+            Debug.LogError("❌ Không tìm thấy UpgradeScreen để mở!");
+        }
     }
 }

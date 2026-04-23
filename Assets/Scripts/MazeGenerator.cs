@@ -49,11 +49,19 @@ public class MazeGenerator : MonoBehaviour
     // -----------------------------------------------
     void Awake()
     {
-        soCol = GameSettings.rong;
-        soRow = GameSettings.dai;
+        PlayerData data = SaveSystem.LoadGame();
+
+        // CHỐNG NGỘP: Map bắt đầu từ 6x6, mỗi tầng tăng 2 ô. Max 15x15.
+        int scale = 6 + (data.mapHienTai - 1) * 2;
+        int sizeMax = Mathf.Min(scale, 15);
+        soCol = sizeMax;
+        soRow = sizeMax;
+
+        // Cập nhật ngầm để các script khác đọc nếu cần
+        GameSettings.rong = sizeMax;
+        GameSettings.dai = sizeMax;
 
         // Lấy seed từ save (nếu seed = 0 thì sinh ngẫu nhiên)
-        PlayerData data = SaveSystem.LoadGame();
         if (data.seed == 0)
         {
             seedHienTai = Random.Range(1, int.MaxValue);
@@ -65,13 +73,41 @@ public class MazeGenerator : MonoBehaviour
             seedHienTai = data.seed;
         }
 
-        Debug.Log($"🌱 Seed: {seedHienTai}");
+        Debug.Log($"🌱 Seed: {seedHienTai} - Size: {soCol}x{soRow}");
 
         // Khởi tạo Random với seed → đảm bảo map sinh ra giống nhau
         Random.InitState(seedHienTai);
 
+        // ⚠️ NARRATIVE AI: TRÁO BÀI LỘ TRÌNH 4 BIOME (Chỉ tráo 1 lần đầu tại Tầng 1)
+        if (data.mapHienTai == 1 && (data.biomeSequence == null || data.biomeSequence.Length == 0 || data.biomeSequence[0] == 0 && data.biomeSequence[1] == 1))
+        {
+            // Trộn mảng [0, 1, 2, 3] bằng Fischer-Yates
+            for (int i = data.biomeSequence.Length - 1; i > 0; i--)
+            {
+                int r = Random.Range(0, i + 1);
+                int mapTmp = data.biomeSequence[i];
+                data.biomeSequence[i] = data.biomeSequence[r];
+                data.biomeSequence[r] = mapTmp;
+            }
+            SaveSystem.SaveGame(data);
+            Debug.Log($"🎲 Lộ trình luân hồi mới được định đoạt: {data.biomeSequence[0]} -> {data.biomeSequence[1]} -> {data.biomeSequence[2]} -> {data.biomeSequence[3]}");
+        }
+
         SinhMeCung();
         DanhDauSuKien();
+
+        // Lấy đúng Biome dựa theo Tầng (Logic: mapHienTai - 1 % 4 để xoay vòng)
+        int indexTrongMang = (data.mapHienTai - 1) % data.biomeSequence.Length;
+        int targetBiome = data.biomeSequence[indexTrongMang];
+
+        // ⚠️ GIẢI QUYẾT LỖ HỔNG RACE CONDITION BIOME:
+        // Gọi thẳng BiomeManager ngay lập tức để nó cập nhật Prefab Tường/Sàn 
+        // TRƯỚC KHI MazeRenderer.Start() kịp vẽ ra!
+        BiomeManager bm = FindFirstObjectByType<BiomeManager>();
+        if (bm != null)
+        {
+            bm.ApDungBiome(targetBiome);
+        }
     }
 
     // -----------------------------------------------

@@ -7,22 +7,25 @@ using UnityEngine;     // Dùng Debug.Log và Application.persistentDataPath
 
 public static class SaveSystem
 {
-    // Đường dẫn file lưu: thư mục dữ liệu của app + tên file
-    // Application.persistentDataPath tự động trỏ đúng thư mục trên mọi OS
-    private static string duongDanFile = Application.persistentDataPath + "/playerdata.json";
+    // Biến lưu slot hiện tại đang phục vụ
+    public static int currentSlotIndex = 0;
+
+    // Trả về đường dẫn lấy theo Slot
+    private static string GetFilePath()
+    {
+        // Để tương thích ngược (nếu ai đó dùng 0)
+        if (currentSlotIndex <= 0) currentSlotIndex = 1;
+        return Application.persistentDataPath + $"/playerdata_slot{currentSlotIndex}.json";
+    }
 
     // =============================================
     // HÀM LƯU: Chuyển PlayerData thành JSON rồi ghi ra file
     // =============================================
     public static void SaveGame(PlayerData data)
     {
-        // Chuyển object PlayerData thành chuỗi JSON
-        string json = JsonUtility.ToJson(data, true); // true = format đẹp, dễ đọc
-
-        // Ghi chuỗi JSON vào file
-        File.WriteAllText(duongDanFile, json);
-
-        Debug.Log("✅ Đã lưu game tại: " + duongDanFile);
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(GetFilePath(), json);
+        Debug.Log($"✅ Đã lưu game (Hồ sơ {currentSlotIndex}) tại: {GetFilePath()}");
     }
 
     // =============================================
@@ -30,22 +33,17 @@ public static class SaveSystem
     // =============================================
     public static PlayerData LoadGame()
     {
-        // Kiểm tra file có tồn tại không
-        if (File.Exists(duongDanFile))
+        string path = GetFilePath();
+        if (File.Exists(path))
         {
-            // Đọc nội dung file thành chuỗi
-            string json = File.ReadAllText(duongDanFile);
-
-            // Chuyển chuỗi JSON thành object PlayerData
+            string json = File.ReadAllText(path);
             PlayerData data = JsonUtility.FromJson<PlayerData>(json);
-
-            Debug.Log("✅ Đã đọc save thành công!");
+            Debug.Log($"✅ Đã đọc save Hồ sơ {currentSlotIndex} thành công!");
             return data;
         }
         else
         {
-            // Chưa có file save → trả về data mặc định (game mới)
-            Debug.Log("⚠️ Chưa có file save. Tạo dữ liệu mới.");
+            Debug.Log($"⚠️ Chưa có file save cho Hồ sơ {currentSlotIndex}. Tạo dữ liệu mới.");
             return new PlayerData();
         }
     }
@@ -55,18 +53,36 @@ public static class SaveSystem
     // =============================================
     public static void DeleteSave()
     {
-        if (File.Exists(duongDanFile))
+        string path = GetFilePath();
+        if (File.Exists(path))
         {
-            File.Delete(duongDanFile);
-            Debug.Log("🗑️ Đã xóa file save.");
+            File.Delete(path);
+            Debug.Log($"🗑️ Đã xóa file save: {path}");
         }
     }
 
-    // =============================================
-    // KIỂM TRA: Có file save chưa? (Dùng để bật/tắt btn_Continue)
-    // =============================================
     public static bool CoFileSave()
     {
-        return File.Exists(duongDanFile);
+        return File.Exists(GetFilePath());
+    }
+
+    // =============================================
+    // HÀM KHÁM PHÁ (Dành riêng cho MenuManager để Load Text Slot)
+    // =============================================
+    public static bool KiemTraSlotTonTai(int slot)
+    {
+        string path = Application.persistentDataPath + $"/playerdata_slot{slot}.json";
+        return File.Exists(path);
+    }
+
+    public static PlayerData XemTruocDataSlot(int slot)
+    {
+        string path = Application.persistentDataPath + $"/playerdata_slot{slot}.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            return JsonUtility.FromJson<PlayerData>(json);
+        }
+        return new PlayerData(); // Rỗng nếu không có
     }
 }
