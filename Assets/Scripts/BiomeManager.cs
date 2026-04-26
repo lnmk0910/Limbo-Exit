@@ -68,6 +68,9 @@ public class BiomeManager : MonoBehaviour
             mainCamera.farClipPlane = BiomeHienTai.tamNhinToiDa;
 
         Debug.Log($"🌍 Biome: {BiomeHienTai.tenBiome} | Fog: {BiomeHienTai.batFog} | TốcĐộ: {BiomeHienTai.heSoTocDo}x");
+
+        // Phát nhạc + ambient theo biome
+        AudioManager.PhatBGMTheoBiome(index);
     }
 
     // ---- Getter để PlayerController đọc hệ số tốc độ ----

@@ -59,11 +59,11 @@ public class UpgradeScreen : MonoBehaviour
     {
         if (panelUpgrade != null && panelUpgrade.activeSelf)
         {
+            if (!UIManager.DangO(UIManager.TrangThaiUI.NangCap)) return;
             if (Input.GetKeyDown(KeyCode.Alpha1)) NangCapTocDo_Btn();
             if (Input.GetKeyDown(KeyCode.Alpha2)) NangCapLaBan_Btn();
             if (Input.GetKeyDown(KeyCode.Alpha3)) NangCapShop_Btn();
             if (Input.GetKeyDown(KeyCode.Alpha4)) NangCapTamPH_Btn();
-            
             if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.Escape)) OnClick_ThuNho();
         }
     }
@@ -74,6 +74,8 @@ public class UpgradeScreen : MonoBehaviour
     public void MoUpgrade()
     {
         if (panelUpgrade != null) panelUpgrade.SetActive(true);
+        UIManager.Mo(UIManager.TrangThaiUI.NangCap);
+        AudioManager.PhatMoMenu();
         CapNhatUI();
     }
 
@@ -111,24 +113,6 @@ public class UpgradeScreen : MonoBehaviour
     string CapString(int hienTai, int toiDa, string moTa) =>
         $"{moTa}\n[{new string('●', hienTai)}{new string('○', toiDa - hienTai)}] {hienTai}/{toiDa}";
 
-    // -----------------------------------------------
-    // NÚT NÂNG CẤP
-    // -----------------------------------------------
-    public void NangCapTocDo()     => NangCap(ref GetData().capTocDo,       capToiDaTocDo, giaTocDo,      "⚡ Tốc độ");
-    public void NangCapLaBan()     => NangCap(ref GetData().capLaBan,        capToiDaLaBan, giaLaBan,      "🧭 La Bàn");
-    public void NangCapGiamShop()  => NangCap(ref GetData().capGiamGiaShop,  capToiDaGiamShop, giaGiamShop,"🏪 Giá Shop");
-    public void NangCapTamPH()     => NangCap(ref GetData().capTamPhatHien,  capToiDaTamPH, giaTamPhatHien,"👁️ Tầm Quái");
-
-    PlayerData GetData() => SaveSystem.LoadGame();
-
-    void NangCap(ref int cap, int toiDa, int gia, string ten)
-    {
-        PlayerData data = SaveSystem.LoadGame();
-        // Phải map lại vì ref không hoạt động với property trả về object mới
-        // → Xử lý trực tiếp dưới dạng tên nâng cấp
-        Debug.Log("Gọi qua hàm chuyên biệt bên dưới");
-    }
-
     // ---- Hàm nâng cấp riêng từng loại ----
     void ThucHienNangCap(string loai)
     {
@@ -144,8 +128,8 @@ public class UpgradeScreen : MonoBehaviour
             case "tamph":   cap=data.capTamPhatHien;  toiDa=capToiDaTamPH;   gia=giaTamPhatHien; ten="👁️ Tầm Quái"; break;
         }
 
-        if (cap >= toiDa) { Debug.Log($"❌ {ten} đã tối đa!"); return; }
-        if (data.soManhHon < gia) { Debug.Log($"❌ Không đủ Mảnh Hồn! Cần {gia}"); return; }
+        if (cap >= toiDa) { AudioManager.PhatKhongDuTien(); Debug.Log($"❌ {ten} đã tối đa!"); return; }
+        if (data.soManhHon < gia) { AudioManager.PhatKhongDuTien(); Debug.Log($"❌ Không đủ Mảnh Hồn! Cần {gia}"); return; }
 
         data.soManhHon -= gia;
         switch (loai)
@@ -158,6 +142,8 @@ public class UpgradeScreen : MonoBehaviour
 
         SaveSystem.SaveGame(data);
         Debug.Log($"✅ Nâng cấp {ten} → Cấp {cap+1}! Còn {data.soManhHon} Mảnh Hồn");
+        AudioManager.PhatNangCap();
+        GameHUD.LamMoi(); // Đồng bộ HUD ngay lập tức
         CapNhatUI();
     }
 
@@ -174,16 +160,19 @@ public class UpgradeScreen : MonoBehaviour
     {
         if (panelUpgrade != null) panelUpgrade.SetActive(false);
 
-        // NẾU VICTORY SCREEN HIỆN TẠI ĐANG MỞ NGẦM -> PHỤC HỒI NÓ
-        if (VictoryScreen.Instance != null && VictoryScreen.Instance.panelVictory.activeSelf == false)
-        {
+        // Tự động quay về trạng thái trước đó:
+        //   Mở từ VictoryScreen → quay về ChienThang
+        //   Mở từ chỗ khác     → quay về TrongGame
+        UIManager.DongVePanel();
+
+        if (VictoryScreen.Instance != null && UIManager.DangO(UIManager.TrangThaiUI.ChienThang))
             VictoryScreen.Instance.KhoiPhucHienThiHUB();
-        }
     }
 
     public void OnClick_TiepTuc()
     {
         if (panelUpgrade != null) panelUpgrade.SetActive(false);
+        UIManager.DongVeGame();
         Time.timeScale = 1f;
         SceneManager.LoadScene(tenSceneGame);
     }

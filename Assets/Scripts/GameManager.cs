@@ -27,11 +27,8 @@ public class GameManager : MonoBehaviour
 
         DatPlayerVaExitGate();
 
-        // Lưu seed
-        PlayerData data = SaveSystem.LoadGame();
-        data.seed = mazeGenerator.seedHienTai;
-        SaveSystem.SaveGame(data);
-        Debug.Log($"💾 Seed {data.seed} | Màn {data.mapHienTai}");
+        // Chỉ log seed (MazeGenerator.Awake đã lưu seed rồi, không cần ghi lại)
+        Debug.Log($"💾 Seed {mazeGenerator.seedHienTai} | Màn {SaveSystem.LoadGame().mapHienTai}");
     }
 
     void DatPlayerVaExitGate()

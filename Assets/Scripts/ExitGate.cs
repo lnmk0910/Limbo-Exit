@@ -46,7 +46,8 @@ public class ExitGate : MonoBehaviour
     void KichHoatThangMan()
     {
         daKichHoat = true;
-        Debug.Log("🚪 ExitGate kích hoạt → Hiện VictoryScreen cho người chơi lựa chọn...");
+        Debug.Log("🚨 ExitGate kích hoạt → Hiện VictoryScreen cho người chơi lựa chọn...");
+        AudioManager.PhatCuaMo();
 
         PlayerData data = SaveSystem.LoadGame();
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 733164383254344618}
   - component: {fileID: 969267465228369866}
   - component: {fileID: 5607767692449211025}
+  - component: {fileID: 5739559178376455627}
   m_Layer: 0
   m_Name: Prefab_NPC
   m_TagString: Untagged
@@ -123,4 +124,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c1c4c62fc717a4da9081c1dd92c707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  giaMuaKyNang: 5
+  cauThoai:
+  - "...T\xF4i \u0111\xE3 \u1EDF \u0111\xE2y... bao l\xE2u r\u1ED3i nh\u1EC9..."
+  - "...B\xF3ng t\u1ED1i n\xE0y kh\xF4ng bao gi\u1EDD ng\u1EE7..."
+  - "...H\xE3y c\u1EA9n th\u1EADn khi \u0111i... c\xF3 k\u1EBB \u0111ang r\xECnh
+    r\u1EADp..."
+  tenNPC: "Linh H\u1ED3n L\u1EA1c L\u1ED1i"
+  avatarNPC: {fileID: 0}
+  panelGoiYPhim: {fileID: 0}
+--- !u!114 &5739559178376455627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409883158319874140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c1c4c62fc717a4da9081c1dd92c707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cauThoai:
+  - "...T\xF4i \u0111\xE3 \u1EDF \u0111\xE2y... bao l\xE2u r\u1ED3i nh\u1EC9..."
+  - "...B\xF3ng t\u1ED1i n\xE0y kh\xF4ng bao gi\u1EDD ng\u1EE7..."
+  - "...H\xE3y c\u1EA9n th\u1EADn khi \u0111i... c\xF3 k\u1EBB \u0111ang r\xECnh
+    r\u1EADp..."
+  tenNPC: "Linh H\u1ED3n L\u1EA1c L\u1ED1i"
+  avatarNPC: {fileID: 0}
+  panelGoiYPhim: {fileID: 0}

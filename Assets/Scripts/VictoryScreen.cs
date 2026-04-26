@@ -42,6 +42,8 @@ public class VictoryScreen : MonoBehaviour
     {
         if (!dangHien) return;
 
+        if (!UIManager.DangO(UIManager.TrangThaiUI.ChienThang)) return;
+
         // Phím tắt cho người chơi
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.S)) OnClick_MoShop();
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.U)) OnClick_NangCap();
@@ -56,6 +58,7 @@ public class VictoryScreen : MonoBehaviour
     {
         if (dangHien) return;
         dangHien = true;
+        UIManager.Mo(UIManager.TrangThaiUI.ChienThang);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible   = true;
@@ -83,6 +86,10 @@ public class VictoryScreen : MonoBehaviour
             txtThongKe.text = $"+10 💎 Mảnh Hồn  |  Tổng: {data.soManhHon}\n\n{gợiY}";
 
         if (panelVictory != null) panelVictory.SetActive(true);
+
+        // Nhạc chiến thắng — fanfare đặc biệt nếu phá đảo
+        if (laPhaDao) AudioManager.PhatPhaDao();
+        AudioManager.PhatBGM(AudioManager.Instance?.bgmVictory);
 
         Debug.Log($"🏆 VictoryScreen hiện! Tầng {data.mapHienTai} | Phá đảo: {laPhaDao}");
     }
@@ -134,33 +141,32 @@ public class VictoryScreen : MonoBehaviour
     {
         if (!dangHien) return;
         dangHien = false;
+        UIManager.DongVeGame();
 
         PlayerData data = SaveSystem.LoadGame();
-
-        if (laPhaDao)
-        {
-            // Phá đảo → reset về tầng 1, lộ trình mới
-            data.mapHienTai    = 1;
-            data.biomeSequence = null;
-            data.seed          = 0;
-        }
-        else
-        {
-            // Còn tầng → tăng mapHienTai, reset seed
-            data.mapHienTai++;
-            data.seed = 0;
-        }
+        if (laPhaDao) { data.mapHienTai = 1; data.biomeSequence = null; data.seed = 0; }
+        else          { data.mapHienTai++; data.seed = 0; }
 
         SaveSystem.SaveGame(data);
         Time.timeScale = 1f;
-        SceneManager.LoadScene(tenSceneGame);
+
+        // Lấy biome index hiện tại để hiện ảnh Loading Screen đúng
+        int biomeHienTai = -1;
+        if (data.biomeSequence != null && data.biomeSequence.Length > 0)
+        {
+            int idx = Mathf.Clamp((data.mapHienTai - 1) % data.biomeSequence.Length,
+                                  0, data.biomeSequence.Length - 1);
+            biomeHienTai = data.biomeSequence[idx];
+        }
+
+        LoadingScreen.LoadScene(tenSceneGame, biomeHienTai);
     }
 
-    // [4] Về Menu
     public void OnClick_VeMenu()
     {
         if (!dangHien) return;
         dangHien       = false;
+        UIManager.DongVeGame();
         Time.timeScale = 1f;
         SceneManager.LoadScene(tenSceneMenu);
     }

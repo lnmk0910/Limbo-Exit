@@ -1,6 +1,6 @@
 // LostSoul.cs
 // Linh Hồn Lạc Lối – NPC thụ động ngồi trong mê cung
-// Khi Player lại gần: hiện lời thoại lore
+// Khi Player lại gần: hiện lời thoại qua DialogueUI (tích hợp UIManager)
 // Nhấn F để tặng "Ánh Sáng" (Đá Phát Sáng) → nhận gợi ý:
 //   - Hướng Cổng Thoát
 //   - Cảnh báo vị trí quái vật gần nhất
@@ -22,32 +22,26 @@ public class LostSoul : MonoBehaviour
         "...Tôi đã từng như bạn... rồi tôi quên mất lối ra...",
     };
 
-    [Header("=== GỢI Ý ===")]
-    public int giaTinhSang = 1;          // Số Đá Phát Sáng cần tặng
+    [Header("=== GỢI Ý (đổi bằng Đá Phát Sáng) ===")]
+    public int giaTinhSang = 1;
 
-    [Header("=== UI ===")]
-    public GameObject panelThoai;        // Panel hiện lời thoại
-    public TMP_Text txtThoai;            // Text lời thoại
-    public TMP_Text txtGoiY;             // Text gợi ý (hướng/vị trí)
+    [Header("=== THÔNG TIN NPC ===")]
+    public string tenNPC = "Linh Hồn Lạc Lối";
+    public Sprite avatarNPC;
 
     [Header("=== THAM CHIẾU ===")]
-    public Transform exitGate;           // Cổng thoát (để tính hướng)
+    public Transform exitGate; // Cổng thoát (tự tìm nếu chưa gán)
 
     private bool dangGanPlayer = false;
-    private bool daChoThoai = false;
-    private int chiSoLore = 0;
+    private int  chiSoLore     = 0;
 
     void Start()
     {
         Collider col = GetComponent<Collider>();
         if (col != null) col.isTrigger = true;
 
-        if (panelThoai != null) panelThoai.SetActive(false);
-
-        // Chọn ngẫu nhiên lore ban đầu
         chiSoLore = Random.Range(0, cacLoreThoai.Length);
 
-        // Tự tìm ExitGate nếu chưa gán
         if (exitGate == null)
         {
             GameObject gate = GameObject.FindWithTag("ExitGate");
@@ -60,70 +54,75 @@ public class LostSoul : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         dangGanPlayer = true;
-        HienLoreThoai();
     }
 
     void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Player")) return;
         dangGanPlayer = false;
-        daChoThoai = false;
-        if (panelThoai != null) panelThoai.SetActive(false);
+
+        // Đóng hội thoại nếu đang mở
+        if (DialogueUI.Instance != null && UIManager.DangO(UIManager.TrangThaiUI.HoiThoai))
+            DialogueUI.Instance.DongHoiThoai();
     }
 
     void Update()
     {
         if (!dangGanPlayer) return;
 
-        // Nhấn F để tặng Đá Phát Sáng → nhận gợi ý
-        if (Input.GetKeyDown(KeyCode.F))
+        // Nhấn E → mở hội thoại lore (qua DialogueUI như NPCTrigger)
+        if (UIManager.DangTrongGame() && Input.GetKeyDown(KeyCode.E))
+        {
+            MoHoiThoaiLore();
+            return;
+        }
+
+        // Nhấn F → đổi Đá lấy gợi ý (chỉ khi đang chơi bình thường)
+        if (UIManager.DangTrongGame() && Input.GetKeyDown(KeyCode.F))
+        {
             TangAnhSang();
+        }
     }
 
     // -----------------------------------------------
-    // HIỆN LỜI THOẠI LORE
+    // MỞ HỘI THOẠI QUA DialogueUI
     // -----------------------------------------------
-    void HienLoreThoai()
+    void MoHoiThoaiLore()
     {
-        if (panelThoai != null) panelThoai.SetActive(true);
+        if (DialogueUI.Instance == null) return;
 
-        string lore = cacLoreThoai[chiSoLore % cacLoreThoai.Length];
-        if (txtThoai != null)
-            txtThoai.text = $"👻 \"{lore}\"\n\n[F] Tặng {giaTinhSang} Đá Sáng → nhận gợi ý";
+        string cauHienTai = cacLoreThoai[chiSoLore % cacLoreThoai.Length];
+        string[] cauVaGoiY = new string[]
+        {
+            cauHienTai,
+            $"[F] Tặng {giaTinhSang} Đá Phát Sáng → nhận gợi ý về Cổng Thoát / Kẻ Địch"
+        };
 
-        if (txtGoiY != null) txtGoiY.text = "";
+        DialogueUI.Instance.MoHoiThoai(tenNPC, cauVaGoiY, avatarNPC);
+        chiSoLore = (chiSoLore + 1) % cacLoreThoai.Length;
     }
 
     // -----------------------------------------------
-    // TẶNG ĐÁ PHÁT SÁNG → NHẬN GỢI Ý
+    // TẶNG ĐÁ → NHẬN GỢI Ý
     // -----------------------------------------------
     void TangAnhSang()
     {
         if (PlayerInventory.Instance == null) return;
 
-        // Kiểm tra có đủ Đá không
         if (PlayerInventory.Instance.daPhatSang < giaTinhSang)
         {
-            if (txtGoiY != null)
-                txtGoiY.text = $"❌ Không đủ Đá Phát Sáng! (Cần {giaTinhSang})";
             Debug.Log($"❌ Cần {giaTinhSang} Đá Phát Sáng để đổi gợi ý.");
             return;
         }
 
-        // Trừ Đá
         for (int i = 0; i < giaTinhSang; i++)
             PlayerInventory.Instance.DungDa();
 
-        // Chọn ngẫu nhiên: gợi ý hướng thoát HOẶC vị trí quái
-        bool goiYHuongThoat = Random.value > 0.5f;
-
-        if (goiYHuongThoat)
+        // Random: gợi ý hướng thoát HOẶC vị trí quái
+        if (Random.value > 0.5f)
             HienHuongCongThoat();
         else
             HienViTriQuaiVat();
-
-        daChoThoai = true;
-        chiSoLore = (chiSoLore + 1) % cacLoreThoai.Length; // lần sau hiện lore khác
     }
 
     // -----------------------------------------------
@@ -138,14 +137,17 @@ public class LostSoul : MonoBehaviour
         float goc = Mathf.Atan2(huong.x, huong.z) * Mathf.Rad2Deg;
 
         string tenHuong;
-        if      (goc >= -45 && goc < 45)    tenHuong = "⬆️ Bắc (North)";
-        else if (goc >= 45  && goc < 135)   tenHuong = "➡️ Đông (East)";
-        else if (goc >= 135 || goc < -135)  tenHuong = "⬇️ Nam (South)";
-        else                                tenHuong = "⬅️ Tây (West)";
+        if      (goc >= -45 && goc < 45)   tenHuong = "⬆️ Bắc";
+        else if (goc >= 45  && goc < 135)  tenHuong = "➡️ Đông";
+        else if (goc >= 135 || goc < -135) tenHuong = "⬇️ Nam";
+        else                               tenHuong = "⬅️ Tây";
 
-        string goiY = $"🚪 Cổng Thoát ở hướng {tenHuong}\n(khoảng {huong.magnitude:F0} đơn vị)";
-        if (txtGoiY != null) txtGoiY.text = goiY;
+        string goiY = $"🚪 Cổng Thoát ở hướng {tenHuong} (~{huong.magnitude:F0} đơn vị)";
         Debug.Log($"🧭 Linh Hồn gợi ý: {goiY}");
+
+        // Hiện qua DialogueUI nếu đang mở, hoặc mở mới
+        string[] cauGoiY = { goiY };
+        DialogueUI.Instance?.MoHoiThoai(tenNPC, cauGoiY, avatarNPC);
     }
 
     // -----------------------------------------------
@@ -154,34 +156,38 @@ public class LostSoul : MonoBehaviour
     void HienViTriQuaiVat()
     {
         EnemyAI[] danhSachQuai = FindObjectsByType<EnemyAI>(FindObjectsSortMode.None);
+        string goiY;
+
         if (danhSachQuai.Length == 0)
         {
-            if (txtGoiY != null) txtGoiY.text = "😌 Không cảm nhận được mối nguy hiểm nào gần đây.";
-            return;
+            goiY = "😌 Không cảm nhận được mối nguy hiểm nào gần đây.";
         }
-
-        // Tìm quái gần nhất
-        EnemyAI quaiGanNhat = null;
-        float khoangCachNho = float.MaxValue;
-        foreach (var q in danhSachQuai)
+        else
         {
-            float kc = Vector3.Distance(transform.position, q.transform.position);
-            if (kc < khoangCachNho) { khoangCachNho = kc; quaiGanNhat = q; }
+            EnemyAI quaiGanNhat = null;
+            float   kcNho = float.MaxValue;
+            foreach (var q in danhSachQuai)
+            {
+                float kc = Vector3.Distance(transform.position, q.transform.position);
+                if (kc < kcNho) { kcNho = kc; quaiGanNhat = q; }
+            }
+
+            Vector3 hq = quaiGanNhat.transform.position - transform.position;
+            hq.y = 0;
+            float g = Mathf.Atan2(hq.x, hq.z) * Mathf.Rad2Deg;
+
+            string tenH;
+            if      (g >= -45 && g < 45)  tenH = "⬆️ Bắc";
+            else if (g >= 45  && g < 135) tenH = "➡️ Đông";
+            else if (g >= 135 || g < -135)tenH = "⬇️ Nam";
+            else                          tenH = "⬅️ Tây";
+
+            string nguyHiem = kcNho < 10f ? "⚠️ RẤT GẦN!" : "Còn khá xa.";
+            goiY = $"👁️ Cảm nhận mối nguy {tenH}\n{nguyHiem}";
         }
 
-        Vector3 huongQuai = quaiGanNhat.transform.position - transform.position;
-        huongQuai.y = 0;
-        float gocQuai = Mathf.Atan2(huongQuai.x, huongQuai.z) * Mathf.Rad2Deg;
-
-        string tenHuong;
-        if      (gocQuai >= -45 && gocQuai < 45)    tenHuong = "⬆️ Bắc";
-        else if (gocQuai >= 45  && gocQuai < 135)   tenHuong = "➡️ Đông";
-        else if (gocQuai >= 135 || gocQuai < -135)  tenHuong = "⬇️ Nam";
-        else                                         tenHuong = "⬅️ Tây";
-
-        string caoBao = khoangCachNho < 10f ? "⚠️ RẤT GẦN!" : "Còn khá xa.";
-        string goiY = $"👁️ Cảm nhận mối nguy {tenHuong}\n{caoBao}";
-        if (txtGoiY != null) txtGoiY.text = goiY;
         Debug.Log($"⚠️ Linh Hồn cảnh báo: {goiY}");
+        string[] cauGoiY = { goiY };
+        DialogueUI.Instance?.MoHoiThoai(tenNPC, cauGoiY, avatarNPC);
     }
 }

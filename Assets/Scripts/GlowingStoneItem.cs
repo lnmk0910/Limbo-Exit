@@ -14,6 +14,8 @@ public class GlowingStoneItem : MonoBehaviour
 
     void Update()
     {
+        // Chỉ kích hoạt khi đang chơi, không cho phép khi Shop/Upgrade/Menu đang mở
+        if (!UIManager.DangTrongGame()) return;
         if (Input.GetKeyDown(KeyCode.Alpha1))
             DungDa();
     }

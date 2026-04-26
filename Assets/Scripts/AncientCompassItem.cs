@@ -27,6 +27,7 @@ public class AncientCompassItem : MonoBehaviour
 
     void Update()
     {
+        if (!UIManager.DangTrongGame()) return; // Không dùng vật phẩm khi có panel mở
         if (Input.GetKeyDown(KeyCode.Alpha3))
             DungLaBan();
 

@@ -30,12 +30,13 @@ public class MenuTamDung : MonoBehaviour
     {
         if (!isPaused)
         {
-            // Nhấn ESC khi đang chơi → Mở Pause
-            if (Input.GetKeyDown(KeyCode.Escape))
+            // Chỉ bật Pause khi không có panel nào khác đang mở
+            if (Input.GetKeyDown(KeyCode.Escape) && UIManager.DangTrongGame())
                 PauseGame();
             return;
         }
 
+        if (!UIManager.DangO(UIManager.TrangThaiUI.Pause)) return; // Nhường quyền cho panel khác
         // ── ĐANG Ở BẢNG SETTINGS ──
         if (settingsPanel != null && settingsPanel.activeSelf)
         {
@@ -79,11 +80,11 @@ public class MenuTamDung : MonoBehaviour
     public void PauseGame()
     {
         isPaused = true;
+        UIManager.Mo(UIManager.TrangThaiUI.Pause);
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // Nếu có Hub thì bật Hub, không thì bật từng Panel
         if (hubPanel != null) hubPanel.SetActive(true);
         if (pausePanel != null) pausePanel.SetActive(true);
         if (settingsPanel != null) settingsPanel.SetActive(false);
@@ -92,11 +93,11 @@ public class MenuTamDung : MonoBehaviour
     public void ResumeGame()
     {
         isPaused = false;
+        UIManager.DongVeGame();
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // Nếu có Hub thì tắt Hub, không thì tắt từng Panel
         if (hubPanel != null) hubPanel.SetActive(false);
         else
         {

@@ -5,7 +5,7 @@ using System.Collections;
 
 public class ThuthuMuAI : MonoBehaviour
 {
-    public enum TrangThai { NgheNgong, TruyDuoi, BienMat }
+    public enum TrangThai { NgheNgong, PhatHien, TruyDuoi, BienMat }
     public TrangThai trangThai = TrangThai.NgheNgong;
 
     [Header("=== TẦM NGHE ===")]
@@ -25,8 +25,9 @@ public class ThuthuMuAI : MonoBehaviour
     private NavMeshAgent agent;
     private Transform playerTransform;
     private Renderer[] renderers;
-    private bool daBat          = false;
-    private float thoiGianChoDem = 0f;
+    private bool  daBat           = false;
+    private float thoiGianChoDem  = 0f;
+    private float demPhatHien     = 0f;  // Đếm thời gian dừng khi phát hiện
 
     void Start()
     {
@@ -54,6 +55,7 @@ public class ThuthuMuAI : MonoBehaviour
         switch (trangThai)
         {
             case TrangThai.NgheNgong: XuLyNgheNgong();  break;
+            case TrangThai.PhatHien:  XuLyPhatHien();   break;
             case TrangThai.TruyDuoi: XuLyTruyDuoi();   break;
         }
     }
@@ -71,8 +73,8 @@ public class ThuthuMuAI : MonoBehaviour
         float khoangCach = Vector3.Distance(transform.position, playerTransform.position);
         if (khoangCach <= LayTamNghe())
         {
-            trangThai = TrangThai.TruyDuoi;
-            Debug.Log("👂 Thủ Thư Mù nghe thấy! Truy đuổi...");
+            trangThai = TrangThai.PhatHien; // Dừng lại nghe ngóng trước
+            Debug.Log("👂 Thủ Thư Mù nghe thấy! Dừng lại...");
         }
     }
 
@@ -84,6 +86,22 @@ public class ThuthuMuAI : MonoBehaviour
             NavMeshHit hit;
             if (NavMesh.SamplePosition(h, out hit, 5f, NavMesh.AllAreas))
             { agent.SetDestination(hit.position); return; }
+        }
+    }
+
+    // -----------------------------------------------
+    // PHÁT HIỆN — dừng lại 0.5s trước khi đuổi
+    // -----------------------------------------------
+    void XuLyPhatHien()
+    {
+        agent.SetDestination(transform.position); // Dừng lại
+        demPhatHien += Time.deltaTime;
+        if (demPhatHien >= 0.5f)
+        {
+            demPhatHien  = 0f;
+            trangThai    = TrangThai.TruyDuoi;
+            AudioManager.PhatPhatHien();
+            Debug.Log("👂 Thủ Thư Mù bắt đầu truy đuổi!");
         }
     }
 

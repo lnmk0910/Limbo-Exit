@@ -42,16 +42,12 @@ public class ItemShopUI : MonoBehaviour
 
     void Update()
     {
-        if (dangMo) 
-        {
-            // Thoát Cửa Hàng
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.B)) DongShop();
-            
-            // Phím tắt Mua nhanh
-            if (Input.GetKeyDown(KeyCode.Alpha1)) MuaDa();
-            if (Input.GetKeyDown(KeyCode.Alpha2)) MuaDongHo();
-            if (Input.GetKeyDown(KeyCode.Alpha3)) MuaLaBan();
-        }
+        if (!dangMo || !UIManager.DangO(UIManager.TrangThaiUI.Shop)) return;
+
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.B)) DongShop();
+        if (Input.GetKeyDown(KeyCode.Alpha1)) MuaDa();
+        if (Input.GetKeyDown(KeyCode.Alpha2)) MuaDongHo();
+        if (Input.GetKeyDown(KeyCode.Alpha3)) MuaLaBan();
     }
 
     // -----------------------------------------------
@@ -73,6 +69,8 @@ public class ItemShopUI : MonoBehaviour
     private void MoiShopChung()
     {
         dangMo = true;
+        UIManager.Mo(UIManager.TrangThaiUI.Shop);
+        AudioManager.PhatMoMenu();
 
         if (panelShop != null) panelShop.SetActive(true);
         CapNhatUI();
@@ -89,18 +87,21 @@ public class ItemShopUI : MonoBehaviour
         dangMo = false;
         if (panelShop != null) panelShop.SetActive(false);
 
-        // NẾU ĐANG CHUYỂN MAP -> Đóng Shop tức là Sang Màn Tiếp Theo!
+        // NẾU ĐANG CHUYỂN MAP → Sang Màn Tiếp Theo
         if (dangNghiNgoiChuyenMap)
         {
+            UIManager.DongVeGame();
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
             return;
         }
 
-        // Nếu là gọi Shop giữa góc đường -> Khôi phục Hub/Game bình thường
-        if (VictoryScreen.Instance != null)
-        {
+        // Tự động quay về trạng thái trước đó:
+        //   Mở từ NPC trong mê cung → quay về TrongGame (chơi tiếp)
+        //   Mở từ VictoryScreen     → quay về ChienThang (VictoryScreen hiện lại)
+        UIManager.DongVePanel();
+
+        if (VictoryScreen.Instance != null && UIManager.DangO(UIManager.TrangThaiUI.ChienThang))
             VictoryScreen.Instance.KhoiPhucHienThiHUB();
-        }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -131,6 +132,7 @@ public class ItemShopUI : MonoBehaviour
 
         if (data.soManhHon < giaDa)
         {
+            AudioManager.PhatKhongDuTien();
             Debug.Log($"❌ Không đủ Mảnh Hồn! Cần {giaDa}, có {data.soManhHon}");
             return;
         }
@@ -143,8 +145,11 @@ public class ItemShopUI : MonoBehaviour
         if (PlayerInventory.Instance != null)
             PlayerInventory.Instance.SyncTuSave();
 
+        AudioManager.PhatMuaDo();
+
         Debug.Log($"✅ Mua Đá Phát Sáng! Còn {data.soManhHon} Mảnh Hồn | Đá: {data.soDaPhatSang}");
         CapNhatUI();
+        GameHUD.LamMoi(); // Đồng bộ HUD
     }
 
     public void MuaDongHo()
@@ -154,6 +159,7 @@ public class ItemShopUI : MonoBehaviour
 
         if (data.soManhHon < giaDongHo)
         {
+            AudioManager.PhatKhongDuTien();
             Debug.Log($"❌ Không đủ! Cần {giaDongHo}, có {data.soManhHon}");
             return;
         }
@@ -165,8 +171,11 @@ public class ItemShopUI : MonoBehaviour
         if (PlayerInventory.Instance != null)
             PlayerInventory.Instance.SyncTuSave();
 
+        AudioManager.PhatMuaDo();
+
         Debug.Log($"✅ Mua Đồng Hồ! Còn {data.soManhHon} Mảnh Hồn | Đồng hồ: {data.soDongHo}");
         CapNhatUI();
+        GameHUD.LamMoi(); // Đồng bộ HUD
     }
 
     public void MuaLaBan()
@@ -176,6 +185,7 @@ public class ItemShopUI : MonoBehaviour
 
         if (data.soManhHon < giaLaBan)
         {
+            AudioManager.PhatKhongDuTien();
             Debug.Log($"❌ Không đủ! Cần {giaLaBan}, có {data.soManhHon}");
             return;
         }
@@ -187,8 +197,11 @@ public class ItemShopUI : MonoBehaviour
         if (PlayerInventory.Instance != null)
             PlayerInventory.Instance.SyncTuSave();
 
+        AudioManager.PhatMuaDo();
+
         Debug.Log($"✅ Mua La Bàn! Còn {data.soManhHon} Mảnh Hồn | La bàn: {data.soLaBan}");
         CapNhatUI();
+        GameHUD.LamMoi(); // Đồng bộ HUD
     }
 
     // -----------------------------------------------

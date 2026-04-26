@@ -36,12 +36,10 @@ public class DeathScreen : MonoBehaviour
 
     void Update()
     {
-        if (!dangHien) return;
+        if (!dangHien || !UIManager.DangO(UIManager.TrangThaiUI.ChetChoc)) return;
 
-        // Phím tắt: Enter = Tiếp tục | Escape = Từ bỏ (phòng khi click UI lỗi)
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
             OnClick_TiepTuc();
-
         if (Input.GetKeyDown(KeyCode.Escape))
             OnClick_TuBo();
     }
@@ -58,13 +56,17 @@ public class DeathScreen : MonoBehaviour
     IEnumerator TrinhTuHienThi()
     {
         dangHien = true;
+        UIManager.Mo(UIManager.TrangThaiUI.ChetChoc);
 
         // Mở chuột TRƯỚC để đảm bảo click được
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible   = true;
 
-        // Dừng game
+        // Dừng game + phát âm thanh chết
         Time.timeScale = 0f;
+        AudioManager.PhatChet();
+        AudioManager.PhatManhHonRoi();
+        AudioManager.PhatBGM(AudioManager.Instance?.bgmGameOver);
 
         // Chờ thật (không bị ảnh hưởng bởi timeScale)
         yield return new WaitForSecondsRealtime(thoiGianCho);
@@ -92,11 +94,9 @@ public class DeathScreen : MonoBehaviour
     {
         if (!dangHien) return;
         dangHien = false;
+        UIManager.DongVeGame();
 
-        // Ẩn panel
         if (panelChet != null) panelChet.SetActive(false);
-
-        // Phục hồi game
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible   = false;
@@ -119,7 +119,7 @@ public class DeathScreen : MonoBehaviour
     {
         if (!dangHien) return;
         dangHien = false;
-
+        UIManager.DongVeGame();
         Time.timeScale = 1f;
         SceneManager.LoadScene(tenSceneMenu);
     }

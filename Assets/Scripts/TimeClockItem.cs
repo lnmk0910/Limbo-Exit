@@ -17,6 +17,7 @@ public class TimeClockItem : MonoBehaviour
 
     void Update()
     {
+        if (!UIManager.DangTrongGame()) return;
         if (Input.GetKeyDown(KeyCode.Alpha2))
             DungDongHo();
     }

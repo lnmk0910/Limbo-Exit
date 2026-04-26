@@ -78,19 +78,23 @@ public class MazeGenerator : MonoBehaviour
         // Khởi tạo Random với seed → đảm bảo map sinh ra giống nhau
         Random.InitState(seedHienTai);
 
-        // ⚠️ NARRATIVE AI: TRÁO BÀI LỘ TRÌNH 4 BIOME (Chỉ tráo 1 lần đầu tại Tầng 1)
-        if (data.mapHienTai == 1 && (data.biomeSequence == null || data.biomeSequence.Length == 0 || data.biomeSequence[0] == 0 && data.biomeSequence[1] == 1))
+        // ⚠️ NARRATIVE AI: TRÁO BÀI LỘ TRÌNH 4 BIOME
+        // Chỉ tráo khi biomeSequence chưa có → tức là lượt chơi mới hoàn toàn
+        if (data.biomeSequence == null || data.biomeSequence.Length == 0)
         {
-            // Trộn mảng [0, 1, 2, 3] bằng Fischer-Yates
+            data.biomeSequence = new int[] { 0, 1, 2, 3 };
+
+            // Dùng System.Random riêng, không bị InitState seed ảnh hưởng
+            System.Random sysRnd = new System.Random();
             for (int i = data.biomeSequence.Length - 1; i > 0; i--)
             {
-                int r = Random.Range(0, i + 1);
-                int mapTmp = data.biomeSequence[i];
+                int r = sysRnd.Next(0, i + 1);
+                int tmp = data.biomeSequence[i];
                 data.biomeSequence[i] = data.biomeSequence[r];
-                data.biomeSequence[r] = mapTmp;
+                data.biomeSequence[r] = tmp;
             }
             SaveSystem.SaveGame(data);
-            Debug.Log($"🎲 Lộ trình luân hồi mới được định đoạt: {data.biomeSequence[0]} -> {data.biomeSequence[1]} -> {data.biomeSequence[2]} -> {data.biomeSequence[3]}");
+            Debug.Log($"🎲 Lộ trình Biome: {data.biomeSequence[0]}→{data.biomeSequence[1]}→{data.biomeSequence[2]}→{data.biomeSequence[3]}");
         }
 
         SinhMeCung();

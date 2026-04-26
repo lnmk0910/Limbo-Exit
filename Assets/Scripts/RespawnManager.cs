@@ -103,11 +103,9 @@ public class RespawnManager : MonoBehaviour
 
         SaveSystem.SaveGame(data);
 
-        // Đồng bộ PlayerInventory runtime
+        // Đồng bộ PlayerInventory runtime khớp với save vừa ghi
         if (PlayerInventory.Instance != null)
-        {
-            // Reset bằng cách reload
-        }
+            PlayerInventory.Instance.SyncTuSave();
 
         Debug.Log($"💀 Chết! Giữ lại {manhHonGiuLai} Mảnh Hồn (50%). Mất hết vật phẩm.");
     }

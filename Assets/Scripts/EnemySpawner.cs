@@ -33,8 +33,17 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        // Chọn prefab theo biome hiện tại
-        GameObject prefabDung = LayPrefabTheoBiome();
+        // Đọc biome thực tế từ Save (không dùng GameSettings.biomeIndex vì nó có thể chưa được cập nhật)
+        PlayerData data = SaveSystem.LoadGame();
+        int biomeThucTe = 0;
+        if (data.biomeSequence != null && data.biomeSequence.Length > 0)
+        {
+            int idx = Mathf.Clamp((data.mapHienTai - 1) % data.biomeSequence.Length, 0, data.biomeSequence.Length - 1);
+            biomeThucTe = data.biomeSequence[idx];
+        }
+
+        // Chọn prefab theo biome
+        GameObject prefabDung = LayPrefabTheoBiome(biomeThucTe);
         if (prefabDung == null)
         {
             Debug.LogWarning("⚠️ Chưa gán Prefab Enemy cho Biome này!");
@@ -63,15 +72,15 @@ public class EnemySpawner : MonoBehaviour
 
             Instantiate(prefabDung, viTri, Quaternion.identity);
             daSinh++;
-            Debug.Log($"👾 Spawn [{LayTenQuai()}] #{daSinh} tại ({c},{r})");
+            Debug.Log($"👾 Spawn [{LayTenQuai(biomeThucTe)}] #{daSinh} tại ({c},{r})");
         }
 
-        Debug.Log($"✅ Spawn {daSinh}/{soLuongEnemy} [{LayTenQuai()}] | Biome {GameSettings.biomeIndex}");
+        Debug.Log($"✅ Spawn {daSinh}/{soLuongEnemy} [{LayTenQuai(biomeThucTe)}] | Biome {biomeThucTe}");
     }
 
-    GameObject LayPrefabTheoBiome()
+    GameObject LayPrefabTheoBiome(int biomeIndex)
     {
-        switch (GameSettings.biomeIndex)
+        switch (biomeIndex)
         {
             case 1: return prefabThuthuMu;
             case 2: return prefabSinhVatBun;
@@ -79,9 +88,9 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    string LayTenQuai()
+    string LayTenQuai(int biomeIndex)
     {
-        switch (GameSettings.biomeIndex)
+        switch (biomeIndex)
         {
             case 1: return "Thủ Thư Mù";
             case 2: return "Sinh Vật Bùn";

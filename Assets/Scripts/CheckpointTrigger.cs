@@ -31,6 +31,9 @@ public class CheckpointTrigger : MonoBehaviour
         PlayerData data = SaveSystem.LoadGame();
         data.soManhHon += 2;
         SaveSystem.SaveGame(data);
+        AudioManager.PhatCheckpoint();
+        AudioManager.PhatManhHonNhan();
+        GameHUD.LamMoi(); // Cập nhật HUD ngay lập tức
 
         Debug.Log($"💚 Checkpoint kích hoạt! +2 Mảnh Hồn. Tổng: {data.soManhHon}");
 

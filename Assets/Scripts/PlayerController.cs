@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private float heSoBiome  = 1f;
     private float bonusTocDo = 0f;
-    private Animator anim;   // Animator trên Model Mixamo
+    private Animator anim;
+    private int   biomeHienTai = 0;
 
 
     void Awake()
@@ -35,6 +36,14 @@ public class PlayerController : MonoBehaviour
         // Đọc nâng cấp tốc độ
         PlayerData data = SaveSystem.LoadGame();
         bonusTocDo = data.capTocDo * bonusTocDoMoiCap;
+
+        // Đọc biome để chọn tiếng bước chân đúng
+        biomeHienTai = 0;
+        if (data.biomeSequence != null && data.biomeSequence.Length > 0)
+        {
+            int idx = Mathf.Clamp((data.mapHienTai - 1) % data.biomeSequence.Length, 0, data.biomeSequence.Length - 1);
+            biomeHienTai = data.biomeSequence[idx];
+        }
 
         if (bonusTocDo > 0)
             Debug.Log($"⚡ Tốc độ nâng cấp: +{bonusTocDo} (Cấp {data.capTocDo})");
@@ -62,6 +71,12 @@ public class PlayerController : MonoBehaviour
             float tocDoThucTe = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).magnitude;
             float animSpeed = tocDoThucTe / tocDoChay;  // 0.0 → 1.0
             anim.SetFloat("Speed", animSpeed);
+
+            // Bước chân: bật khi đang di chuyển, tắt khi đứng yên
+            if (tocDoThucTe > 0.5f)
+                AudioManager.BatBuocChan(biomeHienTai);
+            else
+                AudioManager.TatBuocChan();
         }
     }
 }

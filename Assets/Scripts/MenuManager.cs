@@ -51,6 +51,8 @@ public class MenuManager : MonoBehaviour
     // -----------------------------------------------
     void Start()
     {
+        AudioManager.PhatBGMTheoScene("MenuScene");
+
         homePanel.SetActive(true);
         settingsPanel.SetActive(false);
         if (biomePanel != null) biomePanel.SetActive(false);
