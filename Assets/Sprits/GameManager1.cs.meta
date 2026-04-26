@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 56254b14964c0da4480e026b6a20397a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gameOverObject: {instanceID: 0}
+  - timeGameObject: {instanceID: 0}
+  - winGameObject: {fileID: 919132149155446097, guid: 1d763aef15f222c47827140d86ba0a2b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
