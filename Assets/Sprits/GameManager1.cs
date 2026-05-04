@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager1 : MonoBehaviour
 {
@@ -15,17 +16,20 @@ public class GameManager1 : MonoBehaviour
     [SerializeField]
     private float thoiGianCongThem = 5f;
 
+    private bool daHenGioVeMap = false; // tránh gọi nhiều lần
+
     public static GameManager1 Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<GameManager1>();           // ← Sửa ở đây
+                instance = FindObjectOfType<GameManager1>();
+
                 if (instance == null)
                 {
                     GameObject obj = new GameObject("GameManager1");
-                    instance = obj.AddComponent<GameManager1>();       // ← Sửa ở đây
+                    instance = obj.AddComponent<GameManager1>();
                 }
             }
             return instance;
@@ -39,36 +43,67 @@ public class GameManager1 : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         instance = this;
     }
 
     void Start()
     {
-        // Khởi tạo UI an toàn
-        if (gameOverObject != null) gameOverObject.SetActive(false);
-        if (winGameObject != null) winGameObject.SetActive(false);
-        if (timeGameObject != null) timeGameObject.SetActive(true);
+        if (gameOverObject != null)
+            gameOverObject.SetActive(false);
+
+        if (winGameObject != null)
+            winGameObject.SetActive(false);
+
+        if (timeGameObject != null)
+            timeGameObject.SetActive(true);
     }
 
     void Update()
     {
-        if (gameDaKetThuc) return;
-
-        thoiGianChoPhepVeDich -= Time.deltaTime;
-
-        // Debug.Log("Time: " + thoiGianChoPhepVeDich);   // ← Tạm comment để tránh spam
-
-        if (thoiGianChoPhepVeDich <= 0)
+        // ===== WIN =====
+        if (winGame)
         {
-            if (timeGameObject != null) timeGameObject.SetActive(false);
-            if (gameOverObject != null) gameOverObject.SetActive(true);
-            KetThucGame();
+            if (timeGameObject != null)
+                timeGameObject.SetActive(false);
+
+            if (winGameObject != null)
+                winGameObject.SetActive(true);
+
+            if (!daHenGioVeMap)
+            {
+                daHenGioVeMap = true;
+                Invoke(nameof(ReturnToMap), 2f);
+            }
+
+            return;
         }
 
-        if (winGame && winGameObject != null)
+        // Nếu game đã kết thúc thì dừng
+        if (gameDaKetThuc)
+            return;
+
+        // ===== ĐẾM NGƯỢC =====
+        thoiGianChoPhepVeDich -= Time.deltaTime;
+
+        // ===== HẾT GIỜ =====
+        if (thoiGianChoPhepVeDich <= 0)
         {
-            if (timeGameObject != null) timeGameObject.SetActive(false);
-            winGameObject.SetActive(true);
+            thoiGianChoPhepVeDich = 0;
+
+            if (timeGameObject != null)
+                timeGameObject.SetActive(false);
+
+            if (gameOverObject != null)
+                gameOverObject.SetActive(true);
+
+            KetThucGame();
+
+            if (!daHenGioVeMap)
+            {
+                daHenGioVeMap = true;
+                Invoke(nameof(ReturnToMap), 2f);
+            }
         }
     }
 
@@ -80,7 +115,7 @@ public class GameManager1 : MonoBehaviour
 
     public void QuaCheckPoint()
     {
-        if (!gameDaKetThuc)
+        if (!gameDaKetThuc && !winGame)
         {
             thoiGianChoPhepVeDich += thoiGianCongThem;
             Debug.Log("✅ Qua CheckPoint + " + thoiGianCongThem + " giây");
@@ -92,8 +127,13 @@ public class GameManager1 : MonoBehaviour
         if (!gameDaKetThuc)
         {
             winGame = true;
-            KetThucGame();
+            gameDaKetThuc = true;
             Debug.Log("🏆 WIN GAME!");
         }
+    }
+
+    void ReturnToMap()
+    {
+        SceneManager.LoadScene("GameScene"); // 👉 sửa tên nếu map bạn khác
     }
 }

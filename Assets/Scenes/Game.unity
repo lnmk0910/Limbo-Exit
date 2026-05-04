@@ -7443,6 +7443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 1584201156616539886, guid: 1010d3897cddb384c80c31e4f0800afd, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2566810221321926977, guid: 1010d3897cddb384c80c31e4f0800afd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 55.780304
