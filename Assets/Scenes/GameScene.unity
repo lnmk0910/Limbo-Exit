@@ -5743,15 +5743,15 @@ MonoBehaviour:
   srcAmbient: {fileID: 2092491619}
   srcSFX: {fileID: 1949331337}
   srcBuocChan: {fileID: 2128411528}
-  bgmMenu: {fileID: 0}
-  bgmDaCo: {fileID: 0}
-  bgmThuVien: {fileID: 0}
-  bgmDamLay: {fileID: 0}
-  bgmTinhThe: {fileID: 0}
-  bgmVictory: {fileID: 0}
-  bgmGameOver: {fileID: 0}
-  ambGio: {fileID: 0}
-  ambGiotNuoc: {fileID: 0}
+  bgmMenu: {fileID: 8300000, guid: b96dc3f89e119614a89f21a8cc496127, type: 3}
+  bgmDaCo: {fileID: 8300000, guid: b89ad0c7d00f3174982012136f741fb4, type: 3}
+  bgmThuVien: {fileID: 8300000, guid: b4de81ec91e236045b06ebfd8c94feca, type: 3}
+  bgmDamLay: {fileID: 8300000, guid: 7940da9ef4d502c4d8bcfa3439463add, type: 3}
+  bgmTinhThe: {fileID: 8300000, guid: 6048e284bb910614ea5c807e9324c15d, type: 3}
+  bgmVictory: {fileID: 8300000, guid: 9b7d17fa5780f1e44b9bb5bd201b366f, type: 3}
+  bgmGameOver: {fileID: 8300000, guid: e9936dd7d95d3284a9b0cd70a5aef2bd, type: 3}
+  ambGio: {fileID: 8300000, guid: 72b58c9642fdc954e889b82f262ace26, type: 3}
+  ambGiotNuoc: {fileID: 8300000, guid: e8f6b6ca35da8064c92317923ba1fc8e, type: 3}
   sfxBuocChanDa: {fileID: 0}
   sfxBuocChanBun: {fileID: 0}
   sfxBuocChanTinhThe: {fileID: 0}
