@@ -1,8 +1,8 @@
 Using pre-set license
 Built from '6000.0/staging' branch; Version is '6000.0.57f1 (b7b9860b7bbd) revision 12040582'; Using compiler version '193933523'; Build Type 'Release'
-OS: 'Windows 11  (10.0.26200) 64bit CoreSingleLanguage' Language: 'en' Physical Memory: 16251 MB
+OS: 'Windows 11  (10.0.26200) 64bit CoreSingleLanguage' Language: 'en' Physical Memory: 7885 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
-Date: 2026-04-26T03:12:31Z
+Date: 2026-05-05T12:43:24Z
 
 COMMAND LINE ARGUMENTS:
 C:\Program Files\Unity 6000.0.57f1\Editor\Unity.exe
@@ -12,21 +12,21 @@ C:\Program Files\Unity 6000.0.57f1\Editor\Unity.exe
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/tkgea/OneDrive/Desktop/Limbo-Exit
+C:/Users/hi/Limbo-Exit
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-54607
+50453
 -job-worker-count
-3
+7
 -background-job-worker-count
 8
 -gc-helper-count
 1
 -name
 AssetImport
-Successfully changed project path to: C:/Users/tkgea/OneDrive/Desktop/Limbo-Exit
-C:/Users/tkgea/OneDrive/Desktop/Limbo-Exit
+Successfully changed project path to: C:/Users/hi/Limbo-Exit
+C:/Users/hi/Limbo-Exit
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -62,13 +62,13 @@ C:/Users/tkgea/OneDrive/Desktop/Limbo-Exit
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [4856]  Target information:
+Player connection [28072]  Target information:
 
-Player connection [4856]  * "[IP] 192.168.0.104 [Port] 0 [Flags] 2 [Guid] 1666199957 [EditorId] 1666199957 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-RPVNVRV) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [28072]  * "[IP] 192.168.1.6 [Port] 0 [Flags] 2 [Guid] 1570905813 [EditorId] 1570905813 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-FV2G57SG) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [4856] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [4856] Host joined alternative multi-casting on [225.0.0.222:34997]...
-JobSystem: Creating JobQueue using job-worker-count value 3
+Player connection [28072] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [28072] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 7
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
@@ -79,59 +79,59 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 2.07 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 5.86 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.0.57f1 (b7b9860b7bbd)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity 6000.0.57f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/tkgea/OneDrive/Desktop/Limbo-Exit/Assets
+[Subsystems] Discovering subsystems at path C:/Users/hi/Limbo-Exit/Assets
 GfxDevice: creating device client; kGfxThreadingModeNonThreaded
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1650 Ti (ID=0x1f95)
-    Vendor:   NVIDIA
-    VRAM:     3935 MB
-    Driver:   32.0.15.9174
+    Renderer: Intel(R) UHD Graphics (ID=0x4626)
+    Vendor:   Intel
+    VRAM:     3942 MB
+    Driver:   30.0.101.1660
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity 6000.0.57f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity 6000.0.57f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity 6000.0.57f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56184
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56896
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity 6000.0.57f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003276 seconds.
-- Loaded All Assemblies, in  0.485 seconds
+Registered in 0.005812 seconds.
+- Loaded All Assemblies, in  0.782 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.482 seconds
-Domain Reload Profiling: 963ms
-	BeginReloadAssembly (163ms)
+- Finished resetting the current domain, in  0.599 seconds
+Domain Reload Profiling: 1379ms
+	BeginReloadAssembly (286ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (50ms)
-	RebuildNativeTypeToScriptingClass (16ms)
-	initialDomainReloadingComplete (59ms)
-	LoadAllAssembliesAndSetupDomain (193ms)
-		LoadAssemblies (160ms)
+	RebuildCommonClasses (82ms)
+	RebuildNativeTypeToScriptingClass (21ms)
+	initialDomainReloadingComplete (82ms)
+	LoadAllAssembliesAndSetupDomain (308ms)
+		LoadAssemblies (282ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (190ms)
-			TypeCache.Refresh (188ms)
-				TypeCache.ScanAssembly (173ms)
+		AnalyzeDomain (303ms)
+			TypeCache.Refresh (300ms)
+				TypeCache.ScanAssembly (275ms)
 			BuildScriptInfoCaches (0ms)
 			ResolveRequiredComponents (1ms)
-	FinalizeReload (482ms)
+	FinalizeReload (600ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (420ms)
+		SetupLoadedEditorAssemblies (524ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (24ms)
-			SetLoadedEditorAssemblies (6ms)
-			BeforeProcessingInitializeOnLoad (86ms)
-			ProcessInitializeOnLoadAttributes (215ms)
-			ProcessInitializeOnLoadMethodAttributes (89ms)
+			InitializePlatformSupportModulesInManaged (41ms)
+			SetLoadedEditorAssemblies (8ms)
+			BeforeProcessingInitializeOnLoad (117ms)
+			ProcessInitializeOnLoadAttributes (286ms)
+			ProcessInitializeOnLoadMethodAttributes (73ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -143,11 +143,11 @@ Import Worker Mode flag is 0x00
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.974 seconds
+- Loaded All Assemblies, in  1.782 seconds
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
 'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-Refreshing native plugins compatible for Editor in 1.58 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 2.84 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Package Manager log level set to [2]
@@ -158,105 +158,57 @@ Package Manager log level set to [2]
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.907 seconds
-Domain Reload Profiling: 1877ms
-	BeginReloadAssembly (203ms)
+- Finished resetting the current domain, in  1.392 seconds
+Domain Reload Profiling: 3165ms
+	BeginReloadAssembly (312ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (11ms)
+		DisableScriptedObjects (13ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (32ms)
-	RebuildCommonClasses (61ms)
-	RebuildNativeTypeToScriptingClass (17ms)
-	initialDomainReloadingComplete (47ms)
-	LoadAllAssembliesAndSetupDomain (640ms)
-		LoadAssemblies (410ms)
+		CreateAndSetChildDomain (73ms)
+	RebuildCommonClasses (50ms)
+	RebuildNativeTypeToScriptingClass (21ms)
+	initialDomainReloadingComplete (83ms)
+	LoadAllAssembliesAndSetupDomain (1307ms)
+		LoadAssemblies (985ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (340ms)
-			TypeCache.Refresh (253ms)
-				TypeCache.ScanAssembly (236ms)
-			BuildScriptInfoCaches (68ms)
+		AnalyzeDomain (485ms)
+			TypeCache.Refresh (387ms)
+				TypeCache.ScanAssembly (351ms)
+			BuildScriptInfoCaches (75ms)
 			ResolveRequiredComponents (16ms)
-	FinalizeReload (908ms)
+	FinalizeReload (1393ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (681ms)
+		SetupLoadedEditorAssemblies (999ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (2ms)
-			SetLoadedEditorAssemblies (5ms)
-			BeforeProcessingInitializeOnLoad (160ms)
-			ProcessInitializeOnLoadAttributes (450ms)
-			ProcessInitializeOnLoadMethodAttributes (57ms)
-			AfterProcessingInitializeOnLoad (6ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			SetLoadedEditorAssemblies (12ms)
+			BeforeProcessingInitializeOnLoad (296ms)
+			ProcessInitializeOnLoadAttributes (613ms)
+			ProcessInitializeOnLoadMethodAttributes (62ms)
+			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (7ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
-Refreshing native plugins compatible for Editor in 1.50 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (6ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 1.27 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6521 unused Assets / (4.7 MB). Loaded Objects now: 7224.
-Memory consumption went from 129.5 MB to 124.8 MB.
-Total: 10.974700 ms (FindLiveObjects: 0.797900 ms CreateObjectMapping: 1.383300 ms MarkObjects: 5.699000 ms  DeleteObjects: 3.093100 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 856.753651 seconds.
-  path: Assets
-  artifactKey: Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets using Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c391582d739b6e62a5220f35cbb167ac') in 0.003837 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Prefab/Prefab_ExitGate.prefab
-  artifactKey: Guid(dbd9ccca6d3a70e45afd601278c5bb10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/Prefab_ExitGate.prefab using Guid(dbd9ccca6d3a70e45afd601278c5bb10) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '79370ceb53d866856bca9576dc8eaaf1') in 0.5529006 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000050 seconds.
-  path: Assets/Prefab/Prefab_Checkpoint.prefab
-  artifactKey: Guid(40936ae7f868fc847a241997effb6c55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefab/Prefab_Checkpoint.prefab using Guid(40936ae7f868fc847a241997effb6c55) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ea3df331746ea2bd1953c1cd4de5a1d4') in 0.0090752 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.396152 seconds.
-  path: Assets/Audio
-  artifactKey: Guid(4d60c46ec49e65c4f937feabfb6b02dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Audio using Guid(4d60c46ec49e65c4f937feabfb6b02dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b06edad742ceb952c366655185eb1449') in 0.0005617 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 19.536341 seconds.
-  path: Assets/Audio/BGM
-  artifactKey: Guid(6dcb1febd4848a540ab9e7e1fcd409b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Audio/BGM using Guid(6dcb1febd4848a540ab9e7e1fcd409b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2d5f3e1916ed31e37d8b30a28e4b611f') in 0.0034122 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.479840 seconds.
-  path: Assets/Audio/SFX
-  artifactKey: Guid(a9b86b1780bab2e46ad65a5137e19404) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Audio/SFX using Guid(a9b86b1780bab2e46ad65a5137e19404) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1b4d416ae541780a93b0b1734655b39d') in 0.000577 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+Unloading 6525 unused Assets / (4.9 MB). Loaded Objects now: 7242.
+Memory consumption went from 138.4 MB to 133.4 MB.
+Total: 15.570800 ms (FindLiveObjects: 1.809800 ms CreateObjectMapping: 0.688200 ms MarkObjects: 8.132600 ms  DeleteObjects: 4.937800 ms)
 
 ========================================================================
 Received Prepare
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.973 seconds
+- Loaded All Assemblies, in  0.962 seconds
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
 'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-Refreshing native plugins compatible for Editor in 1.63 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 2.23 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
@@ -266,104 +218,496 @@ Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInter
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.858 seconds
-Domain Reload Profiling: 1830ms
-	BeginReloadAssembly (281ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (25ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (66ms)
-	RebuildCommonClasses (60ms)
-	RebuildNativeTypeToScriptingClass (18ms)
-	initialDomainReloadingComplete (41ms)
-	LoadAllAssembliesAndSetupDomain (571ms)
-		LoadAssemblies (461ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (233ms)
-			TypeCache.Refresh (11ms)
-				TypeCache.ScanAssembly (1ms)
-			BuildScriptInfoCaches (203ms)
-			ResolveRequiredComponents (15ms)
-	FinalizeReload (858ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (668ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (3ms)
-			SetLoadedEditorAssemblies (6ms)
-			BeforeProcessingInitializeOnLoad (155ms)
-			ProcessInitializeOnLoadAttributes (430ms)
-			ProcessInitializeOnLoadMethodAttributes (68ms)
-			AfterProcessingInitializeOnLoad (6ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (16ms)
-Refreshing native plugins compatible for Editor in 1.49 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6519 unused Assets / (4.6 MB). Loaded Objects now: 7275.
-Memory consumption went from 147.5 MB to 142.9 MB.
-Total: 10.388400 ms (FindLiveObjects: 0.963300 ms CreateObjectMapping: 1.498300 ms MarkObjects: 4.875900 ms  DeleteObjects: 3.049500 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.885 seconds
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-Refreshing native plugins compatible for Editor in 1.20 ms, found 3 plugins.
-Native extension for WindowsStandalone target not found
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.936 seconds
-Domain Reload Profiling: 1820ms
-	BeginReloadAssembly (253ms)
+- Finished resetting the current domain, in  1.430 seconds
+Domain Reload Profiling: 2392ms
+	BeginReloadAssembly (295ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (52ms)
-	RebuildCommonClasses (45ms)
-	RebuildNativeTypeToScriptingClass (16ms)
-	initialDomainReloadingComplete (37ms)
-	LoadAllAssembliesAndSetupDomain (532ms)
-		LoadAssemblies (424ms)
+		ReleaseScriptingObjects (1ms)
+		CreateAndSetChildDomain (56ms)
+	RebuildCommonClasses (38ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (39ms)
+	LoadAllAssembliesAndSetupDomain (574ms)
+		LoadAssemblies (535ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (238ms)
-			TypeCache.Refresh (7ms)
+		AnalyzeDomain (211ms)
+			TypeCache.Refresh (11ms)
 				TypeCache.ScanAssembly (0ms)
-			BuildScriptInfoCaches (209ms)
-			ResolveRequiredComponents (16ms)
-	FinalizeReload (936ms)
+			BuildScriptInfoCaches (183ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (1431ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (738ms)
+		SetupLoadedEditorAssemblies (1111ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (6ms)
+			BeforeProcessingInitializeOnLoad (198ms)
+			ProcessInitializeOnLoadAttributes (783ms)
+			ProcessInitializeOnLoadMethodAttributes (112ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (25ms)
+Refreshing native plugins compatible for Editor in 1.11 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6521 unused Assets / (4.5 MB). Loaded Objects now: 7258.
+Memory consumption went from 149.7 MB to 145.1 MB.
+Total: 12.293000 ms (FindLiveObjects: 1.553300 ms CreateObjectMapping: 0.853600 ms MarkObjects: 5.747900 ms  DeleteObjects: 4.137100 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.878 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 1.43 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.926 seconds
+Domain Reload Profiling: 1805ms
+	BeginReloadAssembly (266ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (1ms)
+		CreateAndSetChildDomain (69ms)
+	RebuildCommonClasses (37ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (527ms)
+		LoadAssemblies (450ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (202ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (176ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (927ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (751ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (3ms)
-			SetLoadedEditorAssemblies (7ms)
-			BeforeProcessingInitializeOnLoad (171ms)
-			ProcessInitializeOnLoadAttributes (457ms)
-			ProcessInitializeOnLoadMethodAttributes (90ms)
-			AfterProcessingInitializeOnLoad (10ms)
+			SetLoadedEditorAssemblies (5ms)
+			BeforeProcessingInitializeOnLoad (131ms)
+			ProcessInitializeOnLoadAttributes (512ms)
+			ProcessInitializeOnLoadMethodAttributes (92ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (2ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (23ms)
+Refreshing native plugins compatible for Editor in 1.40 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6521 unused Assets / (5.3 MB). Loaded Objects now: 7261.
+Memory consumption went from 149.6 MB to 144.3 MB.
+Total: 21.321200 ms (FindLiveObjects: 2.828300 ms CreateObjectMapping: 2.290500 ms MarkObjects: 8.910600 ms  DeleteObjects: 7.288200 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  3.939 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 1.60 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.535 seconds
+Domain Reload Profiling: 6527ms
+	BeginReloadAssembly (1042ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (35ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (1ms)
+		CreateAndSetChildDomain (398ms)
+	RebuildCommonClasses (140ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (71ms)
+	LoadAllAssembliesAndSetupDomain (2722ms)
+		LoadAssemblies (2094ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (1005ms)
+			TypeCache.Refresh (67ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (854ms)
+			ResolveRequiredComponents (48ms)
+	FinalizeReload (2537ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1806ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (13ms)
+			SetLoadedEditorAssemblies (24ms)
+			BeforeProcessingInitializeOnLoad (377ms)
+			ProcessInitializeOnLoadAttributes (1174ms)
+			ProcessInitializeOnLoadMethodAttributes (194ms)
+			AfterProcessingInitializeOnLoad (22ms)
+			EditorAssembliesLoaded (2ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (64ms)
+Refreshing native plugins compatible for Editor in 2.16 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6521 unused Assets / (4.8 MB). Loaded Objects now: 7264.
+Memory consumption went from 149.7 MB to 144.9 MB.
+Total: 41.999000 ms (FindLiveObjects: 5.639200 ms CreateObjectMapping: 3.750700 ms MarkObjects: 22.014400 ms  DeleteObjects: 10.581500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  7.561 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 3.02 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.982 seconds
+Domain Reload Profiling: 8545ms
+	BeginReloadAssembly (4168ms)
+		ExecutionOrderSort (4ms)
+		DisableScriptedObjects (199ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (12ms)
+		CreateAndSetChildDomain (2103ms)
+	RebuildCommonClasses (161ms)
+	RebuildNativeTypeToScriptingClass (35ms)
+	initialDomainReloadingComplete (187ms)
+	LoadAllAssembliesAndSetupDomain (3010ms)
+		LoadAssemblies (3307ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (597ms)
+			TypeCache.Refresh (61ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (490ms)
+			ResolveRequiredComponents (29ms)
+	FinalizeReload (983ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (732ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			SetLoadedEditorAssemblies (9ms)
+			BeforeProcessingInitializeOnLoad (151ms)
+			ProcessInitializeOnLoadAttributes (473ms)
+			ProcessInitializeOnLoadMethodAttributes (87ms)
+			AfterProcessingInitializeOnLoad (8ms)
 			EditorAssembliesLoaded (1ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (26ms)
-Refreshing native plugins compatible for Editor in 1.31 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.08 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6518 unused Assets / (4.6 MB). Loaded Objects now: 7278.
-Memory consumption went from 147.4 MB to 142.8 MB.
-Total: 11.130900 ms (FindLiveObjects: 0.744300 ms CreateObjectMapping: 1.379300 ms MarkObjects: 5.777700 ms  DeleteObjects: 3.228700 ms)
+Unloading 6521 unused Assets / (4.7 MB). Loaded Objects now: 7267.
+Memory consumption went from 149.7 MB to 145.1 MB.
+Total: 11.146400 ms (FindLiveObjects: 1.185000 ms CreateObjectMapping: 0.592000 ms MarkObjects: 5.443700 ms  DeleteObjects: 3.923900 ms)
 
 Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 105063.772961 seconds.
+  path: Assets/Scenes/Game.unity
+  artifactKey: Guid(7699b4408bac743419ccc4c63ec2b8f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game.unity using Guid(7699b4408bac743419ccc4c63ec2b8f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '514104b2636c5cc3a7ab861a033064f6') in 0.0422149 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 26.424833 seconds.
+  path: Assets/Dohoa/Duongdua
+  artifactKey: Guid(3a2eb227d16a62a4ab51f5fb0bbef5fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua using Guid(3a2eb227d16a62a4ab51f5fb0bbef5fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a7bb61bcc1d9f8dbfca24313c9d4415e') in 0.0044465 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.739300 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerBridgeLarge.fbx
+  artifactKey: Guid(e2669b69eaa104449a9ffd8e578e9541) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerBridgeLarge.fbx using Guid(e2669b69eaa104449a9ffd8e578e9541) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bfd0a9dff63bb4ae6ed3fec516ca9671') in 1.0523595 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000075 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLarge.fbx
+  artifactKey: Guid(33151a8709867c54d8d9ccf71ba9075b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLarge.fbx using Guid(33151a8709867c54d8d9ccf71ba9075b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4b0899fc04865ba6055634f4ea8826a1') in 0.0669486 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000078 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLargeSand.fbx
+  artifactKey: Guid(cc288f6c958b93946a5bdcb798fc8498) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLargeSand.fbx using Guid(cc288f6c958b93946a5bdcb798fc8498) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8b1984fe77ade4a1789459419b5650b6') in 0.0510781 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLargeWallInner.fbx
+  artifactKey: Guid(9932373163cfac34999331c505c73ee4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLargeWallInner.fbx using Guid(9932373163cfac34999331c505c73ee4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a56ff53e58ff88fd7c8d27bb96287d9b') in 0.0757227 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000083 seconds.
+  path: Assets/Dohoa/Duongdua/roadCurved.fbx
+  artifactKey: Guid(e99936be40869e249808d9b8c6a4c12e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCurved.fbx using Guid(e99936be40869e249808d9b8c6a4c12e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2d8a1f157910d75b8f3588fac1a86073') in 0.0767583 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000223 seconds.
+  path: Assets/Dohoa/Duongdua/roadPitGarage.fbx
+  artifactKey: Guid(b1afa2ccfbbd7e046bf12dcfb586d7c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadPitGarage.fbx using Guid(b1afa2ccfbbd7e046bf12dcfb586d7c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7b1036ce733072cebc191add8c1ebcd6') in 0.0877309 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000084 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLargeSandInner.fbx
+  artifactKey: Guid(dc64869177651e84c9b27189c152ae1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLargeSandInner.fbx using Guid(dc64869177651e84c9b27189c152ae1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6369b126cb491e2e7fe1b98d30d6c11b') in 0.0567121 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLargerBorderInner.fbx
+  artifactKey: Guid(68a3c48c2c336de4db719674f6c9806e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLargerBorderInner.fbx using Guid(68a3c48c2c336de4db719674f6c9806e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '110796486c1fa1b162b7dbe5277bc629') in 0.0587244 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000077 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLargerBorder.fbx
+  artifactKey: Guid(ae2aad0b16da6fd428f8b25c3407b266) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLargerBorder.fbx using Guid(ae2aad0b16da6fd428f8b25c3407b266) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2c10bc51b5ec8e1cdea9da3c4f969ddd') in 0.0719759 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Dohoa/Duongdua/roadPitEntry.fbx
+  artifactKey: Guid(3279535d3dc13a24db42ab1e787671fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadPitEntry.fbx using Guid(3279535d3dc13a24db42ab1e787671fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c22803f59a01281e796c5b9482efacae') in 0.0659496 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000097 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLargeBorder.fbx
+  artifactKey: Guid(001b7744ff7aa8b44ab15245aa526d9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLargeBorder.fbx using Guid(001b7744ff7aa8b44ab15245aa526d9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fb4dcef85f9582850c332f520ed18e93') in 0.063292 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerSmall.fbx
+  artifactKey: Guid(b812b75c584c6be4586275511592676a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerSmall.fbx using Guid(b812b75c584c6be4586275511592676a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ce5632aa20940f0e40a0750043751abe') in 0.0732848 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000199 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLargeBorderInner.fbx
+  artifactKey: Guid(78a484f5bbd8c1a46b554479dc1617ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLargeBorderInner.fbx using Guid(78a484f5bbd8c1a46b554479dc1617ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0d9716105b49f61931ab67aa37d64ba5') in 0.0692584 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLargerWallInner.fbx
+  artifactKey: Guid(8d1e8cb12153918418e4087fffd7f014) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLargerWallInner.fbx using Guid(8d1e8cb12153918418e4087fffd7f014) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a2b40268af14089b835e32a11eeccc68') in 0.0671854 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 102.509863 seconds.
+  path: Assets/Dohoa/Duongdua/roadPitStraight.fbx
+  artifactKey: Guid(36ae778b99c0e914899752e28ecf191d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadPitStraight.fbx using Guid(36ae778b99c0e914899752e28ecf191d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6e07df115587c4eca2c5fd4066cd0262') in 0.071741 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Dohoa/Duongdua/roadRampLongWall.fbx
+  artifactKey: Guid(4aefac67235eab64ea9b3379312d2123) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadRampLongWall.fbx using Guid(4aefac67235eab64ea9b3379312d2123) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5c2aec63f649f8ce0f51fca20574b26b') in 0.0700416 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Dohoa/Duongdua/roadRampLong.fbx
+  artifactKey: Guid(98ca191d752fdbe47b3a98fad8eacfa4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadRampLong.fbx using Guid(98ca191d752fdbe47b3a98fad8eacfa4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fb4b44c55135b516e35d209622d8d2db') in 0.0789849 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Dohoa/Duongdua/roadRamp.fbx
+  artifactKey: Guid(b45a9e3121b796d4cb5ad13710275dcf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadRamp.fbx using Guid(b45a9e3121b796d4cb5ad13710275dcf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5d5ea5cd2dc0570269831fb60c35ea45') in 0.0903309 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Dohoa/Duongdua/roadSide.fbx
+  artifactKey: Guid(d528974e72a57d948839013a56c2d93b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadSide.fbx using Guid(d528974e72a57d948839013a56c2d93b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '283a83912443bdfeb81ae4c3495e3a59') in 0.0751219 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Dohoa/Duongdua/roadRampLongCurved.fbx
+  artifactKey: Guid(5d1677a990b6c144a91d57a193ba2e80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadRampLongCurved.fbx using Guid(5d1677a990b6c144a91d57a193ba2e80) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '01415805caa5037e7e3f3accb0a946e9') in 0.0767959 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000077 seconds.
+  path: Assets/Dohoa/Duongdua/tent.fbx
+  artifactKey: Guid(030953236723a5749bd9cd5dd5f830d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/tent.fbx using Guid(030953236723a5749bd9cd5dd5f830d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f75769ed2130ff241241ae79f95edecc') in 0.065595 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Dohoa/Duongdua/roadStraightLongMid.fbx
+  artifactKey: Guid(45039d81a1e432e44954c5f266dac214) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadStraightLongMid.fbx using Guid(45039d81a1e432e44954c5f266dac214) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '89a070296c84f96ef9f8a882891cf19b') in 0.0732797 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Dohoa/Duongdua/tentRoofDouble.fbx
+  artifactKey: Guid(3e1b62a0813c6e941919851d886f8f26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/tentRoofDouble.fbx using Guid(3e1b62a0813c6e941919851d886f8f26) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '98dfc445e8408405411e5f28ccc5313e') in 0.0624518 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000066 seconds.
+  path: Assets/Dohoa/Duongdua/roadStraightBridgeStart.fbx
+  artifactKey: Guid(5801ddb7ffe1f424993420c7a433688b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadStraightBridgeStart.fbx using Guid(5801ddb7ffe1f424993420c7a433688b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c18953979a161f788edea4f78aeb5010') in 0.0758033 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/Dohoa/Duongdua/tentRoof.fbx
+  artifactKey: Guid(9a678ce5121584e479ee9db5dcb469f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/tentRoof.fbx using Guid(9a678ce5121584e479ee9db5dcb469f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b9a173cb0664fe7cda463e69c3e7cf43') in 0.0804997 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Dohoa/Duongdua/roadStraightLong.fbx
+  artifactKey: Guid(443b2bc5096f9c640834281f7dc156c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadStraightLong.fbx using Guid(443b2bc5096f9c640834281f7dc156c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f82fb9a3a43b8cb48251e0a6c283af8b') in 0.0850215 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000071 seconds.
+  path: Assets/Dohoa/Duongdua/roadSplitRoundLarge.fbx
+  artifactKey: Guid(334ecf304897b854db8148dd750e03be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadSplitRoundLarge.fbx using Guid(334ecf304897b854db8148dd750e03be) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd08f2c0a9e5724b9fa1def8128865108') in 0.086418 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Dohoa/Duongdua/treeSmall.fbx
+  artifactKey: Guid(62e33e9970e2e6b4ab67c7abdff3744e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/treeSmall.fbx using Guid(62e33e9970e2e6b4ab67c7abdff3744e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f0bf6ecaf6f732edc7f15f9ecd5f3b57') in 0.0740369 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000073 seconds.
+  path: Assets/Dohoa/Duongdua/tentLong.fbx
+  artifactKey: Guid(004851bb7760e924cbd528fefe13685d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/tentLong.fbx using Guid(004851bb7760e924cbd528fefe13685d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ad5f195f975b26cb41957935e0f73a3f') in 0.0764897 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000060 seconds.
+  path: Assets/Dohoa/Duongdua/roadStraightArrow.fbx
+  artifactKey: Guid(efcfbe2ae72eb894a867fbff71b7711b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadStraightArrow.fbx using Guid(efcfbe2ae72eb894a867fbff71b7711b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2b674a5e76aba4973806fceb8d43f569') in 0.0905992 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000063 seconds.
+  path: Assets/Dohoa/Duongdua/roadStraightBridgeMid.fbx
+  artifactKey: Guid(ec1b2e4a5b500704ead2fd242a72e405) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadStraightBridgeMid.fbx using Guid(ec1b2e4a5b500704ead2fd242a72e405) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '45f64a830a5146b9c1ab87b084cbc0bc') in 0.0860487 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Dohoa/Duongdua/roadSplitRound.fbx
+  artifactKey: Guid(ea3371c673b08b94cac101213c1216d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadSplitRound.fbx using Guid(ea3371c673b08b94cac101213c1216d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ea2dd5f7ebc8e13df5e48ec9cd176476') in 0.0804436 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
