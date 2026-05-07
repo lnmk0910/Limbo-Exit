@@ -2,7 +2,7 @@ Using pre-set license
 Built from '6000.0/staging' branch; Version is '6000.0.57f1 (b7b9860b7bbd) revision 12040582'; Using compiler version '193933523'; Build Type 'Release'
 OS: 'Windows 11  (10.0.26200) 64bit CoreSingleLanguage' Language: 'en' Physical Memory: 7885 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
-Date: 2026-05-05T09:19:53Z
+Date: 2026-05-05T12:43:24Z
 
 COMMAND LINE ARGUMENTS:
 C:\Program Files\Unity 6000.0.57f1\Editor\Unity.exe
@@ -16,7 +16,7 @@ C:/Users/hi/Limbo-Exit
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-54595
+50453
 -job-worker-count
 7
 -background-job-worker-count
@@ -62,12 +62,12 @@ C:/Users/hi/Limbo-Exit
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [32228]  Target information:
+Player connection [18456]  Target information:
 
-Player connection [32228]  * "[IP] 10.0.129.162 [Port] 0 [Flags] 2 [Guid] 2119067895 [EditorId] 2119067895 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-FV2G57SG) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [18456]  * "[IP] 192.168.1.6 [Port] 0 [Flags] 2 [Guid] 1295822012 [EditorId] 1295822012 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-FV2G57SG) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [32228] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [32228] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [18456] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [18456] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 7
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
@@ -79,7 +79,7 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 628.78 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 5.80 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.0.57f1 (b7b9860b7bbd)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity 6000.0.57f1/Editor/Data/Resources/UnitySubsystems
@@ -95,43 +95,43 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity 6000.0.57f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity 6000.0.57f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity 6000.0.57f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56224
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56360
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity 6000.0.57f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.015727 seconds.
-- Loaded All Assemblies, in  7.791 seconds
+Registered in 0.005136 seconds.
+- Loaded All Assemblies, in  0.783 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  2.081 seconds
-Domain Reload Profiling: 9863ms
-	BeginReloadAssembly (6670ms)
+- Finished resetting the current domain, in  0.598 seconds
+Domain Reload Profiling: 1379ms
+	BeginReloadAssembly (285ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (9ms)
-	RebuildCommonClasses (164ms)
-	RebuildNativeTypeToScriptingClass (55ms)
-	initialDomainReloadingComplete (189ms)
-	LoadAllAssembliesAndSetupDomain (702ms)
-		LoadAssemblies (6649ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (85ms)
+	RebuildNativeTypeToScriptingClass (20ms)
+	initialDomainReloadingComplete (80ms)
+	LoadAllAssembliesAndSetupDomain (309ms)
+		LoadAssemblies (281ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (688ms)
-			TypeCache.Refresh (680ms)
-				TypeCache.ScanAssembly (623ms)
-			BuildScriptInfoCaches (1ms)
-			ResolveRequiredComponents (4ms)
-	FinalizeReload (2083ms)
+		AnalyzeDomain (304ms)
+			TypeCache.Refresh (302ms)
+				TypeCache.ScanAssembly (274ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (599ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1865ms)
+		SetupLoadedEditorAssemblies (524ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (163ms)
-			SetLoadedEditorAssemblies (35ms)
-			BeforeProcessingInitializeOnLoad (466ms)
-			ProcessInitializeOnLoadAttributes (817ms)
-			ProcessInitializeOnLoadMethodAttributes (382ms)
+			InitializePlatformSupportModulesInManaged (42ms)
+			SetLoadedEditorAssemblies (7ms)
+			BeforeProcessingInitializeOnLoad (116ms)
+			ProcessInitializeOnLoadAttributes (286ms)
+			ProcessInitializeOnLoadMethodAttributes (73ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -143,11 +143,11 @@ Import Worker Mode flag is 0x00
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in 13.098 seconds
+- Loaded All Assemblies, in  1.798 seconds
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
 'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-Refreshing native plugins compatible for Editor in 18.07 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 3.18 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Package Manager log level set to [2]
@@ -158,929 +158,65 @@ Package Manager log level set to [2]
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  2.409 seconds
-Domain Reload Profiling: 15449ms
-	BeginReloadAssembly (770ms)
+- Finished resetting the current domain, in  1.387 seconds
+Domain Reload Profiling: 3174ms
+	BeginReloadAssembly (325ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (23ms)
+		DisableScriptedObjects (15ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (97ms)
-	RebuildCommonClasses (125ms)
-	RebuildNativeTypeToScriptingClass (43ms)
-	initialDomainReloadingComplete (166ms)
-	LoadAllAssembliesAndSetupDomain (11933ms)
-		LoadAssemblies (10272ms)
+		CreateAndSetChildDomain (65ms)
+	RebuildCommonClasses (51ms)
+	RebuildNativeTypeToScriptingClass (22ms)
+	initialDomainReloadingComplete (80ms)
+	LoadAllAssembliesAndSetupDomain (1309ms)
+		LoadAssemblies (999ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (2150ms)
-			TypeCache.Refresh (549ms)
-				TypeCache.ScanAssembly (505ms)
-			BuildScriptInfoCaches (1567ms)
-			ResolveRequiredComponents (26ms)
-	FinalizeReload (2411ms)
+		AnalyzeDomain (487ms)
+			TypeCache.Refresh (386ms)
+				TypeCache.ScanAssembly (351ms)
+			BuildScriptInfoCaches (78ms)
+			ResolveRequiredComponents (16ms)
+	FinalizeReload (1387ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1716ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (11ms)
-			SetLoadedEditorAssemblies (12ms)
-			BeforeProcessingInitializeOnLoad (283ms)
-			ProcessInitializeOnLoadAttributes (1205ms)
-			ProcessInitializeOnLoadMethodAttributes (187ms)
-			AfterProcessingInitializeOnLoad (16ms)
-			EditorAssembliesLoaded (1ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (17ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 3.52 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6524 unused Assets / (5.6 MB). Loaded Objects now: 7226.
-Memory consumption went from 129.8 MB to 124.1 MB.
-Total: 43.045400 ms (FindLiveObjects: 5.897000 ms CreateObjectMapping: 1.667800 ms MarkObjects: 24.047700 ms  DeleteObjects: 11.378300 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 92343.890116 seconds.
-  path: Assets/BouncyBall.physicMaterial
-  artifactKey: Guid(605a26f5be7754be9b7cf62e34c99899) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/BouncyBall.physicMaterial using Guid(605a26f5be7754be9b7cf62e34c99899) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cba39b1f92f73a2bde15893e8271d15a') in 0.0961224 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000046 seconds.
-  path: Assets/InputSystem_Actions.inputactions
-  artifactKey: Guid(052faaac586de48259a63d0c4782560b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/InputSystem_Actions.inputactions using Guid(052faaac586de48259a63d0c4782560b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd58c1d50d0f6b4a4d958c92247c46599') in 0.0300482 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 20
-
-========================================================================
-Received Prepare
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  6.896 seconds
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-Refreshing native plugins compatible for Editor in 13.76 ms, found 3 plugins.
-Native extension for WindowsStandalone target not found
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  2.497 seconds
-Domain Reload Profiling: 9465ms
-	BeginReloadAssembly (3325ms)
-		ExecutionOrderSort (8ms)
-		DisableScriptedObjects (221ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (8ms)
-		CreateAndSetChildDomain (1667ms)
-	RebuildCommonClasses (112ms)
-	RebuildNativeTypeToScriptingClass (34ms)
-	initialDomainReloadingComplete (114ms)
-	LoadAllAssembliesAndSetupDomain (3380ms)
-		LoadAssemblies (2409ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (1387ms)
-			TypeCache.Refresh (80ms)
-				TypeCache.ScanAssembly (0ms)
-			BuildScriptInfoCaches (1163ms)
-			ResolveRequiredComponents (67ms)
-	FinalizeReload (2500ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1632ms)
+		SetupLoadedEditorAssemblies (990ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (10ms)
-			SetLoadedEditorAssemblies (23ms)
-			BeforeProcessingInitializeOnLoad (268ms)
-			ProcessInitializeOnLoadAttributes (1131ms)
-			ProcessInitializeOnLoadMethodAttributes (180ms)
-			AfterProcessingInitializeOnLoad (16ms)
-			EditorAssembliesLoaded (3ms)
+			SetLoadedEditorAssemblies (14ms)
+			BeforeProcessingInitializeOnLoad (296ms)
+			ProcessInitializeOnLoadAttributes (610ms)
+			ProcessInitializeOnLoadMethodAttributes (55ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (54ms)
-Refreshing native plugins compatible for Editor in 1.75 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (6ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 1.66 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6520 unused Assets / (5.5 MB). Loaded Objects now: 7245.
-Memory consumption went from 143.4 MB to 137.9 MB.
-Total: 38.625100 ms (FindLiveObjects: 2.495400 ms CreateObjectMapping: 0.976000 ms MarkObjects: 24.499100 ms  DeleteObjects: 9.947600 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  6.518 seconds
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-Refreshing native plugins compatible for Editor in 6.07 ms, found 3 plugins.
-Native extension for WindowsStandalone target not found
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  2.312 seconds
-Domain Reload Profiling: 8906ms
-	BeginReloadAssembly (1312ms)
-		ExecutionOrderSort (1ms)
-		DisableScriptedObjects (115ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (2ms)
-		CreateAndSetChildDomain (493ms)
-	RebuildCommonClasses (61ms)
-	RebuildNativeTypeToScriptingClass (20ms)
-	initialDomainReloadingComplete (60ms)
-	LoadAllAssembliesAndSetupDomain (5136ms)
-		LoadAssemblies (3153ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (2211ms)
-			TypeCache.Refresh (364ms)
-				TypeCache.ScanAssembly (0ms)
-			BuildScriptInfoCaches (1727ms)
-			ResolveRequiredComponents (67ms)
-	FinalizeReload (2317ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1773ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (8ms)
-			SetLoadedEditorAssemblies (17ms)
-			BeforeProcessingInitializeOnLoad (305ms)
-			ProcessInitializeOnLoadAttributes (1213ms)
-			ProcessInitializeOnLoadMethodAttributes (212ms)
-			AfterProcessingInitializeOnLoad (17ms)
-			EditorAssembliesLoaded (2ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (51ms)
-Refreshing native plugins compatible for Editor in 1.40 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6520 unused Assets / (3.9 MB). Loaded Objects now: 7248.
-Memory consumption went from 143.5 MB to 139.6 MB.
-Total: 14.877300 ms (FindLiveObjects: 1.676500 ms CreateObjectMapping: 0.843300 ms MarkObjects: 8.404400 ms  DeleteObjects: 3.945900 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 748.180622 seconds.
-  path: Assets/Materials/mat_Ball.mat
-  artifactKey: Guid(beded5697e85e4d368cdbb3c43f4d7a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Ball.mat using Guid(beded5697e85e4d368cdbb3c43f4d7a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'af19c59b6714304f09f6122123f1538b') in 16.6493375 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+Unloading 6525 unused Assets / (5.0 MB). Loaded Objects now: 7242.
+Memory consumption went from 140.3 MB to 135.3 MB.
+Total: 15.363900 ms (FindLiveObjects: 1.814200 ms CreateObjectMapping: 0.668300 ms MarkObjects: 7.468200 ms  DeleteObjects: 5.409600 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000096 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Materials/columns 1.mat
-  artifactKey: Guid(b027f283b3e22e141a26cd28ecc855a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Materials/columns 1.mat using Guid(b027f283b3e22e141a26cd28ecc855a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3bce510c1fad6ef1f571f92f9b4d240e') in 0.0634074 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000097 seconds.
-  path: Assets/Materials/mat_Fabric.mat
-  artifactKey: Guid(edc99955d38ea485f8d0715b8e0e7abf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Fabric.mat using Guid(edc99955d38ea485f8d0715b8e0e7abf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'feba978d10e95633df2b029a6046bedc') in 0.0520411 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000089 seconds.
-  path: Assets/Materials/mat_Cloud.mat
-  artifactKey: Guid(33cb81ea1f5e040b0b2290270139d5b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Cloud.mat using Guid(33cb81ea1f5e040b0b2290270139d5b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '867c1b2b552263f35a8f502f1454bfdb') in 0.0418167 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000140 seconds.
-  path: Assets/Materials/mat_Skin.mat
-  artifactKey: Guid(bff04e90116794458b689a4001021df5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Skin.mat using Guid(bff04e90116794458b689a4001021df5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '916eea9cb2c1b0fb9abde66571e2e81e') in 0.0502868 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000080 seconds.
-  path: Assets/Materials/Mat_ExitGate.mat
-  artifactKey: Guid(18ec8b69da41765428a84eb1a041bc29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Mat_ExitGate.mat using Guid(18ec8b69da41765428a84eb1a041bc29) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4be1720a44dc80d9133b9dbd358e3c28') in 10.7442683 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000102 seconds.
-  path: Assets/Materials/RodMaterial.mat
-  artifactKey: Guid(6aeec35e25cd7f540a4da310f141c003) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/RodMaterial.mat using Guid(6aeec35e25cd7f540a4da310f141c003) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '302a41611dfa836ec84a491d3e4efc3a') in 0.1902687 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000057 seconds.
-  path: Assets/Materials/mat_Dirt.mat
-  artifactKey: Guid(a958970f63c054e2e8cc80d34c5e621e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Dirt.mat using Guid(a958970f63c054e2e8cc80d34c5e621e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e748cabb98d8ab559aaf5c71065bb772') in 0.151439 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000360 seconds.
-  path: Assets/Materials/mat_SkyNight.mat
-  artifactKey: Guid(12fba793b70294a27bf4d2da8b8a8da1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_SkyNight.mat using Guid(12fba793b70294a27bf4d2da8b8a8da1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd4cedf5bcd22c3b82ce8e487e2fadb02') in 0.1436668 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000468 seconds.
-  path: Assets/Materials/Mat_Wall.mat
-  artifactKey: Guid(86eaf20848bda9f49aa6702191c75c4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Mat_Wall.mat using Guid(86eaf20848bda9f49aa6702191c75c4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5230f1970773679916b7c11f568e198b') in 0.7589401 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000050 seconds.
-  path: Assets/Materials/mat_Black.mat
-  artifactKey: Guid(26fcf4c96a5be4d2c8d0d23e818b8c17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Black.mat using Guid(26fcf4c96a5be4d2c8d0d23e818b8c17) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7f1af85abf4a7e331a1363899f851fe9') in 0.1302755 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000062 seconds.
-  path: Assets/Materials/plsyer.mat
-  artifactKey: Guid(3e042dcbac3858a40b9e03e1fd78dc04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/plsyer.mat using Guid(3e042dcbac3858a40b9e03e1fd78dc04) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a2c7630a770d02895a82f700c70ad173') in 0.0528483 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000200 seconds.
-  path: Assets/Materials/Mat_NenTron.mat
-  artifactKey: Guid(6a08b30e077f3eb4d8a1ced4d528543c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Mat_NenTron.mat using Guid(6a08b30e077f3eb4d8a1ced4d528543c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'da23d796f1d350815e00088baa531904') in 0.0375313 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000067 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models
-  artifactKey: Guid(955a55067532f0e47b3423a9eaca9f1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models using Guid(955a55067532f0e47b3423a9eaca9f1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd4c3dd5648bb94a2e625666033dc5ccd') in 0.0023267 seconds
+  Time since last request: 104525.967551 seconds.
+  path: Assets/Scenes/GameScene.unity
+  artifactKey: Guid(c82b2c4ee0743504cb8b1582e9ca59c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/GameScene.unity using Guid(c82b2c4ee0743504cb8b1582e9ca59c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3587bba8b1e59335beb7573c08f2df56') in 0.0065989 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
-Received Import Request.
-  Time since last request: 0.000060 seconds.
-  path: Assets/Materials/mat_Bird.mat
-  artifactKey: Guid(a808abe581bd04dcb89c582754ff05cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Bird.mat using Guid(a808abe581bd04dcb89c582754ff05cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e2b884d659d7cdd44bf46a82a8ad1d7c') in 0.0417563 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000046 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Materials/stone paneks_cubes 1.mat
-  artifactKey: Guid(44a76a70d485c7a43905768a939f62e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Materials/stone paneks_cubes 1.mat using Guid(44a76a70d485c7a43905768a939f62e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9384a601f2dac03c69c5b4fdc8c1bb42') in 0.0675487 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000064 seconds.
-  path: Assets/Materials/mat_Forest.mat
-  artifactKey: Guid(76734595326ee461783d1d96af4d977b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Forest.mat using Guid(76734595326ee461783d1d96af4d977b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1cfc186570fd166940ca39542df14224') in 0.0447899 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000050 seconds.
-  path: Assets/Materials/Mat_Minigame.mat
-  artifactKey: Guid(658660b196cfcfd44a6e6a8134dcf937) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Mat_Minigame.mat using Guid(658660b196cfcfd44a6e6a8134dcf937) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3086ee903037f59c33a0ce8462c10017') in 0.0411628 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000059 seconds.
-  path: Assets/Materials/mat_Red.mat
-  artifactKey: Guid(c4029f16ad0e04d73806749ab73a199d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Red.mat using Guid(c4029f16ad0e04d73806749ab73a199d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8edbf546db3fbf01e0bb3e833f019a9a') in 0.0597501 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000050 seconds.
-  path: Assets/Materials/mat_WindowNight.mat
-  artifactKey: Guid(4ccc5d3f04b484f8693910da902975ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_WindowNight.mat using Guid(4ccc5d3f04b484f8693910da902975ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd6a06253a25dea4a3ed20a2dc832aad0') in 0.0449663 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000382 seconds.
-  path: Assets/Dohoa/Multistory Dungeons 2/Materials/Atlas_Props_02.mat
-  artifactKey: Guid(c2d8f0ff48de6a44f83f2a9328290ddb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Multistory Dungeons 2/Materials/Atlas_Props_02.mat using Guid(c2d8f0ff48de6a44f83f2a9328290ddb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5e6e3c29ef7e9cdb02aac67d3e9b1d43') in 0.0971685 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000045 seconds.
-  path: Assets/Materials/mat_Floor.mat
-  artifactKey: Guid(37eb3e0628dc34c31a8c413a97c13d90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Floor.mat using Guid(37eb3e0628dc34c31a8c413a97c13d90) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8ee25c6854800e7e3d6c59857158a126') in 0.0461798 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000094 seconds.
-  path: Assets/Dohoa/Multistory Dungeons 2/Materials/FX_Smoke_MD_01.mat
-  artifactKey: Guid(71a487b7cb2229b4095753fe16a363b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Multistory Dungeons 2/Materials/FX_Smoke_MD_01.mat using Guid(71a487b7cb2229b4095753fe16a363b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6af0ca18ca86e5a1d775f41ace1a57db') in 0.0570011 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000057 seconds.
-  path: Assets/Materials/mat_Pipe.mat
-  artifactKey: Guid(e835e7fe51fab4a0eb809eb83d900408) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Pipe.mat using Guid(e835e7fe51fab4a0eb809eb83d900408) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9d090261e0db400e77b69153dc778888') in 0.0366937 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000050 seconds.
-  path: Assets/Materials/mat_Sun.mat
-  artifactKey: Guid(c70e4c24d136f4a9c9e3ffefba428c36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Sun.mat using Guid(c70e4c24d136f4a9c9e3ffefba428c36) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3cad65b91134ef9cb2313d7fb1eaf717') in 0.031998 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000047 seconds.
-  path: Assets/Materials/mat_Moon.mat
-  artifactKey: Guid(060dba8f98d89487d932c3aee09289ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Moon.mat using Guid(060dba8f98d89487d932c3aee09289ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3fdb4e27a3c49fcf7569a8988312c2e0') in 0.0431963 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000048 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Materials/stone paneks_cubes 2.mat
-  artifactKey: Guid(de9f583a453a39b49b41d4b71cbbd1ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Materials/stone paneks_cubes 2.mat using Guid(de9f583a453a39b49b41d4b71cbbd1ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '78f10f5f8f06e571b7f4b67356dcd8c6') in 0.0442068 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000037 seconds.
-  path: Assets/Materials/Mat_CotTron.mat
-  artifactKey: Guid(d590be806a481f84e9db20d9509b2792) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/Mat_CotTron.mat using Guid(d590be806a481f84e9db20d9509b2792) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fa15d1911cfabb8bc69cb6ad5627a023') in 0.0514764 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000316 seconds.
-  path: Assets/Materials/mat_Window.mat
-  artifactKey: Guid(3fb80a24f99e140d7b562c97ebea2e39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/mat_Window.mat using Guid(3fb80a24f99e140d7b562c97ebea2e39) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '15f1c6b89868b0f0978d35c3b1798d7a') in 0.0428876 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.572683 seconds.
-  path: Assets/Dohoa/Hand Painted Seamless Wood Texture/Materials/M_Wood2.mat
-  artifactKey: Guid(3e3fe7d08624f594bb8e96487091bd1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Hand Painted Seamless Wood Texture/Materials/M_Wood2.mat using Guid(3e3fe7d08624f594bb8e96487091bd1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3e8c7e9043f91e558f32151dd20fe41e') in 0.1813773 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000044 seconds.
-  path: Assets/Dohoa/Hand Painted Seamless Wood Texture/Materials/Wood1.mat
-  artifactKey: Guid(64252f5e27ae4364ca89d8c8c2d42ab3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Hand Painted Seamless Wood Texture/Materials/Wood1.mat using Guid(64252f5e27ae4364ca89d8c8c2d42ab3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f4e2d01921ee016b6cf4a5047a824368') in 0.0588775 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000087 seconds.
-  path: Assets/Dohoa/Hand Painted Seamless Wood Texture/Materials/Wood2.mat
-  artifactKey: Guid(264271ccbf074ca4f961de54959cdf44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Hand Painted Seamless Wood Texture/Materials/Wood2.mat using Guid(264271ccbf074ca4f961de54959cdf44) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1cb42dd51825577e04c6fa8271a5adf2') in 0.0432815 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.589226 seconds.
-  path: Assets/Dohoa/Hand Painted Seamless Wood Texture/Textures/Wood2.tga
-  artifactKey: Guid(fa79f310fc4924e4cabca0791e343bfb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Hand Painted Seamless Wood Texture/Textures/Wood2.tga using Guid(fa79f310fc4924e4cabca0791e343bfb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '804c47d7266072a3f216aa216b601180') in 0.0740226 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 18.183768 seconds.
-  path: Assets/Dohoa/Duongdua/bannerTowerRed.fbx
-  artifactKey: Guid(c03af7e8ace0a1a4ba493469c44268cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/bannerTowerRed.fbx using Guid(c03af7e8ace0a1a4ba493469c44268cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '361870cf74fcf746578769d181a9b8f7') in 0.5415178 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000047 seconds.
-  path: Assets/Dohoa/Duongdua/grandStandAwning.fbx
-  artifactKey: Guid(ec5e7e0685c44634f8080c9a4a3c0011) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/grandStandAwning.fbx using Guid(ec5e7e0685c44634f8080c9a4a3c0011) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '343ac076feb5b4aa697dc048c49a01cf') in 0.081444 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000050 seconds.
-  path: Assets/Dohoa/Duongdua/overheadRound.fbx
-  artifactKey: Guid(a025afa8d731d1e44ab56d335f470818) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/overheadRound.fbx using Guid(a025afa8d731d1e44ab56d335f470818) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b9239028d3df0638510d7f2e011bd0c7') in 0.0700626 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000045 seconds.
-  path: Assets/Dohoa/Duongdua/lightPost_exclusive.fbx
-  artifactKey: Guid(0e8d32d7826522a4d86cff67d363e7ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/lightPost_exclusive.fbx using Guid(0e8d32d7826522a4d86cff67d363e7ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '859c530c16f3a2a33fa389b9fb3e816e') in 0.1023249 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000076 seconds.
-  path: Assets/Dohoa/Duongdua/overheadLights.fbx
-  artifactKey: Guid(4ba96fd65c84446408a41dfc05bca4f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/overheadLights.fbx using Guid(4ba96fd65c84446408a41dfc05bca4f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '44f967e8c81bd3af9cee8b56a0c3194f') in 0.0698931 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000079 seconds.
-  path: Assets/Dohoa/Duongdua/pitsOfficeCorner.fbx
-  artifactKey: Guid(afb32a64db4918d47817085e5cef9230) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/pitsOfficeCorner.fbx using Guid(afb32a64db4918d47817085e5cef9230) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '58d7d80a9480f2b8d1b2126bb269ea88') in 0.0792354 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000040 seconds.
-  path: Assets/Dohoa/Duongdua/grass.fbx
-  artifactKey: Guid(a5d2374293c927f4ab0e42345fddfa3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/grass.fbx using Guid(a5d2374293c927f4ab0e42345fddfa3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd386484510109b4cefa83a8ed09e3947') in 0.0610168 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000039 seconds.
-  path: Assets/Dohoa/Duongdua/radarEquipment.fbx
-  artifactKey: Guid(913e88fea87844d48a9660b495260ab9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/radarEquipment.fbx using Guid(913e88fea87844d48a9660b495260ab9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '25cda3da48812b63ea27575ab5504674') in 0.0738278 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000058 seconds.
-  path: Assets/Dohoa/Duongdua/grandStandCovered.fbx
-  artifactKey: Guid(f9c48382dc7d7154ea010c87aa5b94a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/grandStandCovered.fbx using Guid(f9c48382dc7d7154ea010c87aa5b94a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9e5fb4e90ed92f44f33a26a282eb5df4') in 0.1118555 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 12
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000034 seconds.
-  path: Assets/Dohoa/Duongdua/barrierWall.fbx
-  artifactKey: Guid(d43039960791b0b47b22954cfa56a2aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/barrierWall.fbx using Guid(d43039960791b0b47b22954cfa56a2aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7a16a64970e9bbbf84a17537ea7ab6b4') in 0.0705929 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000058 seconds.
-  path: Assets/Dohoa/Duongdua/pitsOfficeRoof.fbx
-  artifactKey: Guid(579b5fc76f9ed4649a0f18a07b0150ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/pitsOfficeRoof.fbx using Guid(579b5fc76f9ed4649a0f18a07b0150ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '155467a796d92d03125afb29cbe58143') in 0.0983083 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000054 seconds.
-  path: Assets/Dohoa/Duongdua/railDouble.fbx
-  artifactKey: Guid(2cb8c3fef70691f4ca8d37e687e5171d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/railDouble.fbx using Guid(2cb8c3fef70691f4ca8d37e687e5171d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '53050e7cb3af48c3c828ee5feb820453') in 0.0543393 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000043 seconds.
-  path: Assets/Dohoa/Duongdua/pitsGarageCorner.fbx
-  artifactKey: Guid(5115fe712e95e8349ac6aab7b258b852) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/pitsGarageCorner.fbx using Guid(5115fe712e95e8349ac6aab7b258b852) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e0f6e72e23ef93a5b20bd334b0b40357') in 0.118897 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 12
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000034 seconds.
-  path: Assets/Dohoa/Duongdua/lightPostLarge.fbx
-  artifactKey: Guid(0efb12080e930e64dbc2bc983bef65a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/lightPostLarge.fbx using Guid(0efb12080e930e64dbc2bc983bef65a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '18ec1dabba5e3b8a7142c54ad353ce2e') in 0.1107721 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000054 seconds.
-  path: Assets/Dohoa/Duongdua/barrierWhite.fbx
-  artifactKey: Guid(1ede06f6a264db9419e6a6504629912f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/barrierWhite.fbx using Guid(1ede06f6a264db9419e6a6504629912f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c1c2d99e1dd988221791bdeb86bc05dc') in 0.0513977 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000034 seconds.
-  path: Assets/Dohoa/Duongdua/rail.fbx
-  artifactKey: Guid(d09184e6610be2f488c115e431fe05e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/rail.fbx using Guid(d09184e6610be2f488c115e431fe05e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '68d96d46eef6c406ddd6929637ef1476') in 0.0597533 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000044 seconds.
-  path: Assets/Dohoa/Duongdua/overhead.fbx
-  artifactKey: Guid(4a5953c4ee1b11d488654508f2e13764) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/overhead.fbx using Guid(4a5953c4ee1b11d488654508f2e13764) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b4715b103348116a99fc842731a4f68e') in 0.0560106 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000061 seconds.
-  path: Assets/Dohoa/Duongdua/lightRedDouble.fbx
-  artifactKey: Guid(613edcabbd71a7c43b6885659a51c99b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/lightRedDouble.fbx using Guid(613edcabbd71a7c43b6885659a51c99b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e1506ce15dc08ead1cad4dd2fc81f5cb') in 0.1421303 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 12
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000049 seconds.
-  path: Assets/Dohoa/Duongdua/pitsOffice.fbx
-  artifactKey: Guid(371fe45ca821f04428528c3fe2aac172) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/pitsOffice.fbx using Guid(371fe45ca821f04428528c3fe2aac172) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5db0c67b5355ebd486b6775626d18f1a') in 0.1001815 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000100 seconds.
-  path: Assets/Dohoa/Duongdua/flagRed.fbx
-  artifactKey: Guid(114781db4e1a06840b1e0296927d9ab7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/flagRed.fbx using Guid(114781db4e1a06840b1e0296927d9ab7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3659b6dff3231134779cb5c3f932c8bc') in 0.123009 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 16
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000037 seconds.
-  path: Assets/Dohoa/Duongdua/billboardLower.fbx
-  artifactKey: Guid(a2277508d52f9134bbfaa816af816891) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/billboardLower.fbx using Guid(a2277508d52f9134bbfaa816af816891) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a9becde4c9f6a61e0e577f1795ee72f4') in 0.1300296 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 12
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000154 seconds.
-  path: Assets/Dohoa/Duongdua/ramp.fbx
-  artifactKey: Guid(6d747f3d8c76e9f43baec43b7f27bc55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/ramp.fbx using Guid(6d747f3d8c76e9f43baec43b7f27bc55) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e571c045c8167e523efc0769e950dc74') in 0.0870459 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000072 seconds.
-  path: Assets/Dohoa/Duongdua/grandStandRound.fbx
-  artifactKey: Guid(489c1c2308a8b87489661128f8de979c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Duongdua/grandStandRound.fbx using Guid(489c1c2308a8b87489661128f8de979c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e3c12debc4753ea5f5d69f3f91167eea') in 0.1139786 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.406515 seconds.
-  path: Assets/Dohoa/4K Tiled Ground Textures p1/Textures/ice/ice_toon_1.png
-  artifactKey: Guid(47c7de82153b24963aec8caba52513fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/4K Tiled Ground Textures p1/Textures/ice/ice_toon_1.png using Guid(47c7de82153b24963aec8caba52513fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '713214c5118d16f82a263fc9af8a066f') in 0.3572748 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000079 seconds.
-  path: Assets/Dohoa/4K Tiled Ground Textures p1/Textures/ice/ice_toon_3.png
-  artifactKey: Guid(05074dacf90e44d8597777b84d5b756c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/4K Tiled Ground Textures p1/Textures/ice/ice_toon_3.png using Guid(05074dacf90e44d8597777b84d5b756c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2aabe651d941aa3b6e4cee306f99a7d6') in 0.4153637 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000084 seconds.
-  path: Assets/Dohoa/4K Tiled Ground Textures p1/Textures/ice/ice_toon_smooth_1.png
-  artifactKey: Guid(aff4fdb417e9b4f9285a643d04b41cc6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/4K Tiled Ground Textures p1/Textures/ice/ice_toon_smooth_1.png using Guid(aff4fdb417e9b4f9285a643d04b41cc6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0351dc76b781fc968ab6c9144b1d5640') in 0.3152669 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000064 seconds.
-  path: Assets/Dohoa/4K Tiled Ground Textures p1/Textures/ice/ice_toon_smooth_2.png
-  artifactKey: Guid(2d0fad4178f8442ca8cb14e535343980) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/4K Tiled Ground Textures p1/Textures/ice/ice_toon_smooth_2.png using Guid(2d0fad4178f8442ca8cb14e535343980) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0e6ec3fa48ccf042f0e0409e87c80bce') in 0.3584503 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.892369 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Materials/GrayGround.mat
-  artifactKey: Guid(4a315328d1d9a8e4cb33cdf6e9462b92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Materials/GrayGround.mat using Guid(4a315328d1d9a8e4cb33cdf6e9462b92) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0fbefbe732550fd07ee90f0c72e2f454') in 0.0385845 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.079484 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/IcePrefabs/IceMountain_01.prefab
-  artifactKey: Guid(058c71a43cc03444fbb222f74297f85a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/IcePrefabs/IceMountain_01.prefab using Guid(058c71a43cc03444fbb222f74297f85a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ab727c3975b5dc42d68e6a9f54587aca') in 0.0490512 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000041 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/IcePrefabs/Snowman_02.prefab
-  artifactKey: Guid(35cb40a8633fa9640aae958f1e2c97c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/IcePrefabs/Snowman_02.prefab using Guid(35cb40a8633fa9640aae958f1e2c97c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7db167e7979e378a6bc73fdc46d5233f') in 0.0424687 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000768 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/IcePrefabs/IceRock_03.prefab
-  artifactKey: Guid(4806b64503d3b1a4fa1643b0baaa05be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/IcePrefabs/IceRock_03.prefab using Guid(4806b64503d3b1a4fa1643b0baaa05be) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ee333ea5244d9458a87cc7b0c4113121') in 0.0486438 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000041 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/IcePrefabs/IcePlatform_01.prefab
-  artifactKey: Guid(6d35f3befa11c3f49ac6b0964dd94444) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/IcePrefabs/IcePlatform_01.prefab using Guid(6d35f3befa11c3f49ac6b0964dd94444) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '06498f06ade19deaf214e8eda0f33dda') in 0.0454251 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/IcePrefabs/Snowman_01.prefab
-  artifactKey: Guid(8f45cc4a1e2e2ed42a7d686054a0437e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/IcePrefabs/Snowman_01.prefab using Guid(8f45cc4a1e2e2ed42a7d686054a0437e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a51a14de78824aea97e6a05eff02aa2a') in 0.048271 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000113 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/IcePrefabs/IceRock_02.prefab
-  artifactKey: Guid(ff8916c7ca4f05642a4cb2d964203fdc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/IcePrefabs/IceRock_02.prefab using Guid(ff8916c7ca4f05642a4cb2d964203fdc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1122a54515aace301f6abe7ec13f9ca8') in 0.0587319 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.133125 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/Chest.prefab
-  artifactKey: Guid(ce97271455856e24da55f27fa829b747) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/Chest.prefab using Guid(ce97271455856e24da55f27fa829b747) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '18fe07065b32aa84ae5f46144a13f75e') in 0.0677955 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000051 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/Saw.prefab
-  artifactKey: Guid(d0e421b083016de42918d52cdf4877a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/Saw.prefab using Guid(d0e421b083016de42918d52cdf4877a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '52205d3112a0ccc8cb42367743faf09f') in 0.0510269 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000053 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/XBarrier.prefab
-  artifactKey: Guid(73d791eee214fcd4889d21f726f4f79a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/XBarrier.prefab using Guid(73d791eee214fcd4889d21f726f4f79a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'dbed61d2f1badd463816aa1798ac6600') in 0.0532533 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000034 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/TNT.prefab
-  artifactKey: Guid(c9a58bdefb890cb4f923322739a7a8af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/TNT.prefab using Guid(c9a58bdefb890cb4f923322739a7a8af) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '33234489ef4b83d9753c9ad451a040fa') in 0.0448937 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000033 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/Toolbox.prefab
-  artifactKey: Guid(e292aec9552315249853b3ae02128644) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/Toolbox.prefab using Guid(e292aec9552315249853b3ae02128644) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7c0e6dbf317a9f00e6a9e65fff18d21b') in 0.042713 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000062 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/Tree.prefab
-  artifactKey: Guid(0f8e64839bab2b24b893c287485ad881) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/Tree.prefab using Guid(0f8e64839bab2b24b893c287485ad881) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '12d919629e743805a6779b74be704d07') in 0.0385863 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000058 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/Cactus_03.prefab
-  artifactKey: Guid(dd1120119fe79a74983c1aebadcc6509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/Cactus_03.prefab using Guid(dd1120119fe79a74983c1aebadcc6509) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e62cde885d5cb77f6915f5cf1551367a') in 0.0458578 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000071 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertRock_03.prefab
-  artifactKey: Guid(2d3d41f5505973849a28a62ebd618400) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertRock_03.prefab using Guid(2d3d41f5505973849a28a62ebd618400) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f26517e5a495a17a0319001d3336d80b') in 0.0399639 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000070 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertPlatform_01.prefab
-  artifactKey: Guid(716f658dd02a88c48973e5f556e44e26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertPlatform_01.prefab using Guid(716f658dd02a88c48973e5f556e44e26) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '54a3ef6d8c8ce09b353fe51bfa7213aa') in 0.0358101 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000046 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertCave.prefab
-  artifactKey: Guid(de6e5a8dda092e64aa197e2a79b69e5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertCave.prefab using Guid(de6e5a8dda092e64aa197e2a79b69e5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '291e3ce61a26de4ba4d86ef6e77b224c') in 0.05085 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000049 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertRock_02.prefab
-  artifactKey: Guid(cffc587501cf436438c4ef9d71e29e4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertRock_02.prefab using Guid(cffc587501cf436438c4ef9d71e29e4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5d6a41b33c4635fd4d37d30775ec2f8f') in 0.0527677 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000164 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertPlatform_02.prefab
-  artifactKey: Guid(f2b9a5acba92f9a438f6c10996efd7de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertPlatform_02.prefab using Guid(f2b9a5acba92f9a438f6c10996efd7de) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ea7ae48373e2fe9e7a716925873f4e7f') in 0.0484647 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000054 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/CraftingTable.prefab
-  artifactKey: Guid(965e38e09b8fbeb4194c546f0706ab95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/CraftingTable.prefab using Guid(965e38e09b8fbeb4194c546f0706ab95) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '96157b770d24bd8fb4b1c9a344581f4c') in 0.0566335 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000048 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertTree.prefab
-  artifactKey: Guid(14d94d92b89fde24da3ddcbbedb05b3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertTree.prefab using Guid(14d94d92b89fde24da3ddcbbedb05b3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b42ce39b5cfb8816053212626c179956') in 0.0490293 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000073 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertGrass_01.prefab
-  artifactKey: Guid(a86e4cbf057f83644a96386065def4e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/DesertPrefabs/DesertGrass_01.prefab using Guid(a86e4cbf057f83644a96386065def4e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '48b63924a53da68c38941f8c271547d0') in 0.0781545 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000075 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/Wire.prefab
-  artifactKey: Guid(6fd49ddf9e8f7bb46bfd019b695effd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/Wire.prefab using Guid(6fd49ddf9e8f7bb46bfd019b695effd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'af3631e1ba16389dee8e3b0376209b9b') in 0.0544609 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000053 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/Hammer.prefab
-  artifactKey: Guid(437b602cf166d9e4498146bf28c503a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/GeneralPrefabs/Hammer.prefab using Guid(437b602cf166d9e4498146bf28c503a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b800de37f504881831bee764c206eef7') in 0.0445504 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.760848 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/MagmaPrefabs/MagmaGrass.prefab
-  artifactKey: Guid(0785483d7b537a7408ea4f697457ccd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/MagmaPrefabs/MagmaGrass.prefab using Guid(0785483d7b537a7408ea4f697457ccd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '44bca502f79bc1ae7876db4ac5063f13') in 0.2052646 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000056 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/MagmaPrefabs/MagmaMountain_02.prefab
-  artifactKey: Guid(ea2d9ebe77667c44f9e1197ab3d69758) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/MagmaPrefabs/MagmaMountain_02.prefab using Guid(ea2d9ebe77667c44f9e1197ab3d69758) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3f31a39f98f8e20a55bd3c615addb5a0') in 0.160519 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000080 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/MagmaPrefabs/MagmaRock_01.prefab
-  artifactKey: Guid(eb18e7824f048f248884dc809e9991a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/MagmaPrefabs/MagmaRock_01.prefab using Guid(eb18e7824f048f248884dc809e9991a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'eb4c29dd8cba657eec82e75978d9fe27') in 0.0437864 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000030 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/MagmaPrefabs/MagmaRock_03.prefab
-  artifactKey: Guid(9edc3987d3c84cd459d403e8f1403414) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/MagmaPrefabs/MagmaRock_03.prefab using Guid(9edc3987d3c84cd459d403e8f1403414) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a29949816a41267dbcec1ff60bc62a28') in 0.0486904 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000043 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/MagmaPrefabs/MagmaTree.prefab
-  artifactKey: Guid(1a347d038c462b54881e43bbd5be4128) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/MagmaPrefabs/MagmaTree.prefab using Guid(1a347d038c462b54881e43bbd5be4128) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '35641c60a16fdde8be5fcaa14148a32e') in 0.0462349 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000062 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Prefabs/MagmaPrefabs/MagmaPlatform_02.prefab
-  artifactKey: Guid(5f934de1de3bde448bd5355432662e96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Prefabs/MagmaPrefabs/MagmaPlatform_02.prefab using Guid(5f934de1de3bde448bd5355432662e96) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6078046b9253895ba059c4d1df65ba98') in 0.0473766 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 92.849772 seconds.
-  path: Assets/Animations/Remy.fbx
-  artifactKey: Guid(89e3357a6e1569c4fa4951eddbb47e90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Remy.fbx using Guid(89e3357a6e1569c4fa4951eddbb47e90) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '171d5780b52cdb809c52382b9ebb86c2') in 9.093279 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 175
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000096 seconds.
-  path: Assets/Animations/Remy@Walking.fbx
-  artifactKey: Guid(1c60f164ecb809942a2e08c7fb64fd68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Remy@Walking.fbx using Guid(1c60f164ecb809942a2e08c7fb64fd68) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6a51fa5891faaac815a2f1d4b937e014') in 0.375888 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 175
-
-========================================================================
 Received Prepare
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  5.983 seconds
+- Loaded All Assemblies, in  0.954 seconds
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
 'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-Refreshing native plugins compatible for Editor in 3.21 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.12 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
@@ -1090,592 +226,472 @@ Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInter
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.713 seconds
-Domain Reload Profiling: 7698ms
-	BeginReloadAssembly (2383ms)
-		ExecutionOrderSort (3ms)
-		DisableScriptedObjects (226ms)
+- Finished resetting the current domain, in  1.468 seconds
+Domain Reload Profiling: 2422ms
+	BeginReloadAssembly (288ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
-		ReleaseScriptingObjects (8ms)
-		CreateAndSetChildDomain (916ms)
-	RebuildCommonClasses (114ms)
-	RebuildNativeTypeToScriptingClass (52ms)
-	initialDomainReloadingComplete (181ms)
-	LoadAllAssembliesAndSetupDomain (3254ms)
-		LoadAssemblies (3179ms)
+		ReleaseScriptingObjects (1ms)
+		CreateAndSetChildDomain (56ms)
+	RebuildCommonClasses (41ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (41ms)
+	LoadAllAssembliesAndSetupDomain (570ms)
+		LoadAssemblies (528ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (949ms)
-			TypeCache.Refresh (42ms)
+		AnalyzeDomain (208ms)
+			TypeCache.Refresh (11ms)
 				TypeCache.ScanAssembly (0ms)
-			BuildScriptInfoCaches (825ms)
-			ResolveRequiredComponents (26ms)
-	FinalizeReload (1714ms)
+			BuildScriptInfoCaches (178ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (1469ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1293ms)
+		SetupLoadedEditorAssemblies (1126ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (11ms)
-			SetLoadedEditorAssemblies (26ms)
-			BeforeProcessingInitializeOnLoad (362ms)
-			ProcessInitializeOnLoadAttributes (782ms)
-			ProcessInitializeOnLoadMethodAttributes (98ms)
-			AfterProcessingInitializeOnLoad (12ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (10ms)
+			BeforeProcessingInitializeOnLoad (210ms)
+			ProcessInitializeOnLoadAttributes (786ms)
+			ProcessInitializeOnLoadMethodAttributes (105ms)
+			AfterProcessingInitializeOnLoad (8ms)
 			EditorAssembliesLoaded (1ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (49ms)
-Refreshing native plugins compatible for Editor in 1.24 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (24ms)
+Refreshing native plugins compatible for Editor in 1.11 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6521 unused Assets / (3.9 MB). Loaded Objects now: 7323.
-Memory consumption went from 165.7 MB to 161.9 MB.
-Total: 15.972900 ms (FindLiveObjects: 2.301200 ms CreateObjectMapping: 0.670100 ms MarkObjects: 9.167800 ms  DeleteObjects: 3.830700 ms)
+Unloading 6521 unused Assets / (3.8 MB). Loaded Objects now: 7260.
+Memory consumption went from 152.1 MB to 148.3 MB.
+Total: 11.768100 ms (FindLiveObjects: 1.616200 ms CreateObjectMapping: 0.833500 ms MarkObjects: 6.279600 ms  DeleteObjects: 3.036700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.870 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 1.04 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.923 seconds
+Domain Reload Profiling: 1793ms
+	BeginReloadAssembly (266ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (69ms)
+	RebuildCommonClasses (37ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (519ms)
+		LoadAssemblies (449ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (194ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (170ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (924ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (749ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (2ms)
+			SetLoadedEditorAssemblies (5ms)
+			BeforeProcessingInitializeOnLoad (133ms)
+			ProcessInitializeOnLoadAttributes (508ms)
+			ProcessInitializeOnLoadMethodAttributes (92ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (23ms)
+Refreshing native plugins compatible for Editor in 2.25 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6521 unused Assets / (4.7 MB). Loaded Objects now: 7263.
+Memory consumption went from 152.1 MB to 147.4 MB.
+Total: 19.492800 ms (FindLiveObjects: 1.936500 ms CreateObjectMapping: 1.126500 ms MarkObjects: 9.304600 ms  DeleteObjects: 7.121800 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.865 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 2.60 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.604 seconds
+Domain Reload Profiling: 4488ms
+	BeginReloadAssembly (509ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (37ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (1ms)
+		CreateAndSetChildDomain (165ms)
+	RebuildCommonClasses (37ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (30ms)
+	LoadAllAssembliesAndSetupDomain (1294ms)
+		LoadAssemblies (978ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (439ms)
+			TypeCache.Refresh (19ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (382ms)
+			ResolveRequiredComponents (27ms)
+	FinalizeReload (2606ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1999ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (12ms)
+			SetLoadedEditorAssemblies (29ms)
+			BeforeProcessingInitializeOnLoad (355ms)
+			ProcessInitializeOnLoadAttributes (1365ms)
+			ProcessInitializeOnLoadMethodAttributes (224ms)
+			AfterProcessingInitializeOnLoad (13ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (51ms)
+Refreshing native plugins compatible for Editor in 5.41 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6521 unused Assets / (4.6 MB). Loaded Objects now: 7266.
+Memory consumption went from 152.2 MB to 147.5 MB.
+Total: 58.420000 ms (FindLiveObjects: 7.548500 ms CreateObjectMapping: 5.262800 ms MarkObjects: 27.955500 ms  DeleteObjects: 17.249400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  7.660 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 0.84 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.991 seconds
+Domain Reload Profiling: 8656ms
+	BeginReloadAssembly (4167ms)
+		ExecutionOrderSort (2ms)
+		DisableScriptedObjects (225ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (13ms)
+		CreateAndSetChildDomain (2192ms)
+	RebuildCommonClasses (156ms)
+	RebuildNativeTypeToScriptingClass (32ms)
+	initialDomainReloadingComplete (184ms)
+	LoadAllAssembliesAndSetupDomain (3125ms)
+		LoadAssemblies (3115ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (689ms)
+			TypeCache.Refresh (78ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (571ms)
+			ResolveRequiredComponents (17ms)
+	FinalizeReload (992ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (774ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (10ms)
+			BeforeProcessingInitializeOnLoad (142ms)
+			ProcessInitializeOnLoadAttributes (502ms)
+			ProcessInitializeOnLoadMethodAttributes (110ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (23ms)
+Refreshing native plugins compatible for Editor in 0.95 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6521 unused Assets / (4.7 MB). Loaded Objects now: 7269.
+Memory consumption went from 152.2 MB to 147.5 MB.
+Total: 11.680300 ms (FindLiveObjects: 1.148800 ms CreateObjectMapping: 0.605900 ms MarkObjects: 6.372700 ms  DeleteObjects: 3.550500 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Import Request.
-  Time since last request: 123.025265 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/IceModel/IceMountain_01.fbx
-  artifactKey: Guid(f12dbb1e1f84fbe41863480eb67db266) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/IceModel/IceMountain_01.fbx using Guid(f12dbb1e1f84fbe41863480eb67db266) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0f643aa488f6fd0a11fbd48f87edcfc4') in 1.0936199 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+  Time since last request: 568.885866 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerBridgeLarger.fbx
+  artifactKey: Guid(e08923f0b1d9d4c4ab628acc4073ffb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerBridgeLarger.fbx using Guid(e08923f0b1d9d4c4ab628acc4073ffb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd18f3f1b46c8aef26f3b5a1ff67ddc7d') in 1.0483565 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000098 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/IceModel/IceRock_02.fbx
-  artifactKey: Guid(2319a099a2ef58e4f8993dfa5dc90d8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/IceModel/IceRock_02.fbx using Guid(2319a099a2ef58e4f8993dfa5dc90d8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7dc630ae0b60b074dd81a391a86709e6') in 0.057131 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+  Time since last request: 0.000107 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLargerSandInner.fbx
+  artifactKey: Guid(576b4978c1a26da4983bd85ee172f8d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLargerSandInner.fbx using Guid(576b4978c1a26da4983bd85ee172f8d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a43e55a872792041c259de5e5473f5b1') in 0.0550314 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000079 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/IceModel/IceMountain_02.fbx
-  artifactKey: Guid(1da7dc19fb648f44f911554e642ca06b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/IceModel/IceMountain_02.fbx using Guid(1da7dc19fb648f44f911554e642ca06b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '426fb34a18cb3c9a70158195776870f6') in 0.0712979 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+  Time since last request: 0.000048 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLargerSand.fbx
+  artifactKey: Guid(6b4f252b7b924494d8af4ee9ddbbf5ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLargerSand.fbx using Guid(6b4f252b7b924494d8af4ee9ddbbf5ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2ba6bfad5c86602e7233fefdd3524b85') in 0.0533787 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000225 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/IceModel/IceTree.fbx
-  artifactKey: Guid(631e3b802901c4b4187e0292d5db5a79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/IceModel/IceTree.fbx using Guid(631e3b802901c4b4187e0292d5db5a79) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd6d2a0f356d8d234b543ae36dfb77e65') in 0.0649681 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/IceModel/IcePlatform_02.fbx
-  artifactKey: Guid(464197cd90488094aae443e5e59a6d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/IceModel/IcePlatform_02.fbx using Guid(464197cd90488094aae443e5e59a6d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4ad2e2ce395792d15467edeb0b37deb5') in 0.0511457 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+  Time since last request: 0.000054 seconds.
+  path: Assets/Dohoa/Duongdua/roadCrossing.fbx
+  artifactKey: Guid(6ec6b67c3515ab94ca4169d7fd900b1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCrossing.fbx using Guid(6ec6b67c3515ab94ca4169d7fd900b1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6e3f7ee4ddf1d29ee3cc29442b508dad') in 0.076868 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000072 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/IceModel/Snowman_02.fbx
-  artifactKey: Guid(5771986c20bc3da469a29ece82ea4170) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/IceModel/Snowman_02.fbx using Guid(5771986c20bc3da469a29ece82ea4170) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ce2c52a07b6a6b8be5f0aa611af90c89') in 0.0655648 seconds
+  path: Assets/Dohoa/Duongdua/roadCornerSmallBorder.fbx
+  artifactKey: Guid(d754db17ebddfb4488afd4f77c64af6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerSmallBorder.fbx using Guid(d754db17ebddfb4488afd4f77c64af6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5d592afed36f33d2cd0f526f092aad8f') in 0.0708534 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000060 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/IceModel/Snowman_01.fbx
-  artifactKey: Guid(5c3e086aafaa57d40a65c33092c44083) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/IceModel/Snowman_01.fbx using Guid(5c3e086aafaa57d40a65c33092c44083) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '80c8ac27b32939edced9187a90f848a9') in 0.0692505 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.853250 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/Chest.fbx
-  artifactKey: Guid(4b4a1ce7ec34e2242ac4a46adb29719d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/Chest.fbx using Guid(4b4a1ce7ec34e2242ac4a46adb29719d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'dcce45dfc7dc4f081a0bf0414a810380') in 0.0561541 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000036 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/CraftingTable.fbx
-  artifactKey: Guid(5fa16ea4e12fb3341b36c69df32f3102) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/CraftingTable.fbx using Guid(5fa16ea4e12fb3341b36c69df32f3102) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5ddc4b78b51cb9fe21090a38ff44a7f9') in 0.0483579 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000040 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/XBarrier.fbx
-  artifactKey: Guid(321690aeb15eff041a4850c75cda0e79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/XBarrier.fbx using Guid(321690aeb15eff041a4850c75cda0e79) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '39906923e52f7aae51adb3b16db762e3') in 0.0468639 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000060 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/Tree.fbx
-  artifactKey: Guid(dbc60c7b56ea16242ac2d2de1d7db762) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/Tree.fbx using Guid(dbc60c7b56ea16242ac2d2de1d7db762) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '598828e2d2887fd1ade102c112a9ce1e') in 0.0650664 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000074 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/ChestwChain.fbx
-  artifactKey: Guid(cd3bc027f4383e34bad509efe21dd4f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/ChestwChain.fbx using Guid(cd3bc027f4383e34bad509efe21dd4f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fe8371a3a8786481f4d08ac07103ae0f') in 0.0682003 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000067 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/Nail.fbx
-  artifactKey: Guid(6ce91d9a0b0b63a40aeca96c11267df9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/Nail.fbx using Guid(6ce91d9a0b0b63a40aeca96c11267df9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'acbe2defc95d8b655c3ff51d2c5f5106') in 0.0605546 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000047 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/Hammer.fbx
-  artifactKey: Guid(f0140fd8030f6ca43a8fa4214b20d8cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/Hammer.fbx using Guid(f0140fd8030f6ca43a8fa4214b20d8cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '56ad02bcc2e3e4877a7699dbf99796f7') in 0.054724 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+  path: Assets/Dohoa/Duongdua/roadCornerLargeWall.fbx
+  artifactKey: Guid(e6038b411b3e1b94797283b0513841f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLargeWall.fbx using Guid(e6038b411b3e1b94797283b0513841f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '35beaa0a9006c3b33ea84924634f1152') in 0.0649664 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000073 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/Wire.fbx
-  artifactKey: Guid(933f291083d128d4aa83ed0ed4c85eee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/Wire.fbx using Guid(933f291083d128d4aa83ed0ed4c85eee) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e0446d5d4c376c2befdbb5bf35ff0bb3') in 0.0559927 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+  Time since last request: 0.000083 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLargerWall.fbx
+  artifactKey: Guid(51d09b28351aa8a459988bcf767aa83f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLargerWall.fbx using Guid(51d09b28351aa8a459988bcf767aa83f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c4c09ca9d39f1ac741133c444a6af34d') in 0.0689002 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000060 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerBridgeSmall.fbx
+  artifactKey: Guid(cdef3b90b0a643b49b0ea7a7c9359a42) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerBridgeSmall.fbx using Guid(cdef3b90b0a643b49b0ea7a7c9359a42) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f476e153747875cd49e8ee16174950a1') in 0.0826097 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/Dohoa/Duongdua/roadCurvedSplit.fbx
+  artifactKey: Guid(293e66c91a28a3c4fb195bf823adda0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCurvedSplit.fbx using Guid(293e66c91a28a3c4fb195bf823adda0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e3f0b060c917ba4d4c89950ec69ec38c') in 0.0853926 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerLarger.fbx
+  artifactKey: Guid(488b2183f9a7eff488228ad48bc400c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerLarger.fbx using Guid(488b2183f9a7eff488228ad48bc400c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e7b72dbfa840e64533b46e9f5d2f35d6') in 0.0722759 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerSmallSquare.fbx
+  artifactKey: Guid(6438842c87a631a49902c0182ef5829f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerSmallSquare.fbx using Guid(6438842c87a631a49902c0182ef5829f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd912847f6f491d437eb31577680b08d0') in 0.0771118 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000123 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerSmallSand.fbx
+  artifactKey: Guid(27ad197b394047c479760ba7ee5f5cc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerSmallSand.fbx using Guid(27ad197b394047c479760ba7ee5f5cc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '01c459f8da599b56880f7ae0201ee7e4') in 0.0506147 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/Dohoa/Duongdua/roadEnd.fbx
+  artifactKey: Guid(2cea68318e826174e8e004d8e980933e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadEnd.fbx using Guid(2cea68318e826174e8e004d8e980933e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0450a00b7b67059ca89b3ed9ef62b723') in 0.0839161 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Dohoa/Duongdua/roadCornerSmallWall.fbx
+  artifactKey: Guid(858c381d7b943db42b658d12208ba860) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadCornerSmallWall.fbx using Guid(858c381d7b943db42b658d12208ba860) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cef66c01689ae00ed37c3743fbab679e') in 0.0631348 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 102.494239 seconds.
+  path: Assets/Dohoa/Duongdua/roadPitStraightLong.fbx
+  artifactKey: Guid(cb0a1744e9a4012448ff5694f6f9d1ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadPitStraightLong.fbx using Guid(cb0a1744e9a4012448ff5694f6f9d1ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8aa0599dda2b1e8a0ff361bccabd4b59') in 0.0746043 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Dohoa/Duongdua/roadRampLongCurvedWall.fbx
+  artifactKey: Guid(da77491e88abfa74e89fb7974a26f1d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadRampLongCurvedWall.fbx using Guid(da77491e88abfa74e89fb7974a26f1d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd536db6db3e8a6f4057b5a2657ead8d4') in 0.0807262 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000061 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/Nails.fbx
-  artifactKey: Guid(21008362614e67c47b55d54d9910f66d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/GeneralModel/Nails.fbx using Guid(21008362614e67c47b55d54d9910f66d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a4655829c97331006b3625d09296f7b9') in 0.0394729 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+  path: Assets/Dohoa/Duongdua/roadSplitLarger.fbx
+  artifactKey: Guid(1a10bbc6817222240bd41111b9bb5ac4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadSplitLarger.fbx using Guid(1a10bbc6817222240bd41111b9bb5ac4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '72c52bc2d9e42c77770153a9d467bfe9') in 0.0747897 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000100 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/DesertRock_02.fbx
-  artifactKey: Guid(bb8e5a3ae227d434796021732b7fb19e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/DesertRock_02.fbx using Guid(bb8e5a3ae227d434796021732b7fb19e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '64c248238c4f926a1ae13e734515d2f1') in 0.052046 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000056 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/Cactus_03.fbx
-  artifactKey: Guid(4bf1225c75d34244982b51c118606687) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/Cactus_03.fbx using Guid(4bf1225c75d34244982b51c118606687) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fc2c7e008c869b4a3c4305ff890a3222') in 0.0685868 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000068 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/DesertGrass_02.fbx
-  artifactKey: Guid(c5de7e0ce35c47d48949135adb2bb182) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/DesertGrass_02.fbx using Guid(c5de7e0ce35c47d48949135adb2bb182) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '10755baf763d9d8b7a213667da4dfb2c') in 0.0539768 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000055 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/DesertMountain_01.fbx
-  artifactKey: Guid(98fc3636cd5ed9f41b6f39fc1247440c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/DesertMountain_01.fbx using Guid(98fc3636cd5ed9f41b6f39fc1247440c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3dcd8e86b6b48503ee1bbb54349d52c5') in 0.0468917 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000049 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/DesertCave.fbx
-  artifactKey: Guid(6ba0bc63833ed394886e824f0480432c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/DesertCave.fbx using Guid(6ba0bc63833ed394886e824f0480432c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '963154c8fe5c4888f691594195507f04') in 0.0630595 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000073 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/DesertMountain_02.fbx
-  artifactKey: Guid(16c54145f3d4ecb4a800d6f6c7c04d28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/DesertMountain_02.fbx using Guid(16c54145f3d4ecb4a800d6f6c7c04d28) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5276980a2ace61cbce90f2dbb484269a') in 0.0508811 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000080 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/DesertPlatform_02.fbx
-  artifactKey: Guid(4a3eb857161368c4ebdad2f121fa8ad6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/DesertPlatform_02.fbx using Guid(4a3eb857161368c4ebdad2f121fa8ad6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3e2b54f44b6dfab0393b56246d8e0ef0') in 0.0447382 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+  Time since last request: 0.000045 seconds.
+  path: Assets/Dohoa/Duongdua/roadRampWall.fbx
+  artifactKey: Guid(0c9e51f56a3ebee4aa00f42243dd0bc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadRampWall.fbx using Guid(0c9e51f56a3ebee4aa00f42243dd0bc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0c387ad708a1a7c63a572cb766aef952') in 0.0961905 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000052 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/Cactus_01.fbx
-  artifactKey: Guid(010c61e205b5a104590ac9df5c4697b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/DesertModel/Cactus_01.fbx using Guid(010c61e205b5a104590ac9df5c4697b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'dc88732ac8acdadd0b6881d8290c5981') in 0.0479941 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.486419 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/MagmaModel/MagmaGrass.fbx
-  artifactKey: Guid(7d6b2cebd02e9b046a1f3c12b9e71131) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/MagmaModel/MagmaGrass.fbx using Guid(7d6b2cebd02e9b046a1f3c12b9e71131) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2b09e17df0c76d7c7fcbc56a95620140') in 0.0663683 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000160 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/MagmaModel/MagmaRock_03.fbx
-  artifactKey: Guid(b9e4decc44f58ac4eb9d169d2c7bc8f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/MagmaModel/MagmaRock_03.fbx using Guid(b9e4decc44f58ac4eb9d169d2c7bc8f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e9faa1ca1ada44f64ed3237023121572') in 0.0600027 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000109 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/MagmaModel/MagmaRock_01.fbx
-  artifactKey: Guid(862fb5a72c748204fadc4abe959d1834) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/MagmaModel/MagmaRock_01.fbx using Guid(862fb5a72c748204fadc4abe959d1834) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5a94d5cb69bd13c54bad8682a9be860e') in 0.0544506 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000037 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/MagmaModel/MagmaWoodCross.fbx
-  artifactKey: Guid(f6b6ca337061b83409a640d5652ebcb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/MagmaModel/MagmaWoodCross.fbx using Guid(f6b6ca337061b83409a640d5652ebcb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cc0f7178de667e223388bf7baa057fe9') in 0.0482806 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000108 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/MagmaModel/MagmaPlatform_02.fbx
-  artifactKey: Guid(5db1879f0cf811b4cbe9919f0b355624) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/MagmaModel/MagmaPlatform_02.fbx using Guid(5db1879f0cf811b4cbe9919f0b355624) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '69560ddf4b5193ce50fb1b2fd0d45f74') in 0.0713127 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+  path: Assets/Dohoa/Duongdua/roadSplit.fbx
+  artifactKey: Guid(aa02bbcdee0eeda4b8af9fce58a3993a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadSplit.fbx using Guid(aa02bbcdee0eeda4b8af9fce58a3993a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f5128f809bdbadb3f903e54c083dce97') in 0.0725086 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000076 seconds.
-  path: Assets/Dohoa/3D Enivronment Assets/Models/MagmaModel/MagmaRock_02.fbx
-  artifactKey: Guid(1ac62d1f713998642ae99d5993797f52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/3D Enivronment Assets/Models/MagmaModel/MagmaRock_02.fbx using Guid(1ac62d1f713998642ae99d5993797f52) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f5040c061823c64c0d29db41e7835143') in 0.0809848 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.996827 seconds.
-  path: Assets/Dohoa/4K Tiled Ground Textures p1/Textures/rocks/rock_black_2.png
-  artifactKey: Guid(6070d3fe2a0594735a5b64e7326ddd41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/4K Tiled Ground Textures p1/Textures/rocks/rock_black_2.png using Guid(6070d3fe2a0594735a5b64e7326ddd41) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1cc10601ad7fbd66800e704659d7be08') in 0.3557889 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000091 seconds.
-  path: Assets/Dohoa/4K Tiled Ground Textures p1/Textures/rocks/rock_black_3.png
-  artifactKey: Guid(cccc5344f73ba4126985c8de31e51e0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/4K Tiled Ground Textures p1/Textures/rocks/rock_black_3.png using Guid(cccc5344f73ba4126985c8de31e51e0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3448a8034c4ec6f292083bcad75817ab') in 0.3345269 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000101 seconds.
-  path: Assets/Dohoa/4K Tiled Ground Textures p1/Textures/rocks/rocks_gray_3.png
-  artifactKey: Guid(b036074887d304e2f97532083f8f68ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/4K Tiled Ground Textures p1/Textures/rocks/rocks_gray_3.png using Guid(b036074887d304e2f97532083f8f68ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '60f50f829e0ac8f4c9fa89bb09d4abcf') in 0.3310452 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000113 seconds.
-  path: Assets/Dohoa/4K Tiled Ground Textures p1/Textures/rocks/rock_black_5.png
-  artifactKey: Guid(42e684188422f469387d6580923d5532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/4K Tiled Ground Textures p1/Textures/rocks/rock_black_5.png using Guid(42e684188422f469387d6580923d5532) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '580f3b697a162c5aa53f7e0ad760dc78') in 0.3686629 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 25.745667 seconds.
-  path: Assets/Dohoa/Multistory Dungeons 2/Textures/Atlas_Furniture_01_Normal.psd
-  artifactKey: Guid(e2a78d032f964db9aa0405d80f0ed07e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Multistory Dungeons 2/Textures/Atlas_Furniture_01_Normal.psd using Guid(e2a78d032f964db9aa0405d80f0ed07e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a6d3c983d881973c3b4ee33cb441b638') in 0.1275253 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000145 seconds.
-  path: Assets/Dohoa/Multistory Dungeons 2/Textures/FX_Smoke_MD_01.psd
-  artifactKey: Guid(b946e1039ab444399401facd2a6700e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Multistory Dungeons 2/Textures/FX_Smoke_MD_01.psd using Guid(b946e1039ab444399401facd2a6700e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1c9c936a02d9d43793a945ed92a54d18') in 0.037349 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000074 seconds.
-  path: Assets/Dohoa/Multistory Dungeons 2/Textures/FX_Candle_Fire_MD_01.psd
-  artifactKey: Guid(fa9528801bfb4b5f9474b939048aacdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Multistory Dungeons 2/Textures/FX_Candle_Fire_MD_01.psd using Guid(fa9528801bfb4b5f9474b939048aacdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4a6a307a73f1e0dacc9d141c75567424') in 0.0364241 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000037 seconds.
-  path: Assets/Dohoa/Multistory Dungeons 2/Textures/Atlas_Props_01_Emission.psd
-  artifactKey: Guid(f72c851730284549a28937da858ba501) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Multistory Dungeons 2/Textures/Atlas_Props_01_Emission.psd using Guid(f72c851730284549a28937da858ba501) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f9475f8378c546584bcc5b1b228e2de3') in 0.0350801 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000039 seconds.
-  path: Assets/Dohoa/Multistory Dungeons 2/Textures/Atlas_Props_02_Specular.psd
-  artifactKey: Guid(57d83ff8241d40f7adc94897a9bd289e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Multistory Dungeons 2/Textures/Atlas_Props_02_Specular.psd using Guid(57d83ff8241d40f7adc94897a9bd289e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ffdd5a8c602c2b28635fb525493e7891') in 0.053112 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000161 seconds.
-  path: Assets/Dohoa/Multistory Dungeons 2/Textures/Atlas_Props_01_Normal.psd
-  artifactKey: Guid(30417f1afd654f81abf01d532f1a9160) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Multistory Dungeons 2/Textures/Atlas_Props_01_Normal.psd using Guid(30417f1afd654f81abf01d532f1a9160) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ffddabaf410007fbc3c0c7a6e9e951a8') in 0.0414117 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000041 seconds.
-  path: Assets/Dohoa/Multistory Dungeons 2/Textures/Atlas_Props_01.psd
-  artifactKey: Guid(ee6f3aaa6abf4ce1a3100b4b20eeca71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Multistory Dungeons 2/Textures/Atlas_Props_01.psd using Guid(ee6f3aaa6abf4ce1a3100b4b20eeca71) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0df2687cbbd4dfe4959f83e3dc1e908a') in 0.0621289 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 19.918154 seconds.
-  path: Assets/HorrorPuzzleItems/Battery/Icons/Icon_Battery_C.png
-  artifactKey: Guid(d15102e1826bf5b428bb87eb66a9daef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/HorrorPuzzleItems/Battery/Icons/Icon_Battery_C.png using Guid(d15102e1826bf5b428bb87eb66a9daef) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '844624176cf77d0c17f55dda3f268722') in 0.0499218 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.680057 seconds.
-  path: Assets/HorrorPuzzleItems/Battery/Models/BatteryC.fbx
-  artifactKey: Guid(4b17199607ef6b640882e97ed67c0920) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/HorrorPuzzleItems/Battery/Models/BatteryC.fbx using Guid(4b17199607ef6b640882e97ed67c0920) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '468df73b5ad92b9f34c424ce3227f1c2') in 0.0657461 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.743320 seconds.
-  path: Assets/HorrorPuzzleItems/Battery/Prefabs/BatteryC.prefab
-  artifactKey: Guid(2d6867d6e54753f449d2768e3269e3a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/HorrorPuzzleItems/Battery/Prefabs/BatteryC.prefab using Guid(2d6867d6e54753f449d2768e3269e3a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7c1089f68382d3c36c35edaaa5303afa') in 0.2028897 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 17
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.755946 seconds.
-  path: Assets/HorrorPuzzleItems/Card/Materials/Card_GateRed.mat
-  artifactKey: Guid(f802aba63e0f0864dacd288233586c79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/HorrorPuzzleItems/Card/Materials/Card_GateRed.mat using Guid(f802aba63e0f0864dacd288233586c79) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3ee2b5593d0d2ea7e36179fb764c5e7a') in 0.0627506 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000053 seconds.
-  path: Assets/HorrorPuzzleItems/Card/Materials/Card_GateYellow.mat
-  artifactKey: Guid(b18ddb68424433542b47221e9ab463e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/HorrorPuzzleItems/Card/Materials/Card_GateYellow.mat using Guid(b18ddb68424433542b47221e9ab463e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '50e0ebf3de1bcbddf6aec764f4d3ac1f') in 0.0530737 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 3.613177 seconds.
-  path: Assets/HorrorPuzzleItems/Card/Textures/Card_GateSystemRed.png
-  artifactKey: Guid(6e4f20cb35dba394b9e0dc75f4fddb2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/HorrorPuzzleItems/Card/Textures/Card_GateSystemRed.png using Guid(6e4f20cb35dba394b9e0dc75f4fddb2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'de4f6ef02d4886ea6aa6e02b146a7b71') in 0.0350944 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000060 seconds.
-  path: Assets/HorrorPuzzleItems/Card/Textures/Card_GateSystemYellow.png
-  artifactKey: Guid(8fad648b5890103498cd9a25eb28bbea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/HorrorPuzzleItems/Card/Textures/Card_GateSystemYellow.png using Guid(8fad648b5890103498cd9a25eb28bbea) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '266e56ee8de996380fa85238bea782c2') in 0.0354717 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Prepare
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  7.609 seconds
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-Refreshing native plugins compatible for Editor in 4.10 ms, found 3 plugins.
-Native extension for WindowsStandalone target not found
-Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.614 seconds
-Domain Reload Profiling: 9257ms
-	BeginReloadAssembly (3077ms)
-		ExecutionOrderSort (2ms)
-		DisableScriptedObjects (603ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (17ms)
-		CreateAndSetChildDomain (1293ms)
-	RebuildCommonClasses (148ms)
-	RebuildNativeTypeToScriptingClass (29ms)
-	initialDomainReloadingComplete (88ms)
-	LoadAllAssembliesAndSetupDomain (4299ms)
-		LoadAssemblies (2494ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (2284ms)
-			TypeCache.Refresh (321ms)
-				TypeCache.ScanAssembly (11ms)
-			BuildScriptInfoCaches (1822ms)
-			ResolveRequiredComponents (44ms)
-	FinalizeReload (1616ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1225ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (7ms)
-			SetLoadedEditorAssemblies (18ms)
-			BeforeProcessingInitializeOnLoad (275ms)
-			ProcessInitializeOnLoadAttributes (826ms)
-			ProcessInitializeOnLoadMethodAttributes (82ms)
-			AfterProcessingInitializeOnLoad (15ms)
-			EditorAssembliesLoaded (2ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (35ms)
-Refreshing native plugins compatible for Editor in 1.50 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6522 unused Assets / (4.3 MB). Loaded Objects now: 7350.
-Memory consumption went from 166.1 MB to 161.8 MB.
-Total: 22.895700 ms (FindLiveObjects: 1.567700 ms CreateObjectMapping: 1.053400 ms MarkObjects: 14.670100 ms  DeleteObjects: 5.600000 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 326.936648 seconds.
-  path: Assets/FantasyEnvironments/FX/CandleParticle.mat
-  artifactKey: Guid(d3a726d39a1df3b49bcf49e5adb021b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FantasyEnvironments/FX/CandleParticle.mat using Guid(d3a726d39a1df3b49bcf49e5adb021b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f661cd357e7e239d68f655eeb656b47b') in 1.7064557 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 74.203309 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Materials/stone paneks_cubes.mat
-  artifactKey: Guid(c26ca4236f2408a418918320b767d1b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Materials/stone paneks_cubes.mat using Guid(c26ca4236f2408a418918320b767d1b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c1fc5e742cc68044ee7250336c094043') in 0.0607138 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000078 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Materials/walls.mat
-  artifactKey: Guid(700680c9450615e4086610f0edf59bc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Materials/walls.mat using Guid(700680c9450615e4086610f0edf59bc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0db82c6371b07d847ee779883b166ee5') in 0.0249963 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.250735 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Mesh/column .fbx
-  artifactKey: Guid(efa7119d0bbbed849a1eada7b1968133) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Mesh/column .fbx using Guid(efa7119d0bbbed849a1eada7b1968133) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '594956ed492e81a74423b1d11ec46a2e') in 0.2036942 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 19
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000117 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Mesh/stonre cubes.fbx
-  artifactKey: Guid(c6e16d97d21322f4cb3fa3d910e7ddfe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Mesh/stonre cubes.fbx using Guid(c6e16d97d21322f4cb3fa3d910e7ddfe) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a51bba36b2063f3f036efc44ef179e3b') in 0.0822418 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 14
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.899654 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Prefab/column_2.prefab
-  artifactKey: Guid(a7159e697d5beaf4ab2f1398331828aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Prefab/column_2.prefab using Guid(a7159e697d5beaf4ab2f1398331828aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9fe80f550b231b32bcd89e9cc1ebe0d8') in 0.0527637 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000084 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Prefab/wall 1.prefab
-  artifactKey: Guid(2f9b8727929df0a4fb585a1f064aab3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Prefab/wall 1.prefab using Guid(2f9b8727929df0a4fb585a1f064aab3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'da00a8ca28a8fe2b58365d02fafc0507') in 0.0417066 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000065 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Prefab/wall 2.prefab
-  artifactKey: Guid(412f0ac0219b2ff4f86ea74cf1754dbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Prefab/wall 2.prefab using Guid(412f0ac0219b2ff4f86ea74cf1754dbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '07d9b9079a647839135e6f944ae08a60') in 0.0441437 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000045 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Prefab/wall 3.prefab
-  artifactKey: Guid(8e2d54dcdfb4a464297c867a4c365352) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Prefab/wall 3.prefab using Guid(8e2d54dcdfb4a464297c867a4c365352) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8f88050bea453eacb4a748ebc15bc12d') in 0.0403172 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+  path: Assets/Dohoa/Duongdua/roadSplitLarge.fbx
+  artifactKey: Guid(a6468e0568ec73d45af43fa8d4822280) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadSplitLarge.fbx using Guid(a6468e0568ec73d45af43fa8d4822280) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8b9d746b35754fb2184463d18ed1beef') in 0.0740972 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000063 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Prefab/wall 4.prefab
-  artifactKey: Guid(646ce312bff065143a91286b5d099b81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Prefab/wall 4.prefab using Guid(646ce312bff065143a91286b5d099b81) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '45ed7f9e5d769dba6fe26541ee4b0753') in 0.0494905 seconds
+  path: Assets/Dohoa/Duongdua/roadStraightSkew.fbx
+  artifactKey: Guid(a9800bb2dc3bd354fab01b97440b6058) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadStraightSkew.fbx using Guid(a9800bb2dc3bd354fab01b97440b6058) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'be8b3aecb5b313d3118ebfdc637fe93f') in 0.0836241 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000142 seconds.
+  path: Assets/Dohoa/Duongdua/roadStartPositions.fbx
+  artifactKey: Guid(17a1510a7156b2c49b280f5fe704f7d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadStartPositions.fbx using Guid(17a1510a7156b2c49b280f5fe704f7d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0952284675756ee8940c34a075f6dde2') in 0.0740162 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000077 seconds.
+  path: Assets/Dohoa/Duongdua/roadStraightBridge.fbx
+  artifactKey: Guid(fae553fefca86264ba3f8b97b2f8c5b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadStraightBridge.fbx using Guid(fae553fefca86264ba3f8b97b2f8c5b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2b68299614d1a07782b0a846f09ebaba') in 0.0879066 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000079 seconds.
+  path: Assets/Dohoa/Duongdua/tentClosedLong.fbx
+  artifactKey: Guid(6f682b91837dd5946966a4f93293ef06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/tentClosedLong.fbx using Guid(6f682b91837dd5946966a4f93293ef06) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7590abf1e0e1db227c696693a42de494') in 0.076482 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000065 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Prefab/stone panel 1.prefab
-  artifactKey: Guid(6ba9fa78c2b128d4ca9d3c9b559ceb51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Prefab/stone panel 1.prefab using Guid(6ba9fa78c2b128d4ca9d3c9b559ceb51) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c66deda146ca47de99b84042ff8b91ab') in 0.0413247 seconds
+  Time since last request: 0.000047 seconds.
+  path: Assets/Dohoa/Duongdua/roadStraightLongBump.fbx
+  artifactKey: Guid(368bc89f33c21ac4494184dd3d27b289) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadStraightLongBump.fbx using Guid(368bc89f33c21ac4494184dd3d27b289) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e940805c26665e99d323851831890324') in 0.0889465 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000059 seconds.
+  path: Assets/Dohoa/Duongdua/roadSplitSmall.fbx
+  artifactKey: Guid(ae602fbdb05d0f94b92440e89f38812e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadSplitSmall.fbx using Guid(ae602fbdb05d0f94b92440e89f38812e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a12141ab39146830fb8f24d821d834d1') in 0.0861358 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000084 seconds.
+  path: Assets/Dohoa/Duongdua/treeLarge.fbx
+  artifactKey: Guid(0ac5a623e188ea04680b712255c8c306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/treeLarge.fbx using Guid(0ac5a623e188ea04680b712255c8c306) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '848037ad2d344e98ea63ee672ad45b51') in 0.0684566 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
 
 ========================================================================
 Received Import Request.
-  Time since last request: 87.323091 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Prefab/column_2.prefab
-  artifactKey: Guid(a7159e697d5beaf4ab2f1398331828aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Prefab/column_2.prefab using Guid(a7159e697d5beaf4ab2f1398331828aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8a8c0887987714c4e1bf3616cf95afe9') in 0.0364758 seconds
+  Time since last request: 0.000037 seconds.
+  path: Assets/Dohoa/Duongdua/roadStraightLongBumpRound.fbx
+  artifactKey: Guid(3ffc37cede6ebe04d80b48e73f220f5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadStraightLongBumpRound.fbx using Guid(3ffc37cede6ebe04d80b48e73f220f5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '47cb32a3890928afc911d421f65fc4b8') in 0.0814036 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Dohoa/Duongdua/roadStart.fbx
+  artifactKey: Guid(ae8c8693cd8e5cb48b8b69683fce2e8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadStart.fbx using Guid(ae8c8693cd8e5cb48b8b69683fce2e8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '05dd1a509374cf60e8fadba89654e8ba') in 0.0868727 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Dohoa/Duongdua/tentClosed.fbx
+  artifactKey: Guid(021ba51e0597dfb4185d4aa1aed6a899) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/tentClosed.fbx using Guid(021ba51e0597dfb4185d4aa1aed6a899) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3b282990960a643e1a877c08494879ec') in 0.0589911 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000066 seconds.
-  path: Assets/Dohoa/Columns ancient  ruins/Prefab/column_3.prefab
-  artifactKey: Guid(f0cb175e38e8f5644b7791362fc43539) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Dohoa/Columns ancient  ruins/Prefab/column_3.prefab using Guid(f0cb175e38e8f5644b7791362fc43539) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2fbec5d1f86275ef42d67165dbf5e1db') in 0.0243465 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+  Time since last request: 0.000040 seconds.
+  path: Assets/Dohoa/Duongdua/roadStraight.fbx
+  artifactKey: Guid(43f1419e74707c748af279f0d8b203fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Dohoa/Duongdua/roadStraight.fbx using Guid(43f1419e74707c748af279f0d8b203fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7771c1601e5a284ca8057894268e1dac') in 0.0838431 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
 

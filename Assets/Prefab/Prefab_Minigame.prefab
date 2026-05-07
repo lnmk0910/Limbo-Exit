@@ -123,5 +123,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniGameScenes:
   - Game
-  - SampleScene
-  - 
+  - Basketball
+  - Quizz
