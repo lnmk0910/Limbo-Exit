@@ -1,4 +1,4 @@
-// ExitGate.cs - Fix toàn diện
+﻿// ExitGate.cs - Fix toàn diện
 // Fix 1: Bỏ gameObject.tag = "ExitGate" (lỗi nếu tag chưa tạo trong TagManager)
 // Fix 2: Dùng distance check SONG SONG với OnTriggerEnter (backup)
 // Fix 3: Tìm VictoryScreen bằng FindFirstObjectByType nếu Instance null
@@ -46,7 +46,7 @@ public class ExitGate : MonoBehaviour
     void KichHoatThangMan()
     {
         daKichHoat = true;
-        Debug.Log("🚨 ExitGate kích hoạt → Hiện VictoryScreen cho người chơi lựa chọn...");
+        Debug.Log("[KICHHOAT] ExitGate kích hoạt → Hiện VictoryScreen cho người chơi lựa chọn...");
         AudioManager.PhatCuaMo();
 
         PlayerData data = SaveSystem.LoadGame();
@@ -63,7 +63,7 @@ public class ExitGate : MonoBehaviour
         }
         else
         {
-            Debug.LogError("❌ Không tìm thấy VictoryScreen! Reload thẳng...");
+            Debug.LogError("[LOI] Không tìm thấy VictoryScreen! Reload thẳng...");
             data.mapHienTai++;
             data.seed = 0;
             SaveSystem.SaveGame(data);

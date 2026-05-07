@@ -1,4 +1,4 @@
-// PlayerInventory.cs
+﻿// PlayerInventory.cs
 // Singleton: Lưu vật phẩm hiện tại trong phiên chơi (runtime)
 // Đọc từ Save khi vào game, ghi lại khi dùng đồ
 // GẮN vào: Player GameObject
@@ -64,7 +64,7 @@ public class PlayerInventory : MonoBehaviour
         daPhatSang = data.soDaPhatSang;
         dongHo     = data.soDongHo;
         laBan      = data.soLaBan;
-        Debug.Log($"🔄 Sync Inventory: Đá={daPhatSang} | Đồng hồ={dongHo} | La bàn={laBan}");
+        Debug.Log($"[HOISNH] Sync Inventory: Đá={daPhatSang} | Đồng hồ={dongHo} | La bàn={laBan}");
     }
 }
 

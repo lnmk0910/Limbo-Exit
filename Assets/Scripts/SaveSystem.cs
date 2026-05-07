@@ -1,4 +1,4 @@
-// SaveSystem.cs
+﻿// SaveSystem.cs
 // Hệ thống lưu/đọc dữ liệu người chơi bằng file JSON
 // KHÔNG kế thừa MonoBehaviour - gọi trực tiếp qua SaveSystem.SaveGame()
 
@@ -25,7 +25,7 @@ public static class SaveSystem
     {
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(GetFilePath(), json);
-        Debug.Log($"✅ Đã lưu game (Hồ sơ {currentSlotIndex}) tại: {GetFilePath()}");
+        Debug.Log($"[OK] Đã lưu game (Hồ sơ {currentSlotIndex}) tại: {GetFilePath()}");
     }
 
     // =============================================
@@ -38,12 +38,12 @@ public static class SaveSystem
         {
             string json = File.ReadAllText(path);
             PlayerData data = JsonUtility.FromJson<PlayerData>(json);
-            Debug.Log($"✅ Đã đọc save Hồ sơ {currentSlotIndex} thành công!");
+            Debug.Log($"[OK] Đã đọc save Hồ sơ {currentSlotIndex} thành công!");
             return data;
         }
         else
         {
-            Debug.Log($"⚠️ Chưa có file save cho Hồ sơ {currentSlotIndex}. Tạo dữ liệu mới.");
+            Debug.Log($"[!]️ Chưa có file save cho Hồ sơ {currentSlotIndex}. Tạo dữ liệu mới.");
             return new PlayerData();
         }
     }

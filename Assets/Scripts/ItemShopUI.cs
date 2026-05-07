@@ -1,4 +1,4 @@
-// ItemShopUI.cs - Fix lỗi mua hàng
+﻿// ItemShopUI.cs - Fix lỗi mua hàng
 // - Tất cả đọc/ghi đều qua SaveSystem trực tiếp (không qua PlayerInventory)
 // - Thêm nhiều Debug.Log để dễ kiểm tra
 // - Bỏ AddListener (dùng hàm public gán từ Inspector)
@@ -63,7 +63,7 @@ public class ItemShopUI : MonoBehaviour
     {
         dangNghiNgoiChuyenMap = true;
         MoiShopChung();
-        Debug.Log("🎉 TẦNG ĐÃ ĐƯỢC VƯỢT! CHUẨN BỊ SANG MAP MỚI KHI ĐÓNG SHOP!");
+        Debug.Log("[OK] TẦNG ĐÃ ĐƯỢC VƯỢT! CHUẨN BỊ SANG MAP MỚI KHI ĐÓNG SHOP!");
     }
 
     private void MoiShopChung()
@@ -79,7 +79,7 @@ public class ItemShopUI : MonoBehaviour
         Cursor.visible   = true;
         Time.timeScale   = 0f;
 
-        Debug.Log("🏪 Shop mở! Mảnh Hồn hiện có: " + SaveSystem.LoadGame().soManhHon);
+        Debug.Log("[SHOP] Shop mở! Mảnh Hồn hiện có: " + SaveSystem.LoadGame().soManhHon);
     }
 
     public void DongShop()
@@ -116,7 +116,7 @@ public class ItemShopUI : MonoBehaviour
     void CapNhatUI()
     {
         PlayerData data = SaveSystem.LoadGame();
-        if (txtManhHon  != null) txtManhHon.text  = $"💎 {data.soManhHon} Mảnh Hồn";
+        if (txtManhHon  != null) txtManhHon.text  = $"MH {data.soManhHon} Mảnh Hồn";
         if (txtSoDa     != null) txtSoDa.text     = $"x{data.soDaPhatSang}";
         if (txtSoDongHo != null) txtSoDongHo.text = $"x{data.soDongHo}";
         if (txtSoLaBan  != null) txtSoLaBan.text  = $"x{data.soLaBan}";
@@ -128,12 +128,12 @@ public class ItemShopUI : MonoBehaviour
     public void MuaDa()
     {
         PlayerData data = SaveSystem.LoadGame();
-        Debug.Log($"🛒 Mua Đá: soManhHon={data.soManhHon}, giaDa={giaDa}");
+        Debug.Log($"[MUA] Mua Đá: soManhHon={data.soManhHon}, giaDa={giaDa}");
 
         if (data.soManhHon < giaDa)
         {
             AudioManager.PhatKhongDuTien();
-            Debug.Log($"❌ Không đủ Mảnh Hồn! Cần {giaDa}, có {data.soManhHon}");
+            Debug.Log($"[LOI] Không đủ Mảnh Hồn! Cần {giaDa}, có {data.soManhHon}");
             return;
         }
 
@@ -147,7 +147,7 @@ public class ItemShopUI : MonoBehaviour
 
         AudioManager.PhatMuaDo();
 
-        Debug.Log($"✅ Mua Đá Phát Sáng! Còn {data.soManhHon} Mảnh Hồn | Đá: {data.soDaPhatSang}");
+        Debug.Log($"[OK] Mua Đá Phát Sáng! Còn {data.soManhHon} Mảnh Hồn | Đá: {data.soDaPhatSang}");
         CapNhatUI();
         GameHUD.LamMoi(); // Đồng bộ HUD
     }
@@ -155,12 +155,12 @@ public class ItemShopUI : MonoBehaviour
     public void MuaDongHo()
     {
         PlayerData data = SaveSystem.LoadGame();
-        Debug.Log($"🛒 Mua Đồng Hồ: soManhHon={data.soManhHon}, giaDongHo={giaDongHo}");
+        Debug.Log($"[MUA] Mua Đồng Hồ: soManhHon={data.soManhHon}, giaDongHo={giaDongHo}");
 
         if (data.soManhHon < giaDongHo)
         {
             AudioManager.PhatKhongDuTien();
-            Debug.Log($"❌ Không đủ! Cần {giaDongHo}, có {data.soManhHon}");
+            Debug.Log($"[LOI] Không đủ! Cần {giaDongHo}, có {data.soManhHon}");
             return;
         }
 
@@ -173,7 +173,7 @@ public class ItemShopUI : MonoBehaviour
 
         AudioManager.PhatMuaDo();
 
-        Debug.Log($"✅ Mua Đồng Hồ! Còn {data.soManhHon} Mảnh Hồn | Đồng hồ: {data.soDongHo}");
+        Debug.Log($"[OK] Mua Đồng Hồ! Còn {data.soManhHon} Mảnh Hồn | Đồng hồ: {data.soDongHo}");
         CapNhatUI();
         GameHUD.LamMoi(); // Đồng bộ HUD
     }
@@ -181,12 +181,12 @@ public class ItemShopUI : MonoBehaviour
     public void MuaLaBan()
     {
         PlayerData data = SaveSystem.LoadGame();
-        Debug.Log($"🛒 Mua La Bàn: soManhHon={data.soManhHon}, giaLaBan={giaLaBan}");
+        Debug.Log($"[MUA] Mua La Bàn: soManhHon={data.soManhHon}, giaLaBan={giaLaBan}");
 
         if (data.soManhHon < giaLaBan)
         {
             AudioManager.PhatKhongDuTien();
-            Debug.Log($"❌ Không đủ! Cần {giaLaBan}, có {data.soManhHon}");
+            Debug.Log($"[LOI] Không đủ! Cần {giaLaBan}, có {data.soManhHon}");
             return;
         }
 
@@ -199,7 +199,7 @@ public class ItemShopUI : MonoBehaviour
 
         AudioManager.PhatMuaDo();
 
-        Debug.Log($"✅ Mua La Bàn! Còn {data.soManhHon} Mảnh Hồn | La bàn: {data.soLaBan}");
+        Debug.Log($"[OK] Mua La Bàn! Còn {data.soManhHon} Mảnh Hồn | La bàn: {data.soLaBan}");
         CapNhatUI();
         GameHUD.LamMoi(); // Đồng bộ HUD
     }
@@ -217,7 +217,7 @@ public class ItemShopUI : MonoBehaviour
         }
         else
         {
-            Debug.LogError("❌ Không tìm thấy UpgradeScreen để mở!");
+            Debug.LogError("[LOI] Không tìm thấy UpgradeScreen để mở!");
         }
     }
 }

@@ -1,4 +1,4 @@
-// EnemySpawner.cs (cập nhật)
+﻿// EnemySpawner.cs (cập nhật)
 // Spawn quái vật theo Biome:
 //   0 = Đá Cổ   → EnemyAI (quái vật cơ bản)
 //   1 = Thư Viện → ThuthuMuAI (Thủ Thư Mù)
@@ -46,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject prefabDung = LayPrefabTheoBiome(biomeThucTe);
         if (prefabDung == null)
         {
-            Debug.LogWarning("⚠️ Chưa gán Prefab Enemy cho Biome này!");
+            Debug.LogWarning("[!]️ Chưa gán Prefab Enemy cho Biome này!");
             return;
         }
 
@@ -72,10 +72,10 @@ public class EnemySpawner : MonoBehaviour
 
             Instantiate(prefabDung, viTri, Quaternion.identity);
             daSinh++;
-            Debug.Log($"👾 Spawn [{LayTenQuai(biomeThucTe)}] #{daSinh} tại ({c},{r})");
+            Debug.Log($"[QUAI] Spawn [{LayTenQuai(biomeThucTe)}] #{daSinh} tại ({c},{r})");
         }
 
-        Debug.Log($"✅ Spawn {daSinh}/{soLuongEnemy} [{LayTenQuai(biomeThucTe)}] | Biome {biomeThucTe}");
+        Debug.Log($"[OK] Spawn {daSinh}/{soLuongEnemy} [{LayTenQuai(biomeThucTe)}] | Biome {biomeThucTe}");
     }
 
     GameObject LayPrefabTheoBiome(int biomeIndex)

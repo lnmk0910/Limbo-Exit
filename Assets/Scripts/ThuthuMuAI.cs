@@ -1,4 +1,4 @@
-// ThuthuMuAI.cs - Thêm cơ chế biến mất & spawn lại
+﻿// ThuthuMuAI.cs - Thêm cơ chế biến mất & spawn lại
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
@@ -74,7 +74,7 @@ public class ThuthuMuAI : MonoBehaviour
         if (khoangCach <= LayTamNghe())
         {
             trangThai = TrangThai.PhatHien; // Dừng lại nghe ngóng trước
-            Debug.Log("👂 Thủ Thư Mù nghe thấy! Dừng lại...");
+            Debug.Log("[NGHE] Thủ Thư Mù nghe thấy! Dừng lại...");
         }
     }
 
@@ -101,7 +101,7 @@ public class ThuthuMuAI : MonoBehaviour
             demPhatHien  = 0f;
             trangThai    = TrangThai.TruyDuoi;
             AudioManager.PhatPhatHien();
-            Debug.Log("👂 Thủ Thư Mù bắt đầu truy đuổi!");
+            Debug.Log("[NGHE] Thủ Thư Mù bắt đầu truy đuổi!");
         }
     }
 
@@ -132,7 +132,7 @@ public class ThuthuMuAI : MonoBehaviour
     void BatDuocPlayer()
     {
         daBat = true;
-        Debug.Log($"💀 Thủ Thư Mù bắt được! Ẩn {thoiGianBienMat}s rồi spawn lại...");
+        Debug.Log($"[CHET] Thủ Thư Mù bắt được! Ẩn {thoiGianBienMat}s rồi spawn lại...");
         DeathScreen.Instance?.HienManHinhChet();
         StartCoroutine(BienMatVaSpawnLai());
     }
@@ -155,7 +155,7 @@ public class ThuthuMuAI : MonoBehaviour
         daBat = false;
         trangThai = TrangThai.NgheNgong;
         TimDiemNgheNgong();
-        Debug.Log($"👂 Thủ Thư Mù xuất hiện lại tại {viTriMoi}");
+        Debug.Log($"[NGHE] Thủ Thư Mù xuất hiện lại tại {viTriMoi}");
     }
 
     Vector3 TimViTriXaPlayer()

@@ -1,4 +1,4 @@
-// MazeRenderer.cs
+﻿// MazeRenderer.cs
 // Render mê cung 3D theo kiểu kết cấu của từng Biome:
 //   WallStyle.ChuNhatDac  → 1 khối hộp chữ nhật / tường
 //   WallStyle.TruTron     → N cột trụ tròn xếp liên tiếp
@@ -30,7 +30,7 @@ public class MazeRenderer : MonoBehaviour
     void Start()
     {
         mazeGen = GetComponent<MazeGenerator>();
-        if (mazeGen == null) { Debug.LogError("❌ Không tìm thấy MazeGenerator!"); return; }
+        if (mazeGen == null) { Debug.LogError("[LOI] Không tìm thấy MazeGenerator!"); return; }
 
         // Lấy biome từ BiomeManager (nếu có)
         BiomeManager bm = GetComponent<BiomeManager>();
@@ -76,7 +76,7 @@ public class MazeRenderer : MonoBehaviour
                                90f, chieuCao, doDay);
             }
         }
-        Debug.Log("✅ Render xong mê cung 3D!");
+        Debug.Log("[OK] Render xong mê cung 3D!");
     }
 
     // -----------------------------------------------
@@ -193,7 +193,7 @@ public class MazeRenderer : MonoBehaviour
             case 4: prefab = prefabNPC;        ten = "NPC";        break;
             default: return;
         }
-        if (prefab == null) { Debug.LogWarning($"⚠️ Prefab {ten} chưa gán!"); return; }
+        if (prefab == null) { Debug.LogWarning($"[!]️ Prefab {ten} chưa gán!"); return; }
         GameObject obj = Instantiate(prefab, viTriO + new Vector3(0, 0.5f, 0), Quaternion.identity);
         obj.name = ten;
     }

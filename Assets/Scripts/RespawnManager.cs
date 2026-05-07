@@ -1,4 +1,4 @@
-// RespawnManager.cs
+﻿// RespawnManager.cs
 // Quản lý hệ thống hồi sinh:
 // - Theo dõi các "Điểm An Toàn" người chơi đã kích hoạt
 // - Khi chết: chọn ngẫu nhiên 1 điểm → spawn Player lại đó
@@ -45,7 +45,7 @@ public class RespawnManager : MonoBehaviour
         if (!danhSachDiemAnToan.Contains(viTri))
         {
             danhSachDiemAnToan.Add(viTri);
-            Debug.Log($"💚 Đã lưu điểm an toàn: {viTri} | Tổng: {danhSachDiemAnToan.Count}");
+            Debug.Log($"[CKPOINT] Đã lưu điểm an toàn: {viTri} | Tổng: {danhSachDiemAnToan.Count}");
         }
     }
 
@@ -72,7 +72,7 @@ public class RespawnManager : MonoBehaviour
     {
         if (playerTransform == null)
         {
-            Debug.LogError("❌ Không tìm thấy Player để hồi sinh!");
+            Debug.LogError("[LOI] Không tìm thấy Player để hồi sinh!");
             return;
         }
 
@@ -84,7 +84,7 @@ public class RespawnManager : MonoBehaviour
         // Mất vật phẩm, giữ % Mảnh Hồn
         MatVatPhamKhiChet();
 
-        Debug.Log($"🔄 Hồi sinh tại: {diemHoiSinh}");
+        Debug.Log($"[HOISNH] Hồi sinh tại: {diemHoiSinh}");
     }
 
     // -----------------------------------------------
@@ -107,6 +107,6 @@ public class RespawnManager : MonoBehaviour
         if (PlayerInventory.Instance != null)
             PlayerInventory.Instance.SyncTuSave();
 
-        Debug.Log($"💀 Chết! Giữ lại {manhHonGiuLai} Mảnh Hồn (50%). Mất hết vật phẩm.");
+        Debug.Log($"[CHET] Chết! Giữ lại {manhHonGiuLai} Mảnh Hồn (50%). Mất hết vật phẩm.");
     }
 }

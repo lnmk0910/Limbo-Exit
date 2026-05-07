@@ -30,8 +30,12 @@ public class MenuTamDung : MonoBehaviour
     {
         if (!isPaused)
         {
-            // Chỉ bật Pause khi không có panel nào khác đang mở
-            if (Input.GetKeyDown(KeyCode.Escape) && UIManager.DangTrongGame())
+            // Chi bat Pause khi dang trong game binh thuong
+            // Khong bat Pause khi dang o man GameClear / VictoryScreen
+            bool coThePause = UIManager.DangTrongGame() &&
+                              !UIManager.DangO(UIManager.TrangThaiUI.ChienThang);
+
+            if (Input.GetKeyDown(KeyCode.Escape) && coThePause)
                 PauseGame();
             return;
         }

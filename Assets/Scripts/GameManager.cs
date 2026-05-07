@@ -1,4 +1,4 @@
-// GameManager.cs
+﻿// GameManager.cs
 // Spawn Player/ExitGate và kết nối RespawnManager
 // GẮN vào: Empty GameObject "GameManager" trong GameScene
 
@@ -23,12 +23,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (mazeGenerator == null) { Debug.LogError("❌ Thiếu MazeGenerator!"); return; }
+        if (mazeGenerator == null) { Debug.LogError("[LOI] Thiếu MazeGenerator!"); return; }
 
         DatPlayerVaExitGate();
 
         // Chỉ log seed (MazeGenerator.Awake đã lưu seed rồi, không cần ghi lại)
-        Debug.Log($"💾 Seed {mazeGenerator.seedHienTai} | Màn {SaveSystem.LoadGame().mapHienTai}");
+        Debug.Log($"[SAVE] Seed {mazeGenerator.seedHienTai} | Màn {SaveSystem.LoadGame().mapHienTai}");
     }
 
     void DatPlayerVaExitGate()
@@ -43,13 +43,13 @@ public class GameManager : MonoBehaviour
         if (prefabPlayer != null)
         {
             playerObj = Instantiate(prefabPlayer, viTriPlayer, Quaternion.identity);
-            Debug.Log("🧍 Player spawn tại: " + viTriPlayer);
+            Debug.Log("[PLAYER] Player spawn tại: " + viTriPlayer);
         }
 
         if (prefabExitGate != null)
         {
             Instantiate(prefabExitGate, viTriGate, Quaternion.identity);
-            Debug.Log("🚪 ExitGate spawn tại: " + viTriGate);
+            Debug.Log("[CONG] ExitGate spawn tại: " + viTriGate);
         }
 
         // Kết nối Player với RespawnManager

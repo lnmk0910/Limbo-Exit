@@ -1,4 +1,4 @@
-// MazeGenerator.cs
+﻿// MazeGenerator.cs
 // Thuật toán tạo mê cung: RECURSIVE BACKTRACKER (DFS) + SEED + EVENT GRID
 //
 // Mảng eventGrid[col, row] chứa mã số từng ô:
@@ -73,12 +73,12 @@ public class MazeGenerator : MonoBehaviour
             seedHienTai = data.seed;
         }
 
-        Debug.Log($"🌱 Seed: {seedHienTai} - Size: {soCol}x{soRow}");
+        Debug.Log($"[SEED] Seed: {seedHienTai} - Size: {soCol}x{soRow}");
 
         // Khởi tạo Random với seed → đảm bảo map sinh ra giống nhau
         Random.InitState(seedHienTai);
 
-        // ⚠️ NARRATIVE AI: TRÁO BÀI LỘ TRÌNH 4 BIOME
+        // [!]️ NARRATIVE AI: TRÁO BÀI LỘ TRÌNH 4 BIOME
         // Chỉ tráo khi biomeSequence chưa có → tức là lượt chơi mới hoàn toàn
         if (data.biomeSequence == null || data.biomeSequence.Length == 0)
         {
@@ -94,7 +94,7 @@ public class MazeGenerator : MonoBehaviour
                 data.biomeSequence[r] = tmp;
             }
             SaveSystem.SaveGame(data);
-            Debug.Log($"🎲 Lộ trình Biome: {data.biomeSequence[0]}→{data.biomeSequence[1]}→{data.biomeSequence[2]}→{data.biomeSequence[3]}");
+            Debug.Log($"[RANDOM] Lộ trình Biome: {data.biomeSequence[0]}→{data.biomeSequence[1]}→{data.biomeSequence[2]}→{data.biomeSequence[3]}");
         }
 
         SinhMeCung();
@@ -104,7 +104,7 @@ public class MazeGenerator : MonoBehaviour
         int indexTrongMang = (data.mapHienTai - 1) % data.biomeSequence.Length;
         int targetBiome = data.biomeSequence[indexTrongMang];
 
-        // ⚠️ GIẢI QUYẾT LỖ HỔNG RACE CONDITION BIOME:
+        // [!]️ GIẢI QUYẾT LỖ HỔNG RACE CONDITION BIOME:
         // Gọi thẳng BiomeManager ngay lập tức để nó cập nhật Prefab Tường/Sàn 
         // TRƯỚC KHI MazeRenderer.Start() kịp vẽ ra!
         BiomeManager bm = FindFirstObjectByType<BiomeManager>();
@@ -152,7 +152,7 @@ public class MazeGenerator : MonoBehaviour
         luoi[0, 0].tuongTrai = false;
         luoi[soCol - 1, soRow - 1].tuongPhai = false;
 
-        Debug.Log($"✅ Mê cung {soCol}x{soRow} đã sinh xong! Start:{viTriStart} → End:{viTriEnd}");
+        Debug.Log($"[OK] Mê cung {soCol}x{soRow} đã sinh xong! Start:{viTriStart} → End:{viTriEnd}");
     }
 
     // -----------------------------------------------
@@ -208,7 +208,7 @@ public class MazeGenerator : MonoBehaviour
         for (int i = 0; i < soMinigame && idx < tong; i++, idx++)
         {
             eventGrid[oTrong[idx].x, oTrong[idx].y] = 3;
-            Debug.Log($"🎮 Minigame tại {oTrong[idx]}");
+            Debug.Log($"[GAME] Minigame tại {oTrong[idx]}");
         }
 
         // NPC Thương nhân (mã 4)

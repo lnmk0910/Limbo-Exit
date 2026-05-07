@@ -12,9 +12,9 @@ public class GameHUD : MonoBehaviour
     public TMP_Text txtManhHon;     // Hiện: 💎 12
 
     [Header("=== VẬT PHẨM ===")]
-    public TMP_Text txtDaPhatSang;  // Hiện: 🪨 x3
-    public TMP_Text txtDongHo;      // Hiện: ⏱ x1
-    public TMP_Text txtLaBan;       // Hiện: 🧭 x2
+    public TMP_Text txtDaPhatSang;  // Hiện: Da x3
+    public TMP_Text txtDongHo;      // Hiện: DH x1
+    public TMP_Text txtLaBan;       // Hiện: LB x2
 
     [Header("=== THÔNG TIN TẦNG ===")]
     public TMP_Text txtTang;        // Hiện: Tầng 2 / 4
@@ -45,16 +45,16 @@ public class GameHUD : MonoBehaviour
 
         // Mảnh Hồn
         if (txtManhHon != null)
-            txtManhHon.text = $"💎 {data.soManhHon}";
+            txtManhHon.text = $"Manh Hon: {data.soManhHon}";
 
         // Vật phẩm — đọc từ PlayerInventory nếu có, fallback về Save
         int da     = PlayerInventory.Instance != null ? PlayerInventory.Instance.daPhatSang : data.soDaPhatSang;
         int dongHo = PlayerInventory.Instance != null ? PlayerInventory.Instance.dongHo      : data.soDongHo;
         int laBan  = PlayerInventory.Instance != null ? PlayerInventory.Instance.laBan       : data.soLaBan;
 
-        if (txtDaPhatSang != null) txtDaPhatSang.text = $"🪨 x{da}";
-        if (txtDongHo     != null) txtDongHo.text     = $"⏱ x{dongHo}";
-        if (txtLaBan      != null) txtLaBan.text      = $"🧭 x{laBan}";
+        if (txtDaPhatSang != null) txtDaPhatSang.text = $"Da x{da}";
+        if (txtDongHo     != null) txtDongHo.text     = $"DH x{dongHo}";
+        if (txtLaBan      != null) txtLaBan.text      = $"LB x{laBan}";
 
         // Tầng hiện tại / tổng
         if (txtTang != null)

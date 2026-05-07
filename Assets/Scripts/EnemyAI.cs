@@ -1,4 +1,4 @@
-// EnemyAI.cs - Thêm cơ chế biến mất & spawn lại sau khi bắt Player
+﻿// EnemyAI.cs - Thêm cơ chế biến mất & spawn lại sau khi bắt Player
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour
 
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null) playerTransform = player.transform;
-        else Debug.LogWarning("⚠️ Enemy không tìm thấy Player!");
+        else Debug.LogWarning("[!]️ Enemy không tìm thấy Player!");
 
         TimDiemTuanTraMoi();
     }
@@ -77,7 +77,7 @@ public class EnemyAI : MonoBehaviour
     void BatDuocPlayer()
     {
         daBat = true;
-        Debug.Log($"💀 Enemy bắt được Player! Biến mất {thoiGianBienMat}s...");
+        Debug.Log($"[CHET] Enemy bắt được Player! Biến mất {thoiGianBienMat}s...");
         DeathScreen.Instance?.HienManHinhChet();
         StartCoroutine(BienMatVaSpawnLai());
     }
@@ -109,7 +109,7 @@ public class EnemyAI : MonoBehaviour
         trangThaiHienTai = TrangThai.TuanTra;
         TimDiemTuanTraMoi();
 
-        Debug.Log($"👾 Enemy spawn lại tại {viTriMoi}");
+        Debug.Log($"[QUAI] Enemy spawn lại tại {viTriMoi}");
     }
 
     Vector3 TimViTriSpawnXaPlayer()
@@ -185,7 +185,7 @@ public class EnemyAI : MonoBehaviour
         {
             demPhatHien = 0f;
             trangThaiHienTai = TrangThai.TruyDuoi;
-            Debug.Log("👁️ Phát hiện! Bắt đầu truy đuổi...");
+            Debug.Log("[NHIN]️ Phát hiện! Bắt đầu truy đuổi...");
         }
     }
 

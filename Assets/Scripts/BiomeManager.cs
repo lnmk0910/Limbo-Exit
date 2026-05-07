@@ -1,4 +1,4 @@
-// BiomeManager.cs
+﻿// BiomeManager.cs
 // Áp dụng BiomeData vào Scene: đổi prefab tường/sàn, fog, ánh sáng, tốc độ Player
 // GẮN vào: GameObject "MazeGenerator" (cùng với MazeRenderer)
 // Tự động đọc biomeIndex từ GameSettings để chọn đúng biome
@@ -32,7 +32,7 @@ public class BiomeManager : MonoBehaviour
     {
         if (danhSachBiome == null || danhSachBiome.Length == 0)
         {
-            Debug.LogWarning("⚠️ Chưa gán Biome nào vào BiomeManager!");
+            Debug.LogWarning("[!]️ Chưa gán Biome nào vào BiomeManager!");
             return;
         }
 
@@ -67,7 +67,7 @@ public class BiomeManager : MonoBehaviour
         if (mainCamera != null)
             mainCamera.farClipPlane = BiomeHienTai.tamNhinToiDa;
 
-        Debug.Log($"🌍 Biome: {BiomeHienTai.tenBiome} | Fog: {BiomeHienTai.batFog} | TốcĐộ: {BiomeHienTai.heSoTocDo}x");
+        Debug.Log($"[BIOME] Biome: {BiomeHienTai.tenBiome} | Fog: {BiomeHienTai.batFog} | TốcĐộ: {BiomeHienTai.heSoTocDo}x");
 
         // Phát nhạc + ambient theo biome
         AudioManager.PhatBGMTheoBiome(index);

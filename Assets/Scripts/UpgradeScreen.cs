@@ -1,7 +1,7 @@
 // UpgradeScreen.cs
-// Màn hình Nâng Cấp Vĩnh Viễn giữa các màn
-// 4 loại nâng cấp dùng Mảnh Hồn
-// GẮN vào: GameObject "UpgradeScreen"
+// Man hinh Nang Cap Vinh Vien giua cac man
+// 4 loai nang cap dung Manh Hon (MH)
+// GAN vao: GameObject "UpgradeScreen"
 
 using UnityEngine;
 using TMPro;
@@ -14,28 +14,28 @@ public class UpgradeScreen : MonoBehaviour
     [Header("=== PANEL ===")]
     public GameObject panelUpgrade;
 
-    [Header("=== HIỂN THỊ TỔNG ===")]
+    [Header("=== HIEN THI TONG ===")]
     public TMP_Text txtManhHon;
 
-    [Header("=== TỐC ĐỘ DI CHUYỂN ===")]
+    [Header("=== TOC DO DI CHUYEN ===")]
     public TMP_Text txtCapTocDo;
     public TMP_Text txtGiaTocDo;
     public int giaTocDo     = 8;
     public int capToiDaTocDo = 5;
 
-    [Header("=== LA BÀN (thêm thời gian) ===")]
+    [Header("=== LA BAN (them thoi gian) ===")]
     public TMP_Text txtCapLaBan;
     public TMP_Text txtGiaLaBan;
     public int giaLaBan      = 6;
     public int capToiDaLaBan = 3;
 
-    [Header("=== GIẢM GIÁ SHOP ===")]
+    [Header("=== GIAM GIA SHOP ===")]
     public TMP_Text txtCapGiaShop;
     public TMP_Text txtGiaGiaShop;
     public int giaGiamShop      = 5;
     public int capToiDaGiamShop = 3;
 
-    [Header("=== GIẢM TẦM PHÁT HIỆN ===")]
+    [Header("=== GIAM TAM PHAT HIEN ===")]
     public TMP_Text txtCapTamPH;
     public TMP_Text txtGiaTamPH;
     public int giaTamPhatHien   = 7;
@@ -69,7 +69,7 @@ public class UpgradeScreen : MonoBehaviour
     }
 
     // -----------------------------------------------
-    // MỞ màn hình nâng cấp
+    // MO man hinh nang cap
     // -----------------------------------------------
     public void MoUpgrade()
     {
@@ -83,37 +83,37 @@ public class UpgradeScreen : MonoBehaviour
     {
         PlayerData data = SaveSystem.LoadGame();
         if (txtManhHon != null)
-            txtManhHon.text = $"💎 {data.soManhHon} Mảnh Hồn";
+            txtManhHon.text = $"Manh Hon: {data.soManhHon} MH";
 
-        // Tốc độ
+        // Toc do
         if (txtCapTocDo != null)
-            txtCapTocDo.text = CapString(data.capTocDo, capToiDaTocDo, "+0.5 tốc độ");
+            txtCapTocDo.text = CapString(data.capTocDo, capToiDaTocDo, "+0.5 toc do");
         if (txtGiaTocDo != null)
-            txtGiaTocDo.text = data.capTocDo >= capToiDaTocDo ? "ĐÃ TỐI ĐA" : $"{giaTocDo} 💎";
+            txtGiaTocDo.text = data.capTocDo >= capToiDaTocDo ? "DA TOI DA" : $"{giaTocDo} MH";
 
-        // La bàn
+        // La ban
         if (txtCapLaBan != null)
-            txtCapLaBan.text = CapString(data.capLaBan, capToiDaLaBan, "+1s la bàn");
+            txtCapLaBan.text = CapString(data.capLaBan, capToiDaLaBan, "+1s la ban");
         if (txtGiaLaBan != null)
-            txtGiaLaBan.text = data.capLaBan >= capToiDaLaBan ? "ĐÃ TỐI ĐA" : $"{giaLaBan} 💎";
+            txtGiaLaBan.text = data.capLaBan >= capToiDaLaBan ? "DA TOI DA" : $"{giaLaBan} MH";
 
-        // Giảm giá shop
+        // Giam gia shop
         if (txtCapGiaShop != null)
-            txtCapGiaShop.text = CapString(data.capGiamGiaShop, capToiDaGiamShop, "-1 giá shop");
+            txtCapGiaShop.text = CapString(data.capGiamGiaShop, capToiDaGiamShop, "-1 gia shop");
         if (txtGiaGiaShop != null)
-            txtGiaGiaShop.text = data.capGiamGiaShop >= capToiDaGiamShop ? "ĐÃ TỐI ĐA" : $"{giaGiamShop} 💎";
+            txtGiaGiaShop.text = data.capGiamGiaShop >= capToiDaGiamShop ? "DA TOI DA" : $"{giaGiamShop} MH";
 
-        // Giảm tầm phát hiện
+        // Giam tam phat hien
         if (txtCapTamPH != null)
-            txtCapTamPH.text = CapString(data.capTamPhatHien, capToiDaTamPH, "-1 tầm quái");
+            txtCapTamPH.text = CapString(data.capTamPhatHien, capToiDaTamPH, "-1 tam quai");
         if (txtGiaTamPH != null)
-            txtGiaTamPH.text = data.capTamPhatHien >= capToiDaTamPH ? "ĐÃ TỐI ĐA" : $"{giaTamPhatHien} 💎";
+            txtGiaTamPH.text = data.capTamPhatHien >= capToiDaTamPH ? "DA TOI DA" : $"{giaTamPhatHien} MH";
     }
 
     string CapString(int hienTai, int toiDa, string moTa) =>
-        $"{moTa}\n[{new string('●', hienTai)}{new string('○', toiDa - hienTai)}] {hienTai}/{toiDa}";
+        $"{moTa}\n[{new string('*', hienTai)}{new string('-', toiDa - hienTai)}] {hienTai}/{toiDa}";
 
-    // ---- Hàm nâng cấp riêng từng loại ----
+    // ---- Ham nang cap rieng tung loai ----
     void ThucHienNangCap(string loai)
     {
         PlayerData data = SaveSystem.LoadGame();
@@ -122,14 +122,14 @@ public class UpgradeScreen : MonoBehaviour
 
         switch (loai)
         {
-            case "tocdo":   cap=data.capTocDo;       toiDa=capToiDaTocDo;   gia=giaTocDo;      ten="⚡ Tốc Độ"; break;
-            case "laban":   cap=data.capLaBan;        toiDa=capToiDaLaBan;   gia=giaLaBan;      ten="🧭 La Bàn"; break;
-            case "shop":    cap=data.capGiamGiaShop;  toiDa=capToiDaGiamShop;gia=giaGiamShop;   ten="🏪 Giảm Giá"; break;
-            case "tamph":   cap=data.capTamPhatHien;  toiDa=capToiDaTamPH;   gia=giaTamPhatHien; ten="👁️ Tầm Quái"; break;
+            case "tocdo":  cap=data.capTocDo;       toiDa=capToiDaTocDo;   gia=giaTocDo;       ten="[TOC DO]";  break;
+            case "laban":  cap=data.capLaBan;        toiDa=capToiDaLaBan;   gia=giaLaBan;       ten="[LA BAN]";  break;
+            case "shop":   cap=data.capGiamGiaShop;  toiDa=capToiDaGiamShop;gia=giaGiamShop;    ten="[SHOP]";    break;
+            case "tamph":  cap=data.capTamPhatHien;  toiDa=capToiDaTamPH;   gia=giaTamPhatHien;  ten="[TAM PH]"; break;
         }
 
-        if (cap >= toiDa) { AudioManager.PhatKhongDuTien(); Debug.Log($"❌ {ten} đã tối đa!"); return; }
-        if (data.soManhHon < gia) { AudioManager.PhatKhongDuTien(); Debug.Log($"❌ Không đủ Mảnh Hồn! Cần {gia}"); return; }
+        if (cap >= toiDa) { AudioManager.PhatKhongDuTien(); Debug.Log($"[LOI] {ten} da toi da!"); return; }
+        if (data.soManhHon < gia) { AudioManager.PhatKhongDuTien(); Debug.Log($"[LOI] Khong du Manh Hon! Can {gia}"); return; }
 
         data.soManhHon -= gia;
         switch (loai)
@@ -141,28 +141,24 @@ public class UpgradeScreen : MonoBehaviour
         }
 
         SaveSystem.SaveGame(data);
-        Debug.Log($"✅ Nâng cấp {ten} → Cấp {cap+1}! Còn {data.soManhHon} Mảnh Hồn");
+        Debug.Log($"[OK] Nang cap {ten} - Cap {cap+1}! Con {data.soManhHon} Manh Hon");
         AudioManager.PhatNangCap();
-        GameHUD.LamMoi(); // Đồng bộ HUD ngay lập tức
+        GameHUD.LamMoi();
         CapNhatUI();
     }
 
-    // Gọi từ Button trong Inspector
+    // Goi tu Button trong Inspector
     public void NangCapTocDo_Btn()    => ThucHienNangCap("tocdo");
     public void NangCapLaBan_Btn()    => ThucHienNangCap("laban");
     public void NangCapShop_Btn()     => ThucHienNangCap("shop");
     public void NangCapTamPH_Btn()    => ThucHienNangCap("tamph");
 
     // -----------------------------------------------
-    // NÚT: THU NHỎ LẠI HUB HOẶC TIẾP TỤC
+    // NUT: THU NHO LAI HUB HOAC TIEP TUC
     // -----------------------------------------------
     public void OnClick_ThuNho()
     {
         if (panelUpgrade != null) panelUpgrade.SetActive(false);
-
-        // Tự động quay về trạng thái trước đó:
-        //   Mở từ VictoryScreen → quay về ChienThang
-        //   Mở từ chỗ khác     → quay về TrongGame
         UIManager.DongVePanel();
 
         if (VictoryScreen.Instance != null && UIManager.DangO(UIManager.TrangThaiUI.ChienThang))

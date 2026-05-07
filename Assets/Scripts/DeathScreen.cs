@@ -76,13 +76,13 @@ public class DeathScreen : MonoBehaviour
         int conLai = Mathf.FloorToInt(data.soManhHon * 0.5f);
 
         if (txtThongBao != null)
-            txtThongBao.text = "🌑 Bóng tối đã nuốt chửng bạn...";
+            txtThongBao.text = "[CHET] Bong toi da nuot chung ban...";
 
         if (txtManhHonConLai != null)
             txtManhHonConLai.text =
-                $"💎 Mảnh Hồn còn lại: {conLai} (mất 50%)\n" +
-                $"🎒 Toàn bộ vật phẩm bị tịch thu\n\n" +
-                $"[Enter/Space] Tiếp tục   |   [Esc] Từ bỏ";
+                $"Manh Hon con lai: {conLai} MH (mat 50%)\n" +
+                $"Toan bo vat pham bi tich thu\n\n" +
+                $"[Enter/Space] Tiep tuc   |   [Esc] Tu bo";
 
         if (panelChet != null) panelChet.SetActive(true);
     }
@@ -107,7 +107,7 @@ public class DeathScreen : MonoBehaviour
         else
         {
             // Fallback: reload Scene nếu không tìm thấy RespawnManager
-            Debug.LogWarning("⚠️ Không có RespawnManager → Reload Scene");
+            Debug.LogWarning("[!]️ Không có RespawnManager → Reload Scene");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

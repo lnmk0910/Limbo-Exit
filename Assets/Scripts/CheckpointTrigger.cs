@@ -1,4 +1,4 @@
-// CheckpointTrigger.cs
+﻿// CheckpointTrigger.cs
 // Khi Player bước vào Checkpoint:
 // - Thưởng Mảnh Hồn
 // - Đăng ký vị trí này là Điểm An Toàn (Respawn Point)
@@ -35,7 +35,7 @@ public class CheckpointTrigger : MonoBehaviour
         AudioManager.PhatManhHonNhan();
         GameHUD.LamMoi(); // Cập nhật HUD ngay lập tức
 
-        Debug.Log($"💚 Checkpoint kích hoạt! +2 Mảnh Hồn. Tổng: {data.soManhHon}");
+        Debug.Log($"[CKPOINT] Checkpoint kích hoạt! +2 Mảnh Hồn. Tổng: {data.soManhHon}");
 
         // Đổi màu xám = đã dùng
         Renderer r = GetComponent<Renderer>();

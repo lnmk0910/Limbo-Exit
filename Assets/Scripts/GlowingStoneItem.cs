@@ -1,4 +1,4 @@
-// GlowingStoneItem.cs
+﻿// GlowingStoneItem.cs
 // Đá Phát Sáng: Nhấn 1 → ném ra xa, tạo ánh sáng trong 10 giây
 // GẮN vào: Player GameObject
 
@@ -24,11 +24,11 @@ public class GlowingStoneItem : MonoBehaviour
     {
         if (PlayerInventory.Instance == null || !PlayerInventory.Instance.DungDa())
         {
-            Debug.Log("❌ Không có Đá Phát Sáng!");
+            Debug.Log("[LOI] Không có Đá Phát Sáng!");
             return;
         }
 
-        if (prefabDa == null) { Debug.LogWarning("⚠️ Chưa gán Prefab Đá!"); return; }
+        if (prefabDa == null) { Debug.LogWarning("[!]️ Chưa gán Prefab Đá!"); return; }
 
         // Spawn viên đá tại camera
         Transform goc = viTriNem != null ? viTriNem : transform;
@@ -41,6 +41,6 @@ public class GlowingStoneItem : MonoBehaviour
 
         // Tự hủy sau thoiGian giây
         Destroy(da, thoiGian);
-        Debug.Log($"🪨 Ném Đá Phát Sáng! Còn lại: {PlayerInventory.Instance.daPhatSang}");
+        Debug.Log($"Da Ném Đá Phát Sáng! Còn lại: {PlayerInventory.Instance.daPhatSang}");
     }
 }

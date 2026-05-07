@@ -35,16 +35,17 @@ public class VictoryScreen : MonoBehaviour
     void Start()
     {
         if (panelVictory != null) panelVictory.SetActive(false);
-        else Debug.LogError("❌ Panel_Victory chưa gán vào VictoryScreen!");
+        else Debug.LogError("[LOI] Panel_Victory chưa gán vào VictoryScreen!");
     }
 
     void Update()
     {
         if (!dangHien) return;
-
         if (!UIManager.DangO(UIManager.TrangThaiUI.ChienThang)) return;
 
-        // Phím tắt cho người chơi
+        // Chi xu ly phim khi KHONG phai pha dao (pha dao do GameClearScreen xu ly)
+        if (laPhaDao) return;
+
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.S)) OnClick_MoShop();
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.U)) OnClick_NangCap();
         if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Return)) OnClick_SangTangTiep();
@@ -57,6 +58,32 @@ public class VictoryScreen : MonoBehaviour
     public void HienManHinhThang()
     {
         if (dangHien) return;
+
+        PlayerData data = SaveSystem.LoadGame();
+
+        // Kiem tra co phai tang cuoi khong
+        bool conTang = data.biomeSequence != null
+                       && data.mapHienTai < data.biomeSequence.Length;
+        laPhaDao = !conTang;
+
+        // --- PHA DAO → Chuyen sang GameClearScreen ---
+        if (laPhaDao)
+        {
+            GameClearScreen gc = GameClearScreen.Instance
+                              ?? FindFirstObjectByType<GameClearScreen>();
+            if (gc != null)
+            {
+                gc.HienGameClear();
+                return; // Khong mo VictoryScreen binh thuong
+            }
+            else
+            {
+                Debug.LogWarning("[!] Khong tim thay GameClearScreen trong Scene!");
+                // Fallback: van hien VictoryScreen binh thuong
+            }
+        }
+
+        // --- TANG THUONG → VictoryScreen binh thuong ---
         dangHien = true;
         UIManager.Mo(UIManager.TrangThaiUI.ChienThang);
 
@@ -64,34 +91,19 @@ public class VictoryScreen : MonoBehaviour
         Cursor.visible   = true;
         Time.timeScale   = 0f;
 
-        PlayerData data = SaveSystem.LoadGame();
-
-        // Kiểm tra xem còn tầng tiếp hay đã phá đảo
-        bool conTang = data.biomeSequence != null
-                       && data.mapHienTai < data.biomeSequence.Length;
-        laPhaDao = !conTang;
-
-        // Cập nhật tiêu đề
         if (txtTieuDe != null)
-            txtTieuDe.text = laPhaDao
-                ? "🏆 PHÁ ĐẢO TOÀN CỤC! 🏆"
-                : $"✅ TẦNG {data.mapHienTai} HOÀN THÀNH!";
+            txtTieuDe.text = $"[OK] TANG {data.mapHienTai} HOAN THANH!";
 
-        // Cập nhật thống kê + hướng dẫn phím
-        string gợiY = laPhaDao
-            ? "[Enter/3] Chơi Lại   [Esc/4] Về Menu"
-            : "[S/1] Cửa Hàng   [U/2] Nâng Cấp   [Enter/3] Sang Tầng Tiếp   [Esc/4] Về Menu";
+        string goiY = "[S/1] Cua Hang   [U/2] Nang Cap   [Enter/3] Sang Tang Tiep   [Esc/4] Ve Menu";
 
         if (txtThongKe != null)
-            txtThongKe.text = $"+10 💎 Mảnh Hồn  |  Tổng: {data.soManhHon}\n\n{gợiY}";
+            txtThongKe.text = $"+10 Manh Hon  |  Tong: {data.soManhHon}\n\n{goiY}";
 
         if (panelVictory != null) panelVictory.SetActive(true);
 
-        // Nhạc chiến thắng — fanfare đặc biệt nếu phá đảo
-        if (laPhaDao) AudioManager.PhatPhaDao();
         AudioManager.PhatBGM(AudioManager.Instance?.bgmVictory);
 
-        Debug.Log($"🏆 VictoryScreen hiện! Tầng {data.mapHienTai} | Phá đảo: {laPhaDao}");
+        Debug.Log($"[WIN] VictoryScreen hien! Tang {data.mapHienTai}");
     }
 
     // -----------------------------------------------
@@ -120,7 +132,7 @@ public class VictoryScreen : MonoBehaviour
         if (shop != null)
             shop.MoShop(); // Mở bình thường, đóng shop sẽ quay về VictoryScreen
         else
-            Debug.LogError("❌ Không tìm thấy ItemShopUI!");
+            Debug.LogError("[LOI] Không tìm thấy ItemShopUI!");
     }
 
     // [2] Mở Nâng Cấp
@@ -133,7 +145,7 @@ public class VictoryScreen : MonoBehaviour
         if (us != null)
             us.MoUpgrade();
         else
-            Debug.LogError("❌ Không tìm thấy UpgradeScreen!");
+            Debug.LogError("[LOI] Không tìm thấy UpgradeScreen!");
     }
 
     // [3] Sang tầng tiếp / Chơi lại (nếu phá đảo)

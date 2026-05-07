@@ -1,4 +1,4 @@
-// AncientCompassItem.cs
+﻿// AncientCompassItem.cs
 // La Bàn Cổ: Nhấn 3 → hiện mũi tên chỉ hướng Cổng Thoát trong 3s rồi vỡ
 // GẮN vào: Player GameObject
 
@@ -45,7 +45,7 @@ public class AncientCompassItem : MonoBehaviour
     {
         if (PlayerInventory.Instance == null || !PlayerInventory.Instance.DungLaBan())
         {
-            Debug.Log("❌ Không có La Bàn Cổ!");
+            Debug.Log("[LOI] Không có La Bàn Cổ!");
             return;
         }
 
@@ -64,14 +64,14 @@ public class AncientCompassItem : MonoBehaviour
     {
         dangDung = true;
         if (panelLaBan != null) panelLaBan.SetActive(true);
-        if (txtHuong != null) txtHuong.text = "🧭 Cổng Thoát";
-        Debug.Log($"🧭 La Bàn Cổ kích hoạt trong {thoiGianHien}s!");
+        if (txtHuong != null) txtHuong.text = "LB Cổng Thoát";
+        Debug.Log($"LB La Bàn Cổ kích hoạt trong {thoiGianHien}s!");
 
         // Đếm ngược
         float conLai = thoiGianHien;
         while (conLai > 0)
         {
-            if (txtHuong != null) txtHuong.text = $"🧭 Cổng Thoát ({conLai:F1}s)";
+            if (txtHuong != null) txtHuong.text = $"LB Cổng Thoát ({conLai:F1}s)";
             conLai -= Time.deltaTime;
             yield return null;
         }
@@ -79,6 +79,6 @@ public class AncientCompassItem : MonoBehaviour
         // Vỡ vụn (ẩn UI)
         if (panelLaBan != null) panelLaBan.SetActive(false);
         dangDung = false;
-        Debug.Log("🧭 La Bàn Cổ đã vỡ vụn!");
+        Debug.Log("LB La Bàn Cổ đã vỡ vụn!");
     }
 }

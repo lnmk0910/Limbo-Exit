@@ -1,4 +1,4 @@
-// TimeClockItem.cs
+﻿// TimeClockItem.cs
 // Đồng Hồ Thời Gian: Nhấn 2 → đóng băng thời gian quái vật trong 5 giây
 // GẮN vào: Player GameObject
 // Quái vật cần có tag "Enemy" để bị ảnh hưởng
@@ -26,7 +26,7 @@ public class TimeClockItem : MonoBehaviour
     {
         if (PlayerInventory.Instance == null || !PlayerInventory.Instance.DungDongHo())
         {
-            Debug.Log("❌ Không có Đồng Hồ Thời Gian!");
+            Debug.Log("[LOI] Không có Đồng Hồ Thời Gian!");
             return;
         }
 
@@ -36,7 +36,7 @@ public class TimeClockItem : MonoBehaviour
     IEnumerator HieuUngDongBang()
     {
         dangDongBang = true;
-        Debug.Log($"⏱️ Đóng băng quái vật trong {thoiGianDong}s!");
+        Debug.Log($"DH️ Đóng băng quái vật trong {thoiGianDong}s!");
 
         // Tìm tất cả quái vật (tag "Enemy") và tắt NavMeshAgent
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -65,6 +65,6 @@ public class TimeClockItem : MonoBehaviour
         }
 
         dangDongBang = false;
-        Debug.Log("⏱️ Hết hiệu lực đóng băng!");
+        Debug.Log("DH️ Hết hiệu lực đóng băng!");
     }
 }

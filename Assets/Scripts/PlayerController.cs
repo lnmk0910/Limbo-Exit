@@ -1,4 +1,4 @@
-// PlayerController.cs (cập nhật)
+﻿// PlayerController.cs (cập nhật)
 // Đọc cấp nâng cấp tốc độ từ PlayerData
 // GẮN vào: Player GameObject
 
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         }
 
         if (bonusTocDo > 0)
-            Debug.Log($"⚡ Tốc độ nâng cấp: +{bonusTocDo} (Cấp {data.capTocDo})");
+            Debug.Log($"[TOCDO] Tốc độ nâng cấp: +{bonusTocDo} (Cấp {data.capTocDo})");
     }
 
     void FixedUpdate()

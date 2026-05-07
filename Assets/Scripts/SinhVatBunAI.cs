@@ -1,4 +1,4 @@
-// SinhVatBunAI.cs - Thêm cơ chế biến mất & spawn lại
+﻿// SinhVatBunAI.cs - Thêm cơ chế biến mất & spawn lại
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -80,7 +80,7 @@ public class SinhVatBunAI : MonoBehaviour
         transform.localScale = Vector3.one;
         agent.enabled = true;
         trangThai = TrangThai.TruyDuoi;
-        Debug.Log("💧 Sinh Vật Bùn nổi lên!");
+        Debug.Log("[BUN] Sinh Vật Bùn nổi lên!");
     }
 
     // Chìm xuống rồi spawn lại (sau khi bắt hoặc Player chạy thoát)
@@ -108,13 +108,13 @@ public class SinhVatBunAI : MonoBehaviour
 
         daBat = false;
         trangThai = TrangThai.AnNap;
-        Debug.Log($"💧 Sinh Vật Bùn ẩn lại tại {viTriMoi}");
+        Debug.Log($"[BUN] Sinh Vật Bùn ẩn lại tại {viTriMoi}");
     }
 
     void BatDuocPlayer()
     {
         daBat = true;
-        Debug.Log($"💀 Sinh Vật Bùn bắt được! Ẩn {thoiGianBienMat}s...");
+        Debug.Log($"[CHET] Sinh Vật Bùn bắt được! Ẩn {thoiGianBienMat}s...");
         DeathScreen.Instance?.HienManHinhChet();
         StartCoroutine(ChimXuongVaSpawnLai(true));
     }
