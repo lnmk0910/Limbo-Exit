@@ -42,13 +42,75 @@
     <UnityVersion>6000.0.57f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <Analyzer Include="C:\Users\tkgea\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.2.1\Analyzers\Microsoft.Unity.Analyzers.dll" />
+=======
+    <Analyzer Include="C:\Users\tkgea\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.2.2\Analyzers\Microsoft.Unity.Analyzers.dll" />
+>>>>>>> Stashed changes
     <Analyzer Include="C:\Program Files\Unity 6000.0.57f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity 6000.0.57f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\Program Files\Unity 6000.0.57f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+=======
+    <Compile Include="Assets\Scripts\GameHUD.cs" />
+    <Compile Include="Assets\Scripts\VictoryScreen.cs" />
+    <Compile Include="Assets\Scripts\ExitButton.cs" />
+    <Compile Include="Assets\Scripts\ExitGate.cs" />
+    <Compile Include="Assets\Scripts\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\BiomeData.cs" />
+    <Compile Include="Assets\Sprits\XuLyVaChamChoXe.cs" />
+    <Compile Include="Assets\Scripts\NavMeshSurface.cs" />
+    <Compile Include="Assets\Scripts\MenuTamDung.cs" />
+    <Compile Include="Assets\Scripts\UpgradeScreen.cs" />
+    <Compile Include="Assets\Scripts\EnemyAI.cs" />
+    <Compile Include="Assets\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\GameSettings.cs" />
+    <Compile Include="Assets\Sprits\NewMonoBehaviourScript.cs" />
+    <Compile Include="Assets\Sprits\Menu.cs" />
+    <Compile Include="Assets\Scripts\MinigameTrigger.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\ItemShopUI.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
+    <Compile Include="Assets\Dohoa\4K Tiled Ground Textures p1\Scripts\AutoSpriteChanger_gp1.cs" />
+    <Compile Include="Assets\Scripts\MazeCell.cs" />
+    <Compile Include="Assets\Scripts\AncientCompassItem.cs" />
+    <Compile Include="Assets\QuizManager.cs" />
+    <Compile Include="Assets\Code\BasketballController.cs" />
+    <Compile Include="Assets\Scripts\CheckpointTrigger.cs" />
+    <Compile Include="Assets\Scripts\MazeGenerator.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem.cs" />
+    <Compile Include="Assets\Scripts\NPCTrigger.cs" />
+    <Compile Include="Assets\Code\HoopDetector.cs" />
+    <Compile Include="Assets\Scripts\PlayerInventory.cs" />
+    <Compile Include="Assets\Scripts\GameClearScreen.cs" />
+    <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\MazeRenderer.cs" />
+    <Compile Include="Assets\Code\MinigameManager.cs" />
+    <Compile Include="Assets\Scripts\ThuthuMuAI.cs" />
+    <Compile Include="Assets\Scripts\DeathScreen.cs" />
+    <Compile Include="Assets\Code\BasketballMinigame.cs" />
+    <Compile Include="Assets\Scripts\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\SinhVatBunAI.cs" />
+    <Compile Include="Assets\Scripts\DialogueUI.cs" />
+    <Compile Include="Assets\Code\FlappyBirdController.cs" />
+    <Compile Include="Assets\Scripts\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\BiomeManager.cs" />
+    <Compile Include="Assets\TestDeathTrigger.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\TimeClockItem.cs" />
+    <Compile Include="Assets\Sprits\GameUi.cs" />
+    <Compile Include="Assets\Scripts\RespawnManager.cs" />
+    <Compile Include="Assets\Scripts\LoadingScreen.cs" />
+    <Compile Include="Assets\Question.cs" />
+    <Compile Include="Assets\Code\MyAnimationContoller.cs" />
+    <Compile Include="Assets\Scripts\GlowingStoneItem.cs" />
+    <Compile Include="Assets\Sprits\Car.cs" />
+    <Compile Include="Assets\Sprits\GameManager1.cs" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Room\Settings\Note.txt" />
