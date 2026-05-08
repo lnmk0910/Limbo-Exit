@@ -19,8 +19,15 @@ public class QuizManager : MonoBehaviour
 
     void Start()
     {
+        // HIỆN CHUỘT
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // Ẩn panel thắng thua
         winPanel.SetActive(false);
         losePanel.SetActive(false);
+
+        // Hiện câu hỏi đầu
         ShowQuestion();
     }
 
@@ -35,10 +42,14 @@ public class QuizManager : MonoBehaviour
         Question q = questions[currentQuestion];
 
         questionText.text = q.question;
-        questionIndexText.text = "Question " + (currentQuestion + 1) + "/5";
+
+        questionIndexText.text =
+            "Question " + (currentQuestion + 1) + "/" + questions.Length;
 
         for (int i = 0; i < answerTexts.Length; i++)
+        {
             answerTexts[i].text = q.answers[i];
+        }
     }
 
     public void ChooseAnswer(int index)
@@ -46,9 +57,12 @@ public class QuizManager : MonoBehaviour
         if (gameEnded) return;
 
         if (index == questions[currentQuestion].correctAnswerIndex)
+        {
             correctCount++;
+        }
 
         currentQuestion++;
+
         ShowQuestion();
     }
 
@@ -57,15 +71,23 @@ public class QuizManager : MonoBehaviour
         gameEnded = true;
 
         if (correctCount >= 3)
+        {
             winPanel.SetActive(true);
+        }
         else
+        {
             losePanel.SetActive(true);
+        }
 
         Invoke(nameof(ReturnToMap), 2f);
     }
 
     void ReturnToMap()
     {
-        SceneManager.LoadScene("GameScene"); // 👉 sửa đúng tên map của bạn
+        // KHÓA CHUỘT LẠI KHI VỀ GAME
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        SceneManager.LoadScene("GameScene");
     }
 }
