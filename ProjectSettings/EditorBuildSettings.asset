@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Basketball.unity
     guid: 58921f5ddce70674ebe1d8d7c1a7480c
+  - enabled: 1
+    path: Assets/Scenes/Quizz.unity
+    guid: 2b872c01e794a4447b00ca9773a9493f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
