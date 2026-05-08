@@ -1,35 +1,42 @@
-﻿// SaveSystem.cs
-// Hệ thống lưu/đọc dữ liệu người chơi bằng file JSON
-// KHÔNG kế thừa MonoBehaviour - gọi trực tiếp qua SaveSystem.SaveGame()
+// SaveSystem.cs
+// He thong luu/doc du lieu nguoi choi bang file JSON
+// HO TRO TAI KHOAN: khi dang nhap, save file duoc tach rieng theo username
+// VD: playerdata_minhtuan_slot1.json
+// KHONG ke thua MonoBehaviour — goi truc tiep qua SaveSystem.SaveGame()
 
-using System.IO;       // Dùng để làm việc với file
-using UnityEngine;     // Dùng Debug.Log và Application.persistentDataPath
+using System.IO;
+using UnityEngine;
 
 public static class SaveSystem
 {
-    // Biến lưu slot hiện tại đang phục vụ
+    // Bien luu slot hien tai dang phuc vu
     public static int currentSlotIndex = 0;
 
-    // Trả về đường dẫn lấy theo Slot
+    // Tra ve duong dan lay theo Slot + Tai khoan
     private static string GetFilePath()
     {
-        // Để tương thích ngược (nếu ai đó dùng 0)
         if (currentSlotIndex <= 0) currentSlotIndex = 1;
+
+        // Neu da dang nhap: luu theo ten tai khoan
+        if (AccountManager.DaDangNhap)
+            return AccountManager.LayDuongDanSave(currentSlotIndex);
+
+        // Chua dang nhap: luu binh thuong (tuong thich nguoc)
         return Application.persistentDataPath + $"/playerdata_slot{currentSlotIndex}.json";
     }
 
     // =============================================
-    // HÀM LƯU: Chuyển PlayerData thành JSON rồi ghi ra file
+    // HAM LUU
     // =============================================
     public static void SaveGame(PlayerData data)
     {
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(GetFilePath(), json);
-        Debug.Log($"[OK] Đã lưu game (Hồ sơ {currentSlotIndex}) tại: {GetFilePath()}");
+        Debug.Log($"[OK] Da luu game ({LayTenNguoiChoi()} Ho so {currentSlotIndex}) tai: {GetFilePath()}");
     }
 
     // =============================================
-    // HÀM ĐỌC: Đọc file JSON và trả về PlayerData
+    // HAM DOC
     // =============================================
     public static PlayerData LoadGame()
     {
@@ -38,18 +45,18 @@ public static class SaveSystem
         {
             string json = File.ReadAllText(path);
             PlayerData data = JsonUtility.FromJson<PlayerData>(json);
-            Debug.Log($"[OK] Đã đọc save Hồ sơ {currentSlotIndex} thành công!");
+            Debug.Log($"[OK] Da doc save {LayTenNguoiChoi()} Ho so {currentSlotIndex} thanh cong!");
             return data;
         }
         else
         {
-            Debug.Log($"[!]️ Chưa có file save cho Hồ sơ {currentSlotIndex}. Tạo dữ liệu mới.");
+            Debug.Log($"[!] Chua co file save cho {LayTenNguoiChoi()} Ho so {currentSlotIndex}. Tao du lieu moi.");
             return new PlayerData();
         }
     }
 
     // =============================================
-    // HÀM XÓA SAVE: Dùng khi người chơi chọn "Chơi mới"
+    // HAM XOA SAVE
     // =============================================
     public static void DeleteSave()
     {
@@ -57,7 +64,7 @@ public static class SaveSystem
         if (File.Exists(path))
         {
             File.Delete(path);
-            Debug.Log($"🗑️ Đã xóa file save: {path}");
+            Debug.Log($"[XOA] Da xoa file save: {path}");
         }
     }
 
@@ -67,22 +74,39 @@ public static class SaveSystem
     }
 
     // =============================================
-    // HÀM KHÁM PHÁ (Dành riêng cho MenuManager để Load Text Slot)
+    // HAM KHAM PHA (Danh rieng cho MenuManager de Load Text Slot)
     // =============================================
     public static bool KiemTraSlotTonTai(int slot)
     {
-        string path = Application.persistentDataPath + $"/playerdata_slot{slot}.json";
+        string path;
+        if (AccountManager.DaDangNhap)
+            path = AccountManager.LayDuongDanSave(slot);
+        else
+            path = Application.persistentDataPath + $"/playerdata_slot{slot}.json";
         return File.Exists(path);
     }
 
     public static PlayerData XemTruocDataSlot(int slot)
     {
-        string path = Application.persistentDataPath + $"/playerdata_slot{slot}.json";
+        string path;
+        if (AccountManager.DaDangNhap)
+            path = AccountManager.LayDuongDanSave(slot);
+        else
+            path = Application.persistentDataPath + $"/playerdata_slot{slot}.json";
+
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
             return JsonUtility.FromJson<PlayerData>(json);
         }
-        return new PlayerData(); // Rỗng nếu không có
+        return new PlayerData();
+    }
+
+    // =============================================
+    // HELPER
+    // =============================================
+    static string LayTenNguoiChoi()
+    {
+        return AccountManager.DaDangNhap ? AccountManager.TenDangNhap : "Guest";
     }
 }

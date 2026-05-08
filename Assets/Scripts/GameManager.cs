@@ -1,4 +1,4 @@
-﻿// GameManager.cs
+// GameManager.cs
 // Spawn Player/ExitGate và kết nối RespawnManager
 // GẮN vào: Empty GameObject "GameManager" trong GameScene
 
@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public RespawnManager respawnManager;   // Kéo RespawnManager vào đây
 
     [Header("=== KÍCH THƯỚC Ô ===")]
-    public float kichThuocO = 4f;
+    public float kichThuocO = 6f;
 
     [Header("=== ĐỘ CAO SPAWN ===")]
     public float doCaoPlayer = 1f;

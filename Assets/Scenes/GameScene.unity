@@ -4246,7 +4246,6 @@ MonoBehaviour:
   prefabCheckpoint: {fileID: 1722716943124059796, guid: 40936ae7f868fc847a241997effb6c55, type: 3}
   prefabMinigame: {fileID: 8735278176480360846, guid: e88b3470c2da56742a84d93d38a30586, type: 3}
   prefabNPC: {fileID: 409883158319874140, guid: e67d255ddc6fafe4bafa12c5764c22e9, type: 3}
-  kichThuocO: 4
 --- !u!114 &628270819
 MonoBehaviour:
   m_ObjectHideFlags: 0

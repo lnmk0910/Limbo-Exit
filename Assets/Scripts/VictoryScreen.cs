@@ -24,7 +24,8 @@ public class VictoryScreen : MonoBehaviour
     public string tenSceneMenu = "MainMenu";
 
     private bool dangHien = false;
-    private bool laPhaDao = false; // True nếu đây là màn cuối cùng
+    private bool laPhaDao = false; // True neu day la man cuoi cung
+    private bool choPhimFrame = false; // Bo qua input 1 frame (chong chain tu Shop/Upgrade)
 
     void Awake()
     {
@@ -35,21 +36,22 @@ public class VictoryScreen : MonoBehaviour
     void Start()
     {
         if (panelVictory != null) panelVictory.SetActive(false);
-        else Debug.LogError("[LOI] Panel_Victory chưa gán vào VictoryScreen!");
+        else Debug.LogError("[LOI] Panel_Victory chua gan vao VictoryScreen!");
     }
 
     void Update()
     {
         if (!dangHien) return;
         if (!UIManager.DangO(UIManager.TrangThaiUI.ChienThang)) return;
-
-        // Chi xu ly phim khi KHONG phai pha dao (pha dao do GameClearScreen xu ly)
         if (laPhaDao) return;
+
+        // Bo qua 1 frame sau khi Shop/Upgrade dong (chong key chain)
+        if (choPhimFrame) { choPhimFrame = false; return; }
 
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.S)) OnClick_MoShop();
         if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.U)) OnClick_NangCap();
         if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Return)) OnClick_SangTangTiep();
-        if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Escape)) OnClick_VeMenu();
+        if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Q)) OnClick_VeMenu();
     }
 
     // -----------------------------------------------
@@ -94,7 +96,7 @@ public class VictoryScreen : MonoBehaviour
         if (txtTieuDe != null)
             txtTieuDe.text = $"[OK] TANG {data.mapHienTai} HOAN THANH!";
 
-        string goiY = "[S/1] Cua Hang   [U/2] Nang Cap   [Enter/3] Sang Tang Tiep   [Esc/4] Ve Menu";
+        string goiY = "[S/1] Cua Hang   [U/2] Nang Cap   [Enter/3] Tang Tiep   [Q/4] Ve Menu";
 
         if (txtThongKe != null)
             txtThongKe.text = $"+10 Manh Hon  |  Tong: {data.soManhHon}\n\n{goiY}";
@@ -107,11 +109,12 @@ public class VictoryScreen : MonoBehaviour
     }
 
     // -----------------------------------------------
-    // GỌI TỪ Shop / UpgradeScreen để trả lại HUB
+    // GOI TU Shop / UpgradeScreen de tra lai HUB
     // -----------------------------------------------
     public void KhoiPhucHienThiHUB()
     {
         if (!dangHien) return;
+        choPhimFrame = true; // Bo qua input frame nay de tranh key chain
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible   = true;
         Time.timeScale   = 0f;

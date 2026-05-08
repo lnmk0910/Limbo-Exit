@@ -1,4 +1,4 @@
-﻿// MenuManager.cs
+// MenuManager.cs
 // Điều khiển Main Menu: HomePanel, SettingsPanel, SaveSlotPanel
 // BiomePanel đã được xoá — Biome được random tự động khi vào game
 // GẮN vào: Canvas_MainMenu
@@ -6,6 +6,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -30,7 +31,11 @@ public class MenuManager : MonoBehaviour
     public UnityEngine.UI.Slider sliderDoDay;
 
     [Header("=== SCENE ===")]
-    public string tenSceneGame = "GameScene";
+    public string tenSceneGame  = "GameScene";
+    public string tenSceneLogin = "LoginScene";
+
+    [Header("=== TAI KHOAN ===")]
+    public TMP_Text txtTenNguoiChoi;   // Hien thi ten nguoi choi (tuy chon, co the null)
 
     private int  dangChonSlot       = 0;
     private bool dangChonDeContinue = true;
@@ -47,7 +52,15 @@ public class MenuManager : MonoBehaviour
 
         dangChonSlot = 0;
 
-        // Hiện nút Continue nếu có ít nhất 1 hồ sơ
+        // Hien thi ten nguoi choi
+        if (txtTenNguoiChoi != null)
+        {
+            txtTenNguoiChoi.text = AccountManager.DaDangNhap
+                ? $"Xin chao, {AccountManager.TenDangNhap}!"
+                : "Khach";
+        }
+
+        // Hien nut Continue neu co it nhat 1 ho so
         if (btnContinue != null)
         {
             btnContinue.SetActive(
@@ -57,7 +70,7 @@ public class MenuManager : MonoBehaviour
             );
         }
 
-        // Đồng bộ Settings UI
+        // Dong bo Settings UI
         if (inputRong      != null) inputRong.text       = GameSettings.rong.ToString();
         if (inputDai       != null) inputDai.text        = GameSettings.dai.ToString();
         if (sliderChieuCao != null) sliderChieuCao.value = GameSettings.chieuCaoTuong;
@@ -95,6 +108,7 @@ public class MenuManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Return)) OnClick_MenuContinue();
             if (Input.GetKeyDown(KeyCode.N)) OnClick_MenuNewGame();
             if (Input.GetKeyDown(KeyCode.S)) OnClick_Settings();
+            if (Input.GetKeyDown(KeyCode.L)) OnClick_DangXuat();
             if (Input.GetKeyDown(KeyCode.Escape)) OnClick_Exit();
         }
     }
@@ -231,4 +245,13 @@ public class MenuManager : MonoBehaviour
     }
 
     public void OnClick_Exit() => Application.Quit();
+
+    // -----------------------------------------------
+    // DANG XUAT
+    // -----------------------------------------------
+    public void OnClick_DangXuat()
+    {
+        AccountManager.DangXuat();
+        SceneManager.LoadScene(tenSceneLogin);
+    }
 }

@@ -1,4 +1,4 @@
-﻿// MazeGenerator.cs
+// MazeGenerator.cs
 // Thuật toán tạo mê cung: RECURSIVE BACKTRACKER (DFS) + SEED + EVENT GRID
 //
 // Mảng eventGrid[col, row] chứa mã số từng ô:
@@ -51,15 +51,21 @@ public class MazeGenerator : MonoBehaviour
     {
         PlayerData data = SaveSystem.LoadGame();
 
-        // CHỐNG NGỘP: Map bắt đầu từ 6x6, mỗi tầng tăng 2 ô. Max 15x15.
-        int scale = 6 + (data.mapHienTai - 1) * 2;
-        int sizeMax = Mathf.Min(scale, 15);
+        // === DDA: Tinh diem do kho truoc ===
+        DDAManager.ResetChoTangMoi();
+        float diemDoKho = DDAManager.TinhDiemDoKho();
+        int mapBonus = DDAManager.LayMapSizeBonus();
+
+        // Map: base 6x6, moi tang +2, DDA dieu chinh them. Max 15, Min 4.
+        int scale = 6 + (data.mapHienTai - 1) * 2 + mapBonus;
+        int sizeMax = Mathf.Clamp(scale, 4, 15);
         soCol = sizeMax;
         soRow = sizeMax;
 
-        // Cập nhật ngầm để các script khác đọc nếu cần
         GameSettings.rong = sizeMax;
         GameSettings.dai = sizeMax;
+
+        Debug.Log($"[DDA] Map size: {soCol}x{soRow} (base + DDA bonus {mapBonus:+0;-0})");
 
         // Lấy seed từ save (nếu seed = 0 thì sinh ngẫu nhiên)
         if (data.seed == 0)
@@ -99,6 +105,9 @@ public class MazeGenerator : MonoBehaviour
 
         SinhMeCung();
         DanhDauSuKien();
+
+        // === DDA: Ghi nhan bat dau tang moi ===
+        DDAManager.GhiNhanBatDauTang();
 
         // Lấy đúng Biome dựa theo Tầng (Logic: mapHienTai - 1 % 4 để xoay vòng)
         int indexTrongMang = (data.mapHienTai - 1) % data.biomeSequence.Length;
@@ -149,8 +158,7 @@ public class MazeGenerator : MonoBehaviour
 
         viTriStart = new Vector2Int(0, 0);
         viTriEnd   = new Vector2Int(soCol - 1, soRow - 1);
-        luoi[0, 0].tuongTrai = false;
-        luoi[soCol - 1, soRow - 1].tuongPhai = false;
+        // KHONG pha tuong bien — map kin hoan toan, ExitGate spawn ben trong
 
         Debug.Log($"[OK] Mê cung {soCol}x{soRow} đã sinh xong! Start:{viTriStart} → End:{viTriEnd}");
     }
@@ -191,9 +199,9 @@ public class MazeGenerator : MonoBehaviour
 
         // Bước 4: Đánh dấu sự kiện theo tỉ lệ
         int tong = oTrong.Count;
-        int soCheckpoint = Mathf.FloorToInt(tong * tiLeCheckpoint);
+        int soCheckpoint = Mathf.FloorToInt(tong * DDAManager.LayTiLeCheckpoint());
         int soMinigame   = Mathf.FloorToInt(tong * tiLeMinigame);
-        int soNPC        = Mathf.FloorToInt(tong * tiLeNPC);
+        int soNPC        = Mathf.FloorToInt(tong * DDAManager.LayTiLeNPC());
 
         int idx = 0;
 

@@ -58,6 +58,9 @@ public class DeathScreen : MonoBehaviour
         dangHien = true;
         UIManager.Mo(UIManager.TrangThaiUI.ChetChoc);
 
+        // === DDA: Ghi nhan nguoi choi chet ===
+        DDAManager.GhiNhanChet();
+
         // Mở chuột TRƯỚC để đảm bảo click được
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible   = true;

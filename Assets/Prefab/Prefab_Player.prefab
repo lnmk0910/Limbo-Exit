@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3135083592684253617}
   - component: {fileID: 8266542016925434623}
   - component: {fileID: 549398757442270887}
+  - component: {fileID: 8286283473193585546}
   m_Layer: 8
   m_Name: Prefab_Player
   m_TagString: Player
@@ -200,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thoiGianDong: 5
-  mauHieuUng: {r: 0, g: 1, b: 1, a: 1}
+  mauDongBang: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &549398757442270887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +219,21 @@ MonoBehaviour:
   txtHuong: {fileID: 0}
   imgMuiTen: {fileID: 0}
   thoiGianHien: 3
+  bonusThoiGianMoiCap: 1
+--- !u!114 &8286283473193585546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7421530135716592473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee9db7c89cf48747997582f1e4b3e2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  khoangCachGhi: 2
+  kichThuocO: 4
 --- !u!1 &7784860309395310837
 GameObject:
   m_ObjectHideFlags: 0

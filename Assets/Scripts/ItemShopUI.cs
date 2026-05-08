@@ -1,4 +1,4 @@
-﻿// ItemShopUI.cs - Fix lỗi mua hàng
+// ItemShopUI.cs - Fix lỗi mua hàng
 // - Tất cả đọc/ghi đều qua SaveSystem trực tiếp (không qua PlayerInventory)
 // - Thêm nhiều Debug.Log để dễ kiểm tra
 // - Bỏ AddListener (dùng hàm public gán từ Inspector)
@@ -44,7 +44,8 @@ public class ItemShopUI : MonoBehaviour
     {
         if (!dangMo || !UIManager.DangO(UIManager.TrangThaiUI.Shop)) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.B)) DongShop();
+        // Dong shop chi bang phim B (KHONG dung ESC de tranh chain sang VictoryScreen/MainMenu)
+        if (Input.GetKeyDown(KeyCode.B)) DongShop();
         if (Input.GetKeyDown(KeyCode.Alpha1)) MuaDa();
         if (Input.GetKeyDown(KeyCode.Alpha2)) MuaDongHo();
         if (Input.GetKeyDown(KeyCode.Alpha3)) MuaLaBan();
@@ -79,7 +80,7 @@ public class ItemShopUI : MonoBehaviour
         Cursor.visible   = true;
         Time.timeScale   = 0f;
 
-        Debug.Log("[SHOP] Shop mở! Mảnh Hồn hiện có: " + SaveSystem.LoadGame().soManhHon);
+        Debug.Log("[SHOP] Mo shop! Manh Hon: " + SaveSystem.LoadGame().soManhHon);
     }
 
     public void DongShop()
@@ -116,7 +117,7 @@ public class ItemShopUI : MonoBehaviour
     void CapNhatUI()
     {
         PlayerData data = SaveSystem.LoadGame();
-        if (txtManhHon  != null) txtManhHon.text  = $"MH {data.soManhHon} Mảnh Hồn";
+        if (txtManhHon  != null) txtManhHon.text  = $"MH: {data.soManhHon} Manh Hon";
         if (txtSoDa     != null) txtSoDa.text     = $"x{data.soDaPhatSang}";
         if (txtSoDongHo != null) txtSoDongHo.text = $"x{data.soDongHo}";
         if (txtSoLaBan  != null) txtSoLaBan.text  = $"x{data.soLaBan}";

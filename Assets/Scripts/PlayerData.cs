@@ -2,24 +2,32 @@
 [System.Serializable]
 public class PlayerData
 {
-    // === TIỀN TỆ ===
+    // === TIEN TE ===
     public int soManhHon;
     public int mapHienTai;
     public int seed;
 
-    // === VẬT PHẨM ===
+    // === VAT PHAM ===
     public int soDaPhatSang;
     public int soDongHo;
     public int soLaBan;
 
-    // === NÂNG CẤP VĨNH VIỄN ===
-    public int capTocDo;        // +0.5 tốc độ mỗi cấp (tối đa 5)
-    public int capLaBan;        // +1s thời gian la bàn mỗi cấp (tối đa 3)
-    public int capGiamGiaShop;  // -1 Mảnh Hồn giá shop mỗi cấp (tối đa 3)
-    public int capTamPhatHien;  // -1 tầm phát hiện quái mỗi cấp (tối đa 3)
+    // === NANG CAP VINH VIEN ===
+    public int capTocDo;        // +0.5 toc do moi cap (toi da 5)
+    public int capLaBan;        // +1s thoi gian la ban moi cap (toi da 3)
+    public int capGiamGiaShop;  // -1 Manh Hon gia shop moi cap (toi da 3)
+    public int capTamPhatHien;  // -1 tam phat hien quai moi cap (toi da 3)
 
-    // === CỐT TRUYỆN ===
-    public int[] biomeSequence; // Chuỗi ngẫu nhiên các Map
+    // === COT TRUYEN ===
+    public int[] biomeSequence;
+
+    // === DDA — DYNAMIC DIFFICULTY ADJUSTMENT ===
+    public int soLanChetTong;       // Tong so lan chet tu dau den cuoi
+    public int soLanChetTangNay;    // So lan chet o tang hien tai (reset khi sang tang)
+    public float thoiGianBatDauTang; // Time.realtimeSinceStartup luc bat dau tang
+    public float thoiGianVuotTangTruoc; // Thoi gian (giay) da vuot tang truoc do
+    public int soLanDungVatPham;    // So lan su dung vat pham (do kho hay de?)
+    public float diemDoKho;         // DDA score hien tai (0.0 = de nhat, 1.0 = kho nhat)
 
     public PlayerData()
     {
@@ -33,8 +41,15 @@ public class PlayerData
         capLaBan        = 0;
         capGiamGiaShop  = 0;
         capTamPhatHien  = 0;
-        
-        // Cốt truyện (Khởi tạo mảng rỗng, MazeGenerator tráo ngẫu nhiên sau)
-        biomeSequence   = new int[] { 0, 1, 2, 3 }; // Mặc định 4 Biome (Đá Cổ, Thư Viện, Đầm Lầy, Tinh Thể)
+
+        biomeSequence   = new int[] { 0, 1, 2, 3 };
+
+        // DDA defaults
+        soLanChetTong       = 0;
+        soLanChetTangNay    = 0;
+        thoiGianBatDauTang  = 0f;
+        thoiGianVuotTangTruoc = 0f;
+        soLanDungVatPham    = 0;
+        diemDoKho           = 0.5f; // Trung binh
     }
 }

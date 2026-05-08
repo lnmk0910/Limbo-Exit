@@ -1,43 +1,44 @@
-﻿// MazeRenderer.cs
-// Render mê cung 3D theo kiểu kết cấu của từng Biome:
-//   WallStyle.ChuNhatDac  → 1 khối hộp chữ nhật / tường
-//   WallStyle.TruTron     → N cột trụ tròn xếp liên tiếp
-//   WallStyle.TruLucGiac  → N cột lục giác (Cylinder xoay 30°)
-//   GroundStyle.HinhVuong → Cube mỏng
-//   GroundStyle.HinhTron  → Cylinder mỏng (hình tròn)
-// GẮN vào: cùng GameObject "MazeGenerator"
+// MazeRenderer.cs
+// Render me cung 3D theo kieu ket cau cua tung Biome
+// Doc kich thuoc tu GameSettings (kichThuocO, chieuCaoTuong, doDayTuong)
+// GAN vao: cung GameObject "MazeGenerator"
 
 using UnityEngine;
 
 public class MazeRenderer : MonoBehaviour
 {
-    [Header("=== PREFABS CƠ BẢN ===")]
+    [Header("=== PREFABS CO BAN ===")]
     public GameObject prefabNen;
     public GameObject prefabTuong;
 
-    [Header("=== PREFABS SỰ KIỆN ===")]
+    [Header("=== PREFABS SU KIEN ===")]
     public GameObject prefabCheckpoint;
     public GameObject prefabMinigame;
     public GameObject prefabNPC;
 
-    [Header("=== KÍCH THƯỚC Ô ===")]
-    public float kichThuocO = 4f;
+    // Doc tu GameSettings — khong can set trong Inspector
+    private float kichThuocO;
 
-    // Cache biome hiện tại
+    // Cache biome hien tai
     private BiomeData biome;
     private MazeGenerator mazeGen;
 
     void Start()
     {
         mazeGen = GetComponent<MazeGenerator>();
-        if (mazeGen == null) { Debug.LogError("[LOI] Không tìm thấy MazeGenerator!"); return; }
+        if (mazeGen == null) { Debug.LogError("[LOI] Khong tim thay MazeGenerator!"); return; }
 
-        // Lấy biome từ BiomeManager (nếu có)
+        // Doc kich thuoc tu GameSettings (centralized)
+        kichThuocO = GameSettings.kichThuocO;
+
+        // Lay biome tu BiomeManager (neu co)
         BiomeManager bm = GetComponent<BiomeManager>();
         biome = (bm != null) ? bm.BiomeHienTai : null;
 
         float chieuCao = GameSettings.chieuCaoTuong;
         float doDay    = GameSettings.doDayTuong;
+
+        Debug.Log($"[RENDER] O={kichThuocO}m | Tuong cao={chieuCao}m day={doDay}m");
         RenderMeCung(chieuCao, doDay);
     }
 
@@ -76,11 +77,11 @@ public class MazeRenderer : MonoBehaviour
                                90f, chieuCao, doDay);
             }
         }
-        Debug.Log("[OK] Render xong mê cung 3D!");
+        Debug.Log("[OK] Render xong me cung 3D!");
     }
 
     // -----------------------------------------------
-    // SPAWN SÀN (hình dạng theo biome)
+    // SPAWN SAN
     // -----------------------------------------------
     void SpawnNen(Vector3 viTri)
     {
@@ -95,25 +96,23 @@ public class MazeRenderer : MonoBehaviour
         switch (style)
         {
             case GroundStyle.HinhVuong:
-                nen.transform.localScale = new Vector3(kichThuocO, 0.1f, kichThuocO);
+                // San vuong rong bang kich thuoc o, day 0.2 (du day de nhin ro)
+                nen.transform.localScale = new Vector3(kichThuocO, 0.2f, kichThuocO);
                 break;
 
             case GroundStyle.HinhTron:
-                // Cylinder Unity có radius=0.5 → scale X,Z = kichThuocO để radius = kichThuocO/2
-                nen.transform.localScale = new Vector3(kichThuocO, 0.05f, kichThuocO);
+                nen.transform.localScale = new Vector3(kichThuocO, 0.1f, kichThuocO);
                 break;
 
             case GroundStyle.HinhLucGiac:
-                // Xấp xỉ lục giác bằng Cylinder xoay 30° trên trục Y
-                nen.transform.localScale   = new Vector3(kichThuocO, 0.05f, kichThuocO);
+                nen.transform.localScale   = new Vector3(kichThuocO, 0.1f, kichThuocO);
                 nen.transform.eulerAngles  = new Vector3(0, 30f, 0);
                 break;
         }
     }
 
     // -----------------------------------------------
-    // SPAWN TƯỜNG (hình dạng theo biome)
-    // gocNgang: 0° = tường song song X, 90° = song song Z
+    // SPAWN TUONG
     // -----------------------------------------------
     void SpawnTuong(Vector3 viTri, float gocNgang, float chieuCao, float doDay)
     {
@@ -138,7 +137,7 @@ public class MazeRenderer : MonoBehaviour
         }
     }
 
-    // --- Tường chữ nhật đặc (cũ) ---
+    // --- Tuong chu nhat dac ---
     void SpawnTuongChuNhat(GameObject go, Vector3 viTri, float gocNgang,
                             float chieuCao, float doDay)
     {
@@ -148,39 +147,32 @@ public class MazeRenderer : MonoBehaviour
         t.transform.localScale = new Vector3(kichThuocO, chieuCao, doDay);
     }
 
-    // --- Dãy cột trụ xếp liên tiếp (Cylinder) ---
+    // --- Day cot tru xep lien tiep (Cylinder) ---
     void SpawnDayCotTru(GameObject go, Vector3 viTri, float gocNgang,
                          float chieuCao, bool xoayLucGiac)
     {
-        int soTru    = (biome != null) ? biome.soTruPerWall : 6;
-        float duongKinh = (biome != null) ? biome.duongKinhTru : 0.5f;
+        int soTru       = (biome != null) ? biome.soTruPerWall : 8;
+        float duongKinh = (biome != null) ? biome.duongKinhTru : 0.7f;
 
-        // Hướng dọc theo tường (vuông góc với gocNgang)
-        Vector3 huong = (gocNgang == 0f)
-            ? Vector3.right   // tường song song X → cột xếp theo X
-            : Vector3.forward; // tường song song Z → cột xếp theo Z
-
-        // Khoảng cách giữa các cột = kichThuocO / soTru
+        Vector3 huong = (gocNgang == 0f) ? Vector3.right : Vector3.forward;
         float buoc = kichThuocO / soTru;
-
-        // Điểm bắt đầu: dịch từ vị trí tường về -kichThuocO/2
         Vector3 batDau = viTri - huong * (kichThuocO / 2f - buoc / 2f);
         batDau.y = chieuCao / 2f;
 
         for (int i = 0; i < soTru; i++)
         {
             Vector3 viTriCot = batDau + huong * (i * buoc);
-            float gocY = xoayLucGiac ? 30f : 0f; // Lục giác xoay thêm 30°
+            float gocY = xoayLucGiac ? 30f : 0f;
 
             GameObject cot = Instantiate(go, viTriCot, Quaternion.Euler(0, gocY, 0));
             cot.name = "Cot";
-            // Cylinder Unity: trục Y = chiều cao, X/Z = đường kính
+            // Cot day hon: duong kinh tang, chieu cao day du
             cot.transform.localScale = new Vector3(duongKinh, chieuCao / 2f, duongKinh);
         }
     }
 
     // -----------------------------------------------
-    // SPAWN SỰ KIỆN
+    // SPAWN SU KIEN
     // -----------------------------------------------
     void SpawnSuKien(int ma, Vector3 viTriO)
     {
@@ -193,7 +185,7 @@ public class MazeRenderer : MonoBehaviour
             case 4: prefab = prefabNPC;        ten = "NPC";        break;
             default: return;
         }
-        if (prefab == null) { Debug.LogWarning($"[!]️ Prefab {ten} chưa gán!"); return; }
+        if (prefab == null) { Debug.LogWarning($"[!] Prefab {ten} chua gan!"); return; }
         GameObject obj = Instantiate(prefab, viTriO + new Vector3(0, 0.5f, 0), Quaternion.identity);
         obj.name = ten;
     }

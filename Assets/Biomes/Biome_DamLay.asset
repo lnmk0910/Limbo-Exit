@@ -16,19 +16,19 @@ MonoBehaviour:
   moTa: "T\u01B0\u1EDDng \u0111\xE1 c\u1ED5 x\u01B0a r\xEAu phong, b\u1EABy ch\xF4ng
     \u1EA9n trong b\xF3ng t\u1ED1i."
   anhDaiDien: {fileID: 0}
-  kieuTuong: 0
-  kieuSan: 1
+  kieuTuong: 1
+  kieuSan: 0
   soTruPerWall: 8
   duongKinhTru: 0.4
   prefabTuong: {fileID: 6795127452382077095, guid: 1ab2680e5a72cdc498eadd90113722d6, type: 3}
-  prefabNen: {fileID: 432333454342325003, guid: e5a41bd7691f8354fb5f35d9d1cb1b6b, type: 3}
+  prefabNen: {fileID: 1746452620016490299, guid: 476d087669dda1549b2bb6c94c434127, type: 3}
   prefabBay: {fileID: 0}
   mauAmbientLight: {r: 0.1, g: 0.1, b: 0.15, a: 1}
   mauFog: {r: 0.039215688, g: 0.101960786, b: 0.039215688, a: 1}
   batFog: 1
-  matDoFog: 0.15
-  heSoTocDo: 0.55
+  matDoFog: 0.06
+  heSoTocDo: 1
   coNuoc: 0
   coSuong: 1
-  tamNhinToiDa: 10
+  tamNhinToiDa: 25
   nhacNen: {fileID: 0}

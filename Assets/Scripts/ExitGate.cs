@@ -1,4 +1,4 @@
-﻿// ExitGate.cs - Fix toàn diện
+// ExitGate.cs - Fix toàn diện
 // Fix 1: Bỏ gameObject.tag = "ExitGate" (lỗi nếu tag chưa tạo trong TagManager)
 // Fix 2: Dùng distance check SONG SONG với OnTriggerEnter (backup)
 // Fix 3: Tìm VictoryScreen bằng FindFirstObjectByType nếu Instance null
@@ -51,7 +51,12 @@ public class ExitGate : MonoBehaviour
 
         PlayerData data = SaveSystem.LoadGame();
 
-        // Thưởng Mảnh Hồn và đánh dấu sẵn để VictoryScreen biết
+        // === DDA: Ghi nhan thoi gian vuot tang ===
+        float thoiGianVuot = Time.realtimeSinceStartup - data.thoiGianBatDauTang;
+        DDAManager.GhiNhanVuotTang(thoiGianVuot);
+
+        // Thuong Manh Hon
+        data = SaveSystem.LoadGame(); // Doc lai sau khi DDA da ghi
         data.soManhHon += 10;
         SaveSystem.SaveGame(data);
 

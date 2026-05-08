@@ -1,4 +1,4 @@
-﻿// EnemyAI.cs - Thêm cơ chế biến mất & spawn lại sau khi bắt Player
+// EnemyAI.cs - Thêm cơ chế biến mất & spawn lại sau khi bắt Player
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
@@ -54,7 +54,8 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         if (daBat || trangThaiHienTai == TrangThai.BienMat) return;
-        if (TimeClockItem.dangDongBang) return;
+        if (TimeClockItem.dangDongBang) { if (agent.enabled) agent.isStopped = true; return; }
+        if (agent.enabled && agent.isStopped) agent.isStopped = false;
 
         if (playerTransform != null)
         {
@@ -161,6 +162,22 @@ public class EnemyAI : MonoBehaviour
 
     void TimDiemTuanTraMoi()
     {
+        // === HEATMAP AI: 40% xac suat di den vung nong ===
+        if (HeatmapTracker.Instance != null && Random.value < 0.4f)
+        {
+            Vector3? diemNong = HeatmapTracker.Instance.LayDiemNongNgauNhien();
+            if (diemNong.HasValue)
+            {
+                NavMeshHit hitNong;
+                if (NavMesh.SamplePosition(diemNong.Value, out hitNong, 5f, NavMesh.AllAreas))
+                {
+                    agent.SetDestination(hitNong.position);
+                    return;
+                }
+            }
+        }
+
+        // Fallback: tuan tra ngau nhien nhu cu
         for (int i = 0; i < 15; i++)
         {
             Vector3 huong = Random.insideUnitSphere * khoangCachTuanTra;
