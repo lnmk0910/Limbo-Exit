@@ -8,6 +8,11 @@
 //   3 = Minigame (thử thách nhỏ)
 //   4 = NPC Thương nhân (mua/bán)
 //
+// PHIÊN BẢN MỚI:
+//   - ExitGate đặt tại điểm XA NHẤT theo đường đi (BFS) thay vì góc cố định
+//   - Sự kiện (Checkpoint/NPC/Minigame) phải cách nhau tối thiểu 2 ô
+//   - Sự kiện phân bố đều trên bản đồ (chia vùng)
+//
 // GẮN vào: Empty GameObject tên "MazeGenerator" trong GameScene
 
 using System.Collections.Generic;
@@ -43,6 +48,11 @@ public class MazeGenerator : MonoBehaviour
     public float tiLeMinigame   = 0.04f;  // 4% là Minigame
     [Range(0f, 1f)]
     public float tiLeNPC        = 0.03f;  // 3% là NPC
+
+    [Header("=== KHOẢNG CÁCH TỐI THIỂU GIỮA CÁC SỰ KIỆN ===")]
+    [Tooltip("Số ô tối thiểu giữa 2 sự kiện cùng loại (Manhattan distance)")]
+    [Range(1, 5)]
+    public int khoangCachToiThieu = 2;
 
     // -----------------------------------------------
     // AWAKE: chạy TRƯỚC tất cả Start() — sinh mê cung ngay
@@ -104,6 +114,11 @@ public class MazeGenerator : MonoBehaviour
         }
 
         SinhMeCung();
+
+        // TÌM ĐIỂM XA NHẤT TỪ START bằng BFS → đặt ExitGate
+        viTriEnd = TimDiemXaNhat(viTriStart);
+        Debug.Log($"[EXIT] ExitGate đặt tại {viTriEnd} (xa nhất từ Start {viTriStart})");
+
         DanhDauSuKien();
 
         // === DDA: Ghi nhan bat dau tang moi ===
@@ -157,34 +172,94 @@ public class MazeGenerator : MonoBehaviour
         }
 
         viTriStart = new Vector2Int(0, 0);
-        viTriEnd   = new Vector2Int(soCol - 1, soRow - 1);
-        // KHONG pha tuong bien — map kin hoan toan, ExitGate spawn ben trong
+        // viTriEnd sẽ được tính bằng BFS sau → điểm xa nhất theo đường đi
+        viTriEnd = new Vector2Int(soCol - 1, soRow - 1); // Tạm, sẽ bị ghi đè
 
-        Debug.Log($"[OK] Mê cung {soCol}x{soRow} đã sinh xong! Start:{viTriStart} → End:{viTriEnd}");
+        Debug.Log($"[OK] Mê cung {soCol}x{soRow} đã sinh xong! Start:{viTriStart}");
+    }
+
+    // -----------------------------------------------
+    // TÌM ĐIỂM XA NHẤT TỪ START (BFS trên mê cung)
+    // Duyệt qua đường đi thực tế, KHÔNG tính đường thẳng Euclid
+    // -----------------------------------------------
+    Vector2Int TimDiemXaNhat(Vector2Int batDau)
+    {
+        int[,] khoangCach = new int[soCol, soRow];
+        for (int c = 0; c < soCol; c++)
+            for (int r = 0; r < soRow; r++)
+                khoangCach[c, r] = -1;
+
+        Queue<Vector2Int> queue = new Queue<Vector2Int>();
+        khoangCach[batDau.x, batDau.y] = 0;
+        queue.Enqueue(batDau);
+
+        Vector2Int xaNhat = batDau;
+        int maxDist = 0;
+
+        while (queue.Count > 0)
+        {
+            Vector2Int cur = queue.Dequeue();
+            MazeCell cell = luoi[cur.x, cur.y];
+            int dist = khoangCach[cur.x, cur.y];
+
+            // Kiểm tra 4 hướng — chỉ đi qua nếu KHÔNG CÓ TƯỜNG
+            // Trên (row+1)
+            if (!cell.tuongTren && cur.y + 1 < soRow && khoangCach[cur.x, cur.y + 1] == -1)
+            {
+                khoangCach[cur.x, cur.y + 1] = dist + 1;
+                queue.Enqueue(new Vector2Int(cur.x, cur.y + 1));
+            }
+            // Dưới (row-1)
+            if (!cell.tuongDuoi && cur.y - 1 >= 0 && khoangCach[cur.x, cur.y - 1] == -1)
+            {
+                khoangCach[cur.x, cur.y - 1] = dist + 1;
+                queue.Enqueue(new Vector2Int(cur.x, cur.y - 1));
+            }
+            // Trái (col-1)
+            if (!cell.tuongTrai && cur.x - 1 >= 0 && khoangCach[cur.x - 1, cur.y] == -1)
+            {
+                khoangCach[cur.x - 1, cur.y] = dist + 1;
+                queue.Enqueue(new Vector2Int(cur.x - 1, cur.y));
+            }
+            // Phải (col+1)
+            if (!cell.tuongPhai && cur.x + 1 < soCol && khoangCach[cur.x + 1, cur.y] == -1)
+            {
+                khoangCach[cur.x + 1, cur.y] = dist + 1;
+                queue.Enqueue(new Vector2Int(cur.x + 1, cur.y));
+            }
+
+            // Cập nhật ô xa nhất
+            if (dist > maxDist)
+            {
+                maxDist = dist;
+                xaNhat = cur;
+            }
+        }
+
+        Debug.Log($"[BFS] Điểm xa nhất từ {batDau}: {xaNhat} (khoảng cách = {maxDist} bước)");
+        return xaNhat;
     }
 
     // -----------------------------------------------
     // ĐÁNH DẤU SỰ KIỆN vào eventGrid
+    // Phiên bản mới: kiểm tra khoảng cách tối thiểu giữa các sự kiện
     // -----------------------------------------------
     void DanhDauSuKien()
     {
         eventGrid = new int[soCol, soRow];
 
         // Bước 1: Mặc định tất cả = 1 (đường đi)
-        // Ô không có lối đi nào thực ra không cần đặt sự kiện
-        // nhưng ta dùng eventGrid chủ yếu để MazeRenderer đọc
         for (int c = 0; c < soCol; c++)
             for (int r = 0; r < soRow; r++)
-                eventGrid[c, r] = 1; // đường đi bình thường
+                eventGrid[c, r] = 1;
 
-        // Bước 2: Thu thập danh sách ô đường đi (không phải Start/End)
+        // Bước 2: Thu thập danh sách ô hợp lệ (không phải Start/End)
         List<Vector2Int> oTrong = new List<Vector2Int>();
         for (int c = 0; c < soCol; c++)
         {
             for (int r = 0; r < soRow; r++)
             {
                 Vector2Int viTri = new Vector2Int(c, r);
-                // Bỏ qua Start và End
                 if (viTri == viTriStart || viTri == viTriEnd) continue;
                 oTrong.Add(viTri);
             }
@@ -197,34 +272,62 @@ public class MazeGenerator : MonoBehaviour
             (oTrong[i], oTrong[j]) = (oTrong[j], oTrong[i]);
         }
 
-        // Bước 4: Đánh dấu sự kiện theo tỉ lệ
+        // Bước 4: Tính số lượng mỗi loại sự kiện
         int tong = oTrong.Count;
-        int soCheckpoint = Mathf.FloorToInt(tong * DDAManager.LayTiLeCheckpoint());
-        int soMinigame   = Mathf.FloorToInt(tong * tiLeMinigame);
-        int soNPC        = Mathf.FloorToInt(tong * DDAManager.LayTiLeNPC());
+        int soCheckpoint = Mathf.Max(1, Mathf.FloorToInt(tong * DDAManager.LayTiLeCheckpoint()));
+        int soMinigame   = Mathf.Max(1, Mathf.FloorToInt(tong * tiLeMinigame));
+        int soNPC        = Mathf.Max(1, Mathf.FloorToInt(tong * DDAManager.LayTiLeNPC()));
 
-        int idx = 0;
+        // Danh sách các ô đã đặt sự kiện — dùng để kiểm tra khoảng cách
+        List<Vector2Int> daDat = new List<Vector2Int>();
 
-        // Checkpoint (mã 2)
-        for (int i = 0; i < soCheckpoint && idx < tong; i++, idx++)
+        // Bước 5: Đặt từng loại sự kiện với kiểm tra khoảng cách
+        DatSuKienVoiKhoangCach(oTrong, daDat, 2, soCheckpoint, "Checkpoint");
+        DatSuKienVoiKhoangCach(oTrong, daDat, 3, soMinigame,   "Minigame");
+        DatSuKienVoiKhoangCach(oTrong, daDat, 4, soNPC,        "NPC");
+    }
+
+    // -----------------------------------------------
+    // ĐẶT SỰ KIỆN VỚI KIỂM TRA KHOẢNG CÁCH TỐI THIỂU
+    // Tránh 2 sự kiện nằm quá gần nhau (Manhattan distance)
+    // -----------------------------------------------
+    void DatSuKienVoiKhoangCach(List<Vector2Int> danhSachO, List<Vector2Int> daDat,
+                                 int maSuKien, int soLuong, string tenSuKien)
+    {
+        int daDatSuKien = 0;
+
+        for (int i = 0; i < danhSachO.Count && daDatSuKien < soLuong; i++)
         {
-            eventGrid[oTrong[idx].x, oTrong[idx].y] = 2;
-            Debug.Log($"📍 Checkpoint tại {oTrong[idx]}");
+            Vector2Int viTri = danhSachO[i];
+
+            // Bỏ qua ô đã được đặt sự kiện
+            if (eventGrid[viTri.x, viTri.y] != 1) continue;
+
+            // Kiểm tra khoảng cách với TẤT CẢ sự kiện đã đặt
+            if (QuaGan(viTri, daDat))
+                continue;
+
+            // Đặt sự kiện
+            eventGrid[viTri.x, viTri.y] = maSuKien;
+            daDat.Add(viTri);
+            daDatSuKien++;
+            Debug.Log($"[EVENT] {tenSuKien} #{daDatSuKien} tại ({viTri.x},{viTri.y})");
         }
 
-        // Minigame (mã 3)
-        for (int i = 0; i < soMinigame && idx < tong; i++, idx++)
-        {
-            eventGrid[oTrong[idx].x, oTrong[idx].y] = 3;
-            Debug.Log($"[GAME] Minigame tại {oTrong[idx]}");
-        }
+        if (daDatSuKien < soLuong)
+            Debug.LogWarning($"[!] Chỉ đặt được {daDatSuKien}/{soLuong} {tenSuKien} (map quá nhỏ hoặc khoảng cách tối thiểu quá lớn)");
+    }
 
-        // NPC Thương nhân (mã 4)
-        for (int i = 0; i < soNPC && idx < tong; i++, idx++)
+    // Kiểm tra ô có quá gần sự kiện đã đặt không (Manhattan distance)
+    bool QuaGan(Vector2Int viTri, List<Vector2Int> daDat)
+    {
+        foreach (var d in daDat)
         {
-            eventGrid[oTrong[idx].x, oTrong[idx].y] = 4;
-            Debug.Log($"🧑‍💼 NPC tại {oTrong[idx]}");
+            int manhattan = Mathf.Abs(viTri.x - d.x) + Mathf.Abs(viTri.y - d.y);
+            if (manhattan < khoangCachToiThieu)
+                return true;
         }
+        return false;
     }
 
     // -----------------------------------------------

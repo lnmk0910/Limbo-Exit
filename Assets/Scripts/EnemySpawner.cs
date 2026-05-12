@@ -1,8 +1,11 @@
 // EnemySpawner.cs
 // Spawn quai vat theo Biome + DDA + Heatmap
-// DDA dieu chinh so luong quai
-// Heatmap uu tien spawn o vung nguoi choi hay di qua (sau lan chet dau)
+// PHIÊN BẢN MỚI:
+//   - Quái phải cách Start tối thiểu khoangCachAnToan
+//   - Quái phải cách nhau tối thiểu khoangCachGiuaQuai (tránh cluster)
+//   - Ưu tiên Heatmap trước, random sau
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -12,16 +15,20 @@ public class EnemySpawner : MonoBehaviour
     public GameObject prefabThuthuMu;
     public GameObject prefabSinhVatBun;
 
-    [Header("=== SO LUONG ===")]
+    [Header("=== SỐ LƯỢNG ===")]
     [Range(1, 8)]
     public int soLuongEnemy = 2;
 
-    [Header("=== THAM CHIEU ===")]
+    [Header("=== THAM CHIẾU ===")]
     public MazeGenerator mazeGenerator;
     public float kichThuocO = 6f;
 
-    [Header("=== KHOANG CACH AN TOAN ===")]
+    [Header("=== KHOẢNG CÁCH ===")]
+    [Tooltip("Khoảng cách tối thiểu với Player spawn (world units)")]
     public float khoangCachAnToan = 12f;
+
+    [Tooltip("Khoảng cách tối thiểu giữa 2 con quái (world units)")]
+    public float khoangCachGiuaQuai = 10f;
 
     void Start()
     {
@@ -59,33 +66,39 @@ public class EnemySpawner : MonoBehaviour
         int soRow = mazeGenerator.SoRow;
         Vector2Int start = mazeGenerator.viTriStart;
         Vector2Int end   = mazeGenerator.viTriEnd;
+        Vector3 viTriStart3D = new Vector3(start.x * kichThuocO, 1f, start.y * kichThuocO);
+
+        // Danh sách vị trí quái đã spawn — kiểm tra khoảng cách
+        List<Vector3> daSinh = new List<Vector3>();
 
         // === HEATMAP: Lay diem nong tu lan choi truoc (neu co) ===
         var diemNong = HeatmapTracker.Instance != null
             ? HeatmapTracker.Instance.LayDiemNong(soLuongThucTe)
-            : new System.Collections.Generic.List<Vector2Int>();
-
-        int daSinh = 0;
-        int soLanThu = 0;
+            : new List<Vector2Int>();
 
         // Uu tien spawn o vung nong truoc (quai "hoc" vi tri nguoi choi)
         foreach (var diemGrid in diemNong)
         {
-            if (daSinh >= soLuongThucTe) break;
+            if (daSinh.Count >= soLuongThucTe) break;
             if (diemGrid == start || diemGrid == end) continue;
 
             Vector3 viTri = new Vector3(diemGrid.x * kichThuocO, 1f, diemGrid.y * kichThuocO);
-            Vector3 viTriStart3D = new Vector3(start.x * kichThuocO, 1f, start.y * kichThuocO);
+
+            // Kiểm tra khoảng cách với Player
             if (Vector3.Distance(viTri, viTriStart3D) < khoangCachAnToan) continue;
+
+            // Kiểm tra khoảng cách với quái đã spawn
+            if (QuaGanQuaiKhac(viTri, daSinh)) continue;
 
             GameObject enemy = Instantiate(prefabDung, viTri, Quaternion.identity);
             ApDungDDA(enemy, heSoTocDo, heSoTamNhin);
-            daSinh++;
-            Debug.Log($"[HEATMAP] Spawn [{LayTenQuai(biomeThucTe)}] #{daSinh} tai vung nong ({diemGrid.x},{diemGrid.y})");
+            daSinh.Add(viTri);
+            Debug.Log($"[HEATMAP] Spawn [{LayTenQuai(biomeThucTe)}] #{daSinh.Count} tai vung nong ({diemGrid.x},{diemGrid.y})");
         }
 
-        // Phan con lai: spawn ngau nhien
-        while (daSinh < soLuongThucTe && soLanThu < 100)
+        // Phan con lai: spawn ngau nhien nhưng có kiểm tra khoảng cách
+        int soLanThu = 0;
+        while (daSinh.Count < soLuongThucTe && soLanThu < 200)
         {
             soLanThu++;
             int c = Random.Range(0, soCol);
@@ -94,16 +107,31 @@ public class EnemySpawner : MonoBehaviour
             if (c == end.x   && r == end.y)   continue;
 
             Vector3 viTri = new Vector3(c * kichThuocO, 1f, r * kichThuocO);
-            Vector3 viTriStart3D = new Vector3(start.x * kichThuocO, 1f, start.y * kichThuocO);
+
+            // Kiểm tra khoảng cách với Player
             if (Vector3.Distance(viTri, viTriStart3D) < khoangCachAnToan) continue;
+
+            // Kiểm tra khoảng cách với quái đã spawn
+            if (QuaGanQuaiKhac(viTri, daSinh)) continue;
 
             GameObject enemy = Instantiate(prefabDung, viTri, Quaternion.identity);
             ApDungDDA(enemy, heSoTocDo, heSoTamNhin);
-            daSinh++;
-            Debug.Log($"[QUAI] Spawn [{LayTenQuai(biomeThucTe)}] #{daSinh} tai ({c},{r})");
+            daSinh.Add(viTri);
+            Debug.Log($"[QUAI] Spawn [{LayTenQuai(biomeThucTe)}] #{daSinh.Count} tai ({c},{r})");
         }
 
-        Debug.Log($"[OK] Spawn {daSinh}/{soLuongThucTe} [{LayTenQuai(biomeThucTe)}] | Biome {biomeThucTe}");
+        Debug.Log($"[OK] Spawn {daSinh.Count}/{soLuongThucTe} [{LayTenQuai(biomeThucTe)}] | Biome {biomeThucTe}");
+    }
+
+    // Kiểm tra vị trí có quá gần quái đã spawn không
+    bool QuaGanQuaiKhac(Vector3 viTri, List<Vector3> daSinh)
+    {
+        foreach (var pos in daSinh)
+        {
+            if (Vector3.Distance(viTri, pos) < khoangCachGiuaQuai)
+                return true;
+        }
+        return false;
     }
 
     // === AP DUNG DDA vao tung con quai ===

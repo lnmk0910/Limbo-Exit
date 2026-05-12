@@ -2469,12 +2469,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153b35ab7fffc024b847119003e7ee38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  videoEnding: {fileID: 32900000, guid: 0bc71267cc4dbee4295ddfd0dfac6e5d, type: 3}
+  imgVideo: {fileID: 0}
   panelGameClear: {fileID: 1193933615}
   txtTieuDe: {fileID: 917174080}
   txtThongKe: {fileID: 233929500}
   txtDemNguoc: {fileID: 1512174833}
+  txtSkipHint: {fileID: 0}
   tenSceneMenu: MainMenu
-  thoiGianChoVeMenu: 30
+  thoiGianChoVeMenu: 25
 --- !u!4 &305333295
 Transform:
   m_ObjectHideFlags: 0
@@ -2484,7 +2487,7 @@ Transform:
   m_GameObject: {fileID: 305333293}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 933.19995, y: 345.28918, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4214,6 +4217,7 @@ MonoBehaviour:
   tiLeCheckpoint: 0.05
   tiLeMinigame: 0.04
   tiLeNPC: 0.03
+  khoangCachToiThieu: 2
 --- !u!4 &628270817
 Transform:
   m_ObjectHideFlags: 0
@@ -4285,6 +4289,7 @@ MonoBehaviour:
   mazeGenerator: {fileID: 628270816}
   kichThuocO: 4
   khoangCachAnToan: 12
+  khoangCachGiuaQuai: 10
 --- !u!114 &628270821
 MonoBehaviour:
   m_ObjectHideFlags: 0
