@@ -106,7 +106,7 @@ public class NPCTrigger : MonoBehaviour
             danhSachCau = new string[]
             {
                 cauHienTai,
-                $"[F] Tang {giaDaGoiY} Da Phat Sang → nhan goi y ve Cong Thoat / Ke Dich"
+                $"[F] Tốn {giaDaGoiY} Đá Phát Sáng → nhận gợi ý về Cổng Thoát / Kẻ Địch"
             };
         }
         else
@@ -132,7 +132,7 @@ public class NPCTrigger : MonoBehaviour
             // Thong bao qua DialogueUI neu dang mo
             if (DialogueUI.Instance != null)
             {
-                string[] thongBao = { $"Khong du Da Phat Sang! (Can {giaDaGoiY})" };
+                string[] thongBao = { $"Không đủ Đá Phát Sáng! (Cần {giaDaGoiY})" };
                 DialogueUI.Instance.MoHoiThoai(tenNPC, thongBao, avatarNPC);
             }
             return;
@@ -165,12 +165,12 @@ public class NPCTrigger : MonoBehaviour
         float goc = Mathf.Atan2(huong.x, huong.z) * Mathf.Rad2Deg;
 
         string tenHuong;
-        if      (goc >= -45 && goc < 45)   tenHuong = "Bac (North)";
-        else if (goc >= 45  && goc < 135)  tenHuong = "Dong (East)";
+        if      (goc >= -45 && goc < 45)   tenHuong = "Bắc (North)";
+        else if (goc >= 45  && goc < 135)  tenHuong = "Đông (East)";
         else if (goc >= 135 || goc < -135) tenHuong = "Nam (South)";
-        else                               tenHuong = "Tay (West)";
+        else                               tenHuong = "Tây (West)";
 
-        string goiY = $"Cong Thoat huong {tenHuong} - khoang {huong.magnitude:F0} don vi";
+        string goiY = $"Cổng Thoát hướng {tenHuong} - khoảng {huong.magnitude:F0} đơn vị";
         Debug.Log($"[NPC] Goi y: {goiY}");
 
         string[] cauGoiY = { goiY };
@@ -182,35 +182,45 @@ public class NPCTrigger : MonoBehaviour
     // -----------------------------------------------
     void GoiYViTriQuaiVat()
     {
-        EnemyAI[] danhSachQuai = FindObjectsByType<EnemyAI>(FindObjectsSortMode.None);
-        string goiY;
+        // Tim TAT CA loai quai (khong chi EnemyAI)
+        Transform quaiGanNhat = null;
+        float kcNho = float.MaxValue;
 
-        if (danhSachQuai.Length == 0)
+        foreach (var q in FindObjectsByType<EnemyAI>(FindObjectsSortMode.None))
         {
-            goiY = "Khong cam nhan duoc moi nguy hiem nao gan day.";
+            float kc = Vector3.Distance(transform.position, q.transform.position);
+            if (kc < kcNho) { kcNho = kc; quaiGanNhat = q.transform; }
+        }
+        foreach (var q in FindObjectsByType<ThuthuMuAI>(FindObjectsSortMode.None))
+        {
+            float kc = Vector3.Distance(transform.position, q.transform.position);
+            if (kc < kcNho) { kcNho = kc; quaiGanNhat = q.transform; }
+        }
+        foreach (var q in FindObjectsByType<SinhVatBunAI>(FindObjectsSortMode.None))
+        {
+            float kc = Vector3.Distance(transform.position, q.transform.position);
+            if (kc < kcNho) { kcNho = kc; quaiGanNhat = q.transform; }
+        }
+
+        string goiY;
+        if (quaiGanNhat == null)
+        {
+            goiY = "Không cảm nhận được mối nguy hiểm nào gần đây.";
         }
         else
         {
-            EnemyAI quaiGanNhat = null;
-            float   kcNho = float.MaxValue;
-            foreach (var q in danhSachQuai)
-            {
-                float kc = Vector3.Distance(transform.position, q.transform.position);
-                if (kc < kcNho) { kcNho = kc; quaiGanNhat = q; }
-            }
-
-            Vector3 hq = quaiGanNhat.transform.position - transform.position;
+            Vector3 hq = quaiGanNhat.position - transform.position;
             hq.y = 0;
             float g = Mathf.Atan2(hq.x, hq.z) * Mathf.Rad2Deg;
 
             string tenH;
-            if      (g >= -45 && g < 45)   tenH = "Bac";
-            else if (g >= 45  && g < 135)  tenH = "Dong";
+            if      (g >= -45 && g < 45)   tenH = "Bắc";
+            else if (g >= 45  && g < 135)  tenH = "Đông";
             else if (g >= 135 || g < -135) tenH = "Nam";
-            else                           tenH = "Tay";
+            else                           tenH = "Tây";
 
-            string mucDo = kcNho < 10f ? "RAT GAN! Hay chay ngay!" : "Con kha xa.";
-            goiY = $"Cam nhan moi nguy huong {tenH} - {mucDo}";
+            string mucDo = kcNho < 10f ? "RẤT GẦN! Hãy chạy ngay!" : "Còn khá xa.";
+            goiY = $"Cảm nhận mối nguy hướng {tenH} - {mucDo}";
         }
 
         Debug.Log($"[NPC] Canh bao: {goiY}");

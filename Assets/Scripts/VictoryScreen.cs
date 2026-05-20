@@ -94,12 +94,12 @@ public class VictoryScreen : MonoBehaviour
         Time.timeScale   = 0f;
 
         if (txtTieuDe != null)
-            txtTieuDe.text = $"[OK] TANG {data.mapHienTai} HOAN THANH!";
+            txtTieuDe.text = $"[OK] TẦNG {data.mapHienTai} HOÀN THÀNH!";
 
-        string goiY = "[S/1] Cua Hang   [U/2] Nang Cap   [Enter/3] Tang Tiep   [Q/4] Ve Menu";
+        string goiY = "[S/1] Cửa Hàng   [U/2] Nâng Cấp   [Enter/3] Tầng Tiếp   [Q/4] Về Menu";
 
         if (txtThongKe != null)
-            txtThongKe.text = $"+10 Manh Hon  |  Tong: {data.soManhHon}\n\n{goiY}";
+            txtThongKe.text = $"+10 Mảnh Hồn  |  Tổng: {data.soManhHon}\n\n{goiY}";
 
         if (panelVictory != null) panelVictory.SetActive(true);
 

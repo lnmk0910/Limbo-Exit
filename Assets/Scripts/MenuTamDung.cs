@@ -10,11 +10,15 @@ public class MenuTamDung : MonoBehaviour
     public GameObject pausePanel;    // Bảng Tạm Dừng hiển thị đầu tiên
     public GameObject settingsPanel; // Bảng Setting tùy chỉnh
 
-    [Header("=== INPUT SETTINGS (Tương tự MenuManager) ===")]
+    [Header("=== INPUT SETTINGS ===")]
     public TMP_InputField inputRong;
     public TMP_InputField inputDai;
     public Slider sliderChieuCao;
     public Slider sliderDoDay;
+
+    [Header("=== AM THANH ===")]
+    public Toggle toggleAmThanh;
+    public TMP_Text txtTrangThaiAmThanh;
 
     private bool isPaused = false;
 
@@ -52,7 +56,11 @@ public class MenuTamDung : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.S))
                 LuuVaDongSettings();
 
-            return; // Không xử lý phím Pause khi đang ở Settings
+            // T → Bật/tắt âm thanh
+            if (Input.GetKeyDown(KeyCode.T))
+                ToggleAmThanh();
+
+            return;
         }
 
         // ── ĐANG Ở BẢNG PAUSE CHÍNH ──
@@ -120,6 +128,8 @@ public class MenuTamDung : MonoBehaviour
 
     public void OnClick_VeMenu()
     {
+        isPaused = false;
+        UIManager.DongVeGame();
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
@@ -129,11 +139,20 @@ public class MenuTamDung : MonoBehaviour
         if (pausePanel != null) pausePanel.SetActive(false);
         if (settingsPanel != null) settingsPanel.SetActive(true);
 
-        // Nạp dữ liệu hiện tại vào nút
+        // Nạp dữ liệu hiện tại
         if (inputRong != null) inputRong.text = GameSettings.rong.ToString();
         if (inputDai != null) inputDai.text = GameSettings.dai.ToString();
         if (sliderChieuCao != null) sliderChieuCao.value = GameSettings.chieuCaoTuong;
         if (sliderDoDay != null) sliderDoDay.value = GameSettings.doDayTuong;
+
+        // Dong bo toggle am thanh
+        if (toggleAmThanh != null)
+        {
+            toggleAmThanh.onValueChanged.RemoveAllListeners();
+            toggleAmThanh.isOn = GameSettings.coAmThanh;
+            toggleAmThanh.onValueChanged.AddListener(OnToggleAmThanh);
+        }
+        CapNhatTextAmThanh();
     }
 
     // -----------------------------------------------
@@ -155,5 +174,31 @@ public class MenuTamDung : MonoBehaviour
 
         // Trở về bảng Pause
         DongSettings();
+    }
+
+    // -----------------------------------------------
+    // AM THANH
+    // -----------------------------------------------
+    void OnToggleAmThanh(bool batTieng)
+    {
+        GameSettings.coAmThanh = batTieng;
+        CapNhatTextAmThanh();
+    }
+
+    public void ToggleAmThanh()
+    {
+        if (toggleAmThanh != null)
+            toggleAmThanh.isOn = !toggleAmThanh.isOn;
+        else
+        {
+            GameSettings.coAmThanh = !GameSettings.coAmThanh;
+            CapNhatTextAmThanh();
+        }
+    }
+
+    void CapNhatTextAmThanh()
+    {
+        if (txtTrangThaiAmThanh != null)
+            txtTrangThaiAmThanh.text = GameSettings.coAmThanh ? "Âm thanh: BẬT" : "Âm thanh: TẮT";
     }
 }

@@ -122,8 +122,8 @@ public class AncientCompassItem : MonoBehaviour
             }
 
             if (txtHuong != null)
-                txtHuong.text = $"Cong Thoat: {huongText}\n" +
-                                $"Khoang cach: {khoangCach:F0}m\n" +
+                txtHuong.text = $"Cổng Thoát: {huongText}\n" +
+                                $"Khoảng cách: {khoangCach:F0}m\n" +
                                 $"({conLai:F1}s)";
 
             conLai -= Time.deltaTime;
@@ -142,14 +142,14 @@ public class AncientCompassItem : MonoBehaviour
         float goc = Mathf.Atan2(huong.x, huong.z) * Mathf.Rad2Deg;
         if (goc < 0) goc += 360f;
 
-        if (goc >= 337.5f || goc < 22.5f)   return "Bac";
-        if (goc >= 22.5f  && goc < 67.5f)   return "Dong Bac";
-        if (goc >= 67.5f  && goc < 112.5f)  return "Dong";
-        if (goc >= 112.5f && goc < 157.5f)  return "Dong Nam";
+        if (goc >= 337.5f || goc < 22.5f)   return "Bắc";
+        if (goc >= 22.5f  && goc < 67.5f)   return "Đông Bắc";
+        if (goc >= 67.5f  && goc < 112.5f)  return "Đông";
+        if (goc >= 112.5f && goc < 157.5f)  return "Đông Nam";
         if (goc >= 157.5f && goc < 202.5f)  return "Nam";
-        if (goc >= 202.5f && goc < 247.5f)  return "Tay Nam";
-        if (goc >= 247.5f && goc < 292.5f)  return "Tay";
-        return "Tay Bac";
+        if (goc >= 202.5f && goc < 247.5f)  return "Tây Nam";
+        if (goc >= 247.5f && goc < 292.5f)  return "Tây";
+        return "Tây Bắc";
     }
 
     // -----------------------------------------------

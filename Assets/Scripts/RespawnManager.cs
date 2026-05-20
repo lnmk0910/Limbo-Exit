@@ -1,4 +1,4 @@
-﻿// RespawnManager.cs
+// RespawnManager.cs
 // Quản lý hệ thống hồi sinh:
 // - Theo dõi các "Điểm An Toàn" người chơi đã kích hoạt
 // - Khi chết: chọn ngẫu nhiên 1 điểm → spawn Player lại đó
@@ -77,14 +77,10 @@ public class RespawnManager : MonoBehaviour
         }
 
         Vector3 diemHoiSinh = LayDiemHoiSinhNgauNhien();
-
-        // Dịch chuyển Player về điểm hồi sinh
         playerTransform.position = diemHoiSinh + Vector3.up * 1f;
 
-        // Mất vật phẩm, giữ % Mảnh Hồn
-        MatVatPhamKhiChet();
-
-        Debug.Log($"[HOISNH] Hồi sinh tại: {diemHoiSinh}");
+        // Penalty đã được trừ trong DeathScreen.TrinhTuHienThi()
+        AudioManager.TatAmThanhQuai();
     }
 
     // -----------------------------------------------

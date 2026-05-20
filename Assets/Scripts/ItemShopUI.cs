@@ -117,7 +117,7 @@ public class ItemShopUI : MonoBehaviour
     void CapNhatUI()
     {
         PlayerData data = SaveSystem.LoadGame();
-        if (txtManhHon  != null) txtManhHon.text  = $"MH: {data.soManhHon} Manh Hon";
+        if (txtManhHon  != null) txtManhHon.text  = $"MH: {data.soManhHon} Mảnh Hồn";
         if (txtSoDa     != null) txtSoDa.text     = $"x{data.soDaPhatSang}";
         if (txtSoDongHo != null) txtSoDongHo.text = $"x{data.soDongHo}";
         if (txtSoLaBan  != null) txtSoLaBan.text  = $"x{data.soLaBan}";

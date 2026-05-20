@@ -50,9 +50,13 @@ public class MazeGenerator : MonoBehaviour
     public float tiLeNPC        = 0.03f;  // 3% là NPC
 
     [Header("=== KHOẢNG CÁCH TỐI THIỂU GIỮA CÁC SỰ KIỆN ===")]
-    [Tooltip("Số ô tối thiểu giữa 2 sự kiện cùng loại (Manhattan distance)")]
-    [Range(1, 5)]
-    public int khoangCachToiThieu = 2;
+    [Tooltip("Số ô tối thiểu giữa 2 sự kiện CÙNG LOẠI (VD: 2 NPC, 2 Checkpoint)")]
+    [Range(2, 6)]
+    public int kcCungLoai = 3;
+
+    [Tooltip("Số ô tối thiểu giữa 2 sự kiện KHÁC LOẠI (VD: NPC gần Checkpoint)")]
+    [Range(1, 4)]
+    public int kcKhacLoai = 2;
 
     // -----------------------------------------------
     // AWAKE: chạy TRƯỚC tất cả Start() — sinh mê cung ngay
@@ -114,10 +118,7 @@ public class MazeGenerator : MonoBehaviour
         }
 
         SinhMeCung();
-
-        // TÌM ĐIỂM XA NHẤT TỪ START bằng BFS → đặt ExitGate
-        viTriEnd = TimDiemXaNhat(viTriStart);
-        Debug.Log($"[EXIT] ExitGate đặt tại {viTriEnd} (xa nhất từ Start {viTriStart})");
+        // viTriEnd đã được BFS tính trong SinhMeCung()
 
         DanhDauSuKien();
 
@@ -172,18 +173,24 @@ public class MazeGenerator : MonoBehaviour
         }
 
         viTriStart = new Vector2Int(0, 0);
-        // viTriEnd sẽ được tính bằng BFS sau → điểm xa nhất theo đường đi
-        viTriEnd = new Vector2Int(soCol - 1, soRow - 1); // Tạm, sẽ bị ghi đè
 
-        Debug.Log($"[OK] Mê cung {soCol}x{soRow} đã sinh xong! Start:{viTriStart}");
+        // BFS tìm điểm xa nhất NGAY SAU KHI sinh mê cung (không để tạm)
+        viTriEnd = TimDiemXaNhat(viTriStart);
+
+        float kichThuocO = GameSettings.kichThuocO;
+        Debug.Log($"[OK] Mê cung {soCol}x{soRow} sinh xong! Start:{viTriStart} End:{viTriEnd}");
+        Debug.Log($"[EXIT] ExitGate world pos: ({viTriEnd.x * kichThuocO}, {viTriEnd.y * kichThuocO}) — xa nhất từ Start");
     }
 
     // -----------------------------------------------
     // TÌM ĐIỂM XA NHẤT TỪ START (BFS trên mê cung)
     // Duyệt qua đường đi thực tế, KHÔNG tính đường thẳng Euclid
+    // QUAN TRỌNG: Dùng mảng khoangCach riêng, KHÔNG dùng daThăm
+    //             (vì daThăm đã bị DFS set true toàn bộ)
     // -----------------------------------------------
     Vector2Int TimDiemXaNhat(Vector2Int batDau)
     {
+        // Mảng khoảng cách: -1 = chưa thăm, 0+ = đã thăm
         int[,] khoangCach = new int[soCol, soRow];
         for (int c = 0; c < soCol; c++)
             for (int r = 0; r < soRow; r++)
@@ -195,136 +202,179 @@ public class MazeGenerator : MonoBehaviour
 
         Vector2Int xaNhat = batDau;
         int maxDist = 0;
+        int tongODaTham = 0;
 
         while (queue.Count > 0)
         {
             Vector2Int cur = queue.Dequeue();
             MazeCell cell = luoi[cur.x, cur.y];
             int dist = khoangCach[cur.x, cur.y];
+            tongODaTham++;
+
+            // Cập nhật ô xa nhất (>= để bắt ô cuối cùng nếu cùng khoảng cách)
+            if (dist >= maxDist)
+            {
+                maxDist = dist;
+                xaNhat = cur;
+            }
 
             // Kiểm tra 4 hướng — chỉ đi qua nếu KHÔNG CÓ TƯỜNG
-            // Trên (row+1)
+            // Trên (row+1): cell.tuongTren = false → có lối đi lên
             if (!cell.tuongTren && cur.y + 1 < soRow && khoangCach[cur.x, cur.y + 1] == -1)
             {
                 khoangCach[cur.x, cur.y + 1] = dist + 1;
                 queue.Enqueue(new Vector2Int(cur.x, cur.y + 1));
             }
-            // Dưới (row-1)
+            // Dưới (row-1): cell.tuongDuoi = false → có lối đi xuống
             if (!cell.tuongDuoi && cur.y - 1 >= 0 && khoangCach[cur.x, cur.y - 1] == -1)
             {
                 khoangCach[cur.x, cur.y - 1] = dist + 1;
                 queue.Enqueue(new Vector2Int(cur.x, cur.y - 1));
             }
-            // Trái (col-1)
+            // Trái (col-1): cell.tuongTrai = false → có lối đi sang trái
             if (!cell.tuongTrai && cur.x - 1 >= 0 && khoangCach[cur.x - 1, cur.y] == -1)
             {
                 khoangCach[cur.x - 1, cur.y] = dist + 1;
                 queue.Enqueue(new Vector2Int(cur.x - 1, cur.y));
             }
-            // Phải (col+1)
+            // Phải (col+1): cell.tuongPhai = false → có lối đi sang phải
             if (!cell.tuongPhai && cur.x + 1 < soCol && khoangCach[cur.x + 1, cur.y] == -1)
             {
                 khoangCach[cur.x + 1, cur.y] = dist + 1;
                 queue.Enqueue(new Vector2Int(cur.x + 1, cur.y));
             }
-
-            // Cập nhật ô xa nhất
-            if (dist > maxDist)
-            {
-                maxDist = dist;
-                xaNhat = cur;
-            }
         }
 
-        Debug.Log($"[BFS] Điểm xa nhất từ {batDau}: {xaNhat} (khoảng cách = {maxDist} bước)");
+        Debug.Log($"[BFS] Duyệt {tongODaTham}/{soCol * soRow} ô | Xa nhất: {xaNhat} | Khoảng cách: {maxDist} bước | Start: {batDau}");
         return xaNhat;
     }
 
+    // Danh sach vi tri su kien da dat — EnemySpawner doc de tranh spawn gan
+    public List<Vector2Int> daDatViTriSuKien { get; private set; } = new List<Vector2Int>();
+
     // -----------------------------------------------
     // ĐÁNH DẤU SỰ KIỆN vào eventGrid
-    // Phiên bản mới: kiểm tra khoảng cách tối thiểu giữa các sự kiện
+    // ROUND-ROBIN: Checkpoint → Minigame → NPC → Checkpoint → ...
+    // Đảm bảo các loại xen kẽ, phân bố đều trên map
     // -----------------------------------------------
     void DanhDauSuKien()
     {
         eventGrid = new int[soCol, soRow];
+        daDatViTriSuKien = new List<Vector2Int>();
 
         // Bước 1: Mặc định tất cả = 1 (đường đi)
         for (int c = 0; c < soCol; c++)
             for (int r = 0; r < soRow; r++)
                 eventGrid[c, r] = 1;
 
-        // Bước 2: Thu thập danh sách ô hợp lệ (không phải Start/End)
+        // Bước 2: Thu thập ô hợp lệ
         List<Vector2Int> oTrong = new List<Vector2Int>();
         for (int c = 0; c < soCol; c++)
-        {
             for (int r = 0; r < soRow; r++)
             {
                 Vector2Int viTri = new Vector2Int(c, r);
                 if (viTri == viTriStart || viTri == viTriEnd) continue;
                 oTrong.Add(viTri);
             }
-        }
 
-        // Bước 3: Xáo trộn danh sách (dùng seed đã set)
+        // Bước 3: Xáo trộn (dùng seed)
         for (int i = oTrong.Count - 1; i > 0; i--)
         {
             int j = Random.Range(0, i + 1);
             (oTrong[i], oTrong[j]) = (oTrong[j], oTrong[i]);
         }
 
-        // Bước 4: Tính số lượng mỗi loại sự kiện
+        // Bước 4: Tính số lượng
         int tong = oTrong.Count;
         int soCheckpoint = Mathf.Max(1, Mathf.FloorToInt(tong * DDAManager.LayTiLeCheckpoint()));
         int soMinigame   = Mathf.Max(1, Mathf.FloorToInt(tong * tiLeMinigame));
         int soNPC        = Mathf.Max(1, Mathf.FloorToInt(tong * DDAManager.LayTiLeNPC()));
 
-        // Danh sách các ô đã đặt sự kiện — dùng để kiểm tra khoảng cách
-        List<Vector2Int> daDat = new List<Vector2Int>();
+        // Tự động giảm khoảng cách nếu map nhỏ (≤6 ô)
+        int kcCL = (soCol <= 6) ? Mathf.Max(2, kcCungLoai - 1) : kcCungLoai;
+        int kcKL = (soCol <= 6) ? Mathf.Max(1, kcKhacLoai - 1) : kcKhacLoai;
 
-        // Bước 5: Đặt từng loại sự kiện với kiểm tra khoảng cách
-        DatSuKienVoiKhoangCach(oTrong, daDat, 2, soCheckpoint, "Checkpoint");
-        DatSuKienVoiKhoangCach(oTrong, daDat, 3, soMinigame,   "Minigame");
-        DatSuKienVoiKhoangCach(oTrong, daDat, 4, soNPC,        "NPC");
-    }
+        Debug.Log($"[SPACING] Map {soCol}x{soRow} | CK:{soCheckpoint} MG:{soMinigame} NPC:{soNPC} | " +
+                  $"cùng≥{kcCL} khác≥{kcKL}");
 
-    // -----------------------------------------------
-    // ĐẶT SỰ KIỆN VỚI KIỂM TRA KHOẢNG CÁCH TỐI THIỂU
-    // Tránh 2 sự kiện nằm quá gần nhau (Manhattan distance)
-    // -----------------------------------------------
-    void DatSuKienVoiKhoangCach(List<Vector2Int> danhSachO, List<Vector2Int> daDat,
-                                 int maSuKien, int soLuong, string tenSuKien)
-    {
-        int daDatSuKien = 0;
+        // Bước 5: ROUND-ROBIN — xen kẽ từng loại
+        // Tạo hàng đợi: (mã sự kiện, số còn lại, tên)
+        List<int> daDatMa = new List<int>();
+        int[] conLai = { soCheckpoint, soMinigame, soNPC };
+        int[] maSK   = { 2, 3, 4 };
+        string[] tenSK = { "Checkpoint", "Minigame", "NPC" };
 
-        for (int i = 0; i < danhSachO.Count && daDatSuKien < soLuong; i++)
+        int viTriDuyet = 0;     // Con trỏ duyệt oTrong
+        int loaiHienTai = 0;    // 0=CK, 1=MG, 2=NPC
+        int soLanThatBai = 0;   // Đếm thất bại liên tiếp để tránh vòng lặp vô hạn
+        int tongCanDat = soCheckpoint + soMinigame + soNPC;
+        int tongDaDat = 0;
+
+        while (tongDaDat < tongCanDat && soLanThatBai < oTrong.Count * 3)
         {
-            Vector2Int viTri = danhSachO[i];
-
-            // Bỏ qua ô đã được đặt sự kiện
-            if (eventGrid[viTri.x, viTri.y] != 1) continue;
-
-            // Kiểm tra khoảng cách với TẤT CẢ sự kiện đã đặt
-            if (QuaGan(viTri, daDat))
+            // Bỏ qua loại đã đặt đủ
+            if (conLai[loaiHienTai] <= 0)
+            {
+                loaiHienTai = (loaiHienTai + 1) % 3;
                 continue;
+            }
 
-            // Đặt sự kiện
-            eventGrid[viTri.x, viTri.y] = maSuKien;
-            daDat.Add(viTri);
-            daDatSuKien++;
-            Debug.Log($"[EVENT] {tenSuKien} #{daDatSuKien} tại ({viTri.x},{viTri.y})");
+            // Tìm ô phù hợp cho loại hiện tại
+            bool daDatDuoc = false;
+            int batDau = viTriDuyet;
+
+            for (int attempt = 0; attempt < oTrong.Count; attempt++)
+            {
+                int idx = (batDau + attempt) % oTrong.Count;
+                Vector2Int viTri = oTrong[idx];
+
+                // Ô đã dùng
+                if (eventGrid[viTri.x, viTri.y] != 1) continue;
+
+                // Kiểm tra khoảng cách
+                if (QuaGan(viTri, daDatViTriSuKien, daDatMa, maSK[loaiHienTai], kcCL, kcKL))
+                    continue;
+
+                // Đặt sự kiện
+                eventGrid[viTri.x, viTri.y] = maSK[loaiHienTai];
+                daDatViTriSuKien.Add(viTri);
+                daDatMa.Add(maSK[loaiHienTai]);
+                conLai[loaiHienTai]--;
+                tongDaDat++;
+                viTriDuyet = (idx + 1) % oTrong.Count;
+                daDatDuoc = true;
+
+                Debug.Log($"[EVENT] {tenSK[loaiHienTai]} #{soCheckpoint + soMinigame + soNPC - tongCanDat + tongDaDat} tại ({viTri.x},{viTri.y})");
+                break;
+            }
+
+            if (!daDatDuoc)
+                soLanThatBai++;
+            else
+                soLanThatBai = 0;
+
+            // Chuyển sang loại tiếp theo (round-robin)
+            loaiHienTai = (loaiHienTai + 1) % 3;
         }
 
-        if (daDatSuKien < soLuong)
-            Debug.LogWarning($"[!] Chỉ đặt được {daDatSuKien}/{soLuong} {tenSuKien} (map quá nhỏ hoặc khoảng cách tối thiểu quá lớn)");
+        // Log kết quả
+        Debug.Log($"[EVENT] Tổng đặt: {tongDaDat}/{tongCanDat} " +
+                  $"(CK:{soCheckpoint - conLai[0]} MG:{soMinigame - conLai[1]} NPC:{soNPC - conLai[2]})");
+
+        if (conLai[0] > 0 || conLai[1] > 0 || conLai[2] > 0)
+            Debug.LogWarning($"[!] Thiếu: CK:{conLai[0]} MG:{conLai[1]} NPC:{conLai[2]} (map nhỏ hoặc khoảng cách lớn)");
     }
 
-    // Kiểm tra ô có quá gần sự kiện đã đặt không (Manhattan distance)
-    bool QuaGan(Vector2Int viTri, List<Vector2Int> daDat)
+    // Kiểm tra khoảng cách — cùng loại nghiêm ngặt hơn khác loại
+    bool QuaGan(Vector2Int viTri, List<Vector2Int> daDatViTri, List<int> daDatMa,
+                int maSuKienMoi, int kcCL, int kcKL)
     {
-        foreach (var d in daDat)
+        for (int i = 0; i < daDatViTri.Count; i++)
         {
-            int manhattan = Mathf.Abs(viTri.x - d.x) + Mathf.Abs(viTri.y - d.y);
-            if (manhattan < khoangCachToiThieu)
+            int manhattan = Mathf.Abs(viTri.x - daDatViTri[i].x) + Mathf.Abs(viTri.y - daDatViTri[i].y);
+            int kcYeuCau = (daDatMa[i] == maSuKienMoi) ? kcCL : kcKL;
+
+            if (manhattan < kcYeuCau)
                 return true;
         }
         return false;

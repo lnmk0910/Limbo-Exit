@@ -210,4 +210,29 @@ public class AudioManager : MonoBehaviour
     public static void PhatDuoi()         => Phat(Instance?.sfxQuaiDuoi);
     public static void PhatBunNoiLen()    => Phat(Instance?.sfxBunNoiLen);
     public static void PhatThuthuNghe()   => Phat(Instance?.sfxThuthuNghe);
+
+    // -----------------------------------------------
+    // TẮT/BẬT ÂM THANH TOÀN BỘ QUÁI VẬT
+    // Gọi khi Player chết (tắt) và khi quái phát hiện lại Player (tự bật)
+    // -----------------------------------------------
+    public static void TatAmThanhQuai()
+    {
+        // Tắt AudioSource trên tất cả quái
+        foreach (var e in Object.FindObjectsByType<EnemyAI>(FindObjectsSortMode.None))
+        {
+            AudioSource src = e.GetComponent<AudioSource>();
+            if (src != null) src.Stop();
+        }
+        foreach (var t in Object.FindObjectsByType<ThuthuMuAI>(FindObjectsSortMode.None))
+        {
+            AudioSource src = t.GetComponent<AudioSource>();
+            if (src != null) src.Stop();
+        }
+        foreach (var s in Object.FindObjectsByType<SinhVatBunAI>(FindObjectsSortMode.None))
+        {
+            AudioSource src = s.GetComponent<AudioSource>();
+            if (src != null) src.Stop();
+        }
+        Debug.Log("[AUDIO] Tắt toàn bộ âm thanh quái vật");
+    }
 }

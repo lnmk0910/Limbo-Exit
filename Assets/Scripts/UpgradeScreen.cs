@@ -83,31 +83,31 @@ public class UpgradeScreen : MonoBehaviour
     {
         PlayerData data = SaveSystem.LoadGame();
         if (txtManhHon != null)
-            txtManhHon.text = $"Manh Hon: {data.soManhHon} MH";
+            txtManhHon.text = $"Mảnh Hồn: {data.soManhHon} MH";
 
         // Toc do
         if (txtCapTocDo != null)
-            txtCapTocDo.text = CapString(data.capTocDo, capToiDaTocDo, "+0.5 toc do");
+            txtCapTocDo.text = CapString(data.capTocDo, capToiDaTocDo, "+0.5 tốc độ");
         if (txtGiaTocDo != null)
-            txtGiaTocDo.text = data.capTocDo >= capToiDaTocDo ? "DA TOI DA" : $"{giaTocDo} MH";
+            txtGiaTocDo.text = data.capTocDo >= capToiDaTocDo ? "ĐÃ TỐI ĐA" : $"{giaTocDo} MH";
 
         // La ban
         if (txtCapLaBan != null)
-            txtCapLaBan.text = CapString(data.capLaBan, capToiDaLaBan, "+1s la ban");
+            txtCapLaBan.text = CapString(data.capLaBan, capToiDaLaBan, "+1s la bàn");
         if (txtGiaLaBan != null)
-            txtGiaLaBan.text = data.capLaBan >= capToiDaLaBan ? "DA TOI DA" : $"{giaLaBan} MH";
+            txtGiaLaBan.text = data.capLaBan >= capToiDaLaBan ? "ĐÃ TỐI ĐA" : $"{giaLaBan} MH";
 
         // Giam gia shop
         if (txtCapGiaShop != null)
-            txtCapGiaShop.text = CapString(data.capGiamGiaShop, capToiDaGiamShop, "-1 gia shop");
+            txtCapGiaShop.text = CapString(data.capGiamGiaShop, capToiDaGiamShop, "-1 giá shop");
         if (txtGiaGiaShop != null)
-            txtGiaGiaShop.text = data.capGiamGiaShop >= capToiDaGiamShop ? "DA TOI DA" : $"{giaGiamShop} MH";
+            txtGiaGiaShop.text = data.capGiamGiaShop >= capToiDaGiamShop ? "ĐÃ TỐI ĐA" : $"{giaGiamShop} MH";
 
         // Giam tam phat hien
         if (txtCapTamPH != null)
-            txtCapTamPH.text = CapString(data.capTamPhatHien, capToiDaTamPH, "-1 tam quai");
+            txtCapTamPH.text = CapString(data.capTamPhatHien, capToiDaTamPH, "-1 tầm quái");
         if (txtGiaTamPH != null)
-            txtGiaTamPH.text = data.capTamPhatHien >= capToiDaTamPH ? "DA TOI DA" : $"{giaTamPhatHien} MH";
+            txtGiaTamPH.text = data.capTamPhatHien >= capToiDaTamPH ? "ĐÃ TỐI ĐA" : $"{giaTamPhatHien} MH";
     }
 
     string CapString(int hienTai, int toiDa, string moTa) =>

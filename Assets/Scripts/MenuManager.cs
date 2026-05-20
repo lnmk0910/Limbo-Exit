@@ -24,11 +24,17 @@ public class MenuManager : MonoBehaviour
     public TMP_Text txtSlot2;
     public TMP_Text txtSlot3;
 
-    [Header("=== SETTINGS — KÍCH THƯỚC MÊ CUNG ===")]
+    [Header("=== SETTINGS — KÍCH THƯỜC MÊ CUNG ===")]
     public TMPro.TMP_InputField inputRong;
     public TMPro.TMP_InputField inputDai;
     public UnityEngine.UI.Slider sliderChieuCao;
     public UnityEngine.UI.Slider sliderDoDay;
+
+    [Header("=== SETTINGS — ÂM THANH ===")]
+    [Tooltip("Toggle bật/tắt âm thanh tổng. Kéo Toggle UI vào đây.")]
+    public UnityEngine.UI.Toggle toggleAmThanh;
+    [Tooltip("Text hiển trạng thái âm thanh (tuỳ chọn, có thể null)")]
+    public TMP_Text txtTrangThaiAmThanh;
 
     [Header("=== SCENE ===")]
     public string tenSceneGame  = "GameScene";
@@ -75,6 +81,15 @@ public class MenuManager : MonoBehaviour
         if (inputDai       != null) inputDai.text        = GameSettings.dai.ToString();
         if (sliderChieuCao != null) sliderChieuCao.value = GameSettings.chieuCaoTuong;
         if (sliderDoDay    != null) sliderDoDay.value    = GameSettings.doDayTuong;
+
+        // Dong bo Toggle am thanh
+        GameSettings.ApDungAmThanh(); // Ap dung trang thai luu tu PlayerPrefs
+        if (toggleAmThanh != null)
+        {
+            toggleAmThanh.isOn = GameSettings.coAmThanh;
+            toggleAmThanh.onValueChanged.AddListener(OnToggleAmThanh);
+        }
+        CapNhatTextAmThanh();
     }
 
     void Update()
@@ -101,6 +116,7 @@ public class MenuManager : MonoBehaviour
         else if (settingsPanel.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.Escape)) OnClick_Back();
+            if (Input.GetKeyDown(KeyCode.M)) ToggleAmThanh(); // Phim tat bat/tat am thanh
         }
         // 4. Sảnh chính
         else if (homePanel.activeSelf)
@@ -245,6 +261,34 @@ public class MenuManager : MonoBehaviour
     }
 
     public void OnClick_Exit() => Application.Quit();
+
+    // -----------------------------------------------
+    // AM THANH TONG
+    // -----------------------------------------------
+    void OnToggleAmThanh(bool batTieng)
+    {
+        GameSettings.coAmThanh = batTieng;
+        CapNhatTextAmThanh();
+        Debug.Log($"[AUDIO] Music: {(batTieng ? "ON" : "OFF")}");
+    }
+
+    // Goi tu ben ngoai (phim tat M trong Settings)
+    public void ToggleAmThanh()
+    {
+        if (toggleAmThanh != null)
+            toggleAmThanh.isOn = !toggleAmThanh.isOn; // Se trigger OnToggleAmThanh
+        else
+        {
+            GameSettings.coAmThanh = !GameSettings.coAmThanh;
+            CapNhatTextAmThanh();
+        }
+    }
+
+    void CapNhatTextAmThanh()
+    {
+        if (txtTrangThaiAmThanh != null)
+            txtTrangThaiAmThanh.text = GameSettings.coAmThanh ? "Âm thanh: BẬT" : "Âm thanh: TẮT";
+    }
 
     // -----------------------------------------------
     // DANG XUAT

@@ -1,4 +1,4 @@
-﻿// SinhVatBunAI.cs - Thêm cơ chế biến mất & spawn lại
+// SinhVatBunAI.cs - Thêm cơ chế biến mất & spawn lại
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -43,8 +43,8 @@ public class SinhVatBunAI : MonoBehaviour
     void Update()
     {
         if (daBat || trangThai == TrangThai.BienMat) return;
-        if (TimeClockItem.dangDongBang) { agent.isStopped = true; return; }
-        agent.isStopped = false;
+        if (TimeClockItem.dangDongBang) { if (agent.enabled) agent.isStopped = true; return; }
+        if (agent.enabled && agent.isStopped) agent.isStopped = false;
 
         float kc = playerTransform != null
             ? Vector3.Distance(transform.position, playerTransform.position) : 999f;
@@ -88,6 +88,9 @@ public class SinhVatBunAI : MonoBehaviour
     {
         trangThai = TrangThai.BienMat;
         agent.enabled = false;
+        // Tắt âm thanh khi biến mất
+        AudioSource src = GetComponent<AudioSource>();
+        if (src != null) src.Stop();
 
         // Thu nhỏ dần
         float t = 0f;

@@ -87,9 +87,11 @@ public class EnemyAI : MonoBehaviour
     {
         trangThaiHienTai = TrangThai.BienMat;
 
-        // Ẩn toàn bộ
+        // Ẩn toàn bộ (renderer + collider + audio)
         agent.enabled = false;
         SetHienThi(false);
+        SetColliders(false);
+        TatAmThanh();
 
         // Chờ X giây (dùng realtime vì game có thể bị pause)
         yield return new WaitForSecondsRealtime(thoiGianBienMat);
@@ -100,10 +102,11 @@ public class EnemyAI : MonoBehaviour
         // Dịch chuyển đến vị trí mới
         transform.position = viTriMoi;
 
-        // Hiện lại + bật NavMesh
+        // Hiện lại + bật NavMesh + collider
         agent.enabled = true;
-        agent.Warp(viTriMoi); // Warp để NavMeshAgent đặt đúng vị trí
+        agent.Warp(viTriMoi);
         SetHienThi(true);
+        SetColliders(true);
 
         // Reset trạng thái
         daBat = false;
@@ -141,6 +144,17 @@ public class EnemyAI : MonoBehaviour
     void SetHienThi(bool hien)
     {
         foreach (var r in renderers) if (r != null) r.enabled = hien;
+    }
+
+    void SetColliders(bool bat)
+    {
+        foreach (var c in colliders) if (c != null) c.enabled = bat;
+    }
+
+    void TatAmThanh()
+    {
+        AudioSource src = GetComponent<AudioSource>();
+        if (src != null) src.Stop();
     }
 
     // -----------------------------------------------

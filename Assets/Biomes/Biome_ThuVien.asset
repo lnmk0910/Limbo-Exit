@@ -20,8 +20,8 @@ MonoBehaviour:
   kieuSan: 0
   soTruPerWall: 6
   duongKinhTru: 0.5
-  prefabTuong: {fileID: 1746452620016490299, guid: 476d087669dda1549b2bb6c94c434127, type: 3}
-  prefabNen: {fileID: 1746452620016490299, guid: 476d087669dda1549b2bb6c94c434127, type: 3}
+  prefabTuong: {fileID: 4612585012490527367, guid: f6faa8a9a91251d478f5a8c234172008, type: 3}
+  prefabNen: {fileID: 3662065120555965989, guid: 06fcd5278cdc8c04d8afa3d0529c9dd4, type: 3}
   prefabBay: {fileID: 0}
   mauAmbientLight: {r: 0.1, g: 0.1, b: 0.15, a: 1}
   mauFog: {r: 0.101960786, g: 0.08235294, b: 0.0627451, a: 1}

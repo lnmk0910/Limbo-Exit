@@ -58,34 +58,44 @@ public class DeathScreen : MonoBehaviour
         dangHien = true;
         UIManager.Mo(UIManager.TrangThaiUI.ChetChoc);
 
-        // === DDA: Ghi nhan nguoi choi chet ===
         DDAManager.GhiNhanChet();
 
-        // Mở chuột TRƯỚC để đảm bảo click được
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible   = true;
 
-        // Dừng game + phát âm thanh chết
         Time.timeScale = 0f;
         AudioManager.PhatChet();
         AudioManager.PhatManhHonRoi();
         AudioManager.PhatBGM(AudioManager.Instance?.bgmGameOver);
+        AudioManager.TatAmThanhQuai();
 
-        // Chờ thật (không bị ảnh hưởng bởi timeScale)
+        // === TRỪ MẢNH HỒN + VẬT PHẨM NGAY KHI CHẾT ===
+        float phanTram = (RespawnManager.Instance != null) ? RespawnManager.Instance.phanTramGiuManhHon : 0.5f;
+        PlayerData data = SaveSystem.LoadGame();
+        int manhHonTruoc = data.soManhHon;
+        data.soManhHon    = Mathf.FloorToInt(data.soManhHon * phanTram);
+        data.soDaPhatSang = 0;
+        data.soDongHo     = 0;
+        data.soLaBan      = 0;
+        SaveSystem.SaveGame(data);
+
+        if (PlayerInventory.Instance != null)
+            PlayerInventory.Instance.SyncTuSave();
+        GameHUD.LamMoi();
+
         yield return new WaitForSecondsRealtime(thoiGianCho);
 
-        // Cập nhật text
-        PlayerData data = SaveSystem.LoadGame();
-        int conLai = Mathf.FloorToInt(data.soManhHon * 0.5f);
+        // Hiển thị kết quả
+        int phanTramHienThi = Mathf.RoundToInt(phanTram * 100f);
 
         if (txtThongBao != null)
-            txtThongBao.text = "[CHET] Bong toi da nuot chung ban...";
+            txtThongBao.text = "[CHẾT] Bóng tối đã nuốt chửng bạn...";
 
         if (txtManhHonConLai != null)
             txtManhHonConLai.text =
-                $"Manh Hon con lai: {conLai} MH (mat 50%)\n" +
-                $"Toan bo vat pham bi tich thu\n\n" +
-                $"[Enter/Space] Tiep tuc   |   [Esc] Tu bo";
+                $"Mảnh Hồn còn lại: {data.soManhHon} MH (mất {100 - phanTramHienThi}%)\n" +
+                $"Toàn bộ vật phẩm bị tịch thu\n\n" +
+                $"[Enter/Space] Tiếp tục   |   [Esc] Từ bỏ";
 
         if (panelChet != null) panelChet.SetActive(true);
     }

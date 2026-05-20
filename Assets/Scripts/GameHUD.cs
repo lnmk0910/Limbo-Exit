@@ -23,15 +23,17 @@ public class GameHUD : MonoBehaviour
     public float thoiGianCapNhat = 0.5f;  // Cập nhật mỗi 0.5 giây
 
     private float _dem = 0f;
+    private static bool _canCapNhat = true; // Flag de chi doc file khi can
 
     void Start()
     {
-        CapNhatHUD(); // Cập nhật ngay lúc vào game
+        _canCapNhat = true;
+        CapNhatHUD();
     }
 
     void Update()
     {
-        _dem += Time.unscaledDeltaTime; // Dùng unscaled để HUD vẫn cập nhật khi game pause
+        _dem += Time.unscaledDeltaTime;
         if (_dem >= thoiGianCapNhat)
         {
             _dem = 0f;
@@ -41,23 +43,26 @@ public class GameHUD : MonoBehaviour
 
     void CapNhatHUD()
     {
-        PlayerData data = SaveSystem.LoadGame();
+        // Chi doc file JSON khi co thay doi (goi LamMoi)
+        // Ngoai ra dung PlayerInventory runtime (khong can doc file)
+        PlayerData data = _canCapNhat ? SaveSystem.LoadGame() : null;
+        _canCapNhat = false;
 
-        // Mảnh Hồn
-        if (txtManhHon != null)
-            txtManhHon.text = $"Manh Hon: {data.soManhHon}";
+        // Manh Hon — doc tu file khi can
+        if (txtManhHon != null && data != null)
+            txtManhHon.text = $"Mảnh Hồn: {data.soManhHon}";
 
-        // Vật phẩm — đọc từ PlayerInventory nếu có, fallback về Save
-        int da     = PlayerInventory.Instance != null ? PlayerInventory.Instance.daPhatSang : data.soDaPhatSang;
-        int dongHo = PlayerInventory.Instance != null ? PlayerInventory.Instance.dongHo      : data.soDongHo;
-        int laBan  = PlayerInventory.Instance != null ? PlayerInventory.Instance.laBan       : data.soLaBan;
+        // Vat pham — doc tu PlayerInventory runtime (khong can file IO)
+        int da     = PlayerInventory.Instance != null ? PlayerInventory.Instance.daPhatSang : 0;
+        int dongHo = PlayerInventory.Instance != null ? PlayerInventory.Instance.dongHo      : 0;
+        int laBan  = PlayerInventory.Instance != null ? PlayerInventory.Instance.laBan       : 0;
 
-        if (txtDaPhatSang != null) txtDaPhatSang.text = $"Da x{da}";
-        if (txtDongHo     != null) txtDongHo.text     = $"DH x{dongHo}";
+        if (txtDaPhatSang != null) txtDaPhatSang.text = $"Đá x{da}";
+        if (txtDongHo     != null) txtDongHo.text     = $"ĐH x{dongHo}";
         if (txtLaBan      != null) txtLaBan.text      = $"LB x{laBan}";
 
-        // Tầng hiện tại / tổng
-        if (txtTang != null)
+        // Tang hien tai
+        if (txtTang != null && data != null)
         {
             int tong = (data.biomeSequence != null && data.biomeSequence.Length > 0)
                        ? data.biomeSequence.Length : 4;
@@ -65,9 +70,10 @@ public class GameHUD : MonoBehaviour
         }
     }
 
-    // Gọi từ bên ngoài khi cần cập nhật ngay (VD: sau khi mua đồ)
+    // Goi tu ben ngoai khi can cap nhat ngay (sau khi mua do, nhan Manh Hon, v.v.)
     public static void LamMoi()
     {
+        _canCapNhat = true; // Lan cap nhat ke tiep se doc lai file
         GameHUD hud = FindFirstObjectByType<GameHUD>();
         if (hud != null) hud.CapNhatHUD();
     }

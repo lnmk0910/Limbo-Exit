@@ -11,8 +11,9 @@ public class HeatmapTracker : MonoBehaviour
     public static HeatmapTracker Instance { get; private set; }
 
     [Header("=== CAI DAT ===")]
-    public float khoangCachGhi = 2f;     // Ghi 1 diem moi 2 giay
-    public float kichThuocO    = 6f;     // Phai khop voi GameSettings
+    public float khoangCachGhi = 2f;
+
+    private float kichThuocO;
 
     // Ban do nhiet: heatmap[col, row] = so lan nguoi choi di qua
     private int[,] heatmap;
@@ -32,13 +33,13 @@ public class HeatmapTracker : MonoBehaviour
 
     void Start()
     {
-        // Doc kich thuoc tu MazeGenerator
+        kichThuocO = GameSettings.kichThuocO;
+
         MazeGenerator mg = Object.FindFirstObjectByType<MazeGenerator>();
         if (mg != null)
         {
             soCol = mg.SoCol;
             soRow = mg.SoRow;
-            kichThuocO = GameSettings.kichThuocO;
         }
         else
         {
@@ -47,7 +48,6 @@ public class HeatmapTracker : MonoBehaviour
         }
 
         heatmap = new int[soCol, soRow];
-        Debug.Log($"[HEATMAP] Khoi tao ban do nhiet {soCol}x{soRow}");
     }
 
     void Update()

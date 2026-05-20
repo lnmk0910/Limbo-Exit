@@ -17,11 +17,11 @@ MonoBehaviour:
     \u1EA9n trong b\xF3ng t\u1ED1i."
   anhDaiDien: {fileID: 0}
   kieuTuong: 1
-  kieuSan: 1
+  kieuSan: 0
   soTruPerWall: 5
   duongKinhTru: 0.6
-  prefabTuong: {fileID: 432333454342325003, guid: e5a41bd7691f8354fb5f35d9d1cb1b6b, type: 3}
-  prefabNen: {fileID: 432333454342325003, guid: e5a41bd7691f8354fb5f35d9d1cb1b6b, type: 3}
+  prefabTuong: {fileID: 6795127452382077095, guid: 1ab2680e5a72cdc498eadd90113722d6, type: 3}
+  prefabNen: {fileID: 1746452620016490299, guid: 476d087669dda1549b2bb6c94c434127, type: 3}
   prefabBay: {fileID: 0}
   mauAmbientLight: {r: 0.039215688, g: 0.039215688, b: 0.14509805, a: 1}
   mauFog: {r: 0.05, g: 0.05, b: 0.1, a: 1}

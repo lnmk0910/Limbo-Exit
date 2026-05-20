@@ -21,14 +21,13 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("=== THAM CHIẾU ===")]
     public MazeGenerator mazeGenerator;
-    public float kichThuocO = 6f;
 
     [Header("=== KHOẢNG CÁCH ===")]
-    [Tooltip("Khoảng cách tối thiểu với Player spawn (world units)")]
-    public float khoangCachAnToan = 12f;
+    [Tooltip("Khoảng cách tối thiểu với Player spawn (world units) — 18m = 3 ô")]
+    public float khoangCachAnToan = 18f;
 
-    [Tooltip("Khoảng cách tối thiểu giữa 2 con quái (world units)")]
-    public float khoangCachGiuaQuai = 10f;
+    [Tooltip("Khoảng cách tối thiểu giữa 2 con quái (world units) — 18m = 3 ô")]
+    public float khoangCachGiuaQuai = 18f;
 
     void Start()
     {
@@ -38,6 +37,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
+        float kichThuocO = GameSettings.kichThuocO;
         PlayerData data = SaveSystem.LoadGame();
         int biomeThucTe = 0;
         if (data.biomeSequence != null && data.biomeSequence.Length > 0)
@@ -68,27 +68,32 @@ public class EnemySpawner : MonoBehaviour
         Vector2Int end   = mazeGenerator.viTriEnd;
         Vector3 viTriStart3D = new Vector3(start.x * kichThuocO, 1f, start.y * kichThuocO);
 
-        // Danh sách vị trí quái đã spawn — kiểm tra khoảng cách
+        // Thu thập vị trí event (checkpoint/npc/minigame) để quái tránh
+        List<Vector3> viTriEvent = new List<Vector3>();
+        if (mazeGenerator.daDatViTriSuKien != null)
+        {
+            foreach (var vt in mazeGenerator.daDatViTriSuKien)
+                viTriEvent.Add(new Vector3(vt.x * kichThuocO, 1f, vt.y * kichThuocO));
+        }
+
+        // Danh sách vị trí quái đã spawn
         List<Vector3> daSinh = new List<Vector3>();
 
-        // === HEATMAP: Lay diem nong tu lan choi truoc (neu co) ===
+        // === HEATMAP: Lay diem nong tu lan choi truoc ===
         var diemNong = HeatmapTracker.Instance != null
             ? HeatmapTracker.Instance.LayDiemNong(soLuongThucTe)
             : new List<Vector2Int>();
 
-        // Uu tien spawn o vung nong truoc (quai "hoc" vi tri nguoi choi)
+        // Uu tien spawn o vung nong truoc
         foreach (var diemGrid in diemNong)
         {
             if (daSinh.Count >= soLuongThucTe) break;
             if (diemGrid == start || diemGrid == end) continue;
 
             Vector3 viTri = new Vector3(diemGrid.x * kichThuocO, 1f, diemGrid.y * kichThuocO);
-
-            // Kiểm tra khoảng cách với Player
             if (Vector3.Distance(viTri, viTriStart3D) < khoangCachAnToan) continue;
-
-            // Kiểm tra khoảng cách với quái đã spawn
             if (QuaGanQuaiKhac(viTri, daSinh)) continue;
+            if (QuaGanEvent(viTri, viTriEvent)) continue;
 
             GameObject enemy = Instantiate(prefabDung, viTri, Quaternion.identity);
             ApDungDDA(enemy, heSoTocDo, heSoTamNhin);
@@ -96,7 +101,7 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log($"[HEATMAP] Spawn [{LayTenQuai(biomeThucTe)}] #{daSinh.Count} tai vung nong ({diemGrid.x},{diemGrid.y})");
         }
 
-        // Phan con lai: spawn ngau nhien nhưng có kiểm tra khoảng cách
+        // Random spawn
         int soLanThu = 0;
         while (daSinh.Count < soLuongThucTe && soLanThu < 200)
         {
@@ -107,12 +112,9 @@ public class EnemySpawner : MonoBehaviour
             if (c == end.x   && r == end.y)   continue;
 
             Vector3 viTri = new Vector3(c * kichThuocO, 1f, r * kichThuocO);
-
-            // Kiểm tra khoảng cách với Player
             if (Vector3.Distance(viTri, viTriStart3D) < khoangCachAnToan) continue;
-
-            // Kiểm tra khoảng cách với quái đã spawn
             if (QuaGanQuaiKhac(viTri, daSinh)) continue;
+            if (QuaGanEvent(viTri, viTriEvent)) continue;
 
             GameObject enemy = Instantiate(prefabDung, viTri, Quaternion.identity);
             ApDungDDA(enemy, heSoTocDo, heSoTamNhin);
@@ -129,6 +131,19 @@ public class EnemySpawner : MonoBehaviour
         foreach (var pos in daSinh)
         {
             if (Vector3.Distance(viTri, pos) < khoangCachGiuaQuai)
+                return true;
+        }
+        return false;
+    }
+
+    // Kiểm tra vị trí có quá gần event (checkpoint/npc/minigame) không
+    // Quái không spawn trên đầu checkpoint hay NPC
+    bool QuaGanEvent(Vector3 viTri, List<Vector3> viTriEvent)
+    {
+        float kcToiThieuVoiEvent = GameSettings.kichThuocO * 2f; // 2 ô = 12m
+        foreach (var pos in viTriEvent)
+        {
+            if (Vector3.Distance(viTri, pos) < kcToiThieuVoiEvent)
                 return true;
         }
         return false;

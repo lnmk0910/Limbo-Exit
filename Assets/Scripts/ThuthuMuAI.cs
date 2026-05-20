@@ -1,4 +1,4 @@
-﻿// ThuthuMuAI.cs - Thêm cơ chế biến mất & spawn lại
+// ThuthuMuAI.cs - Thêm cơ chế biến mất & spawn lại
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
@@ -142,6 +142,9 @@ public class ThuthuMuAI : MonoBehaviour
         trangThai = TrangThai.BienMat;
         agent.enabled = false;
         foreach (var r in renderers) if (r != null) r.enabled = false;
+        // Tắt âm thanh khi biến mất
+        AudioSource src = GetComponent<AudioSource>();
+        if (src != null) src.Stop();
 
         yield return new WaitForSecondsRealtime(thoiGianBienMat);
 
