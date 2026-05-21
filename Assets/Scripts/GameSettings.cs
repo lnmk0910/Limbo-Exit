@@ -1,27 +1,20 @@
-// GameSettings.cs
-// Static Class: luu thong so Map de truyen giua cac Scene
-// Khong gan vao GameObject, goi truc tiep: GameSettings.rong
-
+// GameSettings.cs — Static: lưu thông số Map truyền giữa các Scene
 using UnityEngine;
 
 public static class GameSettings
 {
-    // ---- Kich thuoc luoi me cung ----
     public static int rong = 50;
     public static int dai  = 50;
 
-    // ---- Kich thuoc Tuong ----
     public static float chieuCaoTuong = 8f;
     public static float doDayTuong    = 1.5f;
+    public static float kichThuocO    = 6f;
 
-    // ---- Kich thuoc O (san) ----
-    public static float kichThuocO = 6f;
-
-    // ---- AM THANH TONG ----
-    // true = có tiếng (mặc định), false = tắt tiếng
+    // Âm thanh tổng
     private static bool _coAmThanh = true;
     private static bool _daDoc = false;
 
+    // Luu/lay trang thai am thanh tong tu PlayerPrefs
     public static bool coAmThanh
     {
         get
@@ -38,18 +31,17 @@ public static class GameSettings
             _coAmThanh = value;
             PlayerPrefs.SetInt("MasterAudio", value ? 1 : 0);
             PlayerPrefs.Save();
-            // Ap dung ngay lap tuc
             AudioListener.volume = value ? 1f : 0f;
         }
     }
 
-    // Goi 1 lan khi game bat dau de dong bo AudioListener
+    // Ap dung trang thai am thanh hien tai
     public static void ApDungAmThanh()
     {
         AudioListener.volume = coAmThanh ? 1f : 0f;
     }
 
-    // ---- Reset ve mac dinh ----
+    // Reset cac thong so ve mac dinh
     public static void ResetMacDinh()
     {
         rong          = 50;
@@ -59,4 +51,3 @@ public static class GameSettings
         kichThuocO    = 6f;
     }
 }
-

@@ -1,10 +1,4 @@
-// EnemySpawner.cs
-// Spawn quai vat theo Biome + DDA + Heatmap
-// PHIÊN BẢN MỚI:
-//   - Quái phải cách Start tối thiểu khoangCachAnToan
-//   - Quái phải cách nhau tối thiểu khoangCachGiuaQuai (tránh cluster)
-//   - Ưu tiên Heatmap trước, random sau
-
+// EnemySpawner.cs — Spawn quái vật theo Biome + DDA + Heatmap
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,18 +17,19 @@ public class EnemySpawner : MonoBehaviour
     public MazeGenerator mazeGenerator;
 
     [Header("=== KHOẢNG CÁCH ===")]
-    [Tooltip("Khoảng cách tối thiểu với Player spawn (world units) — 18m = 3 ô")]
+    [Tooltip("Khoảng cách tối thiểu với Player spawn (world units)")]
     public float khoangCachAnToan = 18f;
-
-    [Tooltip("Khoảng cách tối thiểu giữa 2 con quái (world units) — 18m = 3 ô")]
+    [Tooltip("Khoảng cách tối thiểu giữa 2 con quái (world units)")]
     public float khoangCachGiuaQuai = 18f;
 
+    // Bat dau spawn quai khi maze da san sang
     void Start()
     {
         if (mazeGenerator == null) return;
         SpawnEnemy();
     }
 
+    // Spawn quai theo biome, DDA va heatmap
     void SpawnEnemy()
     {
         float kichThuocO = GameSettings.kichThuocO;
@@ -47,20 +42,13 @@ public class EnemySpawner : MonoBehaviour
         }
 
         GameObject prefabDung = LayPrefabTheoBiome(biomeThucTe);
-        if (prefabDung == null)
-        {
-            Debug.LogWarning("[QUAI] Chua gan Prefab Enemy cho Biome nay!");
-            return;
-        }
+        if (prefabDung == null) return;
 
-        // === DDA: Dieu chinh so luong quai ===
+        // DDA điều chỉnh số lượng quái
         int bonus = DDAManager.LaySoQuaiBonus();
         int soLuongThucTe = Mathf.Clamp(soLuongEnemy + bonus, 1, 10);
         float heSoTocDo = DDAManager.LayHeSoTocDoQuai();
         float heSoTamNhin = DDAManager.LayHeSoTamPhatHien();
-
-        Debug.Log($"[DDA] Quai: {soLuongThucTe} con (base {soLuongEnemy} + DDA {bonus:+0;-0}) | " +
-                  $"Toc do x{heSoTocDo:F2} | Tam nhin x{heSoTamNhin:F2}");
 
         int soCol = mazeGenerator.SoCol;
         int soRow = mazeGenerator.SoRow;
@@ -68,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
         Vector2Int end   = mazeGenerator.viTriEnd;
         Vector3 viTriStart3D = new Vector3(start.x * kichThuocO, 1f, start.y * kichThuocO);
 
-        // Thu thập vị trí event (checkpoint/npc/minigame) để quái tránh
+        // Thu thập vị trí event để quái tránh
         List<Vector3> viTriEvent = new List<Vector3>();
         if (mazeGenerator.daDatViTriSuKien != null)
         {
@@ -76,15 +64,13 @@ public class EnemySpawner : MonoBehaviour
                 viTriEvent.Add(new Vector3(vt.x * kichThuocO, 1f, vt.y * kichThuocO));
         }
 
-        // Danh sách vị trí quái đã spawn
         List<Vector3> daSinh = new List<Vector3>();
 
-        // === HEATMAP: Lay diem nong tu lan choi truoc ===
+        // Ưu tiên spawn ở vùng nóng (Heatmap)
         var diemNong = HeatmapTracker.Instance != null
             ? HeatmapTracker.Instance.LayDiemNong(soLuongThucTe)
             : new List<Vector2Int>();
 
-        // Uu tien spawn o vung nong truoc
         foreach (var diemGrid in diemNong)
         {
             if (daSinh.Count >= soLuongThucTe) break;
@@ -98,10 +84,9 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemy = Instantiate(prefabDung, viTri, Quaternion.identity);
             ApDungDDA(enemy, heSoTocDo, heSoTamNhin);
             daSinh.Add(viTri);
-            Debug.Log($"[HEATMAP] Spawn [{LayTenQuai(biomeThucTe)}] #{daSinh.Count} tai vung nong ({diemGrid.x},{diemGrid.y})");
         }
 
-        // Random spawn
+        // Random spawn phần còn lại
         int soLanThu = 0;
         while (daSinh.Count < soLuongThucTe && soLanThu < 200)
         {
@@ -119,40 +104,31 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemy = Instantiate(prefabDung, viTri, Quaternion.identity);
             ApDungDDA(enemy, heSoTocDo, heSoTamNhin);
             daSinh.Add(viTri);
-            Debug.Log($"[QUAI] Spawn [{LayTenQuai(biomeThucTe)}] #{daSinh.Count} tai ({c},{r})");
         }
-
-        Debug.Log($"[OK] Spawn {daSinh.Count}/{soLuongThucTe} [{LayTenQuai(biomeThucTe)}] | Biome {biomeThucTe}");
     }
 
-    // Kiểm tra vị trí có quá gần quái đã spawn không
+    // Kiem tra spawn co qua gan quai da co hay khong
     bool QuaGanQuaiKhac(Vector3 viTri, List<Vector3> daSinh)
     {
         foreach (var pos in daSinh)
-        {
             if (Vector3.Distance(viTri, pos) < khoangCachGiuaQuai)
                 return true;
-        }
         return false;
     }
 
-    // Kiểm tra vị trí có quá gần event (checkpoint/npc/minigame) không
-    // Quái không spawn trên đầu checkpoint hay NPC
+    // Kiem tra spawn co qua gan event (checkpoint/minigame/NPC)
     bool QuaGanEvent(Vector3 viTri, List<Vector3> viTriEvent)
     {
-        float kcToiThieuVoiEvent = GameSettings.kichThuocO * 2f; // 2 ô = 12m
+        float kcToiThieu = GameSettings.kichThuocO * 2f;
         foreach (var pos in viTriEvent)
-        {
-            if (Vector3.Distance(viTri, pos) < kcToiThieuVoiEvent)
+            if (Vector3.Distance(viTri, pos) < kcToiThieu)
                 return true;
-        }
         return false;
     }
 
-    // === AP DUNG DDA vao tung con quai ===
+    // Ap dung he so DDA vao thong so AI
     void ApDungDDA(GameObject enemy, float heSoTocDo, float heSoTamNhin)
     {
-        // EnemyAI
         var ai = enemy.GetComponent<EnemyAI>();
         if (ai != null)
         {
@@ -163,18 +139,16 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        // ThuthuMuAI
         var thu = enemy.GetComponent<ThuthuMuAI>();
         if (thu != null)
         {
-            thu.tocDoNghe      *= heSoTocDo;
-            thu.tocDoTruyDuoi  *= heSoTocDo;
-            thu.tamNgheKhiChay    *= heSoTamNhin;
+            thu.tocDoNghe          *= heSoTocDo;
+            thu.tocDoTruyDuoi      *= heSoTocDo;
+            thu.tamNgheKhiChay     *= heSoTamNhin;
             thu.tamNgheKhiDiThuong *= heSoTamNhin;
             return;
         }
 
-        // SinhVatBunAI
         var bun = enemy.GetComponent<SinhVatBunAI>();
         if (bun != null)
         {
@@ -184,6 +158,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    // Chon prefab theo biome hien tai
     GameObject LayPrefabTheoBiome(int biomeIndex)
     {
         switch (biomeIndex)
@@ -191,16 +166,6 @@ public class EnemySpawner : MonoBehaviour
             case 1: return prefabThuthuMu;
             case 2: return prefabSinhVatBun;
             default: return prefabEnemyDaCo;
-        }
-    }
-
-    string LayTenQuai(int biomeIndex)
-    {
-        switch (biomeIndex)
-        {
-            case 1: return "Thu Thu Mu";
-            case 2: return "Sinh Vat Bun";
-            default: return "Quai Da Co";
         }
     }
 }

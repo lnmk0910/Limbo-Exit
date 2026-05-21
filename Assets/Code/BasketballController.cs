@@ -17,6 +17,7 @@ public class BasketballController : MonoBehaviour {
     private float T = 0;
 
     // Update is called once per frame
+    // Di chuyen nguoi choi va xu ly bong
     void Update() {
 
         // walking
@@ -74,6 +75,7 @@ public class BasketballController : MonoBehaviour {
         }
     }
 
+    // Bat lai bong khi da roi xong
     private void OnTriggerEnter(Collider other) {
 
         if (!IsBallInHands && !IsBallFlying) {

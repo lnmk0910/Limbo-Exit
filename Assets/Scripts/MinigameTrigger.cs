@@ -1,3 +1,4 @@
+// MinigameTrigger.cs — Trigger load scene minigame ngẫu nhiên
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,30 +8,13 @@ public class MinigameTrigger : MonoBehaviour
     [Tooltip("Kéo thả tên scene vào đây (phải thêm vào Build Settings)")]
     public string[] miniGameScenes;
 
+    // Khi player cham, load ngau nhien 1 mini game
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            if (miniGameScenes == null || miniGameScenes.Length == 0)
-            {
-                Debug.LogError("Chưa có scene minigame nào được thêm vào mảng miniGameScenes!");
-                return;
-            }
+        if (!other.CompareTag("Player")) return;
+        if (miniGameScenes == null || miniGameScenes.Length == 0) return;
 
-            // Random index
-            int randomIndex = Random.Range(0, miniGameScenes.Length);
-            string chosenScene = miniGameScenes[randomIndex];
-
-            Debug.Log($"Đang load minigame random: <color=yellow>{chosenScene}</color>");
-
-            // Load scene (thay thế hoàn toàn scene hiện tại)
-            SceneManager.LoadScene(chosenScene);
-        }
+        int randomIndex = Random.Range(0, miniGameScenes.Length);
+        SceneManager.LoadScene(miniGameScenes[randomIndex]);
     }
-
-    // Optional: Random ngay khi object này xuất hiện (dùng để test)
-    // private void Start()
-    // {
-    //     // LoadRandomMinigame();   // Bỏ comment nếu muốn test
-    // }
 }

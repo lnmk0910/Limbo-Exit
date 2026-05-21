@@ -16,11 +16,13 @@ public class ReadmeEditor : Editor
 
     const float k_Space = 16f;
 
+    // Tu dong chon Readme sau khi load editor
     static ReadmeEditor()
     {
         EditorApplication.delayCall += SelectReadmeAutomatically;
     }
 
+    // Xoa thu muc tutorial va readme
     static void RemoveTutorial()
     {
         if (EditorUtility.DisplayDialog("Remove Readme Assets",
@@ -51,6 +53,7 @@ public class ReadmeEditor : Editor
         }
     }
 
+    // Chon Readme lan dau trong session
     static void SelectReadmeAutomatically()
     {
         if (!SessionState.GetBool(s_ShowedReadmeSessionStateName, false))
@@ -66,6 +69,7 @@ public class ReadmeEditor : Editor
         }
     }
 
+    // Load layout huong dan
     static void LoadLayout()
     {
         var assembly = typeof(EditorApplication).Assembly;
@@ -74,6 +78,7 @@ public class ReadmeEditor : Editor
         method.Invoke(null, new object[] { Path.Combine(Application.dataPath, "TutorialInfo/Layout.wlt"), false });
     }
 
+    // Tim va chon Readme asset
     static Readme SelectReadme()
     {
         var ids = AssetDatabase.FindAssets("Readme t:Readme");
@@ -92,6 +97,7 @@ public class ReadmeEditor : Editor
         }
     }
 
+    // Ve header cua Readme
     protected override void OnHeaderGUI()
     {
         var readme = (Readme)target;
@@ -120,6 +126,7 @@ public class ReadmeEditor : Editor
         GUILayout.EndHorizontal();
     }
 
+    // Ve noi dung Readme trong Inspector
     public override void OnInspectorGUI()
     {
         var readme = (Readme)target;
@@ -196,6 +203,7 @@ public class ReadmeEditor : Editor
     [SerializeField]
     GUIStyle m_ButtonStyle;
 
+    // Khoi tao style cho Readme
     void Init()
     {
         if (m_Initialized)
@@ -225,6 +233,7 @@ public class ReadmeEditor : Editor
         m_Initialized = true;
     }
 
+    // Ve link co the click
     bool LinkLabel(GUIContent label, params GUILayoutOption[] options)
     {
         var position = GUILayoutUtility.GetRect(label, LinkStyle, options);

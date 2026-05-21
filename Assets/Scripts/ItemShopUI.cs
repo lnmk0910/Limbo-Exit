@@ -1,8 +1,4 @@
-// ItemShopUI.cs - Fix lỗi mua hàng
-// - Tất cả đọc/ghi đều qua SaveSystem trực tiếp (không qua PlayerInventory)
-// - Thêm nhiều Debug.Log để dễ kiểm tra
-// - Bỏ AddListener (dùng hàm public gán từ Inspector)
-
+// ItemShopUI.cs — Cửa hàng vật phẩm: mua Đá, Đồng Hồ, La Bàn
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -20,87 +16,79 @@ public class ItemShopUI : MonoBehaviour
     public TMP_Text txtSoDongHo;
     public TMP_Text txtSoLaBan;
 
-    [Header("=== GIÁ VẬT PHẨM (có thể chỉnh trong Inspector) ===")]
+    [Header("=== GIÁ VẬT PHẨM ===")]
     public int giaDa     = 3;
     public int giaDongHo = 5;
     public int giaLaBan  = 4;
 
     private bool dangMo = false;
-    private bool dangNghiNgoiChuyenMap = false; // Phân biệt: Mua dạo trong map hay Mua khi sang map mới
+    private bool dangNghiNgoiChuyenMap = false;
 
-
+    // Khoi tao singleton
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
     }
 
+    // An panel khi bat dau
     void Start()
     {
         if (panelShop != null) panelShop.SetActive(false);
     }
 
+    // Lang nghe phim tat khi dang mo shop
     void Update()
     {
         if (!dangMo || !UIManager.DangO(UIManager.TrangThaiUI.Shop)) return;
-
-        // Dong shop chi bang phim B (KHONG dung ESC de tranh chain sang VictoryScreen/MainMenu)
-        if (Input.GetKeyDown(KeyCode.B)) DongShop();
+        if (Input.GetKeyDown(KeyCode.B))      DongShop();
         if (Input.GetKeyDown(KeyCode.Alpha1)) MuaDa();
         if (Input.GetKeyDown(KeyCode.Alpha2)) MuaDongHo();
         if (Input.GetKeyDown(KeyCode.Alpha3)) MuaLaBan();
     }
 
-    // -----------------------------------------------
-    // MỞ / ĐÓNG
-    // -----------------------------------------------
+    // Mo shop thong thuong
     public void MoShop()
     {
         dangNghiNgoiChuyenMap = false;
         MoiShopChung();
     }
 
+    // Mo shop sau khi thang man (co the load lai scene)
     public void MoShopThangMan()
     {
         dangNghiNgoiChuyenMap = true;
         MoiShopChung();
-        Debug.Log("[OK] TẦNG ĐÃ ĐƯỢC VƯỢT! CHUẨN BỊ SANG MAP MỚI KHI ĐÓNG SHOP!");
     }
 
+    // Mo shop va khoa thoi gian
     private void MoiShopChung()
     {
         dangMo = true;
         UIManager.Mo(UIManager.TrangThaiUI.Shop);
         AudioManager.PhatMoMenu();
-
         if (panelShop != null) panelShop.SetActive(true);
         CapNhatUI();
-
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible   = true;
         Time.timeScale   = 0f;
-
-        Debug.Log("[SHOP] Mo shop! Manh Hon: " + SaveSystem.LoadGame().soManhHon);
     }
 
+    // Dong shop va khoi phuc trang thai truoc
     public void DongShop()
     {
         dangMo = false;
         if (panelShop != null) panelShop.SetActive(false);
 
-        // NẾU ĐANG CHUYỂN MAP → Sang Màn Tiếp Theo
         if (dangNghiNgoiChuyenMap)
         {
             UIManager.DongVeGame();
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
             return;
         }
 
-        // Tự động quay về trạng thái trước đó:
-        //   Mở từ NPC trong mê cung → quay về TrongGame (chơi tiếp)
-        //   Mở từ VictoryScreen     → quay về ChienThang (VictoryScreen hiện lại)
         UIManager.DongVePanel();
-
         if (VictoryScreen.Instance != null && UIManager.DangO(UIManager.TrangThaiUI.ChienThang))
             VictoryScreen.Instance.KhoiPhucHienThiHUB();
         else
@@ -111,9 +99,7 @@ public class ItemShopUI : MonoBehaviour
         }
     }
 
-    // -----------------------------------------------
-    // CẬP NHẬT UI
-    // -----------------------------------------------
+    // Cap nhat text thong tin trong shop
     void CapNhatUI()
     {
         PlayerData data = SaveSystem.LoadGame();
@@ -123,102 +109,53 @@ public class ItemShopUI : MonoBehaviour
         if (txtSoLaBan  != null) txtSoLaBan.text  = $"x{data.soLaBan}";
     }
 
-    // -----------------------------------------------
-    // MUA VẬT PHẨM – gọi trực tiếp từ Button OnClick
-    // -----------------------------------------------
+    // Mua da phat sang
     public void MuaDa()
     {
         PlayerData data = SaveSystem.LoadGame();
-        Debug.Log($"[MUA] Mua Đá: soManhHon={data.soManhHon}, giaDa={giaDa}");
-
-        if (data.soManhHon < giaDa)
-        {
-            AudioManager.PhatKhongDuTien();
-            Debug.Log($"[LOI] Không đủ Mảnh Hồn! Cần {giaDa}, có {data.soManhHon}");
-            return;
-        }
-
+        if (data.soManhHon < giaDa) { AudioManager.PhatKhongDuTien(); return; }
         data.soManhHon   -= giaDa;
         data.soDaPhatSang += 1;
         SaveSystem.SaveGame(data);
-
-        // Đồng bộ PlayerInventory nếu tồn tại
-        if (PlayerInventory.Instance != null)
-            PlayerInventory.Instance.SyncTuSave();
-
+        if (PlayerInventory.Instance != null) PlayerInventory.Instance.SyncTuSave();
         AudioManager.PhatMuaDo();
-
-        Debug.Log($"[OK] Mua Đá Phát Sáng! Còn {data.soManhHon} Mảnh Hồn | Đá: {data.soDaPhatSang}");
         CapNhatUI();
-        GameHUD.LamMoi(); // Đồng bộ HUD
+        GameHUD.LamMoi();
     }
 
+    // Mua dong ho
     public void MuaDongHo()
     {
         PlayerData data = SaveSystem.LoadGame();
-        Debug.Log($"[MUA] Mua Đồng Hồ: soManhHon={data.soManhHon}, giaDongHo={giaDongHo}");
-
-        if (data.soManhHon < giaDongHo)
-        {
-            AudioManager.PhatKhongDuTien();
-            Debug.Log($"[LOI] Không đủ! Cần {giaDongHo}, có {data.soManhHon}");
-            return;
-        }
-
+        if (data.soManhHon < giaDongHo) { AudioManager.PhatKhongDuTien(); return; }
         data.soManhHon -= giaDongHo;
         data.soDongHo  += 1;
         SaveSystem.SaveGame(data);
-
-        if (PlayerInventory.Instance != null)
-            PlayerInventory.Instance.SyncTuSave();
-
+        if (PlayerInventory.Instance != null) PlayerInventory.Instance.SyncTuSave();
         AudioManager.PhatMuaDo();
-
-        Debug.Log($"[OK] Mua Đồng Hồ! Còn {data.soManhHon} Mảnh Hồn | Đồng hồ: {data.soDongHo}");
         CapNhatUI();
-        GameHUD.LamMoi(); // Đồng bộ HUD
+        GameHUD.LamMoi();
     }
 
+    // Mua la ban
     public void MuaLaBan()
     {
         PlayerData data = SaveSystem.LoadGame();
-        Debug.Log($"[MUA] Mua La Bàn: soManhHon={data.soManhHon}, giaLaBan={giaLaBan}");
-
-        if (data.soManhHon < giaLaBan)
-        {
-            AudioManager.PhatKhongDuTien();
-            Debug.Log($"[LOI] Không đủ! Cần {giaLaBan}, có {data.soManhHon}");
-            return;
-        }
-
+        if (data.soManhHon < giaLaBan) { AudioManager.PhatKhongDuTien(); return; }
         data.soManhHon -= giaLaBan;
         data.soLaBan   += 1;
         SaveSystem.SaveGame(data);
-
-        if (PlayerInventory.Instance != null)
-            PlayerInventory.Instance.SyncTuSave();
-
+        if (PlayerInventory.Instance != null) PlayerInventory.Instance.SyncTuSave();
         AudioManager.PhatMuaDo();
-
-        Debug.Log($"[OK] Mua La Bàn! Còn {data.soManhHon} Mảnh Hồn | La bàn: {data.soLaBan}");
         CapNhatUI();
-        GameHUD.LamMoi(); // Đồng bộ HUD
+        GameHUD.LamMoi();
     }
 
-    // -----------------------------------------------
-    // GỌI NÂNG CẤP TRỰC TIẾP TỪ SHOP
-    // -----------------------------------------------
+    // Goi man hinh nang cap tu shop
     public void GoiUpgradeScreen()
     {
         if (panelShop != null) panelShop.SetActive(false);
         UpgradeScreen us = UpgradeScreen.Instance ?? FindFirstObjectByType<UpgradeScreen>();
-        if (us != null)
-        {
-            us.MoUpgrade();
-        }
-        else
-        {
-            Debug.LogError("[LOI] Không tìm thấy UpgradeScreen để mở!");
-        }
+        if (us != null) us.MoUpgrade();
     }
 }

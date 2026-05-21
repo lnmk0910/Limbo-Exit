@@ -1,46 +1,41 @@
-// UIManager.cs
-// Quản lý trạng thái UI toàn cục — chống xung đột phím giữa các màn hình
-// Không gắn vào GameObject, gọi trực tiếp UIManager.PanelHienTai
-
+// UIManager.cs — Quản lý trạng thái UI toàn cục, chống xung đột phím
 public static class UIManager
 {
     public enum TrangThaiUI
     {
-        TrongGame,   // Đang chơi bình thường
-        Pause,       // Pause Menu đang mở
-        Shop,        // Cửa hàng đang mở
-        NangCap,     // Màn hình nâng cấp đang mở
-        ChienThang,  // VictoryScreen đang mở
-        ChetChoc,    // DeathScreen đang mở
-        HoiThoai,    // Khung hội thoại NPC đang mở
+        TrongGame,
+        Pause,
+        Shop,
+        NangCap,
+        ChienThang,
+        ChetChoc,
+        HoiThoai,
     }
 
     public static TrangThaiUI PanelHienTai { get; private set; } = TrangThaiUI.TrongGame;
-
-    // Trạng thái trước đó — để khi đóng panel biết quay về đâu
     private static TrangThaiUI trangThaiTruoc = TrangThaiUI.TrongGame;
 
+    // Chuyen trang thai UI va luu trang thai truoc do
     public static void Mo(TrangThaiUI trangThai)
     {
-        trangThaiTruoc = PanelHienTai; // Lưu lại trước khi mở
+        trangThaiTruoc = PanelHienTai;
         PanelHienTai   = trangThai;
     }
 
-    // Đóng panel hiện tại → quay về trạng thái trước đó
+    // Dong panel va quay ve trang thai truoc
     public static void DongVePanel()
     {
         PanelHienTai   = trangThaiTruoc;
-        trangThaiTruoc = TrangThaiUI.TrongGame; // Reset để tránh chain lỗi
+        trangThaiTruoc = TrangThaiUI.TrongGame;
     }
 
-    // Đóng hẳn về game (không qua trạng thái trung gian)
+    // Reset toan bo UI ve che do trong game
     public static void DongVeGame()
     {
         trangThaiTruoc = TrangThaiUI.TrongGame;
         PanelHienTai   = TrangThaiUI.TrongGame;
     }
 
-    // Kiểm tra: chỉ xử lý input nếu đúng trạng thái
     public static bool DangO(TrangThaiUI trangThai) => PanelHienTai == trangThai;
     public static bool DangTrongGame() => PanelHienTai == TrangThaiUI.TrongGame;
 }

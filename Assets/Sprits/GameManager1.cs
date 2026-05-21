@@ -36,6 +36,7 @@ public class GameManager1 : MonoBehaviour
         }
     }
 
+    // Khoi tao singleton
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -47,6 +48,7 @@ public class GameManager1 : MonoBehaviour
         instance = this;
     }
 
+    // An/hiem UI khi bat dau
     void Start()
     {
         if (gameOverObject != null)
@@ -59,6 +61,7 @@ public class GameManager1 : MonoBehaviour
             timeGameObject.SetActive(true);
     }
 
+    // Dem nguoc thoi gian va xu ly win/lose
     void Update()
     {
         // ===== WIN =====
@@ -107,12 +110,14 @@ public class GameManager1 : MonoBehaviour
         }
     }
 
+    // Danh dau game over
     public void KetThucGame()
     {
         gameDaKetThuc = true;
         Debug.Log("GAME OVER");
     }
 
+    // Cong them thoi gian khi qua checkpoint
     public void QuaCheckPoint()
     {
         if (!gameDaKetThuc && !winGame)
@@ -122,6 +127,7 @@ public class GameManager1 : MonoBehaviour
         }
     }
 
+    // Xu ly cham win point
     public void QuaWinPoint()
     {
         if (!gameDaKetThuc)
@@ -132,6 +138,7 @@ public class GameManager1 : MonoBehaviour
         }
     }
 
+    // Quay ve map chinh
     void ReturnToMap()
     {
         SceneManager.LoadScene("GameScene"); // 👉 sửa tên nếu map bạn khác

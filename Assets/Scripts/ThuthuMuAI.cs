@@ -1,4 +1,4 @@
-// ThuthuMuAI.cs - Thêm cơ chế biến mất & spawn lại
+// ThuthuMuAI.cs — AI Thủ Thư Mù: nghe ngóng, phát hiện bằng âm thanh, truy đuổi
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
@@ -18,48 +18,58 @@ public class ThuthuMuAI : MonoBehaviour
     public float tocDoTruyDuoi = 7f;
 
     [Header("=== BẮT & SPAWN LẠI ===")]
-    public float khoangCachBat      = 1.2f;
-    public float thoiGianBienMat    = 12f;   // Ẩn lâu hơn Enemy thường
+    public float khoangCachBat      = 1.5f;
+    public float thoiGianBienMat    = 12f;
     public float khoangCachSpawnMin = 15f;
 
     private NavMeshAgent agent;
     private Transform playerTransform;
     private Renderer[] renderers;
+    private Collider[] colliders;
     private bool  daBat           = false;
     private float thoiGianChoDem  = 0f;
-    private float demPhatHien     = 0f;  // Đếm thời gian dừng khi phát hiện
+    private float demPhatHien     = 0f;
 
+    // Khoi tao agent, renderer/collider va diem nghe
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         renderers = GetComponentsInChildren<Renderer>();
+        colliders = GetComponentsInChildren<Collider>();
 
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null) playerTransform = player.transform;
-
+        TimPlayer();
         TimDiemNgheNgong();
     }
 
+    // Tim tham chieu player
+    void TimPlayer()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null) playerTransform = player.transform;
+    }
+
+    // Cap nhat trang thai AI theo am thanh
     void Update()
     {
         if (daBat || trangThai == TrangThai.BienMat) return;
-        if (TimeClockItem.dangDongBang) return;
+        if (TimeClockItem.dangDongBang) { if (agent.enabled) agent.isStopped = true; return; }
+        if (agent.enabled && agent.isStopped) agent.isStopped = false;
 
-        if (playerTransform != null)
-        {
-            float kc = Vector3.Distance(transform.position, playerTransform.position);
-            if (kc <= khoangCachBat) { BatDuocPlayer(); return; }
-        }
+        if (playerTransform == null) { TimPlayer(); return; }
+
+        float kc = Vector3.Distance(transform.position, playerTransform.position);
+        if (kc <= khoangCachBat) { BatDuocPlayer(); return; }
 
         switch (trangThai)
         {
             case TrangThai.NgheNgong: XuLyNgheNgong();  break;
             case TrangThai.PhatHien:  XuLyPhatHien();   break;
-            case TrangThai.TruyDuoi: XuLyTruyDuoi();   break;
+            case TrangThai.TruyDuoi:  XuLyTruyDuoi();   break;
         }
     }
 
+    // Di nghe ngong va chuyen sang phat hien neu nghe thay
     void XuLyNgheNgong()
     {
         agent.speed = tocDoNghe;
@@ -70,14 +80,14 @@ public class ThuthuMuAI : MonoBehaviour
         }
 
         if (playerTransform == null) return;
-        float khoangCach = Vector3.Distance(transform.position, playerTransform.position);
-        if (khoangCach <= LayTamNghe())
+        float kc = Vector3.Distance(transform.position, playerTransform.position);
+        if (kc <= LayTamNghe())
         {
-            trangThai = TrangThai.PhatHien; // Dừng lại nghe ngóng trước
-            Debug.Log("[NGHE] Thủ Thư Mù nghe thấy! Dừng lại...");
+            trangThai = TrangThai.PhatHien;
         }
     }
 
+    // Tim diem nghe ngong moi gan vi tri hien tai
     void TimDiemNgheNgong()
     {
         for (int i = 0; i < 10; i++)
@@ -89,22 +99,21 @@ public class ThuthuMuAI : MonoBehaviour
         }
     }
 
-    // -----------------------------------------------
-    // PHÁT HIỆN — dừng lại 0.5s trước khi đuổi
-    // -----------------------------------------------
+    // Dừng lại 0.5s trước khi đuổi
+    // Dung lai de tao tre phan hoi truoc khi truy duoi
     void XuLyPhatHien()
     {
-        agent.SetDestination(transform.position); // Dừng lại
+        agent.SetDestination(transform.position);
         demPhatHien += Time.deltaTime;
         if (demPhatHien >= 0.5f)
         {
-            demPhatHien  = 0f;
-            trangThai    = TrangThai.TruyDuoi;
+            demPhatHien = 0f;
+            trangThai   = TrangThai.TruyDuoi;
             AudioManager.PhatPhatHien();
-            Debug.Log("[NGHE] Thủ Thư Mù bắt đầu truy đuổi!");
         }
     }
 
+    // Tinh tam nghe dua tren toc do player
     float LayTamNghe()
     {
         Rigidbody rb = playerTransform?.GetComponent<Rigidbody>();
@@ -115,6 +124,7 @@ public class ThuthuMuAI : MonoBehaviour
         return tamNgheKhiDiThuong;
     }
 
+    // Truy duoi player va quay lai nghe ngong neu mat dau vet
     void XuLyTruyDuoi()
     {
         agent.speed = tocDoTruyDuoi;
@@ -129,38 +139,45 @@ public class ThuthuMuAI : MonoBehaviour
         }
     }
 
+    // Bat player va khoi dong bien mat
     void BatDuocPlayer()
     {
+        if (daBat) return;
         daBat = true;
-        Debug.Log($"[CHET] Thủ Thư Mù bắt được! Ẩn {thoiGianBienMat}s rồi spawn lại...");
-        DeathScreen.Instance?.HienManHinhChet();
+
+        DeathScreen ds = DeathScreen.Instance ?? Object.FindFirstObjectByType<DeathScreen>();
+        if (ds != null) ds.HienManHinhChet();
+
         StartCoroutine(BienMatVaSpawnLai());
     }
 
+    // An quai mot thoi gian roi spawn xa player
     IEnumerator BienMatVaSpawnLai()
     {
         trangThai = TrangThai.BienMat;
         agent.enabled = false;
-        foreach (var r in renderers) if (r != null) r.enabled = false;
-        // Tắt âm thanh khi biến mất
+        SetHienThi(false);
+        SetColliders(false);
+
         AudioSource src = GetComponent<AudioSource>();
         if (src != null) src.Stop();
 
         yield return new WaitForSecondsRealtime(thoiGianBienMat);
 
-        // Tìm vị trí mới xa Player
         Vector3 viTriMoi = TimViTriXaPlayer();
         transform.position = viTriMoi;
+
         agent.enabled = true;
         agent.Warp(viTriMoi);
-        foreach (var r in renderers) if (r != null) r.enabled = true;
+        SetHienThi(true);
+        SetColliders(true);
 
         daBat = false;
         trangThai = TrangThai.NgheNgong;
         TimDiemNgheNgong();
-        Debug.Log($"[NGHE] Thủ Thư Mù xuất hiện lại tại {viTriMoi}");
     }
 
+    // Tim vi tri spawn xa player
     Vector3 TimViTriXaPlayer()
     {
         Vector3 vp = playerTransform != null ? playerTransform.position : Vector3.zero;
@@ -173,6 +190,18 @@ public class ThuthuMuAI : MonoBehaviour
                     return hit.position;
         }
         return vp + Vector3.right * khoangCachSpawnMin;
+    }
+
+    // Bat/tat renderer cua quai
+    void SetHienThi(bool hien)
+    {
+        foreach (var r in renderers) if (r != null) r.enabled = hien;
+    }
+
+    // Bat/tat collider cua quai
+    void SetColliders(bool bat)
+    {
+        foreach (var c in colliders) if (c != null) c.enabled = bat;
     }
 
     void OnDrawGizmosSelected()

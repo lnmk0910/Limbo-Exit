@@ -1,26 +1,16 @@
-// AudioManager.cs
-// Hệ thống âm thanh trung tâm — Singleton, DontDestroyOnLoad
-// Cung cấp static methods cho toàn bộ game gọi
-// GẮN vào: Empty GameObject "AudioManager" trong mọi Scene
-
+// AudioManager.cs — Hệ thống âm thanh trung tâm, Singleton DontDestroyOnLoad
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    // -----------------------------------------------
-    // AUDIO SOURCES
-    // -----------------------------------------------
     [Header("=== AUDIO SOURCES ===")]
-    public AudioSource srcBGM;       // Nhạc nền (loop)
-    public AudioSource srcAmbient;   // Ambient (loop)
-    public AudioSource srcSFX;       // Hiệu ứng một lần
-    public AudioSource srcBuocChan;  // Bước chân (loop khi di chuyển)
+    public AudioSource srcBGM;
+    public AudioSource srcAmbient;
+    public AudioSource srcSFX;
+    public AudioSource srcBuocChan;
 
-    // -----------------------------------------------
-    // NHẠC NỀN (BGM)
-    // -----------------------------------------------
     [Header("=== NHẠC NỀN ===")]
     public AudioClip bgmMenu;
     public AudioClip bgmDaCo;
@@ -30,16 +20,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip bgmVictory;
     public AudioClip bgmGameOver;
 
-    // -----------------------------------------------
-    // AMBIENT
-    // -----------------------------------------------
     [Header("=== AMBIENT ===")]
     public AudioClip ambGio;
-    public AudioClip ambGiotNuoc;    // Dùng cho Biome Đầm Lầy
+    public AudioClip ambGiotNuoc;
 
-    // -----------------------------------------------
-    // NHÂN VẬT
-    // -----------------------------------------------
     [Header("=== NHÂN VẬT ===")]
     public AudioClip sfxBuocChanDa;
     public AudioClip sfxBuocChanBun;
@@ -52,18 +36,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip sfxManhHonNhan;
     public AudioClip sfxCuaMo;
 
-    // -----------------------------------------------
-    // KẺ ĐỊCH
-    // -----------------------------------------------
     [Header("=== KẺ ĐỊCH ===")]
     public AudioClip sfxQuaiPhatHien;
     public AudioClip sfxQuaiDuoi;
     public AudioClip sfxBunNoiLen;
     public AudioClip sfxThuthuNghe;
 
-    // -----------------------------------------------
-    // UI / SHOP
-    // -----------------------------------------------
     [Header("=== UI / SHOP ===")]
     public AudioClip sfxMuaDo;
     public AudioClip sfxKhongDuTien;
@@ -73,31 +51,22 @@ public class AudioManager : MonoBehaviour
     public AudioClip sfxHoiThoai;
     public AudioClip sfxPhaDaoFanfare;
 
-    // -----------------------------------------------
-    // ÂM LƯỢNG MẶC ĐỊNH
-    // -----------------------------------------------
     [Header("=== ÂM LƯỢNG ===")]
-    [Range(0f, 1f)] public float amLuongBGM     = 0.5f;
-    [Range(0f, 1f)] public float amLuongAmbient = 0.3f;
-    [Range(0f, 1f)] public float amLuongSFX     = 1.0f;
-    [Range(0f, 1f)] public float amLuongBuocChan= 0.6f;
+    [Range(0f, 1f)] public float amLuongBGM      = 0.5f;
+    [Range(0f, 1f)] public float amLuongAmbient   = 0.3f;
+    [Range(0f, 1f)] public float amLuongSFX       = 1.0f;
+    [Range(0f, 1f)] public float amLuongBuocChan  = 0.6f;
 
-    // -----------------------------------------------
-    // AWAKE — Singleton + DontDestroyOnLoad
-    // -----------------------------------------------
+    // Khoi tao singleton va ap dung am luong
     void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
         ApDungAmLuong();
     }
 
+    // Dong bo volume cho tung AudioSource
     void ApDungAmLuong()
     {
         if (srcBGM      != null) srcBGM.volume      = amLuongBGM;
@@ -106,11 +75,7 @@ public class AudioManager : MonoBehaviour
         if (srcBuocChan != null) srcBuocChan.volume = amLuongBuocChan;
     }
 
-    // ===============================================
-    // STATIC API — Gọi từ bất kỳ script nào
-    // ===============================================
-
-    // ---- NHẠC NỀN ----
+    // Nhạc nền
     public static void PhatBGM(AudioClip clip)
     {
         if (Instance == null || Instance.srcBGM == null || clip == null) return;
@@ -125,10 +90,11 @@ public class AudioManager : MonoBehaviour
         if (Instance == null) return;
         switch (tenScene)
         {
-            case "MenuScene":  PhatBGM(Instance.bgmMenu);    break;
+            case "MenuScene": PhatBGM(Instance.bgmMenu); break;
         }
     }
 
+    // Chon nhac/ambient theo biome index
     public static void PhatBGMTheoBiome(int biomeIndex)
     {
         if (Instance == null) return;
@@ -146,7 +112,8 @@ public class AudioManager : MonoBehaviour
         if (Instance?.srcBGM != null) Instance.srcBGM.Stop();
     }
 
-    // ---- AMBIENT ----
+    // Ambient
+    // Phat ambient loop hoac dung neu clip null
     public static void PhatAmbient(AudioClip clip)
     {
         if (Instance == null || Instance.srcAmbient == null) return;
@@ -157,26 +124,25 @@ public class AudioManager : MonoBehaviour
         Instance.srcAmbient.Play();
     }
 
-    // ---- SFX ----
+    // SFX
     public static void Phat(AudioClip clip, float volume = 1f)
     {
         if (Instance == null || Instance.srcSFX == null || clip == null) return;
         Instance.srcSFX.PlayOneShot(clip, volume * Instance.amLuongSFX);
     }
 
-    // ---- BƯỚC CHÂN ----
+    // Bước chân
+    // Chon clip buoc chan theo biome va phat loop
     public static void BatBuocChan(int biomeIndex = 0)
     {
         if (Instance == null || Instance.srcBuocChan == null) return;
-
         AudioClip clip;
         switch (biomeIndex)
         {
-            case 2:  clip = Instance.sfxBuocChanBun;      break;
-            case 3:  clip = Instance.sfxBuocChanTinhThe;  break;
-            default: clip = Instance.sfxBuocChanDa;        break;
+            case 2:  clip = Instance.sfxBuocChanBun;     break;
+            case 3:  clip = Instance.sfxBuocChanTinhThe; break;
+            default: clip = Instance.sfxBuocChanDa;       break;
         }
-
         if (clip == null) return;
         if (Instance.srcBuocChan.clip != clip)
             Instance.srcBuocChan.clip = clip;
@@ -190,49 +156,33 @@ public class AudioManager : MonoBehaviour
             Instance.srcBuocChan.Stop();
     }
 
-    // ---- SHORTCUTS PHỔ BIẾN ----
-    public static void PhatMuaDo()        => Phat(Instance?.sfxMuaDo);
-    public static void PhatKhongDuTien()  => Phat(Instance?.sfxKhongDuTien);
-    public static void PhatNangCap()      => Phat(Instance?.sfxNangCap);
-    public static void PhatMoMenu()       => Phat(Instance?.sfxMoMenu);
-    public static void PhatDongMenu()     => Phat(Instance?.sfxDongMenu);
-    public static void PhatCheckpoint()   => Phat(Instance?.sfxCheckpoint);
-    public static void PhatManhHonNhan()  => Phat(Instance?.sfxManhHonNhan);
-    public static void PhatManhHonRoi()   => Phat(Instance?.sfxManhHonRoi);
-    public static void PhatChet()         => Phat(Instance?.sfxChet);
-    public static void PhatThoatMan()     => Phat(Instance?.sfxThoatMan);
-    public static void PhatCuaMo()        => Phat(Instance?.sfxCuaMo);
-    public static void PhatPhaDao()       => Phat(Instance?.sfxPhaDaoFanfare);
-    public static void PhatHoiThoai()     => Phat(Instance?.sfxHoiThoai, 0.5f);
+    // Shortcuts
+    public static void PhatMuaDo()       => Phat(Instance?.sfxMuaDo);
+    public static void PhatKhongDuTien() => Phat(Instance?.sfxKhongDuTien);
+    public static void PhatNangCap()     => Phat(Instance?.sfxNangCap);
+    public static void PhatMoMenu()      => Phat(Instance?.sfxMoMenu);
+    public static void PhatDongMenu()    => Phat(Instance?.sfxDongMenu);
+    public static void PhatCheckpoint()  => Phat(Instance?.sfxCheckpoint);
+    public static void PhatManhHonNhan() => Phat(Instance?.sfxManhHonNhan);
+    public static void PhatManhHonRoi()  => Phat(Instance?.sfxManhHonRoi);
+    public static void PhatChet()        => Phat(Instance?.sfxChet);
+    public static void PhatThoatMan()    => Phat(Instance?.sfxThoatMan);
+    public static void PhatCuaMo()       => Phat(Instance?.sfxCuaMo);
+    public static void PhatPhaDao()      => Phat(Instance?.sfxPhaDaoFanfare);
+    public static void PhatHoiThoai()    => Phat(Instance?.sfxHoiThoai, 0.5f);
+    public static void PhatPhatHien()    => Phat(Instance?.sfxQuaiPhatHien);
+    public static void PhatDuoi()        => Phat(Instance?.sfxQuaiDuoi);
+    public static void PhatBunNoiLen()   => Phat(Instance?.sfxBunNoiLen);
+    public static void PhatThuthuNghe()  => Phat(Instance?.sfxThuthuNghe);
 
-    // Enemy
-    public static void PhatPhatHien()     => Phat(Instance?.sfxQuaiPhatHien);
-    public static void PhatDuoi()         => Phat(Instance?.sfxQuaiDuoi);
-    public static void PhatBunNoiLen()    => Phat(Instance?.sfxBunNoiLen);
-    public static void PhatThuthuNghe()   => Phat(Instance?.sfxThuthuNghe);
-
-    // -----------------------------------------------
-    // TẮT/BẬT ÂM THANH TOÀN BỘ QUÁI VẬT
-    // Gọi khi Player chết (tắt) và khi quái phát hiện lại Player (tự bật)
-    // -----------------------------------------------
+    // Tắt toàn bộ âm thanh quái vật
     public static void TatAmThanhQuai()
     {
-        // Tắt AudioSource trên tất cả quái
         foreach (var e in Object.FindObjectsByType<EnemyAI>(FindObjectsSortMode.None))
-        {
-            AudioSource src = e.GetComponent<AudioSource>();
-            if (src != null) src.Stop();
-        }
+        { AudioSource src = e.GetComponent<AudioSource>(); if (src != null) src.Stop(); }
         foreach (var t in Object.FindObjectsByType<ThuthuMuAI>(FindObjectsSortMode.None))
-        {
-            AudioSource src = t.GetComponent<AudioSource>();
-            if (src != null) src.Stop();
-        }
+        { AudioSource src = t.GetComponent<AudioSource>(); if (src != null) src.Stop(); }
         foreach (var s in Object.FindObjectsByType<SinhVatBunAI>(FindObjectsSortMode.None))
-        {
-            AudioSource src = s.GetComponent<AudioSource>();
-            if (src != null) src.Stop();
-        }
-        Debug.Log("[AUDIO] Tắt toàn bộ âm thanh quái vật");
+        { AudioSource src = s.GetComponent<AudioSource>(); if (src != null) src.Stop(); }
     }
 }

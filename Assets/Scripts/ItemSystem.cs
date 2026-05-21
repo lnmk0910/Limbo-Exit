@@ -1,92 +1,62 @@
-// ItemSystem.cs
-// Lop tĩnh quan ly vat pham — doc/ghi truc tiep tu SaveSystem
-// KHONG phu thuoc PlayerInventory.Instance
-// Su dung: ItemSystem.DungDa(), ItemSystem.DungDongHo(), ItemSystem.DungLaBan()
-// GAN vao: KHONG CAN GAN vao GameObject nao — goi truc tiep
-
+// ItemSystem.cs — Lớp tĩnh quản lý vật phẩm, đọc/ghi trực tiếp từ SaveSystem
 using UnityEngine;
 
 public static class ItemSystem
 {
-    // -----------------------------------------------
-    // DUNG VAT PHAM — tra ve true neu thanh cong
-    // -----------------------------------------------
+    // Dung da phat sang, tru so luong va ghi save
     public static bool DungDa()
     {
         PlayerData data = SaveSystem.LoadGame();
-        if (data.soDaPhatSang <= 0)
-        {
-            Debug.Log("[ITEM] Khong co Da Phat Sang! (so luong = 0)");
-            return false;
-        }
+        if (data.soDaPhatSang <= 0) return false;
         data.soDaPhatSang--;
         SaveSystem.SaveGame(data);
-
-        // Dong bo PlayerInventory runtime neu co
-        if (PlayerInventory.Instance != null)
-            PlayerInventory.Instance.SyncTuSave();
-
+        if (PlayerInventory.Instance != null) PlayerInventory.Instance.SyncTuSave();
         GameHUD.LamMoi();
         DDAManager.GhiNhanDungItem();
-        Debug.Log($"[ITEM] Dung Da Phat Sang. Con lai: {data.soDaPhatSang}");
         return true;
     }
 
+    // Dung dong ho, tru so luong va ghi save
     public static bool DungDongHo()
     {
         PlayerData data = SaveSystem.LoadGame();
-        if (data.soDongHo <= 0)
-        {
-            Debug.Log("[ITEM] Khong co Dong Ho Thoi Gian! (so luong = 0)");
-            return false;
-        }
+        if (data.soDongHo <= 0) return false;
         data.soDongHo--;
         SaveSystem.SaveGame(data);
-
-        if (PlayerInventory.Instance != null)
-            PlayerInventory.Instance.SyncTuSave();
-
+        if (PlayerInventory.Instance != null) PlayerInventory.Instance.SyncTuSave();
         GameHUD.LamMoi();
         DDAManager.GhiNhanDungItem();
-        Debug.Log($"[ITEM] Dung Dong Ho. Con lai: {data.soDongHo}");
         return true;
     }
 
+    // Dung la ban, tru so luong va ghi save
     public static bool DungLaBan()
     {
         PlayerData data = SaveSystem.LoadGame();
-        if (data.soLaBan <= 0)
-        {
-            Debug.Log("[ITEM] Khong co La Ban Co! (so luong = 0)");
-            return false;
-        }
+        if (data.soLaBan <= 0) return false;
         data.soLaBan--;
         SaveSystem.SaveGame(data);
-
-        if (PlayerInventory.Instance != null)
-            PlayerInventory.Instance.SyncTuSave();
-
+        if (PlayerInventory.Instance != null) PlayerInventory.Instance.SyncTuSave();
         GameHUD.LamMoi();
         DDAManager.GhiNhanDungItem();
-        Debug.Log($"[ITEM] Dung La Ban. Con lai: {data.soLaBan}");
         return true;
     }
 
-    // -----------------------------------------------
-    // KIEM TRA SO LUONG (khong ghi file)
-    // -----------------------------------------------
+    // Lay so luong da tu inventory hoac save
     public static int SoDa()
     {
         if (PlayerInventory.Instance != null) return PlayerInventory.Instance.daPhatSang;
         return SaveSystem.LoadGame().soDaPhatSang;
     }
 
+    // Lay so luong dong ho tu inventory hoac save
     public static int SoDongHo()
     {
         if (PlayerInventory.Instance != null) return PlayerInventory.Instance.dongHo;
         return SaveSystem.LoadGame().soDongHo;
     }
 
+    // Lay so luong la ban tu inventory hoac save
     public static int SoLaBan()
     {
         if (PlayerInventory.Instance != null) return PlayerInventory.Instance.laBan;

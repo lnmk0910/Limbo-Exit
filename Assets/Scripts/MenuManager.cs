@@ -47,6 +47,7 @@ public class MenuManager : MonoBehaviour
     private bool dangChonDeContinue = true;
 
     // -----------------------------------------------
+    // Khoi tao giao dien menu va dong bo settings
     void Start()
     {
         AudioManager.PhatBGMTheoScene("MenuScene");
@@ -92,6 +93,7 @@ public class MenuManager : MonoBehaviour
         CapNhatTextAmThanh();
     }
 
+    // Xu ly phim tat cho tung trang thai menu
     void Update()
     {
         // 1. Đang hỏi cảnh báo lưu đè
@@ -154,6 +156,7 @@ public class MenuManager : MonoBehaviour
         CapNhatChuTrenSlot(3, txtSlot3);
     }
 
+    // Hien thong tin ngan gon tren tung o slot
     void CapNhatChuTrenSlot(int slot, TMP_Text txt)
     {
         if (txt == null) return;
@@ -203,6 +206,7 @@ public class MenuManager : MonoBehaviour
     // -----------------------------------------------
     // HÀNH ĐỘNG THỰC SỰ
     // -----------------------------------------------
+    // Tiep tuc vao game tu slot da chon
     public void OnClick_TiepTucThucSu()
     {
         if (SaveSystem.CoFileSave())
@@ -213,6 +217,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    // Tao moi ho so va vao game
     public void OnClick_NewGameThucSu()
     {
         SaveSystem.currentSlotIndex = dangChonSlot;
@@ -273,6 +278,7 @@ public class MenuManager : MonoBehaviour
     }
 
     // Goi tu ben ngoai (phim tat M trong Settings)
+    // Toggle tong am thanh (co the khong co Toggle UI)
     public void ToggleAmThanh()
     {
         if (toggleAmThanh != null)

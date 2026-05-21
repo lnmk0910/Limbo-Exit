@@ -28,11 +28,13 @@ public class FlappyBirdController : MonoBehaviour
     private int PipeCount;
     private int Score;
 
+    // Reset trang thai bat dau
     void Start()
     {
         ResetGame();
     }
 
+    // Xu ly di chuyen, spawn ong va tinh diem
     void Update()
     {
         // Dừng game khi thắng
@@ -99,12 +101,14 @@ public class FlappyBirdController : MonoBehaviour
         }
     }
 
+    // Va cham = thua va reset
     void OnTriggerEnter(Collider other)
     {
         ResetGame();   // Va chạm = thua
     }
 
     // ====================== PHẦN THẮNG ======================
+    // Hien man hinh thang va khoa thoi gian
     private void WinGame()
     {
         Time.timeScale = 0f;
@@ -119,6 +123,7 @@ public class FlappyBirdController : MonoBehaviour
         }
     }
 
+    // Reset toan bo thong so cho luot moi
     private void ResetGame()
     {
         Score = 0;
@@ -143,6 +148,7 @@ public class FlappyBirdController : MonoBehaviour
             RestartButton.gameObject.SetActive(false);
     }
 
+    // Choi lai scene hien tai
     public void RestartGame()
     {
         Time.timeScale = 1f;

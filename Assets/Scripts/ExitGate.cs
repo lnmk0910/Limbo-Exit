@@ -1,8 +1,4 @@
-// ExitGate.cs - Fix toàn diện
-// Fix 1: Bỏ gameObject.tag = "ExitGate" (lỗi nếu tag chưa tạo trong TagManager)
-// Fix 2: Dùng distance check SONG SONG với OnTriggerEnter (backup)
-// Fix 3: Tìm VictoryScreen bằng FindFirstObjectByType nếu Instance null
-
+// ExitGate.cs — Cổng thoát: kích hoạt VictoryScreen khi Player chạm
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,30 +8,27 @@ public class ExitGate : MonoBehaviour
     private Transform playerTransform;
 
     [Header("=== BACKUP: khoảng cách bắt Player ===")]
-    public float khoangCachThang = 2f;  // Nếu trigger lỗi, dùng distance check
+    public float khoangCachThang = 2f;
 
+    // Dat trigger va tim player
     void Start()
     {
-        // Đặt collider là trigger
         Collider col = GetComponent<Collider>();
         if (col != null) col.isTrigger = true;
 
-        // Tự tìm Player
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null) playerTransform = player.transform;
     }
 
+    // Backup: kiem tra khoang cach neu trigger khong hoat dong
     void Update()
     {
-        // BACKUP: nếu OnTriggerEnter không hoạt động → dùng distance check
-        if (daKichHoat) return;
-        if (playerTransform == null) return;
-
-        float kc = Vector3.Distance(transform.position, playerTransform.position);
-        if (kc <= khoangCachThang)
+        if (daKichHoat || playerTransform == null) return;
+        if (Vector3.Distance(transform.position, playerTransform.position) <= khoangCachThang)
             KichHoatThangMan();
     }
 
+    // Trigger khi player cham gate
     void OnTriggerEnter(Collider other)
     {
         if (daKichHoat) return;
@@ -43,24 +36,23 @@ public class ExitGate : MonoBehaviour
         KichHoatThangMan();
     }
 
+    // Xu ly thang man: ghi DDA, thuong manh hon, hien victory
     void KichHoatThangMan()
     {
         daKichHoat = true;
-        Debug.Log("[KICHHOAT] ExitGate kích hoạt → Hiện VictoryScreen cho người chơi lựa chọn...");
         AudioManager.PhatCuaMo();
 
         PlayerData data = SaveSystem.LoadGame();
 
-        // === DDA: Ghi nhan thoi gian vuot tang ===
+        // DDA: ghi nhận thời gian vượt tầng
         float thoiGianVuot = Time.realtimeSinceStartup - data.thoiGianBatDauTang;
         DDAManager.GhiNhanVuotTang(thoiGianVuot);
 
-        // Thuong Manh Hon
-        data = SaveSystem.LoadGame(); // Doc lai sau khi DDA da ghi
+        // Thưởng Mảnh Hồn
+        data = SaveSystem.LoadGame();
         data.soManhHon += 10;
         SaveSystem.SaveGame(data);
 
-        // LUÔN gọi VictoryScreen trước - người chơi tự quyết định tiếp theo
         VictoryScreen vs = VictoryScreen.Instance ?? FindFirstObjectByType<VictoryScreen>();
         if (vs != null)
         {
@@ -68,7 +60,6 @@ public class ExitGate : MonoBehaviour
         }
         else
         {
-            Debug.LogError("[LOI] Không tìm thấy VictoryScreen! Reload thẳng...");
             data.mapHienTai++;
             data.seed = 0;
             SaveSystem.SaveGame(data);

@@ -1,8 +1,4 @@
-// TimeClockItem.cs
-// Dong Ho Thoi Gian: Nhan 2 → dong bang TAT CA quai vat trong 5 giay
-// Tim quai bang Component (EnemyAI, ThuthuMuAI, SinhVatBunAI) — khong phu thuoc tag
-// GAN vao: Player GameObject
-
+// TimeClockItem.cs — Đồng Hồ Thời Gian: nhấn 2 để đóng băng quái vật
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,36 +6,34 @@ using UnityEngine.AI;
 
 public class TimeClockItem : MonoBehaviour
 {
-    [Header("=== CAI DAT ===")]
-    public float thoiGianDong    = 5f;    // Thoi gian dong bang (giay)
-    public Color mauDongBang     = Color.cyan;
+    [Header("=== CÀI ĐẶT ===")]
+    public float thoiGianDong = 5f;
+    public Color mauDongBang  = Color.cyan;
 
-    // Bien tinh de TAT CA AI doc
     public static bool dangDongBang = false;
 
+    // Lang nghe phim tat de dung dong ho
     void Update()
     {
         if (!UIManager.DangTrongGame()) return;
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            DungDongHo();
+        if (Input.GetKeyDown(KeyCode.Alpha2)) DungDongHo();
     }
 
+    // Dung item va bat hieu ung dong bang
     void DungDongHo()
     {
         if (!ItemSystem.DungDongHo()) return;
         StartCoroutine(HieuUngDongBang());
     }
 
+    // Dong bang tat ca quai trong mot khoang thoi gian
     IEnumerator HieuUngDongBang()
     {
         dangDongBang = true;
 
-        // ===== Tim TAT CA quai vat bang Component (khong can tag) =====
         List<NavMeshAgent> danhSachAgent = new List<NavMeshAgent>();
         List<KeyValuePair<Renderer, Color>> danhSachMau = new List<KeyValuePair<Renderer, Color>>();
 
-        // Tim EnemyAI
         foreach (var e in Object.FindObjectsByType<EnemyAI>(FindObjectsSortMode.None))
         {
             if (e == null) continue;
@@ -48,7 +42,6 @@ public class TimeClockItem : MonoBehaviour
             LuuVaDoiMau(e.gameObject, danhSachMau);
         }
 
-        // Tim ThuthuMuAI
         foreach (var t in Object.FindObjectsByType<ThuthuMuAI>(FindObjectsSortMode.None))
         {
             if (t == null) continue;
@@ -57,7 +50,6 @@ public class TimeClockItem : MonoBehaviour
             LuuVaDoiMau(t.gameObject, danhSachMau);
         }
 
-        // Tim SinhVatBunAI
         foreach (var s in Object.FindObjectsByType<SinhVatBunAI>(FindObjectsSortMode.None))
         {
             if (s == null) continue;
@@ -66,33 +58,20 @@ public class TimeClockItem : MonoBehaviour
             LuuVaDoiMau(s.gameObject, danhSachMau);
         }
 
-        int soQuai = danhSachAgent.Count;
-        Debug.Log($"[DH] Dong bang {soQuai} quai vat trong {thoiGianDong}s!");
-
-        // Hien HUD thong bao
         GameHUD.LamMoi();
-
-        // Cho het thoi gian
         yield return new WaitForSeconds(thoiGianDong);
 
-        // Khoi phuc tat ca
         foreach (var nav in danhSachAgent)
-        {
             if (nav != null && nav.enabled) nav.isStopped = false;
-        }
 
-        // Khoi phuc mau goc
         foreach (var kv in danhSachMau)
-        {
             if (kv.Key != null) kv.Key.material.color = kv.Value;
-        }
 
         dangDongBang = false;
-        Debug.Log("[DH] Het hieu luc dong bang! Quai vat hoat dong lai.");
         GameHUD.LamMoi();
     }
 
-    // Luu mau goc roi doi sang mau dong bang
+    // Luu mau cu va doi mau renderers sang mau dong bang
     void LuuVaDoiMau(GameObject obj, List<KeyValuePair<Renderer, Color>> ds)
     {
         Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();

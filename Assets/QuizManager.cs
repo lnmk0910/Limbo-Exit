@@ -17,6 +17,7 @@ public class QuizManager : MonoBehaviour
     private int correctCount = 0;
     private bool gameEnded = false;
 
+    // Khoi tao UI va hien cau hoi dau
     void Start()
     {
         // HIỆN CHUỘT
@@ -31,6 +32,7 @@ public class QuizManager : MonoBehaviour
         ShowQuestion();
     }
 
+    // Hien cau hoi hien tai va dap an
     void ShowQuestion()
     {
         if (currentQuestion >= questions.Length)
@@ -52,6 +54,7 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    // Xu ly lua chon dap an
     public void ChooseAnswer(int index)
     {
         if (gameEnded) return;
@@ -66,6 +69,7 @@ public class QuizManager : MonoBehaviour
         ShowQuestion();
     }
 
+    // Ket thuc game va hien ket qua
     void EndGame()
     {
         gameEnded = true;
@@ -82,6 +86,7 @@ public class QuizManager : MonoBehaviour
         Invoke(nameof(ReturnToMap), 2f);
     }
 
+    // Quay ve scene chinh
     void ReturnToMap()
     {
         // KHÓA CHUỘT LẠI KHI VỀ GAME

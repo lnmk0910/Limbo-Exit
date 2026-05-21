@@ -1,6 +1,4 @@
-// DeathScreen.cs - Phiên bản sửa lỗi
-// Thêm phím tắt, xử lý null an toàn hơn
-
+// DeathScreen.cs — Màn hình chết: trừ Mảnh Hồn + vật phẩm ngay khi chết
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,22 +16,25 @@ public class DeathScreen : MonoBehaviour
     [Header("=== SCENE ===")]
     public string tenSceneMenu = "MainMenu";
 
-    [Header("=== THỜI GIAN CHỜ (giây) ===")]
+    [Header("=== THỜI GIAN CHỜ ===")]
     public float thoiGianCho = 1.5f;
 
     private bool dangHien = false;
 
+    // Khoi tao singleton
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
     }
 
+    // An panel khi bat dau
     void Start()
     {
         if (panelChet != null) panelChet.SetActive(false);
     }
 
+    // Lang nghe phim tat khi dang chet
     void Update()
     {
         if (!dangHien || !UIManager.DangO(UIManager.TrangThaiUI.ChetChoc)) return;
@@ -44,35 +45,32 @@ public class DeathScreen : MonoBehaviour
             OnClick_TuBo();
     }
 
-    // -----------------------------------------------
-    // GỌI KHI BỊ BẮT
-    // -----------------------------------------------
+    // Goi coroutine hien man hinh chet
     public void HienManHinhChet()
     {
         if (dangHien) return;
         StartCoroutine(TrinhTuHienThi());
     }
 
+    // Trinh tu: khoa game, tru tai san, hien UI
     IEnumerator TrinhTuHienThi()
     {
         dangHien = true;
         UIManager.Mo(UIManager.TrangThaiUI.ChetChoc);
-
         DDAManager.GhiNhanChet();
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible   = true;
-
         Time.timeScale = 0f;
+
         AudioManager.PhatChet();
         AudioManager.PhatManhHonRoi();
         AudioManager.PhatBGM(AudioManager.Instance?.bgmGameOver);
         AudioManager.TatAmThanhQuai();
 
-        // === TRỪ MẢNH HỒN + VẬT PHẨM NGAY KHI CHẾT ===
+        // Trừ Mảnh Hồn + vật phẩm ngay khi chết
         float phanTram = (RespawnManager.Instance != null) ? RespawnManager.Instance.phanTramGiuManhHon : 0.5f;
         PlayerData data = SaveSystem.LoadGame();
-        int manhHonTruoc = data.soManhHon;
         data.soManhHon    = Mathf.FloorToInt(data.soManhHon * phanTram);
         data.soDaPhatSang = 0;
         data.soDongHo     = 0;
@@ -85,7 +83,6 @@ public class DeathScreen : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(thoiGianCho);
 
-        // Hiển thị kết quả
         int phanTramHienThi = Mathf.RoundToInt(phanTram * 100f);
 
         if (txtThongBao != null)
@@ -100,9 +97,7 @@ public class DeathScreen : MonoBehaviour
         if (panelChet != null) panelChet.SetActive(true);
     }
 
-    // -----------------------------------------------
-    // TIẾP TỤC → Hồi sinh ngẫu nhiên
-    // -----------------------------------------------
+    // Tiep tuc choi tu checkpoint/respawn
     public void OnClick_TiepTuc()
     {
         if (!dangHien) return;
@@ -114,20 +109,13 @@ public class DeathScreen : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible   = false;
 
-        // Hồi sinh qua RespawnManager
         if (RespawnManager.Instance != null)
             RespawnManager.Instance.HoiSinhPlayer();
         else
-        {
-            // Fallback: reload Scene nếu không tìm thấy RespawnManager
-            Debug.LogWarning("[!]️ Không có RespawnManager → Reload Scene");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
     }
 
-    // -----------------------------------------------
-    // TỪ BỎ → Về Main Menu
-    // -----------------------------------------------
+    // Tu bo va ve menu
     public void OnClick_TuBo()
     {
         if (!dangHien) return;

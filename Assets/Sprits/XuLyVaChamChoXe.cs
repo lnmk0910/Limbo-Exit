@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class XuLyVaChamChoXe : MonoBehaviour
 {
+    // Xu ly va cham voi checkpoint/finish
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("CheckPoint"))

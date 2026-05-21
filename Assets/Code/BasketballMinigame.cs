@@ -23,6 +23,7 @@ public class BasketballMinigame : MonoBehaviour
 
     private MinigameManager minigameManager;
 
+    // Khoi tao thoi gian, tham chieu va UI
     void Start()
     {
         currentTime = gameTime;
@@ -34,6 +35,7 @@ public class BasketballMinigame : MonoBehaviour
         UpdateUI();
     }
 
+    // Dem nguoc thoi gian va ket thuc neu het gio
     void Update()
     {
         if (gameEnded) return;
@@ -52,6 +54,7 @@ public class BasketballMinigame : MonoBehaviour
     }
 
     // 👉 GỌI HÀM NÀY KHI BÓNG VÀO RỔ
+    // Cong diem va kiem tra dieu kien thang
     public void AddScore(int points = 1)
     {
         if (gameEnded) return;
@@ -65,6 +68,7 @@ public class BasketballMinigame : MonoBehaviour
             WinGame();
     }
 
+    // Cap nhat text thoi gian va diem
     private void UpdateUI()
     {
         if (timerText)
@@ -74,6 +78,7 @@ public class BasketballMinigame : MonoBehaviour
             scoreText.text = "Score: " + currentScore + " / " + targetScore;
     }
 
+    // Ket thuc game va hien ket qua
     private void EndGame()
     {
         if (gameEnded) return;
@@ -84,6 +89,7 @@ public class BasketballMinigame : MonoBehaviour
             LoseGame();
     }
 
+    // Xu ly thang va hen gio ve map
     private void WinGame()
     {
         if (gameEnded) return;
@@ -100,6 +106,7 @@ public class BasketballMinigame : MonoBehaviour
         }
     }
 
+    // Xu ly thua va hen gio ve map
     private void LoseGame()
     {
         if (gameEnded) return;
@@ -116,6 +123,7 @@ public class BasketballMinigame : MonoBehaviour
         }
     }
 
+    // Quay ve map chinh (qua MinigameManager neu co)
     private void ReturnToMap()
     {
         if (minigameManager != null)

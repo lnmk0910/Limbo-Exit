@@ -4294,7 +4294,6 @@ MonoBehaviour:
   prefabSinhVatBun: {fileID: 784910486317655899, guid: 14265bbc1a2740e4da7f5994c4cf6eac, type: 3}
   soLuongEnemy: 2
   mazeGenerator: {fileID: 628270816}
-  kichThuocO: 4
   khoangCachAnToan: 12
   khoangCachGiuaQuai: 10
 --- !u!114 &628270821
@@ -5274,7 +5273,6 @@ MonoBehaviour:
   prefabExitGate: {fileID: 2216196575076899858, guid: dbd9ccca6d3a70e45afd601278c5bb10, type: 3}
   mazeGenerator: {fileID: 628270816}
   respawnManager: {fileID: 1696719974}
-  kichThuocO: 4
   doCaoPlayer: 1
   doCaoGate: 1.5
 --- !u!4 &848606117
@@ -6088,17 +6086,17 @@ MonoBehaviour:
   bgmGameOver: {fileID: 8300000, guid: e9936dd7d95d3284a9b0cd70a5aef2bd, type: 3}
   ambGio: {fileID: 8300000, guid: 72b58c9642fdc954e889b82f262ace26, type: 3}
   ambGiotNuoc: {fileID: 8300000, guid: e8f6b6ca35da8064c92317923ba1fc8e, type: 3}
-  sfxBuocChanDa: {fileID: 8300000, guid: c03028ee790041d4296e83b9ae05224a, type: 3}
-  sfxBuocChanBun: {fileID: 8300000, guid: f54b8961c98b95743ba8003c17172628, type: 3}
-  sfxBuocChanTinhThe: {fileID: 8300000, guid: c03028ee790041d4296e83b9ae05224a, type: 3}
-  sfxThoMan: {fileID: 8300000, guid: c03028ee790041d4296e83b9ae05224a, type: 3}
+  sfxBuocChanDa: {fileID: 0}
+  sfxBuocChanBun: {fileID: 0}
+  sfxBuocChanTinhThe: {fileID: 0}
+  sfxThoMan: {fileID: 0}
   sfxChet: {fileID: 0}
   sfxCheckpoint: {fileID: 0}
   sfxThoatMan: {fileID: 0}
   sfxManhHonRoi: {fileID: 0}
   sfxManhHonNhan: {fileID: 0}
   sfxCuaMo: {fileID: 0}
-  sfxQuaiPhatHien: {fileID: 8300000, guid: ec9f64f56a2fea344b6361256c5ac505, type: 3}
+  sfxQuaiPhatHien: {fileID: 0}
   sfxQuaiDuoi: {fileID: 0}
   sfxBunNoiLen: {fileID: 0}
   sfxThuthuNghe: {fileID: 0}

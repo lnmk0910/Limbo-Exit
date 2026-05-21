@@ -20,6 +20,7 @@ public class MyAnimationContoller : MonoBehaviour {
 
     private int BackgroundIndex = 0;
 
+    // Lang nghe phim tat de chay animation va doi background
     void Update() {
 
         // animate
@@ -34,6 +35,7 @@ public class MyAnimationContoller : MonoBehaviour {
         }
     }
 
+    // Chuyen sang background tiep theo
     private void NextBackground() {
         BackgroundsToActivate[BackgroundIndex].SetActive(false);
         BackgroundIndex = (BackgroundIndex + 1) % BackgroundsToActivate.Count;
@@ -42,6 +44,7 @@ public class MyAnimationContoller : MonoBehaviour {
         RenderSettings.ambientMode = AmbientModes[BackgroundIndex];
     }
 
+    // Scale san theo thoi gian
     private IEnumerator ScaleFloor() {
         // scale floor
         for (float t = 0; t <= 1; t += Time.deltaTime) {
@@ -50,6 +53,7 @@ public class MyAnimationContoller : MonoBehaviour {
         }
     }
 
+    // Bat cac doi tuong theo thu tu va tam dung/thu hoi game
     private IEnumerator ActivateObjectsOverTime() {
 
         // pause game

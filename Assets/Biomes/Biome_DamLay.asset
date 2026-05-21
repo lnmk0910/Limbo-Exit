@@ -21,14 +21,14 @@ MonoBehaviour:
   soTruPerWall: 8
   duongKinhTru: 0.4
   prefabTuong: {fileID: 6795127452382077095, guid: 1ab2680e5a72cdc498eadd90113722d6, type: 3}
-  prefabNen: {fileID: 7777104585739422633, guid: 8da4e4ac41bdb0e489be5eacee515d2f, type: 3}
+  prefabNen: {fileID: 6001920409972537504, guid: e65e3a07bb154ed43a5c450582339aaa, type: 3}
   prefabBay: {fileID: 0}
   mauAmbientLight: {r: 0.1, g: 0.1, b: 0.15, a: 1}
-  mauFog: {r: 0.039215688, g: 0.101960786, b: 0.039215688, a: 1}
+  mauFog: {r: 0.24376647, g: 0.2526117, b: 0.2528302, a: 1}
   batFog: 1
-  matDoFog: 0.06
+  matDoFog: 0.6
   heSoTocDo: 1
   coNuoc: 0
   coSuong: 1
-  tamNhinToiDa: 25
+  tamNhinToiDa: 21
   nhacNen: {fileID: 0}

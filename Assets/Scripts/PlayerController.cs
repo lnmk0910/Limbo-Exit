@@ -1,7 +1,4 @@
-﻿// PlayerController.cs (cập nhật)
-// Đọc cấp nâng cấp tốc độ từ PlayerData
-// GẮN vào: Player GameObject
-
+// PlayerController.cs — Di chuyển FPS: đi, chạy, animation, bước chân
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,44 +8,39 @@ public class PlayerController : MonoBehaviour
     public float tocDoChay = 9f;
 
     [Header("=== NÂNG CẤP ===")]
-    public float bonusTocDoMoiCap = 0.5f;   // +0.5 mỗi cấp nâng
+    public float bonusTocDoMoiCap = 0.5f;
 
     private Rigidbody rb;
     private float heSoBiome  = 1f;
     private float bonusTocDo = 0f;
     private Animator anim;
-    private int   biomeHienTai = 0;
+    private int biomeHienTai = 0;
 
-
+    // Khoi tao Rigidbody va Animator
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
-        // Tìm Animator trong các con cháu (Model Mixamo nằm bên trong Player)
         anim = GetComponentInChildren<Animator>();
     }
 
+    // Nap he so biome va bonus toc do tu save
     void Start()
     {
         heSoBiome = BiomeManager.LayHeSoTocDo();
 
-        // Đọc nâng cấp tốc độ
         PlayerData data = SaveSystem.LoadGame();
         bonusTocDo = data.capTocDo * bonusTocDoMoiCap;
 
-        // Đọc biome để chọn tiếng bước chân đúng
         biomeHienTai = 0;
         if (data.biomeSequence != null && data.biomeSequence.Length > 0)
         {
             int idx = Mathf.Clamp((data.mapHienTai - 1) % data.biomeSequence.Length, 0, data.biomeSequence.Length - 1);
             biomeHienTai = data.biomeSequence[idx];
         }
-
-        if (bonusTocDo > 0)
-            Debug.Log($"[TOCDO] Tốc độ nâng cấp: +{bonusTocDo} (Cấp {data.capTocDo})");
     }
 
+    // Doc input va cap nhat van toc + animation
     void FixedUpdate()
     {
         float inputX = Input.GetAxisRaw("Horizontal");
@@ -59,24 +51,15 @@ public class PlayerController : MonoBehaviour
         float tocDoCuThe = (dangChay ? tocDoChay : tocDo) + bonusTocDo;
         tocDoCuThe *= heSoBiome;
 
-        rb.linearVelocity = new Vector3(
-            huong.x * tocDoCuThe,
-            rb.linearVelocity.y,
-            huong.z * tocDoCuThe
-        );
+        rb.linearVelocity = new Vector3(huong.x * tocDoCuThe, rb.linearVelocity.y, huong.z * tocDoCuThe);
 
-        // Đồng bộ animation: speed=0 khi đứng, speed=0.5 khi đi, speed=1 khi chạy
         if (anim != null)
         {
             float tocDoThucTe = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).magnitude;
-            float animSpeed = tocDoThucTe / tocDoChay;  // 0.0 → 1.0
-            anim.SetFloat("Speed", animSpeed);
+            anim.SetFloat("Speed", tocDoThucTe / tocDoChay);
 
-            // Bước chân: bật khi đang di chuyển, tắt khi đứng yên
-            if (tocDoThucTe > 0.5f)
-                AudioManager.BatBuocChan(biomeHienTai);
-            else
-                AudioManager.TatBuocChan();
+            if (tocDoThucTe > 0.5f) AudioManager.BatBuocChan(biomeHienTai);
+            else AudioManager.TatBuocChan();
         }
     }
 }

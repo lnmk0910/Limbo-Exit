@@ -1,10 +1,4 @@
-// RespawnManager.cs
-// Quản lý hệ thống hồi sinh:
-// - Theo dõi các "Điểm An Toàn" người chơi đã kích hoạt
-// - Khi chết: chọn ngẫu nhiên 1 điểm → spawn Player lại đó
-// - Nếu chưa có điểm nào: về vị trí Start
-// GẮN vào: Empty GameObject "RespawnManager" trong GameScene
-
+// RespawnManager.cs — Quản lý hồi sinh: điểm an toàn + respawn
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,61 +7,46 @@ public class RespawnManager : MonoBehaviour
     public static RespawnManager Instance { get; private set; }
 
     [Header("=== VỊ TRÍ START (fallback) ===")]
-    public Transform viTriStart;    // Kéo Player vào để biết vị trí ban đầu
+    public Transform viTriStart;
 
-    [Header("=== PHẦN TRĂM MẢnh HỒN GIỮ LẠI KHI CHẾT ===")]
+    [Header("=== PHẦN TRĂM MẢNH HỒN GIỮ LẠI KHI CHẾT ===")]
     [Range(0f, 1f)]
-    public float phanTramGiuManhHon = 0.5f;  // Mặc định giữ 50%
+    public float phanTramGiuManhHon = 0.5f;
 
-    // Danh sách các điểm an toàn đã mở (tọa độ thế giới)
     private List<Vector3> danhSachDiemAnToan = new List<Vector3>();
-
-    // Vị trí Player hiện tại (cập nhật liên tục)
     private Transform playerTransform;
 
+    // Khoi tao singleton
     void Awake()
     {
         if (Instance != null) { Destroy(gameObject); return; }
         Instance = this;
     }
 
-    // Gọi bởi GameManager sau khi spawn Player
+    // Gan tham chieu player de respawn
     public void DatPlayer(Transform player)
     {
         playerTransform = player;
     }
 
-    // -----------------------------------------------
     // Đăng ký điểm an toàn (gọi từ CheckpointTrigger)
-    // -----------------------------------------------
+    // Luu lai diem an toan de respawn
     public void DangKyDiemAnToan(Vector3 viTri)
     {
         if (!danhSachDiemAnToan.Contains(viTri))
-        {
             danhSachDiemAnToan.Add(viTri);
-            Debug.Log($"[CKPOINT] Đã lưu điểm an toàn: {viTri} | Tổng: {danhSachDiemAnToan.Count}");
-        }
     }
 
-    // -----------------------------------------------
-    // Lấy điểm hồi sinh ngẫu nhiên
-    // -----------------------------------------------
+    // Lay ngau nhien 1 diem an toan (fallback ve start)
     public Vector3 LayDiemHoiSinhNgauNhien()
     {
         if (danhSachDiemAnToan.Count > 0)
-        {
-            // Chọn ngẫu nhiên 1 trong các điểm đã lưu
-            int idx = Random.Range(0, danhSachDiemAnToan.Count);
-            return danhSachDiemAnToan[idx];
-        }
-
-        // Chưa có checkpoint → về Start
+            return danhSachDiemAnToan[Random.Range(0, danhSachDiemAnToan.Count)];
         return viTriStart != null ? viTriStart.position : Vector3.zero;
     }
 
-    // -----------------------------------------------
-    // THỰC HIỆN HỒI SINH (gọi từ DeathScreen khi nhấn "Tiếp tục")
-    // -----------------------------------------------
+    // Gọi từ DeathScreen khi nhấn "Tiếp tục"
+    // Dua player ve diem hoi sinh
     public void HoiSinhPlayer()
     {
         if (playerTransform == null)
@@ -76,33 +55,7 @@ public class RespawnManager : MonoBehaviour
             return;
         }
 
-        Vector3 diemHoiSinh = LayDiemHoiSinhNgauNhien();
-        playerTransform.position = diemHoiSinh + Vector3.up * 1f;
-
-        // Penalty đã được trừ trong DeathScreen.TrinhTuHienThi()
+        playerTransform.position = LayDiemHoiSinhNgauNhien() + Vector3.up * 1f;
         AudioManager.TatAmThanhQuai();
-    }
-
-    // -----------------------------------------------
-    // Xử lý mất vật phẩm + giữ % Mảnh Hồn
-    // -----------------------------------------------
-    void MatVatPhamKhiChet()
-    {
-        // Xóa vật phẩm trong túi
-        PlayerData data = SaveSystem.LoadGame();
-
-        int manhHonGiuLai = Mathf.FloorToInt(data.soManhHon * phanTramGiuManhHon);
-        data.soManhHon   = manhHonGiuLai;
-        data.soDaPhatSang = 0;
-        data.soDongHo     = 0;
-        data.soLaBan      = 0;
-
-        SaveSystem.SaveGame(data);
-
-        // Đồng bộ PlayerInventory runtime khớp với save vừa ghi
-        if (PlayerInventory.Instance != null)
-            PlayerInventory.Instance.SyncTuSave();
-
-        Debug.Log($"[CHET] Chết! Giữ lại {manhHonGiuLai} Mảnh Hồn (50%). Mất hết vật phẩm.");
     }
 }

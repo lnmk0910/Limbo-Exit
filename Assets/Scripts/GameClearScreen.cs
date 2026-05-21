@@ -1,22 +1,18 @@
-
-
+// GameClearScreen.cs — Màn hình phá đảo: random video ending + fallback text
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using TMPro;
 
-
 [System.Serializable]
 public class VideoEndingData
 {
     [Tooltip("File video (.mp4)")]
     public VideoClip clip;
-
-    [Tooltip("Thời gian chờ sau khi video kết thúc trước khi về menu (giây)")]
+    [Tooltip("Thời gian chờ sau video trước khi về menu (giây)")]
     public float delayVeMenu = 2f;
-
-    [Tooltip("Mô tả (chỉ để ghi chú, không dùng trong code)")]
+    [Tooltip("Mô tả (ghi chú)")]
     public string moTa = "";
 }
 
@@ -25,17 +21,15 @@ public class GameClearScreen : MonoBehaviour
     public static GameClearScreen Instance { get; private set; }
 
     [Header("=== DANH SÁCH VIDEO ENDING ===")]
-    [Tooltip("Kéo nhiều video vào đây. Mỗi lần thắng sẽ random 1 video.")]
     public VideoEndingData[] danhSachVideo;
 
     [Header("=== VIDEO UI ===")]
-    [Tooltip("RawImage toàn màn hình để hiện video. Để trống → tự tạo.")]
     public RawImage imgVideo;
 
     [Header("=== PANELS ===")]
     public GameObject panelGameClear;
 
-    [Header("=== TEXT (fallback khi không có video) ===")]
+    [Header("=== TEXT (fallback) ===")]
     public TMP_Text txtTieuDe;
     public TMP_Text txtThongKe;
     public TMP_Text txtDemNguoc;
@@ -47,7 +41,6 @@ public class GameClearScreen : MonoBehaviour
     public string tenSceneMenu      = "MainMenu";
     public float  thoiGianChoVeMenu = 30f;
 
-    // --- Internal ---
     private bool  dangHien        = false;
     private bool  daLoadScene     = false;
     private float thoiGianChoi    = 0f;
@@ -57,21 +50,21 @@ public class GameClearScreen : MonoBehaviour
     private bool  dangChoDelay    = false;
     private float demDelay        = 0f;
 
-    // Lưu index video vừa phát để không lặp lại liên tiếp
     private static int indexVideoTruoc = -1;
 
-    // Video components
     private VideoPlayer videoPlayer;
     private RenderTexture renderTexture;
     private Canvas canvasVideo;
     private GameObject goCanvasVideo;
 
+    // Khoi tao singleton
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
     }
 
+    // An UI khi bat dau
     void Start()
     {
         if (panelGameClear != null) panelGameClear.SetActive(false);
@@ -79,6 +72,7 @@ public class GameClearScreen : MonoBehaviour
         if (txtSkipHint != null) txtSkipHint.gameObject.SetActive(false);
     }
 
+    // Xu ly trang thai: choi video, delay, fallback text
     void Update()
     {
         if (!dangHien)
@@ -89,64 +83,48 @@ public class GameClearScreen : MonoBehaviour
 
         if (daLoadScene) return;
 
-        // === ĐANG CHỜ DELAY SAU VIDEO ===
+        // Chờ delay sau video
         if (dangChoDelay)
         {
             demDelay -= Time.unscaledDeltaTime;
-            if (demDelay <= 0f)
+            if (demDelay <= 0f) VeMainMenu();
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
                 VeMainMenu();
-
-            // Vẫn cho skip trong lúc delay
-            if (Input.GetKeyDown(KeyCode.Escape) ||
-                Input.GetKeyDown(KeyCode.Return) ||
-                Input.GetKeyDown(KeyCode.Space))
-                VeMainMenu();
-
             return;
         }
 
-        // === ĐANG PHÁT VIDEO ===
+        // Đang phát video
         if (dangPhatVideo)
         {
-            // Kiểm tra video đã kết thúc tự nhiên (loopPointReached có thể không fire)
+            // Kiểm tra video kết thúc tự nhiên
             if (videoPlayer != null && videoPlayer.isPrepared && !videoPlayer.isPlaying && videoPlayer.frame > 0)
             {
                 OnVideoKetThuc(videoPlayer);
                 return;
             }
-
-            // VideoPlayer bị null bất thường → về menu luôn
             if (videoPlayer == null)
             {
                 dangPhatVideo = false;
                 VeMainMenu();
                 return;
             }
-
-            if (Input.GetKeyDown(KeyCode.Escape) ||
-                Input.GetKeyDown(KeyCode.Return) ||
-                Input.GetKeyDown(KeyCode.Space))
-            {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
                 SkipVideo();
-            }
             return;
         }
 
-        // === FALLBACK: ĐẾM NGƯỢC ===
+        // Fallback: đếm ngược text
         demNguoc -= Time.unscaledDeltaTime;
         int giayConLai = Mathf.CeilToInt(demNguoc);
         if (txtDemNguoc != null)
             txtDemNguoc.text = giayConLai > 0
                 ? $"Tự động về Menu trong: {giayConLai}s"
                 : "Đang chuyển về Menu...";
-
-        if (demNguoc <= 0f)
-            VeMainMenu();
+        if (demNguoc <= 0f) VeMainMenu();
     }
 
-    // -----------------------------------------------
-    // GỌI TỪ VictoryScreen khi tầng cuối
-    // -----------------------------------------------
+    // Gọi từ VictoryScreen khi tầng cuối
+    // Hien man hinh game clear va chon video
     public void HienGameClear()
     {
         if (dangHien) return;
@@ -156,17 +134,13 @@ public class GameClearScreen : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible   = true;
         UIManager.Mo(UIManager.TrangThaiUI.ChienThang);
-
         AudioManager.PhatPhaDao();
 
         PlayerData data = SaveSystem.LoadGame();
         int phut = Mathf.FloorToInt(thoiGianChoi / 60f);
         int giay = Mathf.FloorToInt(thoiGianChoi % 60f);
-        Debug.Log($"[GameClear] Hoàn thành! MH={data.soManhHon} | Thời gian: {phut:00}:{giay:00}");
 
-        // === CHỌN VIDEO RANDOM ===
         VideoEndingData videoChon = ChonVideoNgauNhien();
-
         if (videoChon != null && videoChon.clip != null)
         {
             delayHienTai = videoChon.delayVeMenu;
@@ -178,43 +152,20 @@ public class GameClearScreen : MonoBehaviour
         }
     }
 
-    // -----------------------------------------------
-    // CHỌN VIDEO NGẪU NHIÊN (không lặp lại liên tiếp)
-    // -----------------------------------------------
+    // Chon video ngau nhien (tranh lap lien tuc)
     VideoEndingData ChonVideoNgauNhien()
     {
-        if (danhSachVideo == null || danhSachVideo.Length == 0)
-            return null;
+        if (danhSachVideo == null || danhSachVideo.Length == 0) return null;
+        if (danhSachVideo.Length == 1) { indexVideoTruoc = 0; return danhSachVideo[0]; }
 
-        // Chỉ 1 video → luôn chọn nó
-        if (danhSachVideo.Length == 1)
-        {
-            indexVideoTruoc = 0;
-            return danhSachVideo[0];
-        }
-
-        // Nhiều video → random nhưng tránh lặp lại video vừa phát
-        int index;
-        int soLanThu = 0;
-        do
-        {
-            index = Random.Range(0, danhSachVideo.Length);
-            soLanThu++;
-        }
+        int index, soLanThu = 0;
+        do { index = Random.Range(0, danhSachVideo.Length); soLanThu++; }
         while (index == indexVideoTruoc && soLanThu < 20);
-
         indexVideoTruoc = index;
-
-        VideoEndingData chon = danhSachVideo[index];
-        Debug.Log($"[GameClear] Chọn video #{index}: \"{chon.moTa}\" | Delay: {chon.delayVeMenu}s | " +
-                  $"Clip: {chon.clip?.name ?? "NULL"}");
-
-        return chon;
+        return danhSachVideo[index];
     }
 
-    // -----------------------------------------------
-    // PHÁT VIDEO
-    // -----------------------------------------------
+    // Tao VideoPlayer va bat dau phat
     void BatDauPhatVideo(VideoClip clip)
     {
         dangPhatVideo = true;
@@ -230,13 +181,8 @@ public class GameClearScreen : MonoBehaviour
         videoPlayer.targetTexture = renderTexture;
         videoPlayer.renderMode = VideoRenderMode.RenderTexture;
 
-        if (imgVideo == null)
-            TaoCanvasVideo();
-        else
-        {
-            imgVideo.texture = renderTexture;
-            imgVideo.gameObject.SetActive(true);
-        }
+        if (imgVideo == null) TaoCanvasVideo();
+        else { imgVideo.texture = renderTexture; imgVideo.gameObject.SetActive(true); }
 
         if (txtSkipHint != null)
         {
@@ -247,34 +193,11 @@ public class GameClearScreen : MonoBehaviour
         if (panelGameClear != null) panelGameClear.SetActive(false);
 
         videoPlayer.loopPointReached += OnVideoKetThuc;
-
-        videoPlayer.prepareCompleted += (vp) =>
-        {
-            vp.Play();
-            // Backup: coroutine kiểm tra video kết thúc phòng loopPointReached không fire
-            StartCoroutine(KiemTraVideoKetThuc());
-        };
+        videoPlayer.prepareCompleted += (vp) => { vp.Play(); };
         videoPlayer.Prepare();
     }
 
-    // Backup: kiểm tra mỗi 0.5s video đã phát xong chưa
-    System.Collections.IEnumerator KiemTraVideoKetThuc()
-    {
-        yield return new WaitForSeconds(1f);
-        while (dangPhatVideo && videoPlayer != null)
-        {
-            if (!videoPlayer.isPlaying && videoPlayer.frame > 0)
-            {
-                OnVideoKetThuc(videoPlayer);
-                yield break;
-            }
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
-
-    // -----------------------------------------------
-    // TẠO CANVAS VIDEO TỰ ĐỘNG
-    // -----------------------------------------------
+    // Tao canvas hien thi video neu chua co RawImage
     void TaoCanvasVideo()
     {
         goCanvasVideo = new GameObject("Canvas_VideoEnding");
@@ -285,33 +208,24 @@ public class GameClearScreen : MonoBehaviour
         var scaler = goCanvasVideo.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1920, 1080);
-
         goCanvasVideo.AddComponent<GraphicRaycaster>();
 
-        // RawImage toàn màn hình
         GameObject goImg = new GameObject("RawImage_Video");
         goImg.transform.SetParent(goCanvasVideo.transform, false);
-
         imgVideo = goImg.AddComponent<RawImage>();
         imgVideo.texture = renderTexture;
         imgVideo.color = Color.white;
-
         RectTransform rt = imgVideo.rectTransform;
-        rt.anchorMin = Vector2.zero;
-        rt.anchorMax = Vector2.one;
-        rt.offsetMin = Vector2.zero;
-        rt.offsetMax = Vector2.zero;
+        rt.anchorMin = Vector2.zero; rt.anchorMax = Vector2.one;
+        rt.offsetMin = Vector2.zero; rt.offsetMax = Vector2.zero;
 
-        // Skip hint
         GameObject goSkip = new GameObject("Txt_SkipHint");
         goSkip.transform.SetParent(goCanvasVideo.transform, false);
-
         txtSkipHint = goSkip.AddComponent<TextMeshProUGUI>();
         txtSkipHint.text = "[Esc / Enter / Space] Bỏ qua";
         txtSkipHint.fontSize = 24;
         txtSkipHint.color = new Color(1f, 1f, 1f, 0.6f);
         txtSkipHint.alignment = TextAlignmentOptions.BottomRight;
-
         RectTransform rtSkip = txtSkipHint.rectTransform;
         rtSkip.anchorMin = new Vector2(0.7f, 0f);
         rtSkip.anchorMax = new Vector2(1f, 0.08f);
@@ -319,42 +233,26 @@ public class GameClearScreen : MonoBehaviour
         rtSkip.offsetMax = new Vector2(-20f, 0f);
     }
 
-    // -----------------------------------------------
-    // VIDEO KẾT THÚC → CHỜ DELAY → VỀ MENU
-    // -----------------------------------------------
+    // Xu ly khi video ket thuc
     void OnVideoKetThuc(VideoPlayer vp)
     {
-        if (!dangPhatVideo) return; // Đã xử lý rồi
+        if (!dangPhatVideo) return;
         DonDepVideo();
-
-        if (delayHienTai <= 0f)
-        {
-            VeMainMenu();
-        }
-        else
-        {
-            dangChoDelay = true;
-            demDelay = delayHienTai;
-        }
+        if (delayHienTai <= 0f) VeMainMenu();
+        else { dangChoDelay = true; demDelay = delayHienTai; }
     }
 
-    // -----------------------------------------------
-    // SKIP VIDEO
-    // -----------------------------------------------
+    // Bo qua video va ve menu
     void SkipVideo()
     {
-        Debug.Log("[GameClear] Skip video → Về MainMenu");
         DonDepVideo();
         VeMainMenu();
     }
 
-    // -----------------------------------------------
-    // DỌN DẸP TÀI NGUYÊN VIDEO
-    // -----------------------------------------------
+    // Don dep VideoPlayer, RenderTexture va UI
     void DonDepVideo()
     {
         dangPhatVideo = false;
-
         if (videoPlayer != null)
         {
             videoPlayer.Stop();
@@ -362,56 +260,36 @@ public class GameClearScreen : MonoBehaviour
             Destroy(videoPlayer);
             videoPlayer = null;
         }
-
-        if (renderTexture != null)
-        {
-            renderTexture.Release();
-            Destroy(renderTexture);
-            renderTexture = null;
-        }
-
+        if (renderTexture != null) { renderTexture.Release(); Destroy(renderTexture); renderTexture = null; }
         if (goCanvasVideo != null)
         {
             Destroy(goCanvasVideo);
-            goCanvasVideo = null;
-            canvasVideo = null;
-            imgVideo = null;
-            txtSkipHint = null;
+            goCanvasVideo = null; canvasVideo = null; imgVideo = null; txtSkipHint = null;
         }
-        else if (imgVideo != null)
-        {
-            imgVideo.gameObject.SetActive(false);
-        }
+        else if (imgVideo != null) imgVideo.gameObject.SetActive(false);
     }
 
-    // -----------------------------------------------
-    // VỀ MAIN MENU
-    // -----------------------------------------------
+    // Load ve menu chinh (chi 1 lan)
     void VeMainMenu()
     {
         if (daLoadScene) return;
-        daLoadScene    = true;
-        dangHien       = false;
-        dangChoDelay   = false;
-        dangPhatVideo  = false;
+        daLoadScene   = true;
+        dangHien      = false;
+        dangChoDelay  = false;
+        dangPhatVideo = false;
         Time.timeScale = 1f;
         UIManager.DongVeGame();
         SceneManager.LoadScene(tenSceneMenu);
     }
 
-    // -----------------------------------------------
-    // FALLBACK: TEXT ĐẾM NGƯỢC
-    // -----------------------------------------------
+    // Hien text fallback khi khong co video
     void HienFallbackText(PlayerData data, int phut, int giay)
     {
         demNguoc = thoiGianChoVeMenu;
-
         if (panelGameClear != null) panelGameClear.SetActive(true);
 
         if (txtTieuDe != null)
-            txtTieuDe.text =
-                "CHÚC MỪNG!\n" +
-                "BẠN ĐÃ THOÁT KHỎI LIMBO!";
+            txtTieuDe.text = "CHÚC MỪNG!\nBẠN ĐÃ THOÁT KHỎI LIMBO!";
 
         if (txtThongKe != null)
             txtThongKe.text =
@@ -422,12 +300,8 @@ public class GameClearScreen : MonoBehaviour
 
         if (txtDemNguoc != null)
             txtDemNguoc.text = $"Tự động về Menu trong: {Mathf.CeilToInt(demNguoc)}s";
-
-        Debug.Log($"[GameClear] Fallback: Đếm ngược {thoiGianChoVeMenu}s → {tenSceneMenu}");
     }
 
-    void OnDestroy()
-    {
-        DonDepVideo();
-    }
+    // Dam bao don dep video khi destroy
+    void OnDestroy() { DonDepVideo(); }
 }

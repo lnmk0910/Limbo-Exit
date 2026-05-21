@@ -1,16 +1,13 @@
-// AccountData.cs
-// Du lieu tai khoan — luu vao file JSON local
-// KHONG can gan vao GameObject
-
+// AccountData.cs — Dữ liệu tài khoản local
 using System.Collections.Generic;
 
 [System.Serializable]
 public class AccountData
 {
-    public string tenDangNhap;    // Username
-    public string matKhauHash;    // SHA256 hash cua mat khau
-    public string ngayTao;        // Ngay tao tai khoan
-    public string lanDangNhapCuoi; // Lan dang nhap gan nhat
+    public string tenDangNhap;
+    public string matKhauHash;
+    public string ngayTao;
+    public string lanDangNhapCuoi;
 }
 
 [System.Serializable]

@@ -4,11 +4,13 @@ public class HoopDetector : MonoBehaviour
 {
     private BasketballMinigame minigame;
 
+    // Lay tham chieu minigame tu scene
     void Awake()        // Dùng Awake thay vì Start để chắc chắn hơn
     {
         minigame = FindObjectOfType<BasketballMinigame>();
     }
 
+    // Cong diem khi bong vao ro
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ball"))

@@ -7,6 +7,7 @@ public class AutoSpriteChanger_gp1 : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private int currentSpriteIndex = 0;
 
+    // Khoi tao SpriteRenderer va bat dau doi sprite
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -20,6 +21,7 @@ public class AutoSpriteChanger_gp1 : MonoBehaviour
         StartCoroutine(ChangeSpriteEverySecond());
     }
 
+    // Doi sprite theo chu ky de tao animation
     private IEnumerator ChangeSpriteEverySecond()
     {
         while (true)
